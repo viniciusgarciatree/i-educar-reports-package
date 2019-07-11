@@ -79,7 +79,7 @@ SELECT matricula.ano,
              WHEN matricula.aprovado = 15 THEN 'Fal'::character varying
              ELSE 'Recl'::character varying
            END AS situacao,
-           to_char(fisica.data_nasc, 'dd/mm/yyyy') AS data_nascimento,
+           to_char(fisica.data_nasc, 'dd/mm/yy') AS data_nascimento,
            to_char(coalesce(matricula.data_matricula, matricula.data_cadastro), 'dd/mm/yyyy') AS data_matricula,
            to_char(matricula_turma.data_enturmacao, 'dd/mm/yyyy') AS data_enturmacao,
            COALESCE(to_char(matricula.data_cancel, 'dd/mm/yyyy'), to_char(matricula.data_exclusao, 'dd/mm/yyyy')) AS dt_saida_matricula,

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_servidores_horas_alocadas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9610c62-78a7-41a6-b752-8b1f16c14b8b">
+	<property name="ireport.zoom" value="1.024520183047606"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="instituicao" class="java.lang.Integer"/>
+	<parameter name="escola" class="java.lang.Integer"/>
+	<parameter name="curso" class="java.lang.Integer"/>
+	<parameter name="situacao" class="java.lang.Integer"/>
+	<parameter name="data_inicial" class="java.lang.String"/>
+	<parameter name="data_final" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nome_instituicao" class="java.lang.String"/>
+	<field name="cidade_instituicao" class="java.lang.String"/>
+	<field name="uf_instituicao" class="java.lang.String"/>
+	<field name="tipo_logradouro" class="java.lang.String"/>
+	<field name="logradouro" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="numero" class="java.math.BigDecimal"/>
+	<field name="uf_municipio" class="java.lang.String"/>
+	<field name="fone_ddd" class="java.math.BigDecimal"/>
+	<field name="fone" class="java.lang.String"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="data_atual" class="java.lang.String"/>
+	<field name="hora_atual" class="java.lang.String"/>
+	<field name="codserv" class="java.lang.Integer"/>
+	<field name="cargahoraloc" class="java.lang.Float"/>
+	<field name="nm_escola" class="java.lang.String"/>
+	<field name="nm_escola_servidor" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="nm_funcao" class="java.lang.String"/>
+	<field name="situacao" class="java.lang.String"/>
+	<field name="professor" class="java.lang.String"/>
+	<field name="matricula" class="java.lang.String"/>
+	<field name="escolaridade" class="java.lang.String"/>
+	<field name="deficiencia" class="java.lang.String"/>
+	<field name="cargahorserv" class="java.lang.Integer"/>
+	<field name="periodo" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.String"/>
+	<variable name="variable2" class="java.lang.String"/>
+	<variable name="soma_horas" class="java.lang.Float" resetType="Group" resetGroup="Servidor" calculation="Sum">
+		<variableExpression><![CDATA[$F{cargahoraloc}]]></variableExpression>
+	</variable>
+	<group name="Servidor">
+		<groupExpression><![CDATA[$F{codserv}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement x="188" y="2" width="44" height="13" uuid="bbf4e149-4d69-4892-9f22-5cdcac7def81"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Função:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="43" y="2" width="145" height="13" uuid="9962ecea-9699-463e-a4ec-64053dc9971a"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="2" width="41" height="13" uuid="c10859e0-52a6-4442-9913-44e5c627b546"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Servidor:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="450" y="2" width="61" height="13" uuid="a41e9e62-b918-4531-8482-cb46e3b652dd"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Carga Hor.:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="232" y="2" width="76" height="13" isPrintWhenDetailOverflows="true" uuid="fc5b9786-eb5d-48c6-8fb8-aa958248c9d0"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nm_funcao}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement x="511" y="2" width="32" height="13" uuid="eec698de-d84c-4419-a671-d061834a275c"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cargahorserv}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15">
+				<staticText>
+					<reportElement x="60" y="2" width="81" height="13" uuid="3a03e7c4-3c6b-48a0-ae56-9b727868c3d9"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total alocadas:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement x="141" y="2" width="77" height="13" uuid="cb30a907-55f1-4d33-bf46-46a3cfa2a548"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{soma_horas}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<elementGroup/>
+			<elementGroup/>
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="70" uuid="6ab289e5-f9b8-40ec-b8f3-2acb4379806b"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Relação de Horas Alocadas por Servidor"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao"/>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement x="43" y="8" width="60" height="13" uuid="b594bb66-098c-4da6-b088-20bc7cabb383"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="8" width="51" height="13" uuid="925572b3-e29d-4768-ba25-9f4b6262f67a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carga Hor.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="8" width="100" height="13" uuid="f6d1146e-9c86-45f5-ae1d-2f3892cc45e0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Escola]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="220" y="0" width="239" height="13" uuid="7bb5b989-f26f-49bf-afc0-2f36edad399b"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_escola_servidor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="0" width="60" height="13" uuid="bdbe263b-d74b-403d-bc97-c33747d30452"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="142" y="0" width="62" height="13" uuid="8995c0f5-2f86-4fb5-970f-1e2e1ab85f74"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargahoraloc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="380" y="2" width="158" height="13" uuid="78eccbbd-5852-4af2-8ee6-425043799fb7"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "+ $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

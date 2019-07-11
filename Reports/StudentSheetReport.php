@@ -14,7 +14,7 @@ class StudentSheetReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return 'student-sheet';
+        return $this->args['branco'] == 1 ? 'student-sheet-blank' : 'student-sheet';
     }
 
     /**
@@ -34,6 +34,37 @@ class StudentSheetReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
+        return $this->args['branco'] === 'true'
+            ? $this->getSqlBlankReport()
+            : $this->getSqlReport();
+
+    }
+
+    private function getSqlBlankReport()
+    {
+        $escola = $this->args['escola'] ?: 0;
+        $instituicao = $this->args['instituicao'] ?: 0;
+
+        return "SELECT public.fcn_upper(nm_instituicao) AS nome_instituicao,
+       public.fcn_upper(nm_responsavel) AS nome_responsavel,
+       to_char(CURRENT_DATE,'dd/mm/yyyy') AS data_atual,
+       to_char(current_timestamp, 'HH24:MI:SS') AS hora_atual,
+      (SELECT COALESCE((SELECT COALESCE (fcn_upper(ps.nome),fcn_upper(juridica.fantasia))
+          from cadastro.pessoa ps,
+               cadastro.juridica,
+               pmieducar.escola
+         where escola.ref_idpes = ps.idpes AND
+               ps.idpes = juridica .idpes AND
+	       escola.cod_escola = $escola),(SELECT nm_escola FROM pmieducar.escola_complemento where ref_cod_escola = $escola))) AS nm_escola
+
+  FROM pmieducar.instituicao
+
+ WHERE instituicao.cod_instituicao = $instituicao AND
+       1 = 1";
+    }
+
+    private function getSqlReport()
+    {
         $escola = $this->args['escola'] ?: 0;
         $instituicao = $this->args['instituicao'] ?: 0;
         $matricula = $this->args['matricula'] ?: 0;
@@ -41,7 +72,6 @@ class StudentSheetReport extends Portabilis_Report_ReportCore
         $serie = $this->args['serie'] ?: 0;
         $turma = $this->args['turma'] ?: 0;
         $ano = $this->args['ano'] ?: 0;
-
         return "
 SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
                     public.fcn_upper(nm_responsavel) AS nome_secretaria,
@@ -684,5 +714,6 @@ WHERE instituicao.cod_instituicao = {$instituicao}
 ORDER BY seque_fecha,
          aluno
         ";
+
     }
 }
