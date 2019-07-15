@@ -42,17 +42,20 @@
 	<parameter name="situacao" class="java.lang.String"/>
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
-	<parameter name="matricula" class="java.lang.Integer">
+	<parameter name="separar" class="java.lang.String">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="count" class="java.lang.Long"/>
-	<field name="cod_escola" class="java.lang.Integer"/>
-	<field name="nm_escola" class="java.lang.String"/>
+	<field name="total" class="java.lang.Integer"/>
+	<field name="nm_curso" class="java.lang.String"/>
+	<field name="escola" class="java.lang.String"/>
 	<variable name="SOMA" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{count}]]></variableExpression>
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total_geral" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
 	</variable>
 	<title>
 		<band height="100" splitType="Stretch">
@@ -62,7 +65,7 @@
 					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
-					<subreportParameterExpression><![CDATA["Alunos Matriculados por Escola"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["Alunos Matriculados por Curso"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
@@ -83,57 +86,64 @@
 			</subreport>
 		</band>
 	</title>
+	<pageHeader>
+		<band height="17">
+			<staticText>
+				<reportElement x="3" y="2" width="39" height="13" uuid="d03ea74e-2147-4380-bab2-fc7802609e96"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="16" width="555" height="1" uuid="049775af-4ef6-4371-a571-f91b5a0bae46"/>
+			</line>
+			<staticText>
+				<reportElement x="410" y="2" width="46" height="13" uuid="767264ee-c1e8-4766-b44f-b2f5f28c59d0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
 	<detail>
-		<band height="9" splitType="Stretch">
+		<band height="10">
 			<textField>
-				<reportElement x="212" y="2" width="100" height="6" uuid="cb26f064-5f7d-4449-8e99-31fbc54222c5">
-					<printWhenExpression><![CDATA[$F{count}.intValue() < -1]]></printWhenExpression>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="303" height="10" uuid="7e5ca4f8-6d20-4eb3-ab57-56bc30732852"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_curso} == null ? "-- NÂO CADASTRADO --" : $F{nm_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="0" width="144" height="10" uuid="3a3bbcee-e3cd-4641-b40e-3c5896d3bb8f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<summary>
-		<band height="348" splitType="Stretch">
-			<staticText>
-				<reportElement x="33" y="334" width="81" height="14" uuid="1226d5bd-c56d-401e-b5ff-cb856733ecb4"/>
+		<band height="10">
+			<textField>
+				<reportElement x="410" y="0" width="120" height="10" uuid="e47ed88c-7509-4a9b-99ca-40a5acced490">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Total de alunos:]]></text>
-			</staticText>
-			<bar3DChart>
-				<chart>
-					<reportElement x="10" y="5" width="533" height="321" uuid="738162ad-bb5c-4605-8712-c806e4531fb7"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<categorySeries>
-						<seriesExpression><![CDATA[$F{nm_escola}]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{count}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{count}]]></valueExpression>
-						<labelExpression><![CDATA[$F{nm_escola}]]></labelExpression>
-					</categorySeries>
-				</categoryDataset>
-				<bar3DPlot>
-					<plot/>
-					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
-					<categoryAxisFormat>
-						<axisFormat/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</bar3DPlot>
-			</bar3DChart>
+				<textFieldExpression><![CDATA[$V{total_geral}]]></textFieldExpression>
+			</textField>
 			<textField>
-				<reportElement x="114" y="334" width="27" height="14" uuid="4d2dbb9a-f5c9-455a-9c4a-fdebbf2b2cda"/>
+				<reportElement x="290" y="0" width="120" height="10" uuid="8735be6e-0c91-4a3e-a34c-a75ec59c8e10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<textElement>
-					<font fontName="DejaVu Sans" size="8"/>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{SOMA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Total geral.....:"]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
