@@ -2,14 +2,14 @@
 
 require_once 'lib/Portabilis/Date/Utils.php';
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/StudentsByCoursesReport.php';
+require_once 'Reports/Reports/StudentsByClassShiftSchoolReport.php';
 
-class StudentsByCoursesController extends Portabilis_Controller_ReportCoreController
+class StudentsByClassShiftSchoolController extends Portabilis_Controller_ReportCoreController
 {
     /**
      * @var string
      */
-    protected $_titulo = 'Alunos matriculados por curso';
+    protected $_titulo = 'Alunos matriculados por escola, série e turno';
 
     /**
      * @inheritdoc
@@ -20,7 +20,7 @@ class StudentsByCoursesController extends Portabilis_Controller_ReportCoreContro
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Alunos matriculados por curso', [
+        $this->breadcrumb('Alunos matriculados por escola, série e turno', [
             'educar_index.php' => 'Escola',
         ]);
     }
@@ -31,7 +31,6 @@ class StudentsByCoursesController extends Portabilis_Controller_ReportCoreContro
     public function form()
     {
         $this->inputsHelper()->dynamic(['ano', 'instituicao']);
-        $this->inputsHelper()->dynamic('escola', [], ['options' => ['required' => false]]);
         $this->inputsHelper()->select('situacao', [
             'label' => 'Situação',
             'resources' => [
@@ -44,7 +43,6 @@ class StudentsByCoursesController extends Portabilis_Controller_ReportCoreContro
             ],
             'value' => 3
         ]);
-        $this->inputsHelper()->checkbox('separar', ['label' => 'Separar por escola', 'required' => false]);
         $this->loadResourceAssets($this->getDispatcher());
     }
 
@@ -55,18 +53,16 @@ class StudentsByCoursesController extends Portabilis_Controller_ReportCoreContro
     {
         $this->report->addArg('ano', (int) $this->getRequest()->ano);
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);
-        $this->report->addArg('separar', (bool) $this->getRequest()->separar);
-        $this->report->addArg('escola', (int) $this->getRequest()->ref_cod_escola);
         $this->report->addArg('situacao', (int) $this->getRequest()->situacao);
     }
 
     /**
-     * @return StudentsByCoursesReport
+     * @return StudentsByClassShiftSchoolReport
      *
      * @throws Exception
      */
     public function report()
     {
-        return new StudentsByCoursesReport();
+        return new StudentsByClassShiftSchoolReport();
     }
 }

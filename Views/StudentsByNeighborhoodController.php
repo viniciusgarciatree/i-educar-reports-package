@@ -32,6 +32,18 @@ class StudentsByNeighborhoodController extends Portabilis_Controller_ReportCoreC
     {
         $this->inputsHelper()->dynamic(['ano', 'instituicao']);
         $this->inputsHelper()->dynamic('escola', [], ['options' => ['required' => false]]);
+        $this->inputsHelper()->select('situacao', [
+            'label' => 'Situação',
+            'resources' => [
+                1 => 'Aprovado',
+                2 => 'Reprovado',
+                3 => 'Em Andamento',
+                4 => 'Transferido',
+                6 => 'Abandono',
+                9 => 'Todas'
+            ],
+            'value' => 3
+        ]);
         $this->inputsHelper()->checkbox('separar', ['label' => 'Separar por escola', 'required' => false]);
         $this->loadResourceAssets($this->getDispatcher());
     }
@@ -45,6 +57,7 @@ class StudentsByNeighborhoodController extends Portabilis_Controller_ReportCoreC
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);
         $this->report->addArg('separar', (bool) $this->getRequest()->separar);
         $this->report->addArg('escola', (int) $this->getRequest()->ref_cod_escola);
+        $this->report->addArg('situacao', (int) $this->getRequest()->situacao);
     }
 
     /**
