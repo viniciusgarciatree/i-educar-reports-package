@@ -80,7 +80,7 @@ WHERE  d.ativo = 1 AND
        e.ref_cod_instituicao = $instituicao "
        .($situacao == 9 ? "" : " AND
        d.aprovado = $situacao"). " ".($escola == 0 ? "" : " AND cod_escola = $escola")."
-       group by 2,3  order by 2,3;";
+       group by 2,3  order by 3,2;";
 
     }
 }
