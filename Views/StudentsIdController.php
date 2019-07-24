@@ -7,6 +7,11 @@ require_once 'Reports/Reports/StudentsIdReport.php';
 class StudentsIdController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Carteira de Estudante';

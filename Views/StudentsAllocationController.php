@@ -7,6 +7,11 @@ require_once 'Reports/Reports/StudentsAllocationReport.php';
 class StudentsAllocationController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Alunos enturmados/não enturmados';

@@ -7,6 +7,11 @@ require_once 'Reports/Reports/StudentsByNeighborhoodReport.php';
 class StudentsByNeighborhoodController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Alunos matriculados por bairro';

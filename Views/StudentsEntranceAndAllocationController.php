@@ -9,7 +9,7 @@ class StudentsEntranceAndAllocationController extends Portabilis_Controller_Repo
     /**
      * @var int
      */
-    protected $_processoAp = 999871;
+    protected $_processoAp = 55;
 
     /**
      * @var string

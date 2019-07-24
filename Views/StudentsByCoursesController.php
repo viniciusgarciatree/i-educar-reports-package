@@ -7,6 +7,11 @@ require_once 'Reports/Reports/StudentsByCoursesReport.php';
 class StudentsByCoursesController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Alunos matriculados por curso';

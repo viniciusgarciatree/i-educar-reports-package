@@ -7,6 +7,11 @@ require_once 'Reports/Reports/ClassCouncilMapReport.php';
 class ClassCouncilMapController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Mapa do Conselho de Classe';

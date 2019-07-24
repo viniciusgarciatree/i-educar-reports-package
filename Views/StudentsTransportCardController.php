@@ -7,6 +7,11 @@ require_once 'Reports/Reports/StudentsTransportCardReport.php';
 class StudentsTransportCardController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Carteira de Transporte';

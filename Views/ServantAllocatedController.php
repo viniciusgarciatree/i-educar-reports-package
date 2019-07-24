@@ -7,6 +7,11 @@ require_once 'Reports/Reports/ServantAllocatedReport.php';
 class ServantAllocatedController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 71;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Alocação servidores';

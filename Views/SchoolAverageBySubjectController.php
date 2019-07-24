@@ -7,6 +7,11 @@ require_once 'Reports/Reports/SchoolAverageBySubjectReport.php';
 class SchoolAverageBySubjectController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Gráfico comparativo da média das escolas por disciplina';

@@ -9,6 +9,11 @@ class AmountOfLoanToReadersController extends Portabilis_Controller_ReportCoreCo
     /**
      * @inheritdoc
      */
+    protected $_processoAp = 57;
+
+    /**
+     * @inheritdoc
+     */
     protected $_titulo = 'Quantidade de emprestimos por leitor';
 
     /**

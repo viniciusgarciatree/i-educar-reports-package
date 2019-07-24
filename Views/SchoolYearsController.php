@@ -8,7 +8,7 @@ class SchoolYearsController extends Portabilis_Controller_ReportCoreController
     /**
      * @inheritdoc
      */
-    protected $_processoAp = 999822;
+    protected $_processoAp = 55;
 
     /**
      * @inheritdoc

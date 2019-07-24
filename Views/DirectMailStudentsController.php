@@ -9,6 +9,11 @@ class DirectMailStudentsController extends Portabilis_Controller_ReportCoreContr
     /**
      * @inheritdoc
      */
+    protected $_processoAp = 55;
+
+    /**
+     * @inheritdoc
+     */
     protected $_titulo = 'Emissão de etiquetas de mala direta';
 
     /**

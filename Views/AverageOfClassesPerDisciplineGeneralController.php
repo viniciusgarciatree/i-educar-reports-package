@@ -7,6 +7,11 @@ require_once 'Reports/Reports/AverageOfClassesPerDisciplineGeneralReport.php';
 class AverageOfClassesPerDisciplineGeneralController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Gráfico comparativo da média das turmas por disciplina e geral';

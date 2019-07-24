@@ -8,7 +8,7 @@ class ShortagesDelaysServantsController extends Portabilis_Controller_ReportCore
     /**
      * @inheritdoc
      */
-    protected $_processoAp = 999822;
+    protected $_processoAp = 71;
 
     /**
      * @inheritdoc

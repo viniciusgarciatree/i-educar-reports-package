@@ -8,7 +8,7 @@ class LibraryLoansController extends Portabilis_Controller_ReportCoreController
     /**
      * @var int
      */
-    protected $_processoAp = 999618;
+    protected $_processoAp = 57;
 
     /**
      * @var string

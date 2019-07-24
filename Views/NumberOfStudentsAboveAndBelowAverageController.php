@@ -7,6 +7,11 @@ require_once 'Reports/Reports/NumberOfStudentsAboveAndBelowAverageReport.php';
 class NumberOfStudentsAboveAndBelowAverageController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @inheritdoc
+     */
+    protected $_processoAp = 55;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Gráfico comparativo da quantidade de alunos acima e abaixo da média por disciplina';
