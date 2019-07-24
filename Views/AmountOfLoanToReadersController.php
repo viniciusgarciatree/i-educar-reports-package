@@ -1,19 +1,15 @@
 <?php
 
+require_once 'lib/Portabilis/Date/Utils.php';
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/LibraryLoansReport.php';
+require_once 'Reports/Reports/AmountOfLoanToReadersReport.php';
 
-class LibraryLoansController extends Portabilis_Controller_ReportCoreController
+class AmountOfLoanToReadersController extends Portabilis_Controller_ReportCoreController
 {
     /**
-     * @var int
+     * @inheritdoc
      */
-    protected $_processoAp = 999618;
-
-    /**
-     * @var string
-     */
-    protected $_titulo = 'Relatório de Empréstimos';
+    protected $_titulo = 'Quantidade de emprestimos por leitor';
 
     /**
      * @inheritdoc
@@ -24,7 +20,7 @@ class LibraryLoansController extends Portabilis_Controller_ReportCoreController
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Relatório de Empréstimos', [
+        $this->breadcrumb('Quantidade de emprestimos por leitor', [
             'educar_biblioteca_index.php' => 'Biblioteca',
         ]);
     }
@@ -35,15 +31,8 @@ class LibraryLoansController extends Portabilis_Controller_ReportCoreController
     public function form()
     {
         $this->inputsHelper()->dynamic(['instituicao', 'escola']);
-        $this->inputsHelper()->dynamic(['BibliotecaPesquisaObra', 'BibliotecaPesquisaCliente', 'dataInicial', 'dataFinal'], ['required' => false]);
-        $this->inputsHelper()->select('situacao', [
-            'label' => 'Situação',
-            'resources' => [
-                1 => 'Todos',
-                2 => 'Em Atraso',
-            ],
-            'value' => 1
-        ]);
+        $this->inputsHelper()->dynamic(['BibliotecaPesquisaCliente', 'dataInicial', 'dataFinal'], ['required' => false]);
+        $this->loadResourceAssets($this->getDispatcher());
     }
 
     /**
@@ -53,26 +42,22 @@ class LibraryLoansController extends Portabilis_Controller_ReportCoreController
     {
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);
         $this->report->addArg('escola', (int) $this->getRequest()->ref_cod_escola);
-        $this->report->addArg('acervo', (int) $this->getRequest()->ref_cod_acervo);
-
         if (!isset($_POST['ref_cod_cliente']) || trim($_POST['ref_cod_cliente']) == '') {
             $this->report->addArg('cliente', 0);
         } else {
             $this->report->addArg('cliente', (int) $this->getRequest()->ref_cod_cliente);
         }
-
         $this->report->addArg('dt_inicial', $this->getRequest()->data_inicial);
         $this->report->addArg('dt_final', $this->getRequest()->data_final);
-        $this->report->addArg('situacao', $this->getRequest()->situacao);
     }
 
     /**
-     * @return LibraryLoansReport
+     * @return AmountOfLoanToReadersReport
      *
      * @throws Exception
      */
     public function report()
     {
-        return new LibraryLoansReport();
+        return new AmountOfLoanToReadersReport();
     }
 }

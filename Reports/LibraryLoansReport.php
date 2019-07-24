@@ -38,6 +38,8 @@ class LibraryLoansReport extends Portabilis_Report_ReportCore
         $dt_inicial = $this->args['dt_inicial'] ?: 0;
         $dt_final = $this->args['dt_final'] ?: 0;
         $cliente = $this->args['cliente'] ?: 0;
+        $acervo = $this->args['acervo'] ?: 0;
+        $situacao = $this->args['situacao'] ?: 1;
 
         return "
         SELECT public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
@@ -120,6 +122,10 @@ WHERE instituicao.cod_instituicao = {$instituicao}
   AND (date(exemplar_emprestimo.data_retirada) <= (substr('{$dt_final}',7,10) || '-' || substr('{$dt_final}',4,2) || '-' || substr('{$dt_final}',1,2))::date)
   AND
     (SELECT CASE WHEN {$cliente} <> 0 THEN exemplar_emprestimo.ref_cod_cliente = {$cliente} ELSE exemplar_emprestimo.ref_cod_cliente = exemplar_emprestimo.ref_cod_cliente END)
+  AND
+    (CASE WHEN {$acervo} <> 0 THEN exemplar.ref_cod_acervo = {$acervo} ELSE true END)
+  AND
+    (CASE WHEN {$situacao} <> 1 THEN (to_char(exemplar_emprestimo.data_retirada,'dd/MM/yyyy')::date + coalesce(cliente_tipo_exemplar_tipo.dias_emprestimo,0)::integer) < current_date ELSE true END)
   AND exemplar_emprestimo.ref_cod_exemplar = exemplar_emprestimo.ref_cod_exemplar
   AND exemplar_emprestimo.data_devolucao IS NULL
   AND escola.cod_escola = {$escola}

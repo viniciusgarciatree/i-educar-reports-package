@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="works" columnCount="3" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="185" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="42a736ab-937c-4f66-9b1b-2375e49a22ec">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="codigobarras" hTextAlign="Center" hImageAlign="Center" vTextAlign="Middle"/>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="acervo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
+       biblioteca.cod_biblioteca,
+       acervo.cod_acervo,
+       acervo.titulo,
+       acervo.estante,
+       acervo.cdd,
+       acervo.sub_titulo,
+       acervo.cdu,
+       acervo.cutter,
+       acervo.volume,
+       acervo.num_edicao,
+       acervo.ano,
+       acervo.num_paginas,
+       acervo.ref_cod_biblioteca,
+       acervo.ref_cod_tipo_autor,
+       acervo.tipo_autor,
+       cast(acervo.isbn AS varchar),
+       fcn_upper(biblioteca.nm_biblioteca) AS nm_biblioteca,
+       (SELECT replace(textcat_all(nm_autor),' <br>' , ';')
+          FROM pmieducar.acervo_autor
+         INNER JOIN pmieducar.acervo_acervo_autor ON (acervo_acervo_autor.ref_cod_acervo_autor = acervo_autor.cod_acervo_autor)
+         WHERE acervo_acervo_autor.ref_cod_acervo = acervo.cod_acervo) AS autor,
+       exemplar_tipo.nm_tipo AS nm_tipo_exemplar,
+       acervo_colecao.nm_colecao AS nm_colecao,
+       acervo_idioma.nm_idioma AS nm_idioma,
+       acervo_editora.nm_editora AS nm_editora
+  FROM pmieducar.instituicao
+ INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
+ INNER JOIN pmieducar.biblioteca ON (biblioteca.ref_cod_escola = escola.cod_escola)
+ INNER JOIN pmieducar.acervo ON (acervo.ref_cod_biblioteca = biblioteca.cod_biblioteca
+                                 AND acervo.ativo = 1)
+  LEFT JOIN pmieducar.exemplar_tipo ON (exemplar_tipo.cod_exemplar_tipo = acervo.ref_cod_exemplar_tipo)
+  LEFT JOIN pmieducar.acervo_colecao ON (acervo_colecao.cod_acervo_colecao = acervo.ref_cod_acervo_colecao)
+  LEFT JOIN pmieducar.acervo_idioma ON (acervo_idioma.cod_acervo_idioma = acervo.ref_cod_acervo_idioma)
+  LEFT JOIN pmieducar.acervo_editora ON (acervo_editora.cod_acervo_editora = acervo.ref_cod_acervo_editora)
+ WHERE instituicao.cod_instituicao = 1 AND
+       escola.cod_escola = 41
+ORDER BY acervo.titulo]]>
+	</queryString>
+	<field name="nm_instituicao" class="java.lang.String"/>
+	<field name="cod_biblioteca" class="java.lang.Integer"/>
+	<field name="cod_acervo" class="java.lang.Integer"/>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="estante" class="java.lang.String"/>
+	<field name="cdd" class="java.lang.String"/>
+	<field name="sub_titulo" class="java.lang.String"/>
+	<field name="cdu" class="java.lang.String"/>
+	<field name="cutter" class="java.lang.String"/>
+	<field name="volume" class="java.lang.Integer"/>
+	<field name="num_edicao" class="java.lang.Integer"/>
+	<field name="ano" class="java.lang.String"/>
+	<field name="num_paginas" class="java.lang.Integer"/>
+	<field name="ref_cod_biblioteca" class="java.lang.Integer"/>
+	<field name="ref_cod_tipo_autor" class="java.lang.Integer"/>
+	<field name="tipo_autor" class="java.lang.String"/>
+	<field name="isbn" class="java.lang.String"/>
+	<field name="nm_biblioteca" class="java.lang.String"/>
+	<field name="autor" class="java.lang.String"/>
+	<field name="nm_tipo_exemplar" class="java.lang.String"/>
+	<field name="nm_colecao" class="java.lang.String"/>
+	<field name="nm_idioma" class="java.lang.String"/>
+	<field name="nm_editora" class="java.lang.String"/>
+	<pageHeader>
+		<band height="105" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="94" uuid="2990dbb6-be86-4038-96d4-95a79b28b25d"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Emissao de etiquetas"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao"/>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="88" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="31" y="7" width="145" height="11" uuid="2cb30d31-a73e-4a7e-8513-97a9a78db30b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="51" y="18" width="125" height="11" isRemoveLineWhenBlank="true" uuid="06ae71e3-9e72-4e0a-b865-ff8ce50a1b8e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$F{sub_titulo} != null &&  !$F{sub_titulo}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub_titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1" y="7" width="31" height="11" uuid="0fcbbebd-caaa-42bd-b95d-08b52662d415"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1" y="18" width="51" height="11" isRemoveLineWhenBlank="true" uuid="09ff6f62-230d-43c5-8262-e03683409f3a">
+					<printWhenExpression><![CDATA[$F{sub_titulo} != null &&  !$F{sub_titulo}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sub-título:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="29" width="48" height="11" isRemoveLineWhenBlank="true" uuid="1d9d7886-25e5-4ccb-a68a-4eae7ba252dd">
+					<printWhenExpression><![CDATA[$F{autor} != null && !$F{autor}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autor(es):]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="48" y="29" width="128" height="11" isRemoveLineWhenBlank="true" uuid="16bee438-ec2b-4e8d-ab80-b697741daddb">
+					<printWhenExpression><![CDATA[$F{autor} != null && !$F{autor}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ref_cod_tipo_autor} == 1 ? $F{autor} : $F{ref_cod_tipo_autor} == 4 ? "Obra anônima" :
+$F{ref_cod_tipo_autor} == 2 || $F{ref_cod_tipo_autor} == 3 ? $F{tipo_autor} : ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1" y="40" width="38" height="11" uuid="87caf1af-764d-4796-894e-c011648e1313"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Editora:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="38" y="40" width="138" height="11" uuid="9d278357-517e-4c11-931d-d1aa71e89b51"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_editora}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement style="codigobarras" positionType="Float" x="1" y="53" width="175" height="30" uuid="f551ae4d-f213-4e8f-ab4d-45f39d381a04"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Codabar" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["000000"+$F{cod_acervo}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<line>
+				<reportElement positionType="Float" x="1" y="87" width="170" height="1" uuid="0cd69320-2203-4e1a-9707-ec999e704022">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="2" width="55" height="11" uuid="578a3b03-e89a-40f7-a4b9-5318bee25adb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e hora:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="531" y="2" width="23" height="11" uuid="107e7588-b8c9-4b89-b641-b3e945523771"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="2" width="100" height="11" uuid="bf961f8e-15b0-4d54-99ea-e7a6044ed124"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="554" height="1" uuid="3dfca454-5212-40e8-8ad3-de9ba73bb63f"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="439" y="2" width="92" height="11" uuid="be1b76f3-80e3-4304-b028-c15cfacebac1"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
