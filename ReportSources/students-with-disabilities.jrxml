@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_alunos_deficiencia" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ef87295-af95-4969-8128-8f3de74fb453">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="204"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/home/lucas/projects/ieducar/ieducar-utils/reports/jasperreports/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<parameter name="instituicao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
@@ -34,15 +36,76 @@
 	</parameter>
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
-	<field name="cod_aluno" class="java.lang.Integer"/>
-	<field name="aluno" class="java.lang.String"/>
-	<field name="cod_inep" class="java.lang.Long"/>
-	<field name="nm_deficiencia" class="java.lang.String"/>
-	<field name="nome_turma_turno" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="escola" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="escola"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="cod_aluno" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cod_aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<field name="aluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="cod_inep" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="cod_inep"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="educacenso_cod_aluno"/>
+	</field>
+	<field name="nm_deficiencia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_deficiencia"/>
+	</field>
+	<field name="nome_turma_turno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_turma_turno"/>
+	</field>
 	<variable name="aluno_count" class="java.lang.Integer" calculation="DistinctCount">
 		<variableExpression><![CDATA[$F{cod_aluno}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
 	</variable>
+	<group name="escola">
+		<groupExpression><![CDATA[$F{escola}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField>
+					<reportElement x="0" y="4" width="555" height="12" uuid="931069ae-6494-4d95-9d0f-c76b75ad6de6">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="17" width="555" height="1" uuid="ac6281d7-8711-49fe-af47-f1e02a933078"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="12">
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="12" uuid="36a4e4e7-6844-4480-ae25-d03ef6cc4b0a">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total escola:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="502" y="0" width="53" height="12" uuid="b1345c9c-b735-4b99-9b72-2d7454927434">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{escola_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
 	<group name="aluno" keepTogether="true">
 		<groupExpression><![CDATA[$F{cod_aluno}]]></groupExpression>
 		<groupHeader>
@@ -178,26 +241,23 @@
 	</detail>
 	<summary>
 		<band height="23">
-			<line>
-				<reportElement x="0" y="1" width="555" height="1" uuid="42d040bb-1187-409e-9a6d-eb69c640262f"/>
-				<graphicElement>
-					<pen lineWidth="0.2"/>
-				</graphicElement>
-			</line>
 			<staticText>
-				<reportElement x="0" y="3" width="158" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
+				<reportElement x="0" y="10" width="158" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total de alunos:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="502" y="3" width="53" height="13" uuid="35b7fe88-e803-4417-9bbf-4372d5224bb3"/>
-				<textElement textAlignment="Right">
-					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				<reportElement x="502" y="10" width="53" height="13" uuid="35b7fe88-e803-4417-9bbf-4372d5224bb3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{aluno_count}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="9" width="555" height="1" uuid="d46c7329-6284-479e-8512-a63b6a815dc1"/>
+			</line>
 		</band>
 	</summary>
 </jasperReport>

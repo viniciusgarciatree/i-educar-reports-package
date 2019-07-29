@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_distribuido_por_aluno" pageWidth="595" pageHeight="841" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f92d803-86a0-4be9-adab-22f9919b925b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
@@ -8,9 +10,7 @@
 	<parameter name="instituicao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String">
-		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
-	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
@@ -34,34 +34,127 @@
 	</parameter>
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
-	<field name="codigo_aluno" class="java.lang.Integer"/>
-	<field name="data" class="java.lang.String"/>
-	<field name="aluno" class="java.lang.String"/>
-	<field name="recebeu_kit" class="java.lang.Boolean"/>
-	<field name="qt_agasalho" class="java.lang.Integer"/>
-	<field name="qt_camiseta_curta" class="java.lang.Integer"/>
-	<field name="qt_camiseta_longa" class="java.lang.Integer"/>
-	<field name="qt_meias" class="java.lang.Integer"/>
-	<field name="qt_bermudas_tectels" class="java.lang.Integer"/>
-	<field name="qt_bermudas_coton" class="java.lang.Integer"/>
-	<field name="qt_tenis" class="java.lang.Integer"/>
-	<field name="tm_agasalho" class="java.lang.String"/>
-	<field name="tm_camiseta_curta" class="java.lang.String"/>
-	<field name="tm_camiseta_longa" class="java.lang.String"/>
-	<field name="tm_meias" class="java.lang.String"/>
-	<field name="tm_bermudas_tectels" class="java.lang.String"/>
-	<field name="tm_bermudas_coton" class="java.lang.String"/>
-	<field name="tm_tenis" class="java.lang.String"/>
-	<field name="escola_uniforme" class="java.lang.String"/>
-	<field name="escola" class="java.lang.String"/>
-	<field name="ano" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="codigo_aluno" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="codigo_aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<field name="data" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="data"/>
+	</field>
+	<field name="aluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="recebeu_kit" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="recebeu_kit"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="distribuicao_uniforme"/>
+	</field>
+	<field name="qt_agasalho" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="qt_agasalho"/>
+	</field>
+	<field name="qt_camiseta_curta" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="qt_camiseta_curta"/>
+	</field>
+	<field name="qt_camiseta_longa" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="qt_camiseta_longa"/>
+	</field>
+	<field name="qt_meias" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="qt_meias"/>
+	</field>
+	<field name="qt_bermudas_tectels" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="qt_bermudas_tectels"/>
+	</field>
+	<field name="qt_bermudas_coton" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="qt_bermudas_coton"/>
+	</field>
+	<field name="qt_tenis" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="qt_tenis"/>
+	</field>
+	<field name="tm_agasalho" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tm_agasalho"/>
+	</field>
+	<field name="tm_camiseta_curta" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tm_camiseta_curta"/>
+	</field>
+	<field name="tm_camiseta_longa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tm_camiseta_longa"/>
+	</field>
+	<field name="tm_meias" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tm_meias"/>
+	</field>
+	<field name="tm_bermudas_tectels" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tm_bermudas_tectels"/>
+	</field>
+	<field name="tm_bermudas_coton" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tm_bermudas_coton"/>
+	</field>
+	<field name="tm_tenis" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tm_tenis"/>
+	</field>
+	<field name="escola_uniforme" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="escola_uniforme"/>
+	</field>
+	<field name="escola" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="escola"/>
+	</field>
+	<field name="ano" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ano"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="distribuicao_uniforme"/>
+	</field>
+	<variable name="total" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{codigo_aluno}]]></variableExpression>
+	</variable>
+	<group name="escola">
+		<groupExpression><![CDATA[$F{escola}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField>
+					<reportElement x="0" y="4" width="555" height="12" uuid="f27dcd45-db03-44cd-8893-17f751a677d8">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="17" width="555" height="1" uuid="db175cbf-7698-46f1-80a2-b2510085a060"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="12">
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="12" uuid="d95f8abe-995e-43e6-a7b5-1b3705d075df">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total escola:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="480" y="0" width="75" height="12" uuid="84716613-0f89-4feb-a78f-1d841ad0600a">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{escola_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="104">
+		<band height="109">
 			<subreport>
-				<reportElement x="0" y="0" width="555" height="104" uuid="e2c330a6-9f0d-4f0e-869d-5e103714c3d4"/>
+				<reportElement x="5" y="5" width="555" height="104" uuid="58a4be72-9eb6-42d4-869d-9a3fe862760b"/>
 				<subreportParameter name="logo">
 					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -88,132 +181,142 @@
 		</band>
 	</title>
 	<columnHeader>
-		<band height="43">
+		<band height="15">
 			<staticText>
-				<reportElement x="50" y="13" width="40" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<reportElement x="50" y="0" width="40" height="12" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="8"/>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ano]]></text>
 			</staticText>
-			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="555" height="13" backcolor="#DEDEDE" uuid="d8e55987-bbfc-4142-97d6-f8a964ceea04"/>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-					<paragraph leftIndent="1"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Nome Escola: "+ $F{escola}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="90" y="13" width="97" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<reportElement x="90" y="0" width="97" height="12" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="8"/>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome do aluno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="187" y="13" width="43" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<reportElement x="187" y="0" width="43" height="12" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="8"/>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Kit completo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="230" y="13" width="118" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<reportElement x="230" y="0" width="118" height="12" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="8"/>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Kit parcial]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="348" y="13" width="132" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<reportElement x="348" y="0" width="132" height="12" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="8"/>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entregue por]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="13" width="50" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<reportElement x="0" y="0" width="50" height="12" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="8"/>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cod Aluno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="480" y="13" width="75" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<reportElement x="480" y="0" width="75" height="12" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="8"/>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Data de recebimento]]></text>
+				<text><![CDATA[Recebimento]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="14" width="555" height="1" uuid="97a38565-15ad-49aa-8da7-28d6e9b09db9"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="38">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="38" backcolor="#F0F0F0" uuid="5d71bc30-930a-400b-b31a-9f9127dbf6c2">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
 			<textField>
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="50" height="38" uuid="9957235a-07e0-423f-8530-2b665dca7397"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
@@ -224,10 +327,10 @@
 				<reportElement stretchType="RelativeToBandHeight" x="50" y="0" width="40" height="38" uuid="035c7af7-d915-4738-87a8-338421d44578"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
@@ -238,10 +341,10 @@
 				<reportElement stretchType="RelativeToBandHeight" x="90" y="0" width="97" height="38" uuid="fe48b629-9354-43f9-82a5-fa93e059c21e"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
@@ -252,10 +355,10 @@
 				<reportElement stretchType="RelativeToBandHeight" x="187" y="0" width="43" height="38" uuid="dfb0397d-322e-4d48-8729-ea5b28a80752"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
@@ -266,10 +369,10 @@
 				<reportElement x="230" y="0" width="118" height="38" isRemoveLineWhenBlank="true" uuid="2906be8a-413b-43d2-91cd-4456e878e7d2"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
@@ -287,10 +390,10 @@
 				<reportElement stretchType="RelativeToBandHeight" x="348" y="0" width="132" height="38" uuid="15a46d2a-6754-46b5-94b2-b07933fd2288"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
@@ -301,10 +404,10 @@
 				<reportElement stretchType="RelativeToBandHeight" x="480" y="0" width="75" height="38" uuid="15a46d2a-6754-46b5-94b2-b07933fd2288"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
@@ -313,4 +416,29 @@
 			</textField>
 		</band>
 	</detail>
+	<summary>
+		<band height="23">
+			<staticText>
+				<reportElement x="0" y="11" width="100" height="12" uuid="5918276e-dbd4-42b9-bd5e-3887264871a4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total alunos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="11" width="75" height="12" uuid="9a2d058f-2efa-46eb-ac29-9a2694b0af69">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="9" width="555" height="1" uuid="d5d9b976-aca7-4e54-a626-e263ca4e5a11"/>
+			</line>
+		</band>
+	</summary>
 </jasperReport>

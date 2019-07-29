@@ -24,7 +24,7 @@ class AgeDistortionInSerieReport extends Portabilis_Report_ReportCore
     {
         $this->addRequiredArg('ano');
         $this->addRequiredArg('instituicao');
-        $this->addRequiredArg('curso');
+//        $this->addRequiredArg('curso');
     }
 
     /**
@@ -72,7 +72,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and a.ativo = 1
 
@@ -96,7 +96,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 5
 	    and m.ativo = 1
@@ -118,7 +118,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 6
 	    and m.ativo = 1
@@ -140,7 +140,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 7
 	    and m.ativo = 1
@@ -162,7 +162,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 8
 	    and m.ativo = 1
@@ -184,7 +184,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 9
 	    and m.ativo = 1
@@ -206,7 +206,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 10
 	    and m.ativo = 1
@@ -228,7 +228,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 11
 	    and m.ativo = 1
@@ -250,7 +250,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 12
 	    and m.ativo = 1
@@ -272,7 +272,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 13
 	    and m.ativo = 1
@@ -294,7 +294,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 14
 	    and m.ativo = 1
@@ -316,7 +316,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 15
 	    and m.ativo = 1
@@ -338,7 +338,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 16
 	    and m.ativo = 1
@@ -360,7 +360,7 @@ curso.nm_curso,
 	    and (CASE WHEN  0 = {$escola} THEN true ELSE {$escola} = m.ref_ref_cod_escola END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = m.ref_ref_cod_serie END)
 	    and (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = s.cod_serie END)
-	    and m.ref_cod_curso = {$curso}
+	    and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = m.ref_cod_curso END)
 	    and m.ano = {$ano}
 	    and (({$ano}) - (cast(to_char(f.data_nasc,'yyyy') as integer))) = 17
 	    and m.ativo = 1
@@ -373,7 +373,7 @@ curso.nm_curso,
   from pmieducar.serie
   inner join pmieducar.curso on(serie.ref_cod_curso = curso.cod_curso)
  where (CASE WHEN  0 = {$serie} THEN true ELSE {$serie} = serie.cod_serie END)
-       and curso.cod_curso = {$curso}
+       and (CASE WHEN  0 = {$curso} THEN true ELSE {$curso} = curso.cod_curso END)
 and curso.ativo = 1
 and serie.ativo = 1
 order by serie.nm_serie;

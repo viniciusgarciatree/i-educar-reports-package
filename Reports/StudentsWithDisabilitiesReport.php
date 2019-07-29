@@ -24,7 +24,7 @@ class StudentsWithDisabilitiesReport extends Portabilis_Report_ReportCore
     {
         $this->addRequiredArg('ano');
         $this->addRequiredArg('instituicao');
-        $this->addRequiredArg('escola');
+//        $this->addRequiredArg('escola');
     }
 
     /**
@@ -45,7 +45,7 @@ class StudentsWithDisabilitiesReport extends Portabilis_Report_ReportCore
         $turma = $this->args['turma'] ?: 0;
 
         return "
-        SELECT aluno.cod_aluno AS cod_aluno,
+        SELECT pe.nome as escola, aluno.cod_aluno AS cod_aluno,
        pessoa.nome     AS aluno,
        educacenso_cod_aluno.cod_aluno_inep AS cod_inep,
 
@@ -63,13 +63,14 @@ class StudentsWithDisabilitiesReport extends Portabilis_Report_ReportCore
          WHERE m.ref_cod_aluno = aluno.cod_aluno
            AND m.ativo = 1
            AND m.ano = {$ano}
-           AND m.ref_ref_cod_escola = {$escola}
+           AND (CASE WHEN 0={$escola} THEN TRUE ELSE m.ref_ref_cod_escola = {$escola} END)
            AND mt.sequencial = (SELECT MAX(mtt.sequencial)
                                   FROM matricula_turma mtt
                                  WHERE mtt.ref_cod_matricula = m.cod_matricula AND mtt.ativo = 1)) AS nome_turma_turno
 
   FROM pmieducar.instituicao
 INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
+INNER JOIN cadastro.pessoa pe on escola.ref_idpes = pe.idpes
    INNER JOIN pmieducar.escola_curso ON (escola_curso.ativo = 1
                                          AND escola_curso.ref_cod_escola = escola.cod_escola)
    INNER JOIN pmieducar.curso ON (curso.cod_curso = escola_curso.ref_cod_curso
@@ -95,15 +96,15 @@ INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_ins
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)
 INNER JOIN cadastro.fisica_deficiencia ON (fisica_deficiencia.ref_idpes = aluno.ref_idpes)
  WHERE instituicao.cod_instituicao = {$instituicao}
-   AND escola.cod_escola = {$escola}
    AND matricula.ano = {$ano}
+   AND (CASE WHEN 0={$escola} THEN TRUE ELSE escola.cod_escola = {$escola} END)
    AND (CASE WHEN 0={$curso} THEN TRUE ELSE curso.cod_curso = {$curso} END)
    AND (CASE WHEN 0={$serie} THEN TRUE ELSE serie.cod_serie = {$serie} END)
    AND (CASE WHEN 0={$turma} THEN TRUE ELSE turma.cod_turma = {$turma} END)
- GROUP BY aluno.cod_aluno,
+ GROUP BY pe.nome, aluno.cod_aluno,
           pessoa.nome,
           educacenso_cod_aluno.cod_aluno_inep
-ORDER BY relatorio.get_texto_sem_caracter_especial(pessoa.nome), nm_deficiencia
+ORDER BY pe.nome, relatorio.get_texto_sem_caracter_especial(pessoa.nome), nm_deficiencia
         ";
     }
 }

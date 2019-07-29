@@ -34,7 +34,8 @@ class StudentsWithDisabilitiesController extends Portabilis_Controller_ReportCor
      */
     public function form()
     {
-        $this->inputsHelper()->dynamic(['ano', 'instituicao', 'escola']);
+        $this->inputsHelper()->dynamic(['ano', 'instituicao']);
+        $this->inputsHelper()->dynamic('escola', ['required' => false]);
         $this->inputsHelper()->dynamic('curso', ['required' => false]);
         $this->inputsHelper()->dynamic('serie', ['required' => false]);
         $this->inputsHelper()->dynamic('turma', ['required' => false]);

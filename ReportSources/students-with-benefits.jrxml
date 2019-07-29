@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_alunos_beneficios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ef87295-af95-4969-8128-8f3de74fb453">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -31,19 +33,91 @@
 	</parameter>
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
-	<field name="cod_aluno" class="java.lang.Integer"/>
-	<field name="aluno" class="java.lang.String"/>
-	<field name="nome" class="java.lang.String"/>
-	<field name="nis_pis_pasep" class="java.math.BigDecimal"/>
-	<field name="nm_serie" class="java.lang.String"/>
-	<field name="nm_turma" class="java.lang.String"/>
-	<field name="nm_beneficio" class="java.lang.String"/>
-	<field name="cod_inep" class="java.lang.Long"/>
-	<field name="situacao" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="escola" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="escola"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="cod_aluno" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cod_aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<field name="aluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="nis_pis_pasep" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nis_pis_pasep"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fisica"/>
+	</field>
+	<field name="nm_serie" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_serie"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="serie"/>
+	</field>
+	<field name="nm_turma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_turma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="turma"/>
+	</field>
+	<field name="nm_beneficio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_beneficio"/>
+	</field>
+	<field name="cod_inep" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="cod_inep"/>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="situacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_situacao"/>
+	</field>
 	<variable name="aluno_count" class="java.lang.Integer" calculation="DistinctCount">
 		<variableExpression><![CDATA[$F{cod_aluno}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
 	</variable>
+	<variable name="escola" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Count">
+		<variableExpression><![CDATA[$F{cod_aluno}]]></variableExpression>
+	</variable>
+	<group name="escola">
+		<groupExpression><![CDATA[$F{escola}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<textField>
+					<reportElement x="0" y="0" width="555" height="12" uuid="93279b8c-c96e-4333-a600-97f869cc979f">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="13" width="555" height="1" uuid="ea43967e-b98e-4434-88c0-49795b0b009e"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="24">
+				<staticText>
+					<reportElement x="0" y="3" width="158" height="12" uuid="64b03b2f-b029-4e96-a530-1b6ae1e9a100"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total de escola:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="502" y="3" width="53" height="13" uuid="edab0842-9b68-45a5-8d72-0b90fe89ec42"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{escola_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
 	<group name="aluno">
 		<groupExpression><![CDATA[$F{cod_aluno}]]></groupExpression>
 		<groupHeader>
@@ -88,23 +162,23 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nis_pis_pasep}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement stretchType="RelativeToBandHeight" x="389" y="0" width="62" height="12" uuid="35b7fe88-e803-4417-9bbf-4372d5224bb3"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
 						<font fontName="DejaVu Sans" size="8" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nm_serie}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement stretchType="RelativeToBandHeight" x="451" y="1" width="51" height="12" uuid="35b7fe88-e803-4417-9bbf-4372d5224bb3"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
 						<font fontName="DejaVu Sans" size="8" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nm_turma}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="502" y="0" width="53" height="14" uuid="c7e58116-997b-46cc-9827-c9f4e1a7d203"/>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>

@@ -23,7 +23,7 @@ class DistributionOfUniformPerStudentReport extends Portabilis_Report_ReportCore
     public function requiredArgs()
     {
         $this->addRequiredArg('instituicao');
-        $this->addRequiredArg('escola');
+//        $this->addRequiredArg('escola');
     }
 
     /**
@@ -43,27 +43,27 @@ class DistributionOfUniformPerStudentReport extends Portabilis_Report_ReportCore
         $ano = $this->args['ano'] ?: date('Y');
 
         return "
-SELECT aluno.cod_aluno AS \"codigo_aluno\",
-       to_char(distribuicao_uniforme.data, 'dd/mm/yyyy') AS \"data\",
-       cadastro.pessoa.nome AS \"aluno\",
-       distribuicao_uniforme.kit_completo AS \"recebeu_kit\",
-       COALESCE(distribuicao_uniforme.agasalho_qtd::int, '0') AS \"qt_agasalho\",
-       COALESCE(distribuicao_uniforme.camiseta_curta_qtd::int, '0') AS \"qt_camiseta_curta\",
-       COALESCE(distribuicao_uniforme.camiseta_longa_qtd::int, '0') AS \"qt_camiseta_longa\",
-       COALESCE(distribuicao_uniforme.meias_qtd::int, '0') AS \"qt_meias\",
-       COALESCE(distribuicao_uniforme.bermudas_tectels_qtd::int, '0') AS \"qt_bermudas_tectels\",
-       COALESCE(distribuicao_uniforme.bermudas_coton_qtd::int, '0') AS \"qt_bermudas_coton\",
-       COALESCE(distribuicao_uniforme.tenis_qtd::int, '0') AS \"qt_tenis\",
-       COALESCE(distribuicao_uniforme.agasalho_tm, '') AS \"tm_agasalho\",
-       COALESCE(distribuicao_uniforme.camiseta_curta_tm, '') AS \"tm_camiseta_curta\",
-       COALESCE(distribuicao_uniforme.camiseta_longa_tm, '') AS \"tm_camiseta_longa\",
-       COALESCE(distribuicao_uniforme.meias_tm, '') AS \"tm_meias\",
-       COALESCE(distribuicao_uniforme.bermudas_tectels_tm, '') AS \"tm_bermudas_tectels\",
-       COALESCE(distribuicao_uniforme.bermudas_coton_tm, '') AS \"tm_bermudas_coton\",
-       COALESCE(distribuicao_uniforme.tenis_tm, '') AS \"tm_tenis\",
-        relatorio.get_nome_escola(distribuicao_uniforme.ref_cod_escola) AS \"escola_uniforme\",
-       relatorio.get_nome_escola(escola.cod_escola) AS \"escola\",
-       distribuicao_uniforme.ano AS \"ano\"
+SELECT aluno.cod_aluno AS codigo_aluno,
+       to_char(distribuicao_uniforme.data, 'dd/mm/yyyy') AS data,
+       cadastro.pessoa.nome AS aluno,
+       distribuicao_uniforme.kit_completo AS recebeu_kit,
+       COALESCE(distribuicao_uniforme.agasalho_qtd::int, '0') AS qt_agasalho,
+       COALESCE(distribuicao_uniforme.camiseta_curta_qtd::int, '0') AS qt_camiseta_curta,
+       COALESCE(distribuicao_uniforme.camiseta_longa_qtd::int, '0') AS qt_camiseta_longa,
+       COALESCE(distribuicao_uniforme.meias_qtd::int, '0') AS qt_meias,
+       COALESCE(distribuicao_uniforme.bermudas_tectels_qtd::int, '0') AS qt_bermudas_tectels,
+       COALESCE(distribuicao_uniforme.bermudas_coton_qtd::int, '0') AS qt_bermudas_coton,
+       COALESCE(distribuicao_uniforme.tenis_qtd::int, '0') AS qt_tenis,
+       COALESCE(distribuicao_uniforme.agasalho_tm, '') AS tm_agasalho,
+       COALESCE(distribuicao_uniforme.camiseta_curta_tm, '') AS tm_camiseta_curta,
+       COALESCE(distribuicao_uniforme.camiseta_longa_tm, '') AS tm_camiseta_longa,
+       COALESCE(distribuicao_uniforme.meias_tm, '') AS tm_meias,
+       COALESCE(distribuicao_uniforme.bermudas_tectels_tm, '') AS tm_bermudas_tectels,
+       COALESCE(distribuicao_uniforme.bermudas_coton_tm, '') AS tm_bermudas_coton,
+       COALESCE(distribuicao_uniforme.tenis_tm, '') AS tm_tenis,
+        relatorio.get_nome_escola(distribuicao_uniforme.ref_cod_escola) AS escola_uniforme,
+       relatorio.get_nome_escola(escola.cod_escola) AS escola,
+       distribuicao_uniforme.ano AS ano
 FROM pmieducar.escola
 INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
 INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola)
@@ -84,8 +84,8 @@ INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = matricula.ref_cod_aluno)
 INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)
 INNER JOIN pmieducar.distribuicao_uniforme ON (distribuicao_uniforme.ref_cod_aluno = aluno.cod_aluno
 					   AND distribuicao_uniforme.ano = escola_ano_letivo.ano)
-WHERE escola.cod_escola = {$escola}
-  AND matricula.aprovado = 3
+WHERE matricula.aprovado = 3
+  AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE {$escola} = escola.cod_escola END)
   AND (CASE WHEN {$aluno} = 0 THEN TRUE ELSE {$aluno} = aluno.cod_aluno END)
   AND (CASE WHEN {$curso} = 0 THEN TRUE ELSE {$curso} = curso.cod_curso END)
   AND (CASE WHEN {$serie} = 0 THEN TRUE ELSE {$serie} = serie.cod_serie END)
@@ -113,7 +113,7 @@ GROUP BY aluno,
          tm_tenis,
          escola,
          escola_uniforme
-ORDER BY aluno
+ORDER BY escola, aluno
         ";
     }
 }

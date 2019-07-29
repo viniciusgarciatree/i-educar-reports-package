@@ -38,6 +38,7 @@ class DistributionOfUniformPerStudentController extends Portabilis_Controller_Re
     {
         $this->inputsHelper()->dynamic(['ano', 'instituicao', 'escola', 'curso', 'serie', 'turma']);
         $this->inputsHelper()->dynamic('ano', ['required' => false]);
+        $this->inputsHelper()->dynamic('escola', ['required' => false]);
         $this->inputsHelper()->dynamic('curso', ['required' => false]);
         $this->inputsHelper()->dynamic('serie', ['required' => false]);
         $this->inputsHelper()->dynamic('turma', ['required' => false]);
