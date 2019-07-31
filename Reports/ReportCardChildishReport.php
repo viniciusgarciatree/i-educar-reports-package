@@ -6,7 +6,7 @@ require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'Reports/Tipos/TipoBoletim.php';
 require_once 'App/Model/IedFinder.php';
 
-class ReportCardReport extends Portabilis_Report_ReportCore
+class ReportCardChildishReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
 
@@ -17,39 +17,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        $flagTipoBoletimTurma = App_Model_IedFinder::getTurma($codTurma = $this->args['turma']);
-
-        if (
-            $flagTipoBoletimTurma['tipo_boletim_diferenciado']
-            && $flagTipoBoletimTurma['tipo_boletim_diferenciado'] != $flagTipoBoletimTurma['tipo_boletim']
-            && $codMatricula = $this->args['matricula']
-        ) {
-            $matricula = App_Model_IedFinder::getMatricula($codMatricula);
-            $possuiDeficiencia = App_Model_IedFinder::verificaSePossuiDeficiencia($matricula['ref_cod_aluno']);
-
-            $flagTipoBoletimTurma = $flagTipoBoletimTurma['tipo_boletim' . ($possuiDeficiencia ? '_diferenciado' : '')];
-        } elseif (
-            $flagTipoBoletimTurma['tipo_boletim_diferenciado']
-            && $flagTipoBoletimTurma['tipo_boletim_diferenciado'] != $flagTipoBoletimTurma['tipo_boletim']
-            && $this->args['alunos_diferenciados'] == 2
-        ) {
-            $flagTipoBoletimTurma = $flagTipoBoletimTurma['tipo_boletim_diferenciado'];
-        } else {
-            $flagTipoBoletimTurma = $flagTipoBoletimTurma['tipo_boletim'];
-        }
-
-        if (empty($flagTipoBoletimTurma)) {
-            throw new Exception('Não foi definido o tipo de boletim no cadastro de turmas.');
-        }
-
-        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
-        $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : '';
-
-        if (empty($template)) {
-            throw new Exception('Não foi possivel recuperar nome do template para o boletim.');
-        }
-
-        return $template;
+        return 'report-card-childish';
     }
 
     /**
@@ -84,14 +52,8 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $alunos_diferenciados = $this->args['alunos_diferenciados'] ?: 0;
         $matricula = $this->args['matricula'] ?: 0;
 
-        return "SELECT fcn_upper(instituicao.nm_instituicao) AS nome_instituicao,
-          fcn_upper(instituicao.nm_responsavel) AS nome_responsavel,
-          relatorio.get_nome_escola(escola.cod_escola) AS nm_escola,
-          escola_ano_letivo.ano AS ano,
-          view_dados_escola.logradouro AS logradouro,
-          view_dados_escola.telefone AS fone,
-          view_dados_escola.email AS email,
-          curso.nm_curso AS nome_curso,
+        return "SELECT  
+	      curso.nm_curso AS nome_curso,
           serie.nm_serie AS nome_serie,
           turma.nm_turma AS nome_turma,
           public.fcn_upper(pessoa.nome) AS nome_aluno,
@@ -99,13 +61,17 @@ class ReportCardReport extends Portabilis_Report_ReportCore
           view_situacao.texto_situacao AS situacao,
           view_componente_curricular.nome AS nome_disciplina,
           TRUNC(nota_etapa1.nota::NUMERIC, 1) AS nota1num,
-          nota_etapa1.nota_arredondada AS nota1,
+          tav_etapa1.descricao AS nota1,
+          parecer_componente_etapa1.parecer AS parecer_componente_etapa1,
           TRUNC(nota_etapa2.nota::NUMERIC, 1) AS nota2num,
-          nota_etapa2.nota_arredondada AS nota2,
+          tav_etapa2.descricao AS nota2,
+          parecer_componente_etapa2.parecer AS parecer_componente_etapa2,
           TRUNC(nota_etapa3.nota::NUMERIC, 1) AS nota3num,
-          nota_etapa3.nota_arredondada AS nota3,
+          tav_etapa3.descricao AS nota3,
+          parecer_componente_etapa3.parecer AS parecer_componente_etapa3,
           TRUNC(nota_etapa4.nota::NUMERIC, 1) AS nota4num,
-          nota_etapa4.nota_arredondada AS nota4,
+          tav_etapa4.descricao AS nota4,
+          parecer_componente_etapa4.parecer AS parecer_componente_etapa4,
           TRUNC(nota_exame.nota::NUMERIC, 1) AS exame,
           matricula.cod_matricula AS matricula,
           modules.frequencia_da_matricula(matricula.cod_matricula) AS frequencia,
@@ -114,6 +80,10 @@ class ReportCardReport extends Portabilis_Report_ReportCore
           relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 2) AS nota2numturma,
           relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 3) AS nota3numturma,
           relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 4) AS nota4numturma,
+          parecer_geral_etapa1.parecer AS parecer_geral_etapa1,
+          parecer_geral_etapa2.parecer AS parecer_geral_etapa2,
+          parecer_geral_etapa3.parecer AS parecer_geral_etapa3,
+          parecer_geral_etapa4.parecer AS parecer_geral_etapa4,
           falta_etapa1.quantidade AS total_faltas_et1,
           falta_etapa2.quantidade AS total_faltas_et2,
           falta_etapa3.quantidade AS total_faltas_et3,
@@ -176,15 +146,21 @@ class ReportCardReport extends Portabilis_Report_ReportCore
    LEFT JOIN modules.parecer_componente_curricular parecer_componente_etapa1 ON (nota_etapa1.componente_curricular_id = parecer_componente_etapa1.componente_curricular_id
                                                                 AND parecer.id = parecer_componente_etapa1.parecer_aluno_id
                                                                 AND parecer_componente_etapa1.etapa = '1')
+   LEFT JOIN modules.parecer_geral parecer_geral_etapa1 ON (parecer.id = parecer_geral_etapa1.parecer_aluno_id
+                                                                AND parecer_geral_etapa1.etapa = '1')
    LEFT JOIN modules.nota_componente_curricular nota_etapa2 ON (nota_etapa2.nota_aluno_id = nota_aluno.id
                                                                 AND nota_etapa2.componente_curricular_id = view_componente_curricular.id
                                                                 AND nota_etapa2.etapa = '2')
+   LEFT JOIN modules.parecer_geral parecer_geral_etapa2 ON (parecer.id = parecer_geral_etapa2.parecer_aluno_id
+                                                                AND parecer_geral_etapa2.etapa = '2')
    LEFT JOIN modules.parecer_componente_curricular parecer_componente_etapa2 ON (nota_etapa2.componente_curricular_id = parecer_componente_etapa2.componente_curricular_id
                                                                 AND parecer.id = parecer_componente_etapa2.parecer_aluno_id
                                                                 AND parecer_componente_etapa2.etapa = '2')
    LEFT JOIN modules.nota_componente_curricular nota_etapa3 ON (nota_etapa3.nota_aluno_id = nota_aluno.id
                                                                 AND nota_etapa3.componente_curricular_id = view_componente_curricular.id
                                                                 AND nota_etapa3.etapa = '3')
+   LEFT JOIN modules.parecer_geral parecer_geral_etapa3 ON (parecer.id = parecer_geral_etapa3.parecer_aluno_id
+                                                                AND parecer_geral_etapa3.etapa = '3')
    LEFT JOIN modules.parecer_componente_curricular parecer_componente_etapa3 ON (nota_etapa3.componente_curricular_id = parecer_componente_etapa3.componente_curricular_id
                                                                 AND parecer.id = parecer_componente_etapa3.parecer_aluno_id
                                                                 AND parecer_componente_etapa3.etapa = '3')                                                             
@@ -193,10 +169,12 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                                                                 AND nota_etapa4.etapa = '4')
    LEFT JOIN modules.parecer_componente_curricular parecer_componente_etapa4 ON (nota_etapa4.componente_curricular_id = parecer_componente_etapa4.componente_curricular_id
                                                                 AND parecer.id = parecer_componente_etapa4.parecer_aluno_id
-                                                                AND parecer_componente_etapa4.etapa = '4')                                                                                                                          
+                                                                AND parecer_componente_etapa4.etapa = '4')      
+   LEFT JOIN modules.parecer_geral parecer_geral_etapa4 ON (parecer.id = parecer_geral_etapa4.parecer_aluno_id
+                                                                AND parecer_geral_etapa4.etapa = '4')                                                                                                                    
    LEFT JOIN modules.nota_componente_curricular nota_exame ON (nota_exame.nota_aluno_id = nota_aluno.id
                                                                AND nota_exame.componente_curricular_id = view_componente_curricular.id
-                                                               AND nota_exame.etapa = 'Rc')
+                                                               AND nota_exame.etapa = 'Rc')    
    LEFT JOIN modules.nota_componente_curricular_media ON (nota_componente_curricular_media.nota_aluno_id = nota_aluno.id
                                                           AND nota_componente_curricular_media.componente_curricular_id = view_componente_curricular.id)
    LEFT JOIN modules.falta_aluno ON (falta_aluno.matricula_id = matricula.cod_matricula)
@@ -226,6 +204,14 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                                                            )
    LEFT JOIN modules.regra_avaliacao_serie_ano rasa on(serie.cod_serie = rasa.serie_id AND matricula.ano = rasa.ano_letivo)
    LEFT JOIN modules.regra_avaliacao on(rasa.regra_avaliacao_id = regra_avaliacao.id)
+   LEFT JOIN modules.tabela_arredondamento_valor tav_etapa1 on (regra_avaliacao.tabela_arredondamento_id = tav_etapa1.tabela_arredondamento_id 
+                                                         AND tav_etapa1.nome = nota_etapa1.nota_arredondada)
+   LEFT JOIN modules.tabela_arredondamento_valor tav_etapa2 on (regra_avaliacao.tabela_arredondamento_id = tav_etapa2.tabela_arredondamento_id 
+                                                         AND tav_etapa2.nome = nota_etapa2.nota_arredondada)
+   LEFT JOIN modules.tabela_arredondamento_valor tav_etapa3 on (regra_avaliacao.tabela_arredondamento_id = tav_etapa3.tabela_arredondamento_id 
+                                                         AND tav_etapa3.nome = nota_etapa3.nota_arredondada)
+   LEFT JOIN modules.tabela_arredondamento_valor tav_etapa4 on (regra_avaliacao.tabela_arredondamento_id = tav_etapa4.tabela_arredondamento_id 
+                                                         AND tav_etapa4.nome = nota_etapa4.nota_arredondada)
    WHERE instituicao.cod_instituicao = {$instituicao}
      AND escola.cod_escola = {$escola}
      AND curso.cod_curso = {$curso}

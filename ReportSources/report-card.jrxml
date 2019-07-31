@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_boletim" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
@@ -55,55 +57,182 @@
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
-	<field name="nome_instituicao" class="java.lang.String"/>
-	<field name="nome_responsavel" class="java.lang.String"/>
-	<field name="nm_escola" class="java.lang.String"/>
-	<field name="ano" class="java.lang.Integer"/>
-	<field name="logradouro" class="java.lang.String"/>
-	<field name="fone" class="java.lang.String"/>
-	<field name="email" class="java.lang.String"/>
-	<field name="nome_curso" class="java.lang.String"/>
-	<field name="nome_serie" class="java.lang.String"/>
-	<field name="nome_turma" class="java.lang.String"/>
-	<field name="nome_aluno" class="java.lang.String"/>
-	<field name="periodo" class="java.lang.String"/>
-	<field name="situacao" class="java.lang.String"/>
-	<field name="nome_disciplina" class="java.lang.String"/>
-	<field name="nota1num" class="java.math.BigDecimal"/>
-	<field name="nota1" class="java.math.BigDecimal"/>
-	<field name="nota2num" class="java.math.BigDecimal"/>
-	<field name="nota2" class="java.math.BigDecimal"/>
-	<field name="nota3num" class="java.math.BigDecimal"/>
-	<field name="nota3" class="java.math.BigDecimal"/>
-	<field name="nota4num" class="java.math.BigDecimal"/>
-	<field name="nota4" class="java.math.BigDecimal"/>
-	<field name="exame" class="java.math.BigDecimal"/>
-	<field name="matricula" class="java.lang.Integer"/>
-	<field name="frequencia" class="java.lang.Double"/>
-	<field name="dt_nasc" class="java.sql.Date"/>
-	<field name="nota1numturma" class="java.math.BigDecimal"/>
-	<field name="nota2numturma" class="java.math.BigDecimal"/>
-	<field name="nota3numturma" class="java.math.BigDecimal"/>
-	<field name="nota4numturma" class="java.math.BigDecimal"/>
-	<field name="total_faltas_et1" class="java.lang.Integer"/>
-	<field name="total_faltas_et2" class="java.lang.Integer"/>
-	<field name="total_faltas_et3" class="java.lang.Integer"/>
-	<field name="total_faltas_et4" class="java.lang.Integer"/>
-	<field name="faltas_componente_et1" class="java.lang.Integer"/>
-	<field name="faltas_componente_et2" class="java.lang.Integer"/>
-	<field name="faltas_componente_et3" class="java.lang.Integer"/>
-	<field name="faltas_componente_et4" class="java.lang.Integer"/>
-	<field name="total_geral_faltas_componente" class="java.math.BigDecimal"/>
-	<field name="total_faltas" class="java.math.BigDecimal"/>
-	<field name="curso_hora_falta" class="java.lang.Double"/>
-	<field name="carga_horaria_componente" class="java.lang.Integer"/>
-	<field name="carga_horaria_serie" class="java.lang.Double"/>
-	<field name="media" class="java.math.BigDecimal"/>
-	<field name="medianum" class="java.math.BigDecimal"/>
-	<field name="nota_exame" class="java.math.BigDecimal"/>
-	<field name="media_recuperacao" class="java.math.BigDecimal"/>
-	<field name="medianumturma" class="java.math.BigDecimal"/>
-	<field name="total_faltas_componente" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nome_instituicao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_instituicao"/>
+	</field>
+	<field name="nome_responsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_responsavel"/>
+	</field>
+	<field name="nm_escola" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_escola"/>
+	</field>
+	<field name="ano" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ano"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="escola_ano_letivo"/>
+	</field>
+	<field name="logradouro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="logradouro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_dados_escola"/>
+	</field>
+	<field name="fone" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_dados_escola"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_dados_escola"/>
+	</field>
+	<field name="nome_curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="curso"/>
+	</field>
+	<field name="nome_serie" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_serie"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="serie"/>
+	</field>
+	<field name="nome_turma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_turma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="turma"/>
+	</field>
+	<field name="nome_aluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_aluno"/>
+	</field>
+	<field name="periodo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="periodo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="turma_turno"/>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="situacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_situacao"/>
+	</field>
+	<field name="nome_disciplina" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_disciplina"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_componente_curricular"/>
+	</field>
+	<field name="nota1num" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota1num"/>
+	</field>
+	<field name="nota1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nota1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="nota_componente_curricular"/>
+	</field>
+	<field name="nota2num" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota2num"/>
+	</field>
+	<field name="nota2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nota2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="nota_componente_curricular"/>
+	</field>
+	<field name="nota3num" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota3num"/>
+	</field>
+	<field name="nota3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nota3"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="nota_componente_curricular"/>
+	</field>
+	<field name="nota4num" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota4num"/>
+	</field>
+	<field name="nota4" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nota4"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="nota_componente_curricular"/>
+	</field>
+	<field name="exame" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="exame"/>
+	</field>
+	<field name="matricula" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="matricula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
+	</field>
+	<field name="frequencia" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="frequencia"/>
+	</field>
+	<field name="dt_nasc" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dt_nasc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fisica"/>
+	</field>
+	<field name="nota1numturma" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota1numturma"/>
+	</field>
+	<field name="nota2numturma" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota2numturma"/>
+	</field>
+	<field name="nota3numturma" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota3numturma"/>
+	</field>
+	<field name="nota4numturma" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota4numturma"/>
+	</field>
+	<field name="total_faltas_et1" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="total_faltas_et1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="falta_geral"/>
+	</field>
+	<field name="total_faltas_et2" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="total_faltas_et2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="falta_geral"/>
+	</field>
+	<field name="total_faltas_et3" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="total_faltas_et3"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="falta_geral"/>
+	</field>
+	<field name="total_faltas_et4" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="total_faltas_et4"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="falta_geral"/>
+	</field>
+	<field name="faltas_componente_et1" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="faltas_componente_et1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="falta_componente_curricular"/>
+	</field>
+	<field name="faltas_componente_et2" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="faltas_componente_et2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="falta_componente_curricular"/>
+	</field>
+	<field name="faltas_componente_et3" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="faltas_componente_et3"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="falta_componente_curricular"/>
+	</field>
+	<field name="faltas_componente_et4" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="faltas_componente_et4"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="falta_componente_curricular"/>
+	</field>
+	<field name="total_geral_faltas_componente" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="total_geral_faltas_componente"/>
+	</field>
+	<field name="total_faltas" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="total_faltas"/>
+	</field>
+	<field name="curso_hora_falta" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="curso_hora_falta"/>
+	</field>
+	<field name="carga_horaria_componente" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="carga_horaria_componente"/>
+	</field>
+	<field name="carga_horaria_serie" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="carga_horaria_serie"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="serie"/>
+	</field>
+	<field name="media" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="media"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="nota_componente_curricular_media"/>
+	</field>
+	<field name="medianum" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="medianum"/>
+	</field>
+	<field name="nota_exame" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="nota_exame"/>
+	</field>
+	<field name="media_recuperacao" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="media_recuperacao"/>
+	</field>
+	<field name="medianumturma" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="medianumturma"/>
+	</field>
+	<field name="total_faltas_componente" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="total_faltas_componente"/>
+	</field>
 	<group name="matricula" keepTogether="true">
 		<groupExpression><![CDATA[$F{matricula}]]></groupExpression>
 		<groupHeader>
@@ -777,7 +906,8 @@
 				<textElement textAlignment="Center" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{nota1} < $F{media_recuperacao}) ? ("<b>" + $F{nota1} + "</b>") : $F{nota1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota1}.matches( "[A-Z]" ) ? $F{nota1} : (
+($F{nota1num} < $F{media_recuperacao}) ? ("<b>" + $F{nota1num} + "</b>") : $F{nota1num})]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="263" y="1" width="26" height="11" uuid="48b3461e-6c11-4eda-be2d-a5a9f2fb9fd3">
@@ -786,7 +916,8 @@
 				<textElement textAlignment="Center" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{nota2} < $F{media_recuperacao}) ? ("<b>" + $F{nota2} + "</b>") : $F{nota2}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota2}.matches( "[A-Z]" ) ? $F{nota2} : (
+	($F{nota2num} < $F{media_recuperacao}) ? ("<b>" + $F{nota2num} + "</b>") : $F{nota2num})]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="5" y="1" width="198" height="11" uuid="7a070405-d463-4e82-bf5a-c6c99f075120"/>
@@ -838,7 +969,8 @@
 				<textElement textAlignment="Center" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{nota3} < $F{media_recuperacao}) ? ("<b>" + $F{nota3} + "</b>") : $F{nota3}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota2}.matches( "[A-Z]" ) ? $F{nota2} : (
+	($F{nota3num} < $F{media_recuperacao}) ? ("<b>" + $F{nota3num}+ "</b>") : $F{nota3num})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="402" y="-1" width="1" height="13" uuid="8686462e-eef2-4298-a2d0-61ddf6aad639"/>
@@ -859,7 +991,8 @@
 				<textElement textAlignment="Center" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{nota4} < $F{media_recuperacao}) ? ("<b>" + $F{nota4} + "</b>") : $F{nota4}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota4}.matches( "[A-Z]" ) ? $F{nota4} : (
+	($F{nota4num} < $F{media_recuperacao}) ? ("<b>" + $F{nota4num} + "</b>") : $F{nota4num})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="478" y="-1" width="1" height="13" uuid="c966647a-2e12-49b3-b4e4-1c36b1e44ecd"/>
