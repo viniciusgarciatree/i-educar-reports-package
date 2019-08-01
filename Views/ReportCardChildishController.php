@@ -13,7 +13,7 @@ class ReportCardChildishController extends Portabilis_Controller_ReportCoreContr
     /**
      * @var string
      */
-    protected $_titulo = 'Boletim Escolar';
+    protected $_titulo = 'Boletim Escolar Educação Infantil';
 
     /**
      * @inheritdoc
@@ -24,7 +24,7 @@ class ReportCardChildishController extends Portabilis_Controller_ReportCoreContr
 
         //$this->acao_enviar = 'customPrintReport()';
 
-        $this->breadcrumb('Boletim escolar', [
+        $this->breadcrumb('Boletim escolar educação infantil', [
             '/intranet/educar_index.php' => 'Escola'
         ]);
     }
