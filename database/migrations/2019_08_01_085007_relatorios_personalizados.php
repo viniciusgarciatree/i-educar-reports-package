@@ -279,7 +279,7 @@ class RelatoriosPersonalizados extends Migration
             'old' => 999718
         ],[
             'parent_id' => Menu::query()->where('old', 999450)->firstOrFail()->getKey(),
-            'title' => 'Boletim Escolar Educação Infantil',
+            'title' => 'Boletim escolar educação infantil',
             'description' => null,
             'link' => '/module/Reports/ReportCardChildish',
             'order' => 0,
