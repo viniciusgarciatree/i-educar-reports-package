@@ -8,7 +8,7 @@ require_once 'Reports/Reports/TransferenceCertificateReport.php';
 class TransferenceCertificateController extends Portabilis_Controller_ReportCoreController
 {
     /**
-     * @var int 
+     * @var int
      */
     protected $_processoAp = 999216;
 
@@ -88,7 +88,7 @@ class TransferenceCertificateController extends Portabilis_Controller_ReportCore
      */
     public function titulo()
     {
-        $menu = Menu::query()->where('process', $this->_processoAp);
+        $menu = Menu::query()->where('process', $this->_processoAp)->first();
 
         return $menu->title;
     }
