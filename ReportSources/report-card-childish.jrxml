@@ -283,7 +283,7 @@
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="5" y="69" width="312" height="14" uuid="703fa198-ea40-4933-a600-6ad811a236f7"/>
+					<reportElement x="5" y="69" width="512" height="14" uuid="703fa198-ea40-4933-a600-6ad811a236f7"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8"/>
 					</textElement>
