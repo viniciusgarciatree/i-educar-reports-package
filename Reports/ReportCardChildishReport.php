@@ -66,32 +66,17 @@ class ReportCardChildishReport extends Portabilis_Report_ReportCore
           TRUNC(nota_etapa2.nota::NUMERIC, 1) AS nota2num,
           tav_etapa2.descricao AS nota2,
           parecer_componente_etapa2.parecer AS parecer_componente_etapa2,
-          TRUNC(nota_etapa3.nota::NUMERIC, 1) AS nota3num,
-          tav_etapa3.descricao AS nota3,
-          parecer_componente_etapa3.parecer AS parecer_componente_etapa3,
-          TRUNC(nota_etapa4.nota::NUMERIC, 1) AS nota4num,
-          tav_etapa4.descricao AS nota4,
-          parecer_componente_etapa4.parecer AS parecer_componente_etapa4,
-          TRUNC(nota_exame.nota::NUMERIC, 1) AS exame,
           matricula.cod_matricula AS matricula,
           modules.frequencia_da_matricula(matricula.cod_matricula) AS frequencia,
           fisica.data_nasc AS dt_nasc,
           relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 1) AS nota1numturma,
           relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 2) AS nota2numturma,
-          relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 3) AS nota3numturma,
-          relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 4) AS nota4numturma,
           parecer_geral_etapa1.parecer AS parecer_geral_etapa1,
           parecer_geral_etapa2.parecer AS parecer_geral_etapa2,
-          parecer_geral_etapa3.parecer AS parecer_geral_etapa3,
-          parecer_geral_etapa4.parecer AS parecer_geral_etapa4,
           falta_etapa1.quantidade AS total_faltas_et1,
           falta_etapa2.quantidade AS total_faltas_et2,
-          falta_etapa3.quantidade AS total_faltas_et3,
-          falta_etapa4.quantidade AS total_faltas_et4,
           falta_componente1.quantidade AS faltas_componente_et1,
           falta_componente2.quantidade AS faltas_componente_et2,
-          falta_componente3.quantidade AS faltas_componente_et3,
-          falta_componente4.quantidade AS faltas_componente_et4,
           relatorio.get_total_geral_falta_componente(matricula.cod_matricula) AS total_geral_faltas_componente,
           relatorio.get_total_faltas(matricula.cod_matricula) AS total_faltas,
           curso.hora_falta * 100 AS curso_hora_falta,
@@ -155,23 +140,7 @@ class ReportCardChildishReport extends Portabilis_Report_ReportCore
                                                                 AND parecer_geral_etapa2.etapa = '2')
    LEFT JOIN modules.parecer_componente_curricular parecer_componente_etapa2 ON (nota_etapa2.componente_curricular_id = parecer_componente_etapa2.componente_curricular_id
                                                                 AND parecer.id = parecer_componente_etapa2.parecer_aluno_id
-                                                                AND parecer_componente_etapa2.etapa = '2')
-   LEFT JOIN modules.nota_componente_curricular nota_etapa3 ON (nota_etapa3.nota_aluno_id = nota_aluno.id
-                                                                AND nota_etapa3.componente_curricular_id = view_componente_curricular.id
-                                                                AND nota_etapa3.etapa = '3')
-   LEFT JOIN modules.parecer_geral parecer_geral_etapa3 ON (parecer.id = parecer_geral_etapa3.parecer_aluno_id
-                                                                AND parecer_geral_etapa3.etapa = '3')
-   LEFT JOIN modules.parecer_componente_curricular parecer_componente_etapa3 ON (nota_etapa3.componente_curricular_id = parecer_componente_etapa3.componente_curricular_id
-                                                                AND parecer.id = parecer_componente_etapa3.parecer_aluno_id
-                                                                AND parecer_componente_etapa3.etapa = '3')                                                             
-   LEFT JOIN modules.nota_componente_curricular nota_etapa4 ON (nota_etapa4.nota_aluno_id = nota_aluno.id
-                                                                AND nota_etapa4.componente_curricular_id = view_componente_curricular.id
-                                                                AND nota_etapa4.etapa = '4')
-   LEFT JOIN modules.parecer_componente_curricular parecer_componente_etapa4 ON (nota_etapa4.componente_curricular_id = parecer_componente_etapa4.componente_curricular_id
-                                                                AND parecer.id = parecer_componente_etapa4.parecer_aluno_id
-                                                                AND parecer_componente_etapa4.etapa = '4')      
-   LEFT JOIN modules.parecer_geral parecer_geral_etapa4 ON (parecer.id = parecer_geral_etapa4.parecer_aluno_id
-                                                                AND parecer_geral_etapa4.etapa = '4')                                                                                                                    
+                                                                AND parecer_componente_etapa2.etapa = '2')                                                                                                                    
    LEFT JOIN modules.nota_componente_curricular nota_exame ON (nota_exame.nota_aluno_id = nota_aluno.id
                                                                AND nota_exame.componente_curricular_id = view_componente_curricular.id
                                                                AND nota_exame.etapa = 'Rc')    
@@ -182,22 +151,12 @@ class ReportCardChildishReport extends Portabilis_Report_ReportCore
                                                   AND falta_etapa1.etapa = '1')
    LEFT JOIN modules.falta_geral falta_etapa2 ON (falta_etapa2.falta_aluno_id = falta_aluno.id
                                                   AND falta_etapa2.etapa = '2')
-   LEFT JOIN modules.falta_geral falta_etapa3 ON (falta_etapa3.falta_aluno_id = falta_aluno.id
-                                                  AND falta_etapa3.etapa = '3')
-   LEFT JOIN modules.falta_geral falta_etapa4 ON (falta_etapa4.falta_aluno_id = falta_aluno.id
-                                                  AND falta_etapa4.etapa = '4')
    LEFT JOIN modules.falta_componente_curricular falta_componente1 ON (falta_componente1.falta_aluno_id = falta_aluno.id
                                                                        AND falta_componente1.componente_curricular_id = view_componente_curricular.id
                                                                        AND falta_componente1.etapa = '1')
    LEFT JOIN modules.falta_componente_curricular falta_componente2 ON (falta_componente2.falta_aluno_id = falta_aluno.id
                                                                        AND falta_componente2.componente_curricular_id = view_componente_curricular.id
                                                                        AND falta_componente2.etapa = '2')
-   LEFT JOIN modules.falta_componente_curricular falta_componente3 ON (falta_componente3.falta_aluno_id = falta_aluno.id
-                                                                       AND falta_componente3.componente_curricular_id = view_componente_curricular.id
-                                                                       AND falta_componente3.etapa = '3')
-   LEFT JOIN modules.falta_componente_curricular falta_componente4 ON (falta_componente4.falta_aluno_id = falta_aluno.id
-                                                                       AND falta_componente4.componente_curricular_id = view_componente_curricular.id
-                                                                       AND falta_componente4.etapa = '4')
    LEFT JOIN modules.componente_curricular_ano_escolar ON (componente_curricular_ano_escolar.ano_escolar_id = serie.cod_serie
                                                            AND componente_curricular_ano_escolar.componente_curricular_id = view_componente_curricular.id
                                                            AND matricula.ano = any(componente_curricular_ano_escolar.anos_letivos)
@@ -208,10 +167,6 @@ class ReportCardChildishReport extends Portabilis_Report_ReportCore
                                                          AND tav_etapa1.nome = nota_etapa1.nota_arredondada)
    LEFT JOIN modules.tabela_arredondamento_valor tav_etapa2 on (regra_avaliacao.tabela_arredondamento_id = tav_etapa2.tabela_arredondamento_id 
                                                          AND tav_etapa2.nome = nota_etapa2.nota_arredondada)
-   LEFT JOIN modules.tabela_arredondamento_valor tav_etapa3 on (regra_avaliacao.tabela_arredondamento_id = tav_etapa3.tabela_arredondamento_id 
-                                                         AND tav_etapa3.nome = nota_etapa3.nota_arredondada)
-   LEFT JOIN modules.tabela_arredondamento_valor tav_etapa4 on (regra_avaliacao.tabela_arredondamento_id = tav_etapa4.tabela_arredondamento_id 
-                                                         AND tav_etapa4.nome = nota_etapa4.nota_arredondada)
    WHERE instituicao.cod_instituicao = {$instituicao}
      AND escola.cod_escola = {$escola}
      AND curso.cod_curso = {$curso}
