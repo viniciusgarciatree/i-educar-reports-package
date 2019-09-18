@@ -63,7 +63,7 @@
 				<reportElement x="1083" y="0" width="70" height="61" uuid="9fa8e21d-8a4c-460c-810c-61a9bfd2309a">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="0" y="1" width="1191" height="13" uuid="b6883cd7-3144-4f31-8503-cde388b49df1"/>
