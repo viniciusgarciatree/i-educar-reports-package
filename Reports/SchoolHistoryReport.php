@@ -174,10 +174,10 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
                                               AND he.historico_grade_curso_id = 2
                                             ORDER BY he.ano DESC LIMIT 1) = 1 THEN 'o ' || (substring(nm_serie,1,1)::integer::numeric) || 'º ano'
                                        ELSE CASE WHEN historico_grade_curso_id = 1 THEN CASE WHEN substring(nm_serie,1,1)::integer = '0' THEN 'o ' || (substring(nm_serie,1,1)::integer::numeric +1) || 'º ano'
-                                                                                             ELSE 'a ' || substring(nm_serie,1,1)::integer || 'ª série/' || (substring(nm_serie,1,1)::integer::numeric +1) || 'º ano'
+                                                                                             ELSE ' ' || (substring(nm_serie,1,1)::integer::numeric +1) || 'º ano'
                                                                                         END
                                                  ELSE CASE WHEN (substring(nm_serie,1,1)::integer::numeric -1) = '0' THEN 'o ' || substring(nm_serie,1,1)::integer || 'º ano'
-                                                           ELSE 'a ' || (substring(nm_serie,1,1)::integer::numeric -1) || 'ª série/' || substring(nm_serie,1,1)::integer || 'º ano'
+                                                           ELSE ' ' || substring(nm_serie,1,1)::integer || 'º ano'
                                                       END
                                             END
                                   END
@@ -200,7 +200,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
                 END) AS qtde_notas_maiores_dez,
 
        (SELECT DISTINCT '' || (replace(textcat_all((' ')),' <br> ','<br>'))
-		  FROM generate_series(1,(SELECT ROUND((330 - (COUNT(DISTINCT trim(relatorio.get_texto_sem_caracter_especial(nm_disciplina))) * 12)) / 12)
+		  FROM generate_series(1,(SELECT ROUND((250 - (COUNT(DISTINCT trim(relatorio.get_texto_sem_caracter_especial(nm_disciplina))) * 12)) / 12)
 		                            FROM historico_disciplinas hd
 		                           INNER JOIN pmieducar.historico_escolar he ON (he.ref_cod_aluno = hd.ref_ref_cod_aluno
 		                                                                         AND hd.ref_sequencial = he.sequencial)

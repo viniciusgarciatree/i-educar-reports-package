@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_conferencia_notas_faltas_simplificado" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4d77f07a-e520-428b-9699-1e75cc412a4a">
 	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
 	<style name="table">
@@ -50,7 +50,7 @@
 	<parameter name="turma" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -66,6 +66,7 @@
 		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
 	</parameter>
 	<parameter name="source" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String"/>
 	<field name="cod_matricula" class="java.lang.Integer"/>
 	<field name="cod_aluno" class="java.lang.Integer"/>
 	<field name="nm_aluno" class="java.lang.String"/>
@@ -2603,58 +2604,58 @@
 		</groupFooter>
 	</group>
 	<title>
-		<band height="139">
+		<band height="136">
 			<staticText>
-				<reportElement x="0" y="124" width="36" height="12" uuid="d5af34d0-f795-4fcc-836a-fe1fd641f176"/>
+				<reportElement x="74" y="124" width="36" height="12" uuid="d5af34d0-f795-4fcc-836a-fe1fd641f176"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Curso:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="235" y="124" width="36" height="12" uuid="5a67fbcf-1c78-4283-88f1-2abc4f197438"/>
+				<reportElement x="291" y="124" width="36" height="12" uuid="5a67fbcf-1c78-4283-88f1-2abc4f197438"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Turno:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="377" y="124" width="36" height="12" uuid="a1fbbf76-88bc-417e-bb5d-c7ba17cf591e"/>
+				<reportElement x="434" y="124" width="36" height="12" uuid="a1fbbf76-88bc-417e-bb5d-c7ba17cf591e"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Turma:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="525" y="124" width="36" height="12" uuid="d0b6e2ac-6be3-4b30-80ee-00063364b87d"/>
+				<reportElement x="559" y="124" width="36" height="12" uuid="d0b6e2ac-6be3-4b30-80ee-00063364b87d"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Série:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="34" y="124" width="190" height="12" uuid="6802d400-e7da-4824-a056-80c70aff0a8b"/>
+				<reportElement x="110" y="124" width="170" height="12" uuid="6802d400-e7da-4824-a056-80c70aff0a8b"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome_curso}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="271" y="124" width="100" height="12" uuid="543d503e-d1ae-4732-9520-5ec08a72192d"/>
+				<reportElement x="327" y="124" width="100" height="12" uuid="543d503e-d1ae-4732-9520-5ec08a72192d"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="413" y="124" width="100" height="12" uuid="1d33b451-dbdf-4f86-a246-09eda36adc6d"/>
+				<reportElement x="470" y="124" width="76" height="12" uuid="1d33b451-dbdf-4f86-a246-09eda36adc6d"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome_turma}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="557" y="124" width="100" height="12" uuid="7bd2212b-18bc-4eba-b2b5-9d1a690042d5"/>
+				<reportElement x="591" y="124" width="100" height="12" uuid="7bd2212b-18bc-4eba-b2b5-9d1a690042d5"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
@@ -2662,8 +2663,8 @@
 			</textField>
 			<subreport>
 				<reportElement x="0" y="0" width="802" height="100" uuid="b35f2671-2b53-47ac-89be-0b03082ac517"/>
-				<subreportParameter name="logo">
-					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
 					<subreportParameterExpression><![CDATA["Conferência de notas e faltas"]]></subreportParameterExpression>
@@ -2683,10 +2684,13 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape.jasper"]]></subreportExpression>
 			</subreport>
 			<textField isBlankWhenNull="true">
-				<reportElement x="696" y="124" width="70" height="12" uuid="7bd2212b-18bc-4eba-b2b5-9d1a690042d5">
+				<reportElement x="730" y="124" width="70" height="12" uuid="7bd2212b-18bc-4eba-b2b5-9d1a690042d5">
 					<printWhenExpression><![CDATA[$P{etapa}!=0]]></printWhenExpression>
 				</reportElement>
 				<textElement>
@@ -2695,7 +2699,7 @@
 				<textFieldExpression><![CDATA[$P{etapa} + "ª Etapa"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="662" y="124" width="36" height="12" uuid="d0b6e2ac-6be3-4b30-80ee-00063364b87d">
+				<reportElement x="696" y="124" width="36" height="12" uuid="d0b6e2ac-6be3-4b30-80ee-00063364b87d">
 					<printWhenExpression><![CDATA[$P{etapa}!=0]]></printWhenExpression>
 				</reportElement>
 				<textElement>
@@ -2703,6 +2707,60 @@
 				</textElement>
 				<text><![CDATA[Etapa:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="0" y="124" width="25" height="12" uuid="3a19f278-6f87-4487-a860-fad4d409a5ca">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ano:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="25" y="124" width="44" height="12" uuid="bbab19a6-78a2-4343-b05f-73c52bfa1498"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
+	<pageFooter>
+		<band height="23">
+			<staticText>
+				<reportElement x="2" y="12" width="55" height="11" uuid="bb901533-f2ee-4609-b4f4-0be46e7a0800"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e hora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="696" y="12" width="92" height="11" uuid="6d6f577b-d0f6-42f7-95bf-6ed4eea0af12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="788" y="12" width="13" height="11" uuid="d41bc282-2aab-4807-be6c-6a02dff1e0ec"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="12" width="100" height="11" uuid="97847de9-2c4b-4d99-88f2-ba30d0e3accd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="10" width="802" height="1" uuid="0e65b5d1-c7f5-42ec-a3b0-5363ce4e736c"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
 </jasperReport>

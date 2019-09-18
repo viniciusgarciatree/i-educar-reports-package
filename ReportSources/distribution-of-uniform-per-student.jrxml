@@ -10,7 +10,7 @@
 	<parameter name="instituicao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
@@ -34,6 +34,7 @@
 	</parameter>
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -154,9 +155,9 @@
 	<title>
 		<band height="109">
 			<subreport>
-				<reportElement x="5" y="5" width="555" height="104" uuid="58a4be72-9eb6-42d4-869d-9a3fe862760b"/>
-				<subreportParameter name="logo">
-					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				<reportElement x="0" y="5" width="555" height="104" uuid="58a4be72-9eb6-42d4-869d-9a3fe862760b"/>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
@@ -175,6 +176,9 @@
 				</subreportParameter>
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
 			</subreport>
@@ -416,6 +420,44 @@
 			</textField>
 		</band>
 	</detail>
+	<pageFooter>
+		<band height="23">
+			<staticText>
+				<reportElement x="2" y="12" width="55" height="11" uuid="f45e4463-3cdc-48e4-b924-cd7549533826"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e hora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="12" width="92" height="11" uuid="696b84aa-c516-42f8-bc67-be06931d8e26"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="542" y="12" width="13" height="11" uuid="90957d67-f5e3-44b6-903f-25c1be79dd46"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="12" width="100" height="11" uuid="6bbf5307-3850-4ee4-968a-240926cff4a0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="10" width="555" height="1" uuid="b05545ee-5e17-43c0-8239-3225698c78cb"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
 	<summary>
 		<band height="23">
 			<staticText>

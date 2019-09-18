@@ -33,7 +33,7 @@
 	<parameter name="matricula" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="diario" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
@@ -66,6 +66,7 @@
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -197,7 +198,7 @@
 	<variable name="total" class="java.lang.Integer" resetType="Group" resetGroup="matricula" calculation="Count">
 		<variableExpression><![CDATA[$F{nome_disciplina}]]></variableExpression>
 	</variable>
-	<group name="matricula" keepTogether="true">
+	<group name="matricula" isStartNewPage="true" keepTogether="true">
 		<groupExpression><![CDATA[$F{matricula}]]></groupExpression>
 		<groupHeader>
 			<band height="68">
@@ -207,8 +208,8 @@
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
-					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+					<subreportParameter name="logo1">
+						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="titulo">
 						<subreportParameterExpression><![CDATA["BOLETIM ESCOLAR"]]></subreportParameterExpression>
@@ -224,6 +225,9 @@
 					</subreportParameter>
 					<subreportParameter name="source">
 						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="logo2">
+						<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape-report-card.jasper"]]></subreportExpression>
 				</subreport>
@@ -513,7 +517,7 @@
 				</textField>
 			</band>
 			<band height="50">
-				<printWhenExpression><![CDATA[$F{parecer_geral_etapa1} != null || 
+				<printWhenExpression><![CDATA[$F{parecer_geral_etapa1} != null ||
 $F{parecer_geral_etapa2} != null]]></printWhenExpression>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="0" y="39" width="787" height="11" isRemoveLineWhenBlank="true" printWhenGroupChanges="matricula" uuid="ef5a2952-9c72-458e-af8c-1b7e705cf406">

@@ -13,7 +13,7 @@
 	<parameter name="escola" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="curso" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
@@ -39,14 +39,18 @@
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="branco" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String"/>
+	<parameter name="cod_instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cod_escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="nome_instituicao" class="java.lang.String"/>
-	<field name="nome_responsavel" class="java.lang.String"/>
-	<field name="data_atual" class="java.lang.String"/>
-	<field name="hora_atual" class="java.lang.String"/>
 	<field name="nm_escola" class="java.lang.String"/>
+	<field name="tipo_logradouro" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -54,51 +58,41 @@
 		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="89" splitType="Stretch">
-			<rectangle radius="10">
-				<reportElement x="3" y="2" width="548" height="59" uuid="471b0c26-df1d-4c2e-aee8-96eabcccfb0a"/>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</rectangle>
-			<textField>
-				<reportElement x="102" y="5" width="356" height="13" uuid="58c354bb-2e3a-410d-ab66-822cd50e2eff"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nome_instituicao}]]></textFieldExpression>
-			</textField>
+		<band height="90" splitType="Stretch">
 			<rectangle>
-				<reportElement x="3" y="65" width="548" height="20" uuid="3d1872f2-7458-4b42-8ecf-613558cb88f6"/>
+				<reportElement x="3" y="0" width="547" height="90" uuid="c7eef057-0b10-45f3-af18-22852b639fb2"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</rectangle>
-			<staticText>
-				<reportElement x="185" y="67" width="226" height="16" uuid="96e12dcc-c0e0-4e76-9a4e-adefb27a0e0f"/>
-				<textElement textAlignment="Center">
-					<font fontName="DejaVu Sans" size="12" isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[FICHA DO ALUNO - MATRÍCULA]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="102" y="29" width="356" height="13" uuid="34332fb4-3825-4641-9688-95e15b2728d4"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nm_escola}]]></textFieldExpression>
-			</textField>
-			<image>
-				<reportElement x="25" y="5" width="57" height="46" uuid="0abbbcf9-fdb0-4d3d-bd41-f58d9f625568"/>
-				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
-			</image>
-			<textField isBlankWhenNull="true">
-				<reportElement x="102" y="17" width="356" height="13" uuid="5c403c44-8743-4367-a304-c28413cd03bd"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nome_responsavel}]]></textFieldExpression>
-			</textField>
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="3" y="0" width="547" height="90" uuid="635f845b-6b22-4e79-8909-633844c3c28b"/>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["FICHA DO ALUNO - MATRÍCULA"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -265,21 +259,21 @@
 				<text><![CDATA[DATA DE NASCIMENTO: ____/____/______]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="281" y="40" width="184" height="12" uuid="59b62bac-63d7-41bb-9071-db6021f15808"/>
+				<reportElement x="281" y="45" width="184" height="12" uuid="59b62bac-63d7-41bb-9071-db6021f15808"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[ESTADO CIVIL: _______________________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="281" y="56" width="184" height="12" uuid="7f1cb144-3dac-4853-803c-792346d06168"/>
+				<reportElement x="281" y="62" width="184" height="12" uuid="7f1cb144-3dac-4853-803c-792346d06168"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[ESTADO: ___________________________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="281" y="72" width="184" height="12" uuid="2fde681e-b893-4ecd-8c56-6675b53ecefd"/>
+				<reportElement x="281" y="80" width="184" height="12" uuid="2fde681e-b893-4ecd-8c56-6675b53ecefd"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
@@ -438,13 +432,6 @@
 				<text><![CDATA[BENEFÍCIO: ______________________________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="313" y="270" width="180" height="12" uuid="bdd9e238-0574-4b29-8a93-5634a3449697"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<text><![CDATA[ALFABETIZADO: (     ) Sim     (     ) Não]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="7" y="25" width="242" height="12" uuid="23476cb9-5e73-4c8a-a3c6-f63939243408"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
@@ -452,7 +439,7 @@
 				<text><![CDATA[NOME: _________________________________________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="40" width="205" height="12" uuid="b03db48f-3d4a-40d2-b45c-8e47fc12e946"/>
+				<reportElement x="7" y="44" width="205" height="12" uuid="b03db48f-3d4a-40d2-b45c-8e47fc12e946"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
@@ -578,25 +565,18 @@
 				<text><![CDATA[ZONA: ________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="56" width="225" height="12" uuid="c4721aa8-2762-4f49-b8da-0bdcb2c36b46"/>
+				<reportElement x="7" y="62" width="225" height="12" uuid="c4721aa8-2762-4f49-b8da-0bdcb2c36b46"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[NATURALIDADE: ____________________________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="72" width="225" height="12" uuid="9f901a07-c2bb-42b6-b313-3904e5c030c3"/>
+				<reportElement x="7" y="80" width="225" height="12" uuid="9f901a07-c2bb-42b6-b313-3904e5c030c3"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[NACIONALIDADE: ___________________________]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="7" y="87" width="225" height="12" uuid="c6d90342-15f2-4575-b0b4-bc2212e0f2bc"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<text><![CDATA[RELIGIÃO: ___________________________________]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="461" y="208" width="87" height="12" uuid="80becd4a-64a9-4e2b-8126-55a8199cc450"/>
@@ -752,13 +732,4 @@
 			</staticText>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="7" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="10" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="10" splitType="Stretch"/>
-	</summary>
 </jasperReport>

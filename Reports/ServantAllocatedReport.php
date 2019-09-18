@@ -189,8 +189,8 @@ h.fantasia as nm_escola_servidor,
        to_char(CURRENT_DATE,'dd/mm/yyyy') AS data_atual,
        to_char(current_timestamp, 'HH24:MI:SS') AS hora_atual
 from pmieducar.servidor a
-left outer join pmieducar.servidor_alocacao b on a.cod_servidor = b.ref_cod_servidor
-left outer join pmieducar.servidor_funcao c on c.ref_cod_servidor = a.cod_servidor 
+left outer join pmieducar.servidor_alocacao b on a.cod_servidor = b.ref_cod_servidor 
+left outer join pmieducar.servidor_funcao c on c.ref_cod_servidor = a.cod_servidor and b.ref_cod_servidor_funcao = c.cod_servidor_funcao
 left outer join pmieducar.funcao d on c.ref_cod_funcao = d.cod_funcao
 left outer join pmieducar.instituicao e on a.ref_cod_instituicao = e.cod_instituicao
 left outer join pmieducar.escola f on b.ref_cod_escola = f.cod_escola

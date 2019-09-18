@@ -51,6 +51,7 @@ class ServantSheetController extends Portabilis_Controller_ReportCoreController
         $branco = (bool) $this->getRequest()->branco;
 
         if (!$branco) {
+            $this->report->addRequiredArg('servidor');
             $this->report->addArg('servidor', (int) $this->getRequest()->servidor_id);
         }
 

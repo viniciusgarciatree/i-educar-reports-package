@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_relacao_alunos_matriculados_por_escola_grafico" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7af52acc-d9d8-4452-93bd-8aeb6f58bafb">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_relacao_alunos_matriculados_por_escola_grafico" pageWidth="1191" pageHeight="842" orientation="Landscape" columnWidth="1151" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7af52acc-d9d8-4452-93bd-8aeb6f58bafb">
 	<property name="ireport.zoom" value="1.2100000000000009"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.unit." value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<style name="Crosstab_CH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -76,7 +67,7 @@
 	<parameter name="data_final" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -92,6 +83,7 @@
 	<parameter name="separar" class="java.lang.String">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo2" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -116,9 +108,9 @@
 	<title>
 		<band height="100" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="0" width="802" height="100" uuid="dad7af0b-5528-4932-a3a2-39a69d5ef6f8"/>
-				<subreportParameter name="logo">
-					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				<reportElement x="0" y="0" width="1151" height="100" uuid="dad7af0b-5528-4932-a3a2-39a69d5ef6f8"/>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
 					<subreportParameterExpression><![CDATA["Quantidade de matrículas por escola, série e turno"]]></subreportParameterExpression>
@@ -138,14 +130,17 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape.jasper"]]></subreportExpression>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape-a3.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</title>
 	<summary>
 		<band height="160">
 			<crosstab>
-				<reportElement x="0" y="0" width="802" height="160" uuid="56df958e-d4fc-41cb-a89b-187fcdaf17cf">
+				<reportElement x="0" y="0" width="1151" height="160" uuid="56df958e-d4fc-41cb-a89b-187fcdaf17cf">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.crosstab.style.header" value="Crosstab_CH"/>
 					<property name="com.jaspersoft.studio.crosstab.style.group" value="Crosstab_CG"/>
@@ -153,7 +148,7 @@
 					<property name="com.jaspersoft.studio.crosstab.style.detail" value="Crosstab_CD"/>
 				</reportElement>
 				<rowGroup name="escola" width="129" totalPosition="End">
-					<bucket class="java.lang.String">
+					<bucket order="None" class="java.lang.String">
 						<bucketExpression><![CDATA[$F{escola}]]></bucketExpression>
 					</bucket>
 					<crosstabRowHeader>
@@ -181,7 +176,7 @@
 					</crosstabTotalRowHeader>
 				</rowGroup>
 				<rowGroup name="turno" width="60" totalPosition="End">
-					<bucket class="java.lang.String">
+					<bucket order="None" class="java.lang.String">
 						<bucketExpression><![CDATA[$F{turno}]]></bucketExpression>
 					</bucket>
 					<crosstabRowHeader>
@@ -209,13 +204,14 @@
 					</crosstabTotalRowHeader>
 				</rowGroup>
 				<columnGroup name="nm_serie" height="20" totalPosition="End">
-					<bucket class="java.lang.String">
+					<bucket order="None" class="java.lang.String">
 						<bucketExpression><![CDATA[$F{nm_serie}]]></bucketExpression>
 					</bucket>
 					<crosstabColumnHeader>
 						<cellContents mode="Opaque" style="Crosstab_CH">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<textField>
-								<reportElement mode="Opaque" x="0" y="0" width="40" height="20" backcolor="#E0DCDC" uuid="6daac7c9-d495-4b8a-a094-67e2a69d20fc"/>
+								<reportElement mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="6daac7c9-d495-4b8a-a094-67e2a69d20fc"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8" isBold="true"/>
 								</textElement>
@@ -225,8 +221,9 @@
 					</crosstabColumnHeader>
 					<crosstabTotalColumnHeader>
 						<cellContents mode="Opaque" style="Crosstab_CT">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="40" height="20" backcolor="#E0DCDC" uuid="6ac0c871-bcb8-42c5-b686-f90e9a95531f"/>
+								<reportElement mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="6ac0c871-bcb8-42c5-b686-f90e9a95531f"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8" isBold="true"/>
 								</textElement>
@@ -250,10 +247,10 @@
 				<measure name="total_total_turno_escola" class="java.lang.Long" calculation="Sum">
 					<measureExpression><![CDATA[$F{total}]]></measureExpression>
 				</measure>
-				<crosstabCell width="40" height="20">
+				<crosstabCell width="45" height="20">
 					<cellContents mode="Opaque" style="Crosstab_CD">
 						<textField isBlankWhenNull="true">
-							<reportElement x="0" y="0" width="40" height="20" uuid="b2e15319-1b61-400a-97d2-1606ae3c22cc"/>
+							<reportElement x="0" y="0" width="45" height="20" uuid="b2e15319-1b61-400a-97d2-1606ae3c22cc"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font size="8" isBold="true"/>
 							</textElement>
@@ -261,10 +258,10 @@
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="40" height="20" columnTotalGroup="nm_serie">
+				<crosstabCell width="45" height="20" columnTotalGroup="nm_serie">
 					<cellContents mode="Opaque" style="Crosstab_CT">
 						<textField>
-							<reportElement mode="Opaque" x="0" y="0" width="40" height="20" backcolor="#E0DCDC" uuid="d379d240-ec31-489b-86b7-9cf285c928c6"/>
+							<reportElement mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="d379d240-ec31-489b-86b7-9cf285c928c6"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font size="8" isBold="true"/>
 							</textElement>
@@ -272,10 +269,10 @@
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="40" height="20" rowTotalGroup="turno">
+				<crosstabCell width="45" height="20" rowTotalGroup="turno">
 					<cellContents backcolor="#B3AFAF" mode="Opaque" style="Crosstab_CG">
 						<textField>
-							<reportElement x="0" y="0" width="40" height="20" uuid="3a773a27-ae10-415c-9a80-72764397b167"/>
+							<reportElement x="0" y="0" width="45" height="20" uuid="3a773a27-ae10-415c-9a80-72764397b167"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font size="8" isBold="true"/>
 							</textElement>
@@ -283,10 +280,10 @@
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="40" height="20" rowTotalGroup="turno" columnTotalGroup="nm_serie">
+				<crosstabCell width="45" height="20" rowTotalGroup="turno" columnTotalGroup="nm_serie">
 					<cellContents backcolor="#B3AFAF" mode="Opaque" style="Crosstab_CT">
 						<textField>
-							<reportElement x="0" y="0" width="40" height="20" uuid="b8aa3550-1325-40fc-b6df-63b1400b3750"/>
+							<reportElement x="0" y="0" width="45" height="20" uuid="b8aa3550-1325-40fc-b6df-63b1400b3750"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font size="8" isBold="true"/>
 							</textElement>
@@ -294,10 +291,10 @@
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="40" height="20" rowTotalGroup="escola">
+				<crosstabCell width="45" height="20" rowTotalGroup="escola">
 					<cellContents mode="Opaque" style="Crosstab_CT">
 						<textField>
-							<reportElement mode="Opaque" x="0" y="0" width="40" height="20" backcolor="#E0DCDC" uuid="27dda1c5-06fa-4be3-af26-c1339257349f"/>
+							<reportElement mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="27dda1c5-06fa-4be3-af26-c1339257349f"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font size="8" isBold="true"/>
 							</textElement>
@@ -305,10 +302,10 @@
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="40" height="20" rowTotalGroup="escola" columnTotalGroup="nm_serie">
+				<crosstabCell width="45" height="20" rowTotalGroup="escola" columnTotalGroup="nm_serie">
 					<cellContents mode="Opaque" style="Crosstab_CT">
 						<textField>
-							<reportElement mode="Opaque" x="0" y="0" width="40" height="20" backcolor="#E0DCDC" uuid="26f11f56-264c-4b71-a7fb-281d3b186046"/>
+							<reportElement mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="26f11f56-264c-4b71-a7fb-281d3b186046"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font size="8" isBold="true"/>
 							</textElement>

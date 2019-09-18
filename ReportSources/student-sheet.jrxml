@@ -10,7 +10,7 @@
 	<parameter name="escola" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="curso" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
@@ -36,6 +36,7 @@
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="branco" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String"/>
 	<field name="cod_aluno" class="java.lang.Integer"/>
 	<field name="nome_instituicao" class="java.lang.String"/>
 	<field name="nome_secretaria" class="java.lang.String"/>
@@ -160,8 +161,8 @@
 			</rectangle>
 			<subreport>
 				<reportElement stretchType="RelativeToBandHeight" x="3" y="0" width="551" height="90" uuid="5c05f044-2235-4e4c-a06c-3e8320699259"/>
-				<subreportParameter name="logo">
-					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
 					<subreportParameterExpression><![CDATA["FICHA DO ALUNO"]]></subreportParameterExpression>
@@ -180,6 +181,9 @@
 				</subreportParameter>
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
 			</subreport>
@@ -518,28 +522,28 @@
 				<textFieldExpression><![CDATA[$F{cpf_mae}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="305" y="34" width="97" height="12" uuid="b4f61611-20f4-4150-8992-0b887221881e"/>
+				<reportElement x="305" y="36" width="97" height="12" uuid="b4f61611-20f4-4150-8992-0b887221881e"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[DATA DE NASCIMENTO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="305" y="50" width="37" height="12" uuid="d58d0f8b-303e-41b4-a6ed-e9cdeceaa87b"/>
+				<reportElement x="305" y="54" width="37" height="12" uuid="d58d0f8b-303e-41b4-a6ed-e9cdeceaa87b"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[ESTADO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="305" y="65" width="71" height="12" uuid="efcfd5de-ace2-47bb-8865-9dc96a7e4ef8"/>
+				<reportElement x="305" y="73" width="71" height="12" uuid="efcfd5de-ace2-47bb-8865-9dc96a7e4ef8"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[PAÍS DE ORIGEM:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="471" y="4" width="72" height="89" uuid="cf30196d-7da5-4de3-a72c-47d98d7b73d3">
+				<reportElement x="471" y="9" width="72" height="89" uuid="cf30196d-7da5-4de3-a72c-47d98d7b73d3">
 					<printWhenExpression><![CDATA[$F{existe_foto} != 1]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
@@ -561,18 +565,11 @@
 				<text><![CDATA[DESCRIÇÃO:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="78" y="50" width="206" height="12" uuid="5a0e4502-d2dc-40c4-aae5-d43a712e786f"/>
+				<reportElement x="78" y="54" width="206" height="12" uuid="5a0e4502-d2dc-40c4-aae5-d43a712e786f"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{municipio_nasc}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="49" y="79" width="174" height="12" uuid="1f957671-8ea9-4c02-91fb-1e87d01afdaa"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{religiao}]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="0" y="284" width="555" height="65" uuid="cbd88d29-bb22-4b4a-aa16-3efca81b5e2a"/>
@@ -839,15 +836,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{logradouro}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="457" y="304" width="65" height="12" uuid="a0bc7b57-a42a-44f6-b4c1-e28a2e058073">
-					<printWhenExpression><![CDATA[!$F{alfabetizado}.equals("")]]></printWhenExpression>
-				</reportElement>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<text><![CDATA[ALFABETIZADO:]]></text>
-			</staticText>
 			<textField pattern="###0" isBlankWhenNull="true">
 				<reportElement x="53" y="320" width="94" height="12" uuid="5195282a-b5fd-46de-a8c7-ff00d5fe18b6"/>
 				<textElement>
@@ -856,7 +844,7 @@
 				<textFieldExpression><![CDATA[$F{fone} == new BigDecimal(0) || $F{fone} == null ||  $F{ddd} == new BigDecimal(0) ||  $F{ddd} == null ? "" : "(" + $F{ddd} + ") " + $F{fone}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="376" y="65" width="76" height="12" uuid="c6511799-60f5-41cf-8a70-e8f5d04be847"/>
+				<reportElement x="376" y="73" width="76" height="12" uuid="c6511799-60f5-41cf-8a70-e8f5d04be847"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
@@ -870,14 +858,14 @@
 				<text><![CDATA[NOME:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="342" y="50" width="26" height="12" uuid="5ec0fadd-8ffe-43f0-b893-282cef35469f"/>
+				<reportElement x="342" y="54" width="26" height="12" uuid="5ec0fadd-8ffe-43f0-b893-282cef35469f"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{municipio_uf}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="7" y="34" width="28" height="12" uuid="09815a2b-de04-4efd-a7cc-4cf73177a336"/>
+				<reportElement x="7" y="36" width="28" height="12" uuid="09815a2b-de04-4efd-a7cc-4cf73177a336"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
@@ -1080,40 +1068,33 @@
 				<text><![CDATA[ZONA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="50" width="70" height="12" uuid="60db6e47-407a-4a52-b18d-386f987c1928"/>
+				<reportElement x="7" y="54" width="70" height="12" uuid="60db6e47-407a-4a52-b18d-386f987c1928"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[NATURALIDADE:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="78" y="65" width="207" height="12" uuid="809d6e12-8206-447f-8048-fb896640edb5"/>
+				<reportElement x="78" y="73" width="207" height="12" uuid="809d6e12-8206-447f-8048-fb896640edb5"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nacionalidade}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="7" y="65" width="71" height="12" uuid="2c32828f-7343-4305-8c4d-98b256b1cb36"/>
+				<reportElement x="7" y="73" width="71" height="12" uuid="2c32828f-7343-4305-8c4d-98b256b1cb36"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[NACIONALIDADE:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="35" y="34" width="100" height="12" uuid="1d543449-bce5-46bb-9a70-c6634a3738f6"/>
+				<reportElement x="35" y="36" width="100" height="12" uuid="1d543449-bce5-46bb-9a70-c6634a3738f6"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="7" y="79" width="41" height="12" uuid="4f74ce67-ee65-4570-9caf-7d129fddd528"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<text><![CDATA[RELIGIÃO:]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="465" y="252" width="19" height="12" uuid="3a1d28a4-23a4-4551-906c-716150a46aee"/>
 				<textElement>
@@ -1122,7 +1103,7 @@
 				<text><![CDATA[CEP:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="402" y="34" width="53" height="12" uuid="2c8d1de8-b85f-4929-b72f-efe995a14ff7"/>
+				<reportElement x="402" y="36" width="53" height="12" uuid="2c8d1de8-b85f-4929-b72f-efe995a14ff7"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
@@ -1149,15 +1130,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{certidao_nascimento}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="522" y="304" width="33" height="12" uuid="3f385427-d4cf-4eb7-b4f0-62a8c70a0e86">
-					<printWhenExpression><![CDATA[!$F{alfabetizado}.equals("")]]></printWhenExpression>
-				</reportElement>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{alfabetizado}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="484" y="38" width="47" height="12" uuid="f07ab04c-56ff-4b8b-90ba-950085dc1cca">
 					<printWhenExpression><![CDATA[$F{existe_foto} != 1]]></printWhenExpression>
@@ -1167,8 +1139,8 @@
 				</textElement>
 				<text><![CDATA[Foto 3 x 4]]></text>
 			</staticText>
-			<image>
-				<reportElement x="475" y="7" width="66" height="84" uuid="10d94ccc-f34f-4b8b-b3d4-3749c115755c"/>
+			<image scaleImage="RealSize" vAlign="Middle">
+				<reportElement x="474" y="12" width="66" height="84" uuid="10d94ccc-f34f-4b8b-b3d4-3749c115755c"/>
 				<imageExpression><![CDATA[$F{foto}]]></imageExpression>
 			</image>
 			<staticText>
@@ -1176,7 +1148,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
-				<text><![CDATA[Assinatura UE]]></text>
+				<text><![CDATA[Assinatura Diretor(a)/Secretário(a)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="81" y="711" width="155" height="12" uuid="42f2d7ca-da39-447b-a5b5-05cc34b437e4"/>

@@ -471,13 +471,11 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
 
   (SELECT caminho
    FROM cadastro.fisica_foto
-   WHERE idpes = aluno.ref_idpes
-       AND SUBSTR(caminho, 1,27) = 'http://apps-ieducar-images.') AS foto,
+   WHERE idpes = aluno.ref_idpes) AS foto,
 
   (SELECT 1
    FROM cadastro.fisica_foto
-   WHERE idpes = aluno.ref_idpes
-       AND SUBSTR(caminho, 1,27) = 'http://apps-ieducar-images.') AS existe_foto,
+   WHERE idpes = aluno.ref_idpes) AS existe_foto,
 
   (SELECT fisica.sus
    FROM cadastro.fisica

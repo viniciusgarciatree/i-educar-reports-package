@@ -51,10 +51,6 @@ class StudentsIdReport extends Portabilis_Report_ReportCore
        public.fcn_upper(instituicao.nm_responsavel) as nm_responsavel,
        aluno.cod_aluno,
        escola_ano_letivo.ano as ano_letivo,
-       (SELECT cod_ciasc
-          FROM serieciasc.aluno_cod_aluno
-         WHERE aluno_cod_aluno.cod_aluno = aluno.cod_aluno) as serie_ciasc,
-
        (SELECT cod_aluno_inep
           FROM modules.educacenso_cod_aluno
          WHERE educacenso_cod_aluno.cod_aluno = aluno.cod_aluno) as inep,

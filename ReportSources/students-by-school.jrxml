@@ -29,7 +29,7 @@
 	<parameter name="data_final" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -45,6 +45,7 @@
 	<parameter name="matricula" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo2" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -58,8 +59,8 @@
 		<band height="100" splitType="Stretch">
 			<subreport>
 				<reportElement x="0" y="0" width="555" height="100" uuid="dad7af0b-5528-4932-a3a2-39a69d5ef6f8"/>
-				<subreportParameter name="logo">
-					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
 					<subreportParameterExpression><![CDATA["Alunos Matriculados por Escola"]]></subreportParameterExpression>
@@ -79,62 +80,122 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</title>
-	<detail>
-		<band height="9" splitType="Stretch">
-			<textField>
-				<reportElement x="212" y="2" width="100" height="6" uuid="cb26f064-5f7d-4449-8e99-31fbc54222c5">
-					<printWhenExpression><![CDATA[$F{count}.intValue() < -1]]></printWhenExpression>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="6" width="330" height="12" uuid="32bc8d5d-b5da-4d86-83bd-9e423ab4a53a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box topPadding="1" leftPadding="5" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Escola]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="6" width="99" height="12" uuid="2dd62389-e831-4d0e-97ed-9482bf240071">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="5" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="79e1e541-0438-49f6-a8c7-6b1a019ffdb3"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="12" backcolor="#D4F6FC" uuid="4fad5751-602b-4dd3-8c61-27a910e9920d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{PAGE_COUNT}%2==0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="330" height="12" uuid="91d09386-ce0b-4a2a-887f-b6573b6a56ac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e2e92a6-1460-473f-8da9-9139840ad285"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="100" height="12" uuid="aedcdf5f-ec68-4d5a-bbb4-3e29d278527a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f493acc5-8adf-4b52-860f-a6f0b5141b13"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<summary>
-		<band height="348" splitType="Stretch">
+	<pageFooter>
+		<band height="23">
 			<staticText>
-				<reportElement x="33" y="334" width="81" height="14" uuid="1226d5bd-c56d-401e-b5ff-cb856733ecb4"/>
+				<reportElement x="2" y="12" width="55" height="11" uuid="58d65a5a-046e-4cf6-be2e-8169b911092c"/>
 				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Total de alunos:]]></text>
+				<text><![CDATA[Data e hora:]]></text>
 			</staticText>
-			<bar3DChart>
-				<chart>
-					<reportElement x="10" y="5" width="533" height="321" uuid="738162ad-bb5c-4605-8712-c806e4531fb7"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<categorySeries>
-						<seriesExpression><![CDATA[$F{nm_escola}]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{count}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{count}]]></valueExpression>
-						<labelExpression><![CDATA[$F{nm_escola}]]></labelExpression>
-					</categorySeries>
-				</categoryDataset>
-				<bar3DPlot>
-					<plot/>
-					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
-					<categoryAxisFormat>
-						<axisFormat/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</bar3DPlot>
-			</bar3DChart>
 			<textField>
-				<reportElement x="114" y="334" width="27" height="14" uuid="4d2dbb9a-f5c9-455a-9c4a-fdebbf2b2cda"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8"/>
+				<reportElement x="450" y="12" width="92" height="11" uuid="7ede9c60-e659-4fb5-abbc-d19cbb92865e"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{SOMA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
 			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="542" y="12" width="13" height="11" uuid="d07e61c8-e3df-41ef-8a6b-310c05d140fb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="12" width="100" height="11" uuid="33ab99bd-2cab-480e-b1e3-9b76c34461fc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="10" width="555" height="1" uuid="b82a3a76-6535-407c-8cde-ee7a6eba7564"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
 		</band>
-	</summary>
+	</pageFooter>
 </jasperReport>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="students-per-class" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="660c525a-0168-4141-8483-3075f389d9a9">
 	<property name="ireport.zoom" value="1.9965000000000017"/>
 	<property name="ireport.x" value="0"/>
@@ -22,7 +22,7 @@
 	<parameter name="turma" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String">
+	<parameter name="logo1" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<parameter name="situacao" class="java.lang.Integer">
@@ -48,6 +48,9 @@
 	</parameter>
 	<parameter name="dependencia" class="java.lang.Integer"/>
 	<parameter name="source" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
 	<field name="cod_aluno" class="java.lang.Integer"/>
 	<field name="serie_ciasc" class="java.lang.String"/>
 	<field name="inep" class="java.lang.Long"/>
@@ -128,7 +131,7 @@
 					<text><![CDATA[NIS/PIS/PASEP]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="171" y="45" width="100" height="13" uuid="e939bb3f-f2d8-4b35-8f61-bf3d18687718"/>
+					<reportElement x="107" y="45" width="164" height="13" uuid="e939bb3f-f2d8-4b35-8f61-bf3d18687718"/>
 					<textElement>
 						<font fontName="DejaVu Sans" size="7"/>
 					</textElement>
@@ -149,14 +152,7 @@
 					<text><![CDATA[Situação]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="49" y="45" width="48" height="18" uuid="64911ed2-4589-4dd7-8275-8cb573db5489"/>
-					<textElement>
-						<font fontName="DejaVu Sans" size="7"/>
-					</textElement>
-					<text><![CDATA[Cód. rede estadual]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="112" y="45" width="36" height="13" uuid="656cfbd4-aa39-44b8-a9ea-2428c36e4a80"/>
+					<reportElement x="50" y="45" width="36" height="13" uuid="656cfbd4-aa39-44b8-a9ea-2428c36e4a80"/>
 					<textElement>
 						<font fontName="DejaVu Sans" size="7"/>
 					</textElement>
@@ -236,8 +232,8 @@
 		<band height="59" splitType="Stretch">
 			<subreport>
 				<reportElement x="0" y="0" width="555" height="59" uuid="bc1a14df-7be7-4ba6-90a3-36a04c852ec4"/>
-				<subreportParameter name="logo">
-					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
 					<subreportParameterExpression><![CDATA["Relação de Alunos"]]></subreportParameterExpression>
@@ -257,6 +253,9 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
+				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
 			</subreport>
@@ -270,18 +269,11 @@
 				</reportElement>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement x="112" y="3" width="57" height="10" uuid="4f37cf3e-6a99-4ce1-9701-2e141ec2c11b"/>
+				<reportElement x="50" y="3" width="57" height="10" uuid="4f37cf3e-6a99-4ce1-9701-2e141ec2c11b"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{inep}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="49" y="3" width="64" height="10" uuid="f2d583f9-12eb-41c3-b4a4-b6266cf22545"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="7"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{serie_ciasc}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="16" y="3" width="33" height="10" uuid="2cab2d18-4400-4777-a35c-ace3e6779167"/>
@@ -291,7 +283,7 @@
 				<textFieldExpression><![CDATA[$F{cod_aluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="171" y="3" width="210" height="10" uuid="90e15dde-6e9f-4f2e-b735-ab822cb771b1"/>
+				<reportElement x="107" y="3" width="274" height="10" uuid="90e15dde-6e9f-4f2e-b735-ab822cb771b1"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
@@ -338,10 +330,45 @@
 		<band height="5" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="3" splitType="Stretch"/>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="12" width="55" height="11" uuid="111e817a-dadc-49c7-a9ca-6b6d21a8ef23"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e hora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="12" width="92" height="11" uuid="a7cfdc9d-25a4-44e8-9336-60e55deae14d"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="542" y="12" width="13" height="11" uuid="1932e167-65ec-454d-81bf-803b6fc497c7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="12" width="100" height="11" uuid="d3b4e281-d1a3-4aef-a5e1-4a285d03a155"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="10" width="555" height="1" uuid="b1974514-042c-4b20-abcb-024d30a7074e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
 	</pageFooter>
 	<summary>
-		<band height="23" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<staticText>
 				<reportElement x="16" y="8" width="82" height="13" uuid="6c00208d-4371-4a0e-bbc5-a359665779c1"/>
 				<textElement>

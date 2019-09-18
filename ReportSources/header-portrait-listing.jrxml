@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header-portrait-listing" pageWidth="555" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
-	<parameter name="logo" class="java.lang.String">
+	<parameter name="logo1" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="cod_instituicao" class="java.lang.Integer">
@@ -17,6 +17,9 @@
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString language="json">
 		<![CDATA[header]]>
@@ -39,115 +42,70 @@
 	<field name="inep" class="java.lang.Long"/>
 	<pageHeader>
 		<band height="94" splitType="Stretch">
-			<rectangle>
-				<reportElement x="1" y="0" width="554" height="70" uuid="b91530dc-1665-4f88-83e5-1de626007f4d"/>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</rectangle>
-			<rectangle>
-				<reportElement x="1" y="0" width="67" height="70" uuid="ce6441c3-674b-4986-8e6d-627b80af5922"/>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</rectangle>
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement x="0" y="0" width="70" height="61" uuid="f7bb2d24-3281-4a81-af55-c665ec696c4b">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
+			<image hAlign="Right" vAlign="Middle">
+				<reportElement x="485" y="0" width="70" height="61" uuid="50b93858-cfc9-432d-b037-7c25ce1d2524">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
+			</image>
 			<textField>
-				<reportElement x="72" y="1" width="478" height="11" uuid="f6960e90-9ff9-4ae7-b8fe-cd89f3390925"/>
-				<textElement markup="none">
-					<font fontName="DejaVu Sans" size="9" isBold="false"/>
+				<reportElement x="0" y="1" width="555" height="13" uuid="ff1f4039-0874-4df8-851f-0bfb02e39dc0"/>
+				<box leftPadding="70" rightPadding="70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_instituicao}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="187" y="49" width="139" height="10" uuid="f0dffc35-22d0-4ba4-b497-7098acce5fc0">
-					<printWhenExpression><![CDATA[$P{cod_escola} != 0 && !$F{cel_ddd}.equals("") && !$F{cel}.equals("")]]></printWhenExpression>
-				</reportElement>
-				<textElement markup="html">
-					<font fontName="DejaVu Sans" size="8" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["<b>Celular:</b> "+($F{cel_ddd}!=null ? "("+$F{cel_ddd}+")" : "(  )")+($F{cel} != null ? $F{cel} : "")]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="72" y="20" width="478" height="11" uuid="a5375e45-67e9-4e74-8a95-c6bb3a0e7290">
-					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
-				</reportElement>
-				<textElement markup="none">
-					<font fontName="DejaVu Sans" size="9" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="72" y="49" width="150" height="10" uuid="1176d12b-48c8-4a50-8104-f9daf02dc0d4">
-					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
-				</reportElement>
-				<textElement markup="html">
-					<font fontName="DejaVu Sans" size="8" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["<b>Telefone:</b> "+($F{fone_ddd}!=null ? "("+$F{fone_ddd}+")" : "(  )")+($F{fone} != null ? $F{fone} : "")]]></textFieldExpression>
-			</textField>
-			<image>
-				<reportElement x="6" y="6" width="59" height="55" uuid="9674430f-eca9-43bc-84a7-b31a860f744f"/>
-				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
-			</image>
-			<textField>
-				<reportElement x="72" y="30" width="478" height="10" uuid="f1f29642-7441-4092-ba28-a45bb4641b28">
-					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
-				</reportElement>
-				<textElement markup="html">
-					<font fontName="DejaVu Sans" size="8" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? " - "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )+($F{cidade} != null ? " - CEP: "+$F{cep} : "" )]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="2" y="80" width="548" height="14" uuid="51205443-63af-4d53-88ba-bf5f3d94c56a"/>
-				<textElement textAlignment="Center" markup="html">
-					<font fontName="DejaVu Sans" size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="72" y="11" width="478" height="11" uuid="08a62240-61cb-401e-a8ac-a1b3a17541f1"/>
-				<textElement markup="none">
-					<font fontName="DejaVu Sans" size="9" isBold="false"/>
+				<reportElement x="0" y="13" width="555" height="13" uuid="0c836f13-dde7-447f-94e8-165a92c05900"/>
+				<box leftPadding="70" rightPadding="70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_responsavel}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="72" y="59" width="241" height="10" uuid="a065f9a7-f9bc-4117-ba78-c79f630c77d3">
-					<printWhenExpression><![CDATA[$P{cod_escola}!=0]]></printWhenExpression>
-				</reportElement>
-				<textElement markup="html">
-					<font fontName="DejaVu Sans" size="8" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["<b>E-mail: </b> "+($F{email} != null ? $F{email} : "")]]></textFieldExpression>
-			</textField>
-			<frame>
-				<reportElement x="72" y="20" width="478" height="47" uuid="36b23f49-e517-4f26-8fc6-a11221f3e75f">
-					<printWhenExpression><![CDATA[$P{cod_escola} == 0]]></printWhenExpression>
-				</reportElement>
-				<textField>
-					<reportElement x="0" y="3" width="478" height="10" uuid="f1f29642-7441-4092-ba28-a45bb4641b28"/>
-					<textElement markup="html">
-						<font fontName="DejaVu Sans" size="8" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? " - "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )+($F{cidade} != null ? " - CEP: "+$F{cep} : "" )]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="0" y="11" width="150" height="10" uuid="1176d12b-48c8-4a50-8104-f9daf02dc0d4"/>
-					<textElement markup="html">
-						<font fontName="DejaVu Sans" size="8" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Telefone:</b> "+($F{fone_ddd}!=null ? "("+$F{fone_ddd}+")" : "(  )")+($F{fone} != null ? $F{fone} : "")]]></textFieldExpression>
-				</textField>
-			</frame>
-			<textField>
-				<reportElement x="72" y="39" width="478" height="10" uuid="f1f29642-7441-4092-ba28-a45bb4641b28">
+				<reportElement x="0" y="25" width="555" height="13" uuid="50781e93-8a44-4cd4-a635-b2d7eedf3001">
 					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
 				</reportElement>
-				<textElement markup="html">
+				<box leftPadding="70" rightPadding="70"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="39" width="555" height="10" uuid="37150b4c-2871-4f88-a5d4-dca386fb29b8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="70" rightPadding="70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["<b>Código INEP:</b> " + $F{inep}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{tipo_logradouro} != null ? $F{tipo_logradouro}.substring(0,1).toUpperCase()+$F{tipo_logradouro}.substring(1,$F{tipo_logradouro}.length()).toLowerCase()+" " : "" )+($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? ", "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="49" width="555" height="10" uuid="13c97cd3-8ac1-41b5-bc2a-1231a2120d18"/>
+				<box leftPadding="70" rightPadding="70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("Cep "+$F{cep} )+($F{fone_ddd}!=null ? " - Tel: ("+$F{fone_ddd}+")" : "")+($F{fone} != null ? $F{fone} : "")+
+($F{email} != null ? " - "+$F{email} : "")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="67" width="555" height="14" uuid="d9f9fb1b-61cd-412b-878e-bc8d559db6ce"/>
+				<box leftPadding="70" rightPadding="70"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

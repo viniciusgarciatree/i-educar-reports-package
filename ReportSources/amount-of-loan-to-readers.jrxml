@@ -21,7 +21,7 @@
 	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="escola" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -45,6 +45,7 @@
 	<parameter name="cliente" class="java.lang.String"/>
 	<parameter name="dt_inicial" class="java.lang.String"/>
 	<parameter name="dt_final" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -62,8 +63,8 @@
 		<band height="100">
 			<subreport>
 				<reportElement x="0" y="0" width="555" height="100" uuid="6460f362-4f89-46dc-b8de-7429430b50de"/>
-				<subreportParameter name="logo">
-					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
 					<subreportParameterExpression><![CDATA["Quantidade de emprestimo por leitor"]]></subreportParameterExpression>
@@ -133,25 +134,39 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="12">
-			<textField pattern="dd/MM/yyyy  HH:mm:ss">
-				<reportElement x="62" y="0" width="100" height="12" uuid="b8840e59-e40f-4d38-8a97-d7d903567d5f"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="8"/>
+		<band height="23">
+			<staticText>
+				<reportElement x="2" y="12" width="55" height="11" uuid="81eab13e-665a-4a9a-a8ea-b4c5d573d571"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e hora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="12" width="92" height="11" uuid="cb4e1499-7228-4782-a203-bebbc52eab27"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="542" y="12" width="13" height="11" uuid="4da52c87-aef7-43c0-ba5e-64f35951eb37"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="12" width="100" height="11" uuid="9db79a41-2cc4-4816-9b75-c3b35bc98ef9"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="0" y="0" width="62" height="12" uuid="d8e9994b-70f3-4df1-9401-33aa4b6884f6"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Data e hora: ]]></text>
-			</staticText>
 			<line>
-				<reportElement x="0" y="0" width="555" height="1" uuid="8000d981-ea44-47b6-83b4-5cc42b5ade24"/>
+				<reportElement x="0" y="10" width="555" height="1" uuid="83a922e1-e683-460e-9728-37cb5cf75faf"/>
 				<graphicElement>
-					<pen lineWidth="0.25"/>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 		</band>

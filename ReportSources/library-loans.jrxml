@@ -12,7 +12,7 @@
 	</parameter>
 	<parameter name="dt_inicial" class="java.lang.String"/>
 	<parameter name="dt_final" class="java.lang.String"/>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.String"/>
@@ -23,6 +23,7 @@
 	<parameter name="situacao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo2" class="java.lang.String"/>
 	<field name="nm_instituicao" class="java.lang.String"/>
 	<field name="cod_emprestimo" class="java.lang.Integer"/>
 	<field name="ref_cod_cliente" class="java.lang.Integer"/>
@@ -131,71 +132,39 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="106" splitType="Stretch">
-			<image>
-				<reportElement x="9" y="2" width="57" height="46" uuid="c06cead2-a5f1-4da2-b038-cb910d21d27e"/>
-				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
-			</image>
+		<band height="97" splitType="Stretch">
+			<subreport>
+				<reportElement x="7" y="5" width="542" height="85" uuid="0b116b67-3991-49f4-9ac4-fa0d63faf17c"/>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Distribuição de uniformes"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA["2019"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="15" splitType="Stretch">
-			<textField isBlankWhenNull="true">
-				<reportElement x="75" y="-76" width="307" height="13" uuid="14fd51e8-9220-44d7-b767-7f91cc3601e9"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Endereço: "+$F{logradouro}+", "+$F{numero}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="75" y="-104" width="307" height="13" uuid="9144263a-35de-4cfc-b311-dddeb06b74e0"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nm_instituicao}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="305" y="-52" width="233" height="13" forecolor="#000000" uuid="e9684eaf-2c27-49c7-b7f7-a5fe8d2af3e6"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true" isItalic="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["E-mail: "+$F{email}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="305" y="-64" width="141" height="13" uuid="145861b8-6643-427c-babd-52e06b6c988d"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{municipio}+" - "+$F{uf_municipio}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="449" y="-64" width="77" height="13" uuid="6cf1f241-aa4b-4c05-9f4f-9d846d5fcd8b"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["CEP: "+$F{cep}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="75" y="-90" width="307" height="13" uuid="efef60f9-6e20-4467-90e5-c62f0952d86d"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nm_escola}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="75" y="-64" width="228" height="13" uuid="b3a75340-1312-4353-892c-e34a5ae9eff3"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Bairro:" +$F{bairro}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="75" y="-52" width="201" height="13" uuid="b17f9d6a-c0f5-48a1-a4fb-f8c5fae0e792"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Telefone: ("+$F{fone_ddd}+") "+$F{fone}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="11" y="1" width="292" height="13" uuid="e203194f-7ddf-4eff-82cb-177a0698f27b"/>
 				<textElement>
@@ -247,13 +216,6 @@
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<text><![CDATA[Retirada]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="206" y="-34" width="138" height="14" uuid="c1e88cb5-b655-4168-96a8-82b472c0c6b2"/>
-				<textElement textAlignment="Center">
-					<font fontName="DejaVu Sans" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Empréstimos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="499" y="15" width="50" height="13" uuid="c1b46f35-cc9b-41bd-8d11-eb026a9bae41"/>
@@ -335,7 +297,7 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="20" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<textField>
 				<reportElement x="25" y="5" width="151" height="13" uuid="cca4279d-a35b-46ad-9fa7-ce5433a86aff"/>
 				<textElement>
@@ -347,6 +309,40 @@
 				<reportElement x="7" y="2" width="544" height="1" uuid="3554696f-6ff3-4607-9cf5-a6211f733fd1"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="10" y="31" width="55" height="11" uuid="dd97d8ef-3ec1-465e-ad73-a76091aefa20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e hora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="443" y="31" width="92" height="11" uuid="2c76abc0-75ec-4eda-9daf-9e327aa5c662"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="535" y="31" width="13" height="11" uuid="98940e7b-e4ac-400a-b586-ecf62005c098"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="31" width="100" height="11" uuid="2b523182-b447-40b0-b0e8-6351356f57b7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="7" y="29" width="544" height="1" uuid="4a7eceb5-7015-4a6a-8686-ffb92e10fe45"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 		</band>
