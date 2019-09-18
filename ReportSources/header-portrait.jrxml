@@ -75,7 +75,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_responsavel}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="0" y="25" width="566" height="13" uuid="217a8e9d-8548-4130-9768-7ae3d11f08fa">
 					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
 				</reportElement>
@@ -86,7 +86,7 @@
 				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="39" width="566" height="10" uuid="f302258a-2400-4ebf-91fe-3580368f96e1">
+				<reportElement positionType="Float" x="0" y="39" width="566" height="10" uuid="f302258a-2400-4ebf-91fe-3580368f96e1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box leftPadding="70" rightPadding="70"/>
@@ -96,16 +96,16 @@
 				<textFieldExpression><![CDATA[($F{tipo_logradouro} != null ? $F{tipo_logradouro}.substring(0,1).toUpperCase()+$F{tipo_logradouro}.substring(1,$F{tipo_logradouro}.length()).toLowerCase()+" " : "" )+($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? ", "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="49" width="566" height="10" uuid="8b4f92fb-5d1a-486a-b0a8-35c509c49978"/>
+				<reportElement positionType="Float" x="0" y="49" width="566" height="10" uuid="8b4f92fb-5d1a-486a-b0a8-35c509c49978"/>
 				<box leftPadding="70" rightPadding="70"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[("Cep "+$F{cep} )+($F{fone_ddd}!=null ? " - Tel: ("+$F{fone_ddd}+")" : "")+($F{fone} != null ? $F{fone} : "")+
-($F{email} != null ? " - "+$F{email} : "")]]></textFieldExpression>
+($F{email} != null && !$F{email}.isEmpty() ? " - "+$F{email} : "")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="67" width="566" height="14" uuid="21170e65-0f01-4380-aba7-2c3067cf2e6b"/>
+				<reportElement positionType="Float" x="0" y="67" width="566" height="14" uuid="21170e65-0f01-4380-aba7-2c3067cf2e6b"/>
 				<box leftPadding="70" rightPadding="70"/>
 				<textElement textAlignment="Center" markup="html">
 					<font fontName="DejaVu Sans" size="12" isBold="true"/>
