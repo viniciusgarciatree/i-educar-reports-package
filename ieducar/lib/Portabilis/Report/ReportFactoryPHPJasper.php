@@ -91,8 +91,10 @@ class Portabilis_Report_ReportFactoryPHPJasper extends Portabilis_Report_ReportF
     public function dumps($report, $options = [])
     {
         $options = self::mergeOptions($options, [
-            'add_logo_arg' => true
+            'add_logo_arg' => isset($report->args['add_logo_arg']) ? $report->args['add_logo_arg'] : true
         ]);
+
+        unset($report->args['add_logo_arg']);
 
         if ($options['add_logo_arg']) {
             $report->addArg('logo1', $this->logoPath());
