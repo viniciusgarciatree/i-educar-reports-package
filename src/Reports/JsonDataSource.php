@@ -55,7 +55,7 @@ trait JsonDataSource
             SELECT 
                 public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
                 public.fcn_upper(instituicao.nm_responsavel) AS nm_responsavel,
-                (CASE WHEN {$notSchool} THEN 'SECRETARIA DE EDUCAÇÃO' ELSE fcn_upper(view_dados_escola.nome) END) AS nm_escola,
+                (CASE WHEN {$notSchool} THEN '' ELSE fcn_upper(view_dados_escola.nome) END) AS nm_escola,
                 (CASE WHEN {$notSchool} THEN instituicao.ref_idtlog ELSE view_dados_escola.tipo_logradouro END),
                 (CASE WHEN {$notSchool} THEN instituicao.logradouro ELSE view_dados_escola.logradouro END),
                 (CASE WHEN {$notSchool} THEN instituicao.bairro ELSE view_dados_escola.bairro END),
