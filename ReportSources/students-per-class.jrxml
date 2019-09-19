@@ -125,7 +125,7 @@
 			</band>
 		</groupFooter>
 	</group>
-	<group name="cod_turma">
+	<group name="cod_turma" isResetPageNumber="true">
 		<groupExpression><![CDATA[$F{cod_turma}]]></groupExpression>
 		<groupHeader>
 			<band height="59">
