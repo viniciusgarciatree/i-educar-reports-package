@@ -208,11 +208,11 @@
 						<bucketExpression><![CDATA[$F{nm_serie}]]></bucketExpression>
 					</bucket>
 					<crosstabColumnHeader>
-						<cellContents mode="Opaque" style="Crosstab_CH">
+						<cellContents backcolor="#E0DCDC" mode="Opaque" style="Crosstab_CH">
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
-							<textField>
-								<reportElement mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="6daac7c9-d495-4b8a-a094-67e2a69d20fc"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
+							<textField isStretchWithOverflow="true">
+								<reportElement key="" mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="6daac7c9-d495-4b8a-a094-67e2a69d20fc"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
 									<font size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$V{nm_serie}]]></textFieldExpression>
@@ -220,11 +220,11 @@
 						</cellContents>
 					</crosstabColumnHeader>
 					<crosstabTotalColumnHeader>
-						<cellContents mode="Opaque" style="Crosstab_CT">
+						<cellContents backcolor="#E0DCDC" mode="Opaque" style="Crosstab_CT">
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<staticText>
 								<reportElement mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="6ac0c871-bcb8-42c5-b686-f90e9a95531f"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Top">
 									<font size="8" isBold="true"/>
 								</textElement>
 								<text><![CDATA[Total série]]></text>

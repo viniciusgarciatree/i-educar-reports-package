@@ -237,11 +237,11 @@
 						<bucketExpression><![CDATA[$F{nm_serie}]]></bucketExpression>
 					</bucket>
 					<crosstabColumnHeader>
-						<cellContents mode="Opaque" style="Crosstab_CH">
+						<cellContents backcolor="#E0DCDC" mode="Opaque" style="Crosstab_CH">
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
-							<textField>
+							<textField isStretchWithOverflow="true">
 								<reportElement mode="Opaque" x="0" y="0" width="45" height="20" backcolor="#E0DCDC" uuid="fc2920d7-9c70-448f-8956-cf542c7b4d8a"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Top">
 									<font size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$V{nm_serie}]]></textFieldExpression>
@@ -253,7 +253,7 @@
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<staticText>
 								<reportElement x="0" y="0" width="45" height="20" forecolor="#000000" uuid="3bfbdb85-ac2f-4704-a3d4-8eededc7a33e"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Top">
 									<font size="8" isBold="true"/>
 								</textElement>
 								<text><![CDATA[Total série]]></text>
