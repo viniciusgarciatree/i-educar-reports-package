@@ -125,7 +125,11 @@
 					<font fontName="DejaVu Sans" size="11"/>
 					<paragraph lineSpacing="1_1_2" firstLineIndent="30"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{altera_atestado_para_declaracao} ? "Declaramos" : "Atestamos") +" para os devidos fins que, o(a) aluno(a) "+$F{nome}+", filho(a) de "+(($F{nm_pai}.equals("") || $F{nm_pai} == null) && ($F{nm_mae}.equals("")  || $F{nm_mae} == null ) ? "não informado" : (!$F{nm_pai}.equals("") && ($F{nm_mae}.equals("") || $F{nm_mae} == null) ? $F{nm_pai} : (($F{nm_pai}.equals("") || $F{nm_pai} == null) && !$F{nm_mae}.equals("") ? $F{nm_mae} : ($F{nm_mae} + " e de " + $F{nm_pai}))))+", nascido(a) em "+$F{data_nasc}+", natural de "+$F{municipio_uf_nascimento}+", está frequentando no ano de "+$P{ano}+" o(a) "+$F{nm_serie}+" na(s) turma(s) "+$F{nm_turma}+" do(a) "+$F{nm_curso}+" no(s) período(s) " + $F{periodo} + (!$P{emitir_frequencia} ? "." : " com a frequência " + ($F{frequencia} == null ? "não informada." :"de " + $F{frequencia} + "%" + "."))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{altera_atestado_para_declaracao} ? "Declaramos" : "Atestamos") +" para os devidos fins que, o(a) aluno(a) "+$F{nome}+", filho(a) de "+
+(($F{nm_pai} == null && $F{nm_mae}==null) ? "não informado" : 
+	($F{nm_pai} != null ? $F{nm_pai} : $F{nm_mae})
+)
++", nascido(a) em "+$F{data_nasc}+", natural de "+$F{municipio_uf_nascimento}+", está frequentando no ano de "+$P{ano}+" o(a) "+$F{nm_serie}+" na(s) turma(s) "+$F{nm_turma}+" do(a) "+$F{nm_curso}+" no(s) período(s) " + $F{periodo} + (!$P{emitir_frequencia} ? "." : " com a frequência " + ($F{frequencia} == null ? "não informada." :"de " + $F{frequencia} + "%" + "."))]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="92" y="336" width="442" height="90" uuid="ba7cb218-2999-4bf4-9b20-ce90405335b9"/>
@@ -164,24 +168,6 @@
 				</textElement>
 				<text><![CDATA[Código nacional (INEP):]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="21" y="282" width="132" height="20" uuid="01fa4417-6649-48c4-8be1-ea5110c89884">
-					<printWhenExpression><![CDATA[$P{database} != "parauapebas"]]></printWhenExpression>
-				</reportElement>
-				<textElement markup="none">
-					<font fontName="DejaVu Sans" size="10"/>
-				</textElement>
-				<text><![CDATA[Código estado:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="157" y="282" width="158" height="20" uuid="dd038e50-edde-4ca2-be56-c4ad0bec1a6b">
-					<printWhenExpression><![CDATA[$P{database} != "parauapebas"]]></printWhenExpression>
-				</reportElement>
-				<textElement markup="none">
-					<font fontName="DejaVu Sans" size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{aluno_estado_id}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="21" y="212" width="132" height="20" uuid="7f59c721-2daf-469c-b28b-3e6293f68d78"/>
 				<textElement markup="none">
