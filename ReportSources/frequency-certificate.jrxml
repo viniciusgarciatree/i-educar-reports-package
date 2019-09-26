@@ -127,7 +127,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[($F{altera_atestado_para_declaracao} ? "Declaramos" : "Atestamos") +" para os devidos fins que, o(a) aluno(a) "+$F{nome}+", filho(a) de "+
 (($F{nm_pai} == null && $F{nm_mae}==null) ? "não informado" : 
-	($F{nm_pai} != null ? $F{nm_pai} : $F{nm_mae})
+	($F{nm_pai} != null && $F{nm_mae}==null ? $F{nm_pai} : ($F{nm_pai} == null && $F{nm_mae} != null ? $F{nm_mae} : $F{nm_mae}+" e "+$F{nm_pai}))
 )
 +", nascido(a) em "+$F{data_nasc}+", natural de "+$F{municipio_uf_nascimento}+", está frequentando no ano de "+$P{ano}+" o(a) "+$F{nm_serie}+" na(s) turma(s) "+$F{nm_turma}+" do(a) "+$F{nm_curso}+" no(s) período(s) " + $F{periodo} + (!$P{emitir_frequencia} ? "." : " com a frequência " + ($F{frequencia} == null ? "não informada." :"de " + $F{frequencia} + "%" + "."))]]></textFieldExpression>
 			</textField>
