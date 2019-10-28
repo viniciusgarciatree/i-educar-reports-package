@@ -38,7 +38,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} i-Educar - Cliente" );
         $this->processoAp = "603";
-        $this->addEstilo('localizacaoSistema');
     }
 }
 
@@ -141,7 +140,6 @@ class indice extends clsCadastro
       $parametros->setPessoaNovo('S');
       $parametros->setPessoaTela('frame');
 
-      // $this->campoListaPesq('ref_idpes', 'Cliente', $opcoes, $this->ref_idpes, 'pesquisa_pessoa_lst.php', '', FALSE, '', '', NULL, NULL, '', FALSE, $parametros->serializaCampos());
       $dados = array(
         'nome' => 'Cliente',
         'campo' => '',

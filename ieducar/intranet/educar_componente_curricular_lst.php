@@ -15,7 +15,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} i-Educar - Componentes curriculares" );
         $this->processoAp = "946";
-        $this->addEstilo("localizacaoSistema");
     }
 }
 
@@ -142,17 +141,10 @@ class indice extends clsListagem
         {
             foreach ( $lista AS $registro )
             {
-                if( class_exists( "clsPmieducarInstituicao" ) )
-                {
-                    $obj_cod_instituicao = new clsPmieducarInstituicao( $registro["instituicao_id"] );
-                    $obj_cod_instituicao_det = $obj_cod_instituicao->detalhe();
-                    $registro["instituicao_id"] = $obj_cod_instituicao_det["nm_instituicao"];
-                }
-                else
-                {
-                    $registro["instituicao_id"] = "Erro na gera&ccedil;&atilde;o";
-                    echo "<!--\nErro\nClasse n&atilde;o existente: clsPmieducarInstituicao\n-->";
-                }
+                $obj_cod_instituicao = new clsPmieducarInstituicao( $registro["instituicao_id"] );
+                $obj_cod_instituicao_det = $obj_cod_instituicao->detalhe();
+                $registro["instituicao_id"] = $obj_cod_instituicao_det["nm_instituicao"];
+
                 $lista_busca = array(
           "<a href=\"/module/ComponenteCurricular/view?id={$registro["id"]}\">{$registro["nome"]}</a>",
           "<a href=\"/module/ComponenteCurricular/view?id={$registro["id"]}\">{$registro["abreviatura"]}</a>",

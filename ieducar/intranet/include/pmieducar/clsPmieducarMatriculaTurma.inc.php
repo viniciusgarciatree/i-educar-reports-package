@@ -54,79 +54,19 @@ class clsPmieducarMatriculaTurma extends Model
         $this->_campos_lista = $this->_todos_campos = 'mt.ref_cod_matricula, mt.abandono, mt.reclassificado, mt.remanejado, mt.transferido, mt.falecido, mt.ref_cod_turma, mt.etapa_educacenso, mt.turma_unificada, mt.ref_usuario_exc, mt.ref_usuario_cad, mt.data_cadastro, mt.data_exclusao, mt.ativo, mt.sequencial, mt.data_enturmacao, mt.turno_id, mt.tipo_atendimento, (SELECT pes.nome FROM cadastro.pessoa pes, pmieducar.aluno alu, pmieducar.matricula mat WHERE pes.idpes = alu.ref_idpes AND mat.ref_cod_aluno = alu.cod_aluno AND mat.cod_matricula = mt.ref_cod_matricula ) AS nome, (SELECT (pes.nome) FROM cadastro.pessoa pes, pmieducar.aluno alu, pmieducar.matricula mat WHERE pes.idpes = alu.ref_idpes AND mat.ref_cod_aluno = alu.cod_aluno AND mat.cod_matricula = mt.ref_cod_matricula ) AS nome_ascii';
 
         if (is_numeric($ref_usuario_exc)) {
-            if (class_exists('clsPmieducarUsuario')) {
-                $tmp_obj = new clsPmieducarUsuario($ref_usuario_exc);
-                if (method_exists($tmp_obj, 'existe')) {
-                    if ($tmp_obj->existe()) {
-                        $this->ref_usuario_exc = $ref_usuario_exc;
-                    }
-                } elseif (method_exists($tmp_obj, 'detalhe')) {
-                    if ($tmp_obj->detalhe()) {
-                        $this->ref_usuario_exc = $ref_usuario_exc;
-                    }
-                }
-            } else {
-                if ($db->CampoUnico("SELECT 1 FROM pmieducar.usuario WHERE cod_usuario = '{$ref_usuario_exc}'")) {
                     $this->ref_usuario_exc = $ref_usuario_exc;
-                }
-            }
         }
 
         if (is_numeric($ref_usuario_cad)) {
-            if (class_exists('clsPmieducarUsuario')) {
-                $tmp_obj = new clsPmieducarUsuario($ref_usuario_cad);
-                if (method_exists($tmp_obj, 'existe')) {
-                    if ($tmp_obj->existe()) {
-                        $this->ref_usuario_cad = $ref_usuario_cad;
-                    }
-                } elseif (method_exists($tmp_obj, 'detalhe')) {
-                    if ($tmp_obj->detalhe()) {
-                        $this->ref_usuario_cad = $ref_usuario_cad;
-                    }
-                }
-            } else {
-                if ($db->CampoUnico("SELECT 1 FROM pmieducar.usuario WHERE cod_usuario = '{$ref_usuario_cad}'")) {
                     $this->ref_usuario_cad = $ref_usuario_cad;
-                }
-            }
         }
 
         if (is_numeric($ref_cod_turma)) {
-            if (class_exists('clsPmieducarTurma')) {
-                $tmp_obj = new clsPmieducarTurma($ref_cod_turma);
-                if (method_exists($tmp_obj, 'existe')) {
-                    if ($tmp_obj->existe()) {
-                        $this->ref_cod_turma = $ref_cod_turma;
-                    }
-                } elseif (method_exists($tmp_obj, 'detalhe')) {
-                    if ($tmp_obj->detalhe()) {
-                        $this->ref_cod_turma = $ref_cod_turma;
-                    }
-                }
-            } else {
-                if ($db->CampoUnico("SELECT 1 FROM pmieducar.turma WHERE cod_turma = '{$ref_cod_turma}'")) {
                     $this->ref_cod_turma = $ref_cod_turma;
-                }
-            }
         }
 
         if (is_numeric($ref_cod_matricula)) {
-            if (class_exists('clsPmieducarMatricula')) {
-                $tmp_obj = new clsPmieducarMatricula($ref_cod_matricula);
-                if (method_exists($tmp_obj, 'existe')) {
-                    if ($tmp_obj->existe()) {
-                        $this->ref_cod_matricula = $ref_cod_matricula;
-                    }
-                } elseif (method_exists($tmp_obj, 'detalhe')) {
-                    if ($tmp_obj->detalhe()) {
-                        $this->ref_cod_matricula = $ref_cod_matricula;
-                    }
-                }
-            } else {
-                if ($db->CampoUnico("SELECT 1 FROM pmieducar.matricula WHERE cod_matricula = '{$ref_cod_matricula}'")) {
                     $this->ref_cod_matricula = $ref_cod_matricula;
-                }
-            }
         }
 
         if (!empty($data_cadastro)) {
@@ -146,22 +86,7 @@ class clsPmieducarMatriculaTurma extends Model
         }
 
         if (is_numeric($ref_cod_turma_transf)) {
-            if (class_exists('clsPmieducarTurma')) {
-                $tmp_obj = new clsPmieducarTurma($ref_cod_turma_transf);
-                if (method_exists($tmp_obj, 'existe')) {
-                    if ($tmp_obj->existe()) {
-                        $this->ref_cod_turma_transf = $ref_cod_turma_transf;
-                    }
-                } elseif (method_exists($tmp_obj, 'detalhe')) {
-                    if ($tmp_obj->detalhe()) {
-                        $this->ref_cod_turma_transf = $ref_cod_turma_transf;
-                    }
-                }
-            } else {
-                if ($db->CampoUnico("SELECT 1 FROM pmieducar.turma WHERE cod_turma = '{$ref_cod_turma_transf}'")) {
                     $this->ref_cod_turma_transf = $ref_cod_turma_transf;
-                }
-            }
         }
 
         if (is_numeric($sequencial)) {
@@ -522,22 +447,30 @@ class clsPmieducarMatriculaTurma extends Model
         if (is_numeric($int_ativo)) {
             if ($int_ativo == 1) {
                 $filtros .= "{$whereAnd} mt.ativo = '1'";
-                $whereAnd = ' AND ';
+                $whereAnd = " AND ";
             } elseif ($int_ativo == 2) {
-                $filtros .= "{$whereAnd} (mt.ativo = '1' OR (mt.transferido OR
-                                                     mt.remanejado OR
-                                                     mt.reclassificado OR
-                                                     mt.abandono OR
-                                                     mt.falecido) AND
-                                                     (NOT EXISTS(SELECT 1
-                                                                   FROM pmieducar.matricula_turma
-                                                                  WHERE matricula_turma.ativo = 1 AND
-                                                                        matricula_turma.ref_cod_matricula = mt.ref_cod_matricula AND
-                                                                        matricula_turma.ref_cod_turma = mt.ref_cod_turma)))";
-                $whereAnd = ' AND ';
+                $filtros .= "{$whereAnd}
+                    (
+                        mt.ativo = 1
+                        OR
+                        (
+                            i.data_base_remanejamento IS NOT NULL
+                            AND mt.data_exclusao::date > i.data_base_remanejamento
+                            AND (
+                                mt.transferido
+                                OR mt.remanejado
+                                OR mt.reclassificado
+                                OR mt.abandono
+                                OR mt.falecido
+                            )
+
+                        )
+                    )
+                ";
+                $whereAnd = " AND ";
             } else {
                 $filtros .= "{$whereAnd} mt.ativo = '0'";
-                $whereAnd = ' AND ';
+                $whereAnd = " AND ";
             }
         }
 
@@ -1149,19 +1082,33 @@ class clsPmieducarMatriculaTurma extends Model
               INNER JOIN pmieducar.aluno ON (aluno.ref_idpes = pessoa.idpes)
               INNER JOIN pmieducar.matricula ON (matricula.ref_cod_aluno = aluno.cod_aluno)
               INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_matricula = matricula.cod_matricula)
+              JOIN pmieducar.escola ON escola.cod_escola = matricula.ref_ref_cod_escola
+              JOIN pmieducar.instituicao ON escola.ref_cod_instituicao = instituicao.cod_instituicao
               WHERE matricula.ativo = 1
                 AND (CASE WHEN matricula_turma.ativo = 1 THEN TRUE
                     WHEN matricula_turma.transferido THEN TRUE
-                    WHEN matricula_turma.remanejado THEN TRUE
+                    WHEN matricula_turma.falecido THEN TRUE
                     WHEN matricula.dependencia THEN TRUE
                     WHEN matricula_turma.abandono THEN TRUE
                     WHEN matricula_turma.reclassificado THEN TRUE
+                    WHEN matricula_turma.remanejado
+                        AND instituicao.data_base_remanejamento IS NOT NULL
+                        AND matricula_turma.data_exclusao::date > instituicao.data_base_remanejamento
+                    THEN TRUE
                     ELSE FALSE END)
-                AND ref_cod_turma = {$codTurma}
-                AND matricula_turma.sequencial = (SELECT MAX(sequencial)
-                                    FROM pmieducar.matricula_turma mt
-                                    WHERE mt.ref_cod_matricula = matricula_turma.ref_cod_matricula
-                                    AND mt.ref_cod_turma = matricula_turma.ref_cod_turma)
+                AND matricula_turma.ref_cod_turma = {$codTurma}
+                AND CASE WHEN matricula_turma.ativo = 1 THEN
+                    TRUE
+                ELSE
+                    NOT EXISTS (
+                        SELECT 1
+                        FROM pmieducar.matricula_turma mt
+                        JOIN pmieducar.matricula m ON m.cod_matricula = mt.ref_cod_matricula
+                        WHERE m.ref_cod_aluno = aluno.cod_aluno
+                        AND mt.ref_cod_turma = matricula_turma.ref_cod_turma
+                        AND mt.ativo = 1
+                    )
+                END
                 ORDER BY sequencial_fechamento, nome";
 
         $db->Consulta($sql);

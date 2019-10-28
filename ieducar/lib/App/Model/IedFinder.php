@@ -2,9 +2,11 @@
 
 use App\Models\LegacyDiscipline;
 use App\Models\LegacyDisciplineAcademicYear;
+use App\Models\LegacySchool;
 use iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass;
 use iEducar\Modules\AcademicYear\Exceptions\DisciplineNotLinkedToRegistrationException;
 use iEducar\Modules\EvaluationRules\Exceptions\EvaluationRuleNotDefinedInLevel;
+use Illuminate\Support\Facades\Auth;
 
 require_once 'CoreExt/Entity.php';
 require_once 'App/Model/Exception.php';
@@ -89,6 +91,26 @@ class App_Model_IedFinder extends CoreExt_Entity
     }
 
     /**
+     * Retorna todas as escolas. Se o usuário logado for do nível escolar, pega somente as escolas
+     * vinculadas a ele
+     *
+     * @param int $instituicaoId
+     *
+     * @return array
+     */
+    public static function getEscolasByUser($instituicaoId)
+    {
+        $query = LegacySchool::where('ref_cod_instituicao', $instituicaoId);
+
+        if (Auth::user()->isSchooling()) {
+            $schools = Auth::user()->schools->pluck('cod_escola')->all();
+            $query->whereIn('cod_escola', $schools);
+        }
+
+        return $query->get()->getKeyValueArray('name');
+    }
+
+    /**
      * Retorna um nome de curso, procurando pelo seu código.
      *
      * @param int $id
@@ -128,6 +150,10 @@ class App_Model_IedFinder extends CoreExt_Entity
         // Carrega os cursos
         $escola_curso->setOrderby('ref_cod_escola ASC, cod_curso ASC');
         $escola_curso = $escola_curso->lista($escolaId);
+
+        if (!$escola_curso) {
+            return [];
+        }
 
         $cursos = [];
 
@@ -812,6 +838,8 @@ class App_Model_IedFinder extends CoreExt_Entity
             ON p.idpes = a.ref_idpes
             JOIN pmieducar.escola e
             ON m.ref_ref_cod_escola = e.cod_escola
+            JOIN pmieducar.instituicao
+            ON instituicao.cod_instituicao = e.ref_cod_instituicao
             JOIN pmieducar.matricula_turma mt
             ON mt.ref_cod_matricula = m.cod_matricula
             JOIN pmieducar.turma t
@@ -831,15 +859,9 @@ class App_Model_IedFinder extends CoreExt_Entity
                 mt.ativo = 1
                 OR
                 (
-                    NOT EXISTS
-                    (
-                        SELECT 1
-                        FROM pmieducar.matricula_turma
-                        WHERE matricula_turma.ativo = 1
-                        AND matricula_turma.ref_cod_matricula = mt.ref_cod_matricula
-                    )
-                    AND
-                    (
+                    instituicao.data_base_remanejamento IS NOT NULL
+                    AND mt.data_exclusao::date > instituicao.data_base_remanejamento
+                    AND (
                         mt.transferido
                         OR mt.remanejado
                         OR mt.reclassificado
@@ -1519,7 +1541,7 @@ class App_Model_IedFinder extends CoreExt_Entity
         $query = Portabilis_Utils_Database::fetchPreparedQuery($sql, ['params' => [$enrollmentId]]);
 
         foreach ($query as $stage) {
-            $stages[] = $stage;
+            $stages[$stage['ref_cod_disciplina']][] = $stage['etapa'];
         }
 
         return $stages;

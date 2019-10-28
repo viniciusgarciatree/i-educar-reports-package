@@ -11,7 +11,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} Servidores -  Funções do servidor" );
         $this->processoAp = "634";
-        $this->addEstilo("localizacaoSistema");
     }
 }
 
@@ -49,18 +48,6 @@ class indice extends clsDetalhe
         if( ! $registro )
         {
             $this->simpleRedirect('educar_fonte_lst.php');
-        }
-
-        if( class_exists( "clsPmieducarInstituicao" ) )
-        {
-            $obj_ref_cod_instituicao = new clsPmieducarInstituicao( $registro["ref_cod_instituicao"] );
-            $det_ref_cod_instituicao = $obj_ref_cod_instituicao->detalhe();
-            $registro["ref_cod_instituicao"] = $det_ref_cod_instituicao["nm_instituicao"];
-        }
-        else
-        {
-            $registro["ref_cod_instituicao"] = "Erro na geracao";
-            echo "<!--\nErro\nClasse nao existente: clsPmieducarInstituicao\n-->";
         }
 
         $obj_permissoes = new clsPermissoes();

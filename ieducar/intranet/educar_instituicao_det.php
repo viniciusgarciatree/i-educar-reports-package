@@ -11,7 +11,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} i-Educar - Institui&ccedil;&atilde;o" );
         $this->processoAp = "559";
-        $this->addEstilo("localizacaoSistema");
     }
 }
 
@@ -53,17 +52,9 @@ class indice extends clsDetalhe
         $tmp_obj = new clsPmieducarInstituicao( $this->cod_instituicao );
         $registro = $tmp_obj->detalhe();
 
-        if( class_exists( "clsTipoLogradouro" ) )
-        {
-            $obj_ref_idtlog = new clsTipoLogradouro( $registro["ref_idtlog"] );
-            $det_ref_idtlog = $obj_ref_idtlog->detalhe();
-            $registro["ref_idtlog"] = $det_ref_idtlog["descricao"];
-        }
-        else
-        {
-            $registro["ref_idtlog"] = "Erro na geracao";
-            echo "<!--\nErro\nClasse nao existente: clsUrbanoTipoLogradouro\n-->";
-        }
+        $obj_ref_idtlog = new clsTipoLogradouro( $registro["ref_idtlog"] );
+        $det_ref_idtlog = $obj_ref_idtlog->detalhe();
+        $registro["ref_idtlog"] = $det_ref_idtlog["descricao"];
 
         $registro["cep"] = int2CEP( $registro["cep"] );
         $this->addDetalhe( array( "Código Instituição", "{$registro["cod_instituicao"]}") );

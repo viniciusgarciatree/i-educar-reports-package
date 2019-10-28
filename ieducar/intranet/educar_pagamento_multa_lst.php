@@ -14,7 +14,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} i-Educar - Pagamento Multa" );
         $this->processoAp = "622";
-        $this->addEstilo('localizacaoSistema');
     }
 }
 
@@ -110,7 +109,6 @@ class indice extends clsListagem
       'obrigatorio' => true
     );
     $this->setOptionsListaPesquisa("ref_idpes", $dados);
-        // $this->campoListaPesq( "ref_idpes", "Cliente", array( '' => "Selecione" ), $this->ref_idpes, "pesquisa_pessoa_lst.php", "", false, "", "", null, null, "", false, $parametros->serializaCampos() );
 
         // Paginador
         $this->limite = 20;

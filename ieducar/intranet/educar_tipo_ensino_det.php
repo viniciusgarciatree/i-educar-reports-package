@@ -11,7 +11,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} i-Educar - Tipo Ensino" );
         $this->processoAp = "558";
-        $this->addEstilo("localizacaoSistema");
     }
 }
 
@@ -55,17 +54,10 @@ class indice extends clsDetalhe
 
         if( $registro["ref_cod_instituicao"] )
         {
-            if( class_exists( "clsPmieducarInstituicao" ) )
-            {
                 $obj_cod_instituicao = new clsPmieducarInstituicao( $registro["ref_cod_instituicao"] );
                 $obj_cod_instituicao_det = $obj_cod_instituicao->detalhe();
                 $registro["ref_cod_instituicao"] = $obj_cod_instituicao_det["nm_instituicao"];
-            }
-            else
-            {
-                $registro["ref_cod_instituicao"] = "Erro na gera&ccedil;&atilde;o";
-                echo "<!--\nErro\nClasse n&atilde;o existente: clsPmieducarInstituicao\n-->";
-            }
+
             $this->addDetalhe( array( "Institui&ccedil;&atilde;o", "{$registro["ref_cod_instituicao"]}") );
         }
         if( $registro["nm_tipo"] )

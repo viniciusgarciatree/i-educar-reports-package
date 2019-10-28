@@ -11,7 +11,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} i-Educar - N&iacute;vel Ensino" );
         $this->processoAp = "571";
-        $this->addEstilo("localizacaoSistema");
     }
 }
 
@@ -115,17 +114,9 @@ class indice extends clsListagem
         {
             foreach ( $lista AS $registro )
             {
-                if( class_exists( "clsPmieducarInstituicao" ) )
-                {
-                    $obj_cod_instituicao = new clsPmieducarInstituicao( $registro["ref_cod_instituicao"] );
-                    $obj_cod_instituicao_det = $obj_cod_instituicao->detalhe();
-                    $registro["ref_cod_instituicao"] = $obj_cod_instituicao_det["nm_instituicao"];
-                }
-                else
-                {
-                    $registro["ref_cod_instituicao"] = "Erro na gera&ccedil;&atilde;o";
-                    echo "<!--\nErro\nClasse n&atilde;o existente: clsPmieducarInstituicao\n-->";
-                }
+                $obj_cod_instituicao = new clsPmieducarInstituicao( $registro["ref_cod_instituicao"] );
+                $obj_cod_instituicao_det = $obj_cod_instituicao->detalhe();
+                $registro["ref_cod_instituicao"] = $obj_cod_instituicao_det["nm_instituicao"];
 
                 $lista_busca = array(
                     "<a href=\"educar_nivel_ensino_det.php?cod_nivel_ensino={$registro["cod_nivel_ensino"]}\">{$registro["nm_nivel"]}</a>"

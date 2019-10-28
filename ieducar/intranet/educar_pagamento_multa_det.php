@@ -14,7 +14,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} i-Educar - Pagamento Multa" );
         $this->processoAp = "622";
-        $this->addEstilo('localizacaoSistema');
     }
 }
 
@@ -46,8 +45,6 @@ class indice extends clsDetalhe
         if(!$this->ref_cod_cliente || !$this->ref_cod_cliente_tipo)
             $this->simpleRedirect('educar_pagamento_multa_lst.php');
 
-        if( class_exists( "clsPmieducarCliente" ) )
-        {
             $obj_tipo = new clsPmieducarClienteTipo( $this->ref_cod_cliente_tipo );
             $det_tipo = $obj_tipo->detalhe();
             $obj_ref_cod_cliente = new clsPmieducarCliente();
@@ -135,12 +132,6 @@ class indice extends clsDetalhe
                     $this->ref_cod_cliente = $registro["cod_cliente"];
                 }
             }
-        }
-        else
-        {
-            $registro["ref_cod_cliente"] = "Erro na geracao";
-            echo "<!--\nErro\nClasse nao existente: clsPmieducarCliente\n-->";
-        }
 
         $obj_permissoes = new clsPermissoes();
         if( $obj_permissoes->permissao_cadastra( 622, $this->pessoa_logada, 11 ) )

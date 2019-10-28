@@ -13,7 +13,6 @@ class clsIndexBase extends clsBase
     {
         $this->SetTitulo( "{$this->_instituicao} i-Educar - Autor" );
         $this->processoAp = "594";
-        $this->addEstilo('localizacaoSistema');
     }
 }
 
@@ -66,18 +65,10 @@ class indice extends clsCadastro
                     $this->fexcluir = true;
                 }
 
-                if( class_exists( "clsPmieducarBiblioteca" ) )
-                {
                     $obj_ref_cod_biblioteca = new clsPmieducarBiblioteca( $registro["ref_cod_biblioteca"] );
                     $det_ref_cod_biblioteca = $obj_ref_cod_biblioteca->detalhe();
                     $this->ref_cod_instituicao = $det_ref_cod_biblioteca["ref_cod_instituicao"];
                     $this->ref_cod_escola = $det_ref_cod_biblioteca["ref_cod_escola"];
-
-                }
-                else
-                {
-                    $registro["ref_cod_biblioteca"] = "Erro na gera&ccedil;&atilde;o";
-                }
 
                     $retorno = "Editar";
             }
