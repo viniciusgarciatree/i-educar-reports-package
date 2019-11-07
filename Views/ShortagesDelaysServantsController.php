@@ -38,8 +38,8 @@ class ShortagesDelaysServantsController extends Portabilis_Controller_ReportCore
         $this->inputsHelper()->dynamic('instituicao', ['required' => true]);
         $this->inputsHelper()->dynamic('escola', ['required' => false]);
         $this->inputsHelper()->simpleSearchServidor('servidor', ['label' => 'Servidor', 'required' => false]);
-        $this->inputsHelper()->date('data_inicial', ['required' => false, 'label' => 'Data inicial']);
-        $this->inputsHelper()->date('data_final', ['required' => false, 'label' => 'Data final']);
+        $this->inputsHelper()->date('data_inicial', ['required' => true, 'label' => 'Data inicial']);
+        $this->inputsHelper()->date('data_final', ['required' => true, 'label' => 'Data final']);
         $this->loadResourceAssets($this->getDispatcher());
     }
 
