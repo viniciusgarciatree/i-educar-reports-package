@@ -286,6 +286,126 @@ class RelatoriosPersonalizados extends Migration
             'old' => 999718,
             'process' => 999718,
         ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999719
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relatório de alocações dos servidores',
+            'description' => null,
+            'link' => '/module/Reports/ServantsAllocations',
+            'order' => 0,
+            'old' => 999719,
+            'process' => 999719,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999720
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relatório de dados pessoais dos servidores',
+            'description' => null,
+            'link' => '/module/Reports/PersonalDataServants',
+            'order' => 0,
+            'old' => 999720,
+            'process' => 999720,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999721
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relatório vinculos dos servidores',
+            'description' => null,
+            'link' => '/module/Reports/ServantsBindings',
+            'order' => 0,
+            'old' => 999721,
+            'process' => 999721,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999722
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relatório cargo x função dos servidores',
+            'description' => null,
+            'link' => '/module/Reports/ServantsOfficeFunction',
+            'order' => 0,
+            'old' => 999722,
+            'process' => 999722,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999723
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relatório de escolaridade dos servidores',
+            'description' => null,
+            'link' => '/module/Reports/ServantsSchooling',
+            'order' => 0,
+            'old' => 999723,
+            'process' => 999723,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999724
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relatório de lotação x exercício dos servidores',
+            'description' => null,
+            'link' => '/module/Reports/ServantsCapacityExercise',
+            'order' => 0,
+            'old' => 999724,
+            'process' => 999724,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999725
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relatório de cursos dos servidores',
+            'description' => null,
+            'link' => '/module/Reports/ServantsCourses',
+            'order' => 0,
+            'old' => 999725,
+            'process' => 999725,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999726
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Quadro de frequência dos servidores',
+            'description' => null,
+            'link' => '/module/Reports/MonthlyClosingServants',
+            'order' => 0,
+            'old' => 999726,
+            'process' => 999726,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999727
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relação de servidores afastados',
+            'description' => null,
+            'link' => '/module/Reports/AbsenceServants',
+            'order' => 0,
+            'old' => 999727,
+            'process' => 999727,
+        ]);
+
+        Menu::query()->updateOrCreate([
+            'old' => 999728
+        ],[
+            'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
+            'title' => 'Relatório de docentes por turma',
+            'description' => null,
+            'link' => '/module/Reports/TeachersByClass',
+            'order' => 0,
+            'old' => 999728,
+            'process' => 999728,
+        ]);
     }
 
     /**
@@ -318,5 +438,15 @@ class RelatoriosPersonalizados extends Migration
         Menu::query()->where('old', 999716)->delete();
         Menu::query()->where('old', 999717)->delete();
         Menu::query()->where('old', 999718)->delete();
+        Menu::query()->where('old', 999719)->delete();
+        Menu::query()->where('old', 999720)->delete();
+        Menu::query()->where('old', 999721)->delete();
+        Menu::query()->where('old', 999722)->delete();
+        Menu::query()->where('old', 999723)->delete();
+        Menu::query()->where('old', 999724)->delete();
+        Menu::query()->where('old', 999725)->delete();
+        Menu::query()->where('old', 999726)->delete();
+        Menu::query()->where('old', 999727)->delete();
+        Menu::query()->where('old', 999728)->delete();
     }
 }
