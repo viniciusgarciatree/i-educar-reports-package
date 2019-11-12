@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teachers-and-courses-taught-by-class" pageWidth="842" pageHeight="612" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="36bb9a63-bcb5-49b8-aba5-f807b5677a85">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ieducar"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -43,6 +43,9 @@
 	<parameter name="data_inicial" class="java.lang.String"/>
 	<parameter name="vinculo" class="java.lang.String"/>
 	<parameter name="periodo" class="java.lang.String"/>
+	<parameter name="observacao" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -280,29 +283,29 @@ ALUNOS]]></text>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="129">
+			<band height="141">
 				<staticText>
-					<reportElement x="21" y="83" width="250" height="14" uuid="eaaad88f-0a3e-4265-aeab-4c7a633e826f"/>
+					<reportElement positionType="Float" x="21" y="94" width="250" height="14" uuid="eaaad88f-0a3e-4265-aeab-4c7a633e826f"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<text><![CDATA[ASSINATURA DO DIRETOR / COORDENADOR:]]></text>
 				</staticText>
 				<line>
-					<reportElement x="272" y="98" width="508" height="1" uuid="02e2fc50-4275-4c01-bb77-844a5e8004f8"/>
+					<reportElement positionType="Float" x="272" y="109" width="508" height="1" uuid="02e2fc50-4275-4c01-bb77-844a5e8004f8"/>
 				</line>
 				<staticText>
-					<reportElement x="21" y="112" width="211" height="12" uuid="36a5ce99-dd57-4c5a-b48c-b98f1056d1cc"/>
+					<reportElement positionType="Float" x="21" y="123" width="211" height="12" uuid="36a5ce99-dd57-4c5a-b48c-b98f1056d1cc"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<text><![CDATA[ASSINATURA DO RECEBEDOR / SME:]]></text>
 				</staticText>
 				<line>
-					<reportElement x="232" y="124" width="370" height="1" uuid="2a7bb4bf-1d7f-484e-b516-8dd49e026003"/>
+					<reportElement positionType="Float" x="232" y="135" width="370" height="1" uuid="2a7bb4bf-1d7f-484e-b516-8dd49e026003"/>
 				</line>
 				<staticText>
-					<reportElement x="612" y="112" width="40" height="12" uuid="c927f865-0295-4ce5-ac8d-d049e4df0996">
+					<reportElement positionType="Float" x="612" y="123" width="40" height="12" uuid="c927f865-0295-4ce5-ac8d-d049e4df0996">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
@@ -311,16 +314,21 @@ ALUNOS]]></text>
 					<text><![CDATA[DATA:]]></text>
 				</staticText>
 				<line>
-					<reportElement x="652" y="124" width="128" height="1" uuid="39e0a4b4-d156-4746-a49e-eec3e78c22b5"/>
+					<reportElement positionType="Float" x="652" y="135" width="128" height="1" uuid="39e0a4b4-d156-4746-a49e-eec3e78c22b5"/>
 				</line>
 				<rectangle>
-					<reportElement x="0" y="8" width="802" height="62" uuid="16bee4ae-4d3f-45de-8fc7-cab6418d01b0"/>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="8" width="802" height="72" uuid="16bee4ae-4d3f-45de-8fc7-cab6418d01b0"/>
 				</rectangle>
 				<staticText>
-					<reportElement x="0" y="9" width="100" height="30" uuid="ba6e7f24-56c3-43fe-88b8-47253e867ca1"/>
+					<reportElement x="0" y="7" width="100" height="30" uuid="ba6e7f24-56c3-43fe-88b8-47253e867ca1"/>
 					<box topPadding="2" leftPadding="2"/>
 					<text><![CDATA[Observações:]]></text>
 				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="22" width="800" height="56" uuid="19f9f8f5-57c9-41c0-ad30-50ce0c33e274"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textFieldExpression><![CDATA[$P{observacao}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupFooter>
 	</group>

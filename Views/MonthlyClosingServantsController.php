@@ -71,6 +71,7 @@ class MonthlyClosingServantsController extends Portabilis_Controller_ReportCoreC
         $this->inputsHelper()->date('data_final', ['required' => true, 'label' => 'Data final']);
 //        $this->inputsHelper()->checkbox('emitir_totalizadores', ['label' => 'Adicionar totalizadores ao fim do relatório']);
 //        $this->inputsHelper()->checkbox('nao_emitir_afastados', ['label' => 'Não emitir servidores afastados']);
+        $this->campoMemo('observacao', 'Observação', $this->observacao, 48, 5, false);
     }
 
     /**
@@ -88,6 +89,7 @@ class MonthlyClosingServantsController extends Portabilis_Controller_ReportCoreC
         $this->report->addArg('data_final', Portabilis_Date_Utils::brToPgSQL($this->getRequest()->data_final));
 //        $this->report->addArg('emitir_totalizadores', (bool) $this->getRequest()->emitir_totalizadores);
 //        $this->report->addArg('nao_emitir_afastados', (bool) $this->getRequest()->nao_emitir_afastados);
+        $this->report->addArg('observacao', $this->getRequest()->observacao);
     }
 
     /**
