@@ -97,7 +97,7 @@ return [
             'layout' => 'login.tpl',
         ],
         'gtm' => [
-            'id' => ''
+            'id' => env('GOOGLE_TAG_MANAGER'),
         ],
         'rdstation' => [
             'token' => '',
@@ -182,10 +182,11 @@ return [
     ],
 
     'report' => [
+        'debug' => env('REPORTS_DEBUG', false),
         'caminho_fundo_certificado' => '',
         'caminho_fundo_carteira_transporte' => '',
         'lei_estudante' => 'Lei municipal',
-        'lei_conclusao_ensino_medio' => '1319/99',
+        'lei_conclusao_ensino_medio' => '',
         'portaria_aprovacao_pontos' => 'Resolução n° 12/2011 - CME, Artigo 7°, § 2°;',
         'modelo_ficha_individual' => 'todos',
         'mostrar_relatorios' => '',

@@ -21,7 +21,7 @@ class LegacyStudent extends Model
      * @var array
      */
     protected $fillable = [
-        'ref_idpes', 'data_cadastro',
+        'ref_idpes', 'data_cadastro', 'tipo_responsavel',
     ];
 
     /**
@@ -30,10 +30,35 @@ class LegacyStudent extends Model
     public $timestamps = false;
 
     /**
+     * @inheritDoc
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->data_cadastro = now();
+        });
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function individual()
+    {
+        return $this->belongsTo(LegacyIndividual::class, 'ref_idpes');
+    }
+
+    /**
      * @return BelongsTo
      */
     public function person()
     {
         return $this->belongsTo(LegacyPerson::class, 'ref_idpes');
+    }
+
+    public function registrations()
+    {
+        return $this->hasMany(LegacyRegistration::class, 'ref_cod_aluno');
     }
 }

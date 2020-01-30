@@ -1088,7 +1088,7 @@ function handleSearch($resultTable, dataResponse) {
                                   .attr('id', 'situacao-matricula-' + value.matricula_id)
                                   .data('matricula_id', value.matricula_id)
                                   .addClass('center')
-                                  .css('color', '#FF6600')
+                                  .addClass('matricula-situacao-deslocamento')
                                   .html(value.situacao_deslocamento)
                                   .appendTo($linha);
 
@@ -1455,7 +1455,7 @@ function updateComponenteCurricular($targetElement, matriculaId, cc, regra) {
   if(useNota && (ultimaEtapa || (definirComponentesEtapa && !progressaoContinuada))){
     var $fieldNotaExame = notaExameField(matriculaId, cc.id, cc.nota_exame, getNotaExameFinalMaxLength(regra), cc.tipo_nota, regra);
 
-    var $fieldNN = notaNecessariaField(matriculaId, cc.id, cc.nota_necessaria_exame);
+    var $fieldNN = notaNecessariaField(matriculaId, cc.id, (cc.nota_necessaria_exame || '-'));
 
     if (cc.nota_exame == '' && safeToLowerCase(cc.situacao) != 'em exame'){
       $fieldNotaExame.children().hide();
@@ -1665,13 +1665,13 @@ function updateResourceRow(dataResponse) {
       $fieldNotaExame.focus();
     }
 
-    $fieldNN.text(dataResponse.nota_necessaria_exame);
+    $fieldNN.text(dataResponse.nota_necessaria_exame || '-');
   }
   else if($fieldNotaExame.val() == '' && safeToLowerCase(dataResponse.situacao) != 'em exame'){
     $fieldNotaExame.hide();
     $fieldNN.text('-');
   }else
-    $fieldNN.text(dataResponse.nota_necessaria_exame);
+    $fieldNN.text(dataResponse.nota_necessaria_exame || '-');
 
   if(dataResponse.resource != 'nota_exame' && dataResponse.resource != 'nota_recuperacao_especifica'){
     if(habilitaCampoEtapaEspecifica && dataResponse.should_show_recuperacao_especifica ){

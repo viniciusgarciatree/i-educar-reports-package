@@ -521,6 +521,7 @@ class clsPmieducarCandidatoFilaUnica extends Model
         }
 
         if (is_string($nome)) {
+            $nome = str_replace('\'', '\'\'', $nome);
             $filtros .= "{$whereAnd} upper(nome) LIKE upper('%{$nome}%')";
             $whereAnd = ' AND ';
         }
@@ -534,6 +535,7 @@ class clsPmieducarCandidatoFilaUnica extends Model
         }
 
         if (is_string($nome_responsavel)) {
+            $nome_responsavel = str_replace('\'', '\'\'', $nome_responsavel);
             $filtros .= "{$whereAnd} (SELECT upper(replace(textcat_all(nome),' <br>',','))
                                         FROM (SELECT p.nome
                                                 FROM pmieducar.responsaveis_aluno ra
@@ -770,22 +772,23 @@ class clsPmieducarCandidatoFilaUnica extends Model
         return false;
     }
 
-    public function alteraSituacao($situacao, $motivo = null)
+    public function alteraSituacao($situacao, $motivo = null, $data = null)
     {
         if (!$this->cod_candidato_fila_unica) {
             return false;
         }
 
         $situacao = $situacao ?: 'NULL';
-        $motivo = $motivo ?: 'NULL';
+        $motivo = str_replace("\'", "''", $motivo) ?: 'NULL';
         $historico = $this->montaHistorico();
+        $data = $data ?: 'NOW()';
 
         $db = new clsBanco();
         $db->Consulta("UPDATE pmieducar.candidato_fila_unica
                           SET situacao = {$situacao},
-                              motivo = {$motivo},
+                              motivo = '{$motivo}',
                               data_situacao = NOW(),
-                              data_solicitacao = NOW(),
+                              data_solicitacao = '{$data}',
                               hora_solicitacao = NOW(),
                               historico = '{$historico}'
                         WHERE cod_candidato_fila_unica = '{$this->cod_candidato_fila_unica}'");
