@@ -34,7 +34,7 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
      */
     public function form()
     {
-        $this->inputsHelper()->dynamic(['instituicao', 'escola', 'curso', 'serie', 'turma', 'ano']);
+        $this->inputsHelper()->dynamic(['ano', 'instituicao', 'escola', 'curso', 'serie', 'turma']);
         $this->inputsHelper()->simpleSearchAluno(null);
 
         $modelo_visivel = true;
