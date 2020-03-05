@@ -207,4 +207,5 @@ return [
         ],
     ],
 
+    'processar_historicos_conceituais' => '1',
 ];

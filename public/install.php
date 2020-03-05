@@ -25,7 +25,7 @@ if (!is_null($command)) {
             $extra = $_GET['extra'] ?? '';
             $pid = $installer->exec($param, (int) $id, $extra);
 
-            echo $pid;
+            echo $pid . "ok";
             break;
         case 'consult':
             $pid = $_GET['pid'] ?? '';
