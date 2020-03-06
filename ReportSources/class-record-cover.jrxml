@@ -28,6 +28,7 @@
 	<field name="diretor" class="java.lang.String"/>
 	<field name="periodo" class="java.lang.String"/>
 	<field name="nm_escola" class="java.lang.String"/>
+	<field name="tipo_logradouro" class="java.lang.String"/>
 	<field name="logradouro" class="java.lang.String"/>
 	<field name="bairro" class="java.lang.String"/>
 	<field name="municipio" class="java.lang.String"/>
@@ -343,7 +344,8 @@ Classe]]></text>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{logradouro} != null ? $F{logradouro}+", " : "" )+
+				<textFieldExpression><![CDATA[($F{tipo_logradouro} != null ? $F{tipo_logradouro}+", " : "" )+
+($F{logradouro} != null ? $F{logradouro}+", " : "" )+
 ($F{numero} != null ? $F{numero} : "S/N")+
 ($F{bairro} != null ? ", "+$F{bairro} : "" )+
 ($F{cidade} != null ? " - "+$F{cidade} : "" )+

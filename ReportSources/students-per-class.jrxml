@@ -199,8 +199,8 @@
 					</textElement>
 					<text><![CDATA[ID INEP]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="220" y="1" width="100" height="13" uuid="28f88ba9-b6c5-427d-a8e9-1420cab8846e"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="220" y="29" width="100" height="13" uuid="28f88ba9-b6c5-427d-a8e9-1420cab8846e"/>
 					<textElement>
 						<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					</textElement>

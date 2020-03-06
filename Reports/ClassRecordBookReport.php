@@ -91,6 +91,7 @@ class ClassRecordBookReport extends Portabilis_Report_ReportCore
                 (SELECT p.nome FROM cadastro.pessoa p WHERE escola.ref_idpes_gestor = p.idpes) as diretor,
                 turma_turno.nome AS periodo,
                 view_dados_escola.nome AS nm_escola,
+                view_dados_escola.descricao_logradouro AS tipo_logradouro,
                 view_dados_escola.logradouro AS logradouro,
                 view_dados_escola.bairro AS bairro,
                 view_dados_escola.municipio AS municipio,
