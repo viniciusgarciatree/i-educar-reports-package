@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="school-history-series-years" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="a79dda7b-5eab-4f10-b9e4-88b7ba7d8664">
 	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
 	<subDataset name="dataset1" uuid="d908f52f-5cd9-45b2-8bba-8a08729e0436"/>
@@ -423,7 +423,7 @@
 	<group name="grupo" footerPosition="StackAtBottom">
 		<groupExpression><![CDATA[true]]></groupExpression>
 		<groupFooter>
-			<band height="13">
+			<band height="13" splitType="Stretch">
 				<printWhenExpression><![CDATA[$P{emitir_carga_horaria_frequentada}]]></printWhenExpression>
 				<staticText>
 					<reportElement x="6" y="0" width="363" height="13" uuid="92ab7d33-d5ad-48cc-acff-c9b75685dc71"/>
@@ -1444,7 +1444,7 @@
 		</groupFooter>
 	</group>
 	<background>
-		<band height="400">
+		<band height="418">
 			<textField>
 				<reportElement x="369" y="172" width="180" height="55" uuid="b8957cfb-7e79-4522-99a9-ec78059fb657"/>
 				<box leftPadding="5"/>
@@ -1760,7 +1760,7 @@ $P{cabecalho_alternativo} != 1]]></printWhenExpression>
 					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 0)]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
-					<pen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<pen lineWidth="0.0" lineColor="#000000"/>
 				</graphicElement>
 			</rectangle>
 			<textField isBlankWhenNull="false">

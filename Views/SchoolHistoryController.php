@@ -128,7 +128,6 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('emitir_carga_horaria_frequentada', (bool) $this->getRequest()->emitir_carga_horaria_frequentada);
         $this->report->addArg('logo1', (string) $filePath.'brasil.png');
         $this->report->addArg('logo2', (string) $filePath.'brasao-prefeitura-simples.png');
-        $this->report->addArg('add_logo_arg', (bool) false);
 
         $cursoaluno = implode(',', array_filter($this->getRequest()->cursoaluno));
 
