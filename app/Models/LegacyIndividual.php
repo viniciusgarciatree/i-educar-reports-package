@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -29,6 +31,9 @@ class LegacyIndividual extends EloquentBaseModel implements Transformable
      * @var array
      */
     protected $fillable = [
+        'idpes',
+        'data_nascimento',
+        'zona_localizacao_censo',
         'idpes',
         'data_nasc',
         'sexo',
@@ -89,6 +94,48 @@ class LegacyIndividual extends EloquentBaseModel implements Transformable
     public $timestamps = false;
 
     /**
+     * @return BelongsToMany
+     */
+    public function race()
+    {
+        return $this->belongsToMany(
+            LegacyRace::class,
+            'cadastro.fisica_raca',
+            'ref_idpes',
+            'ref_cod_raca'
+        );
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function deficiency()
+    {
+        return $this->belongsToMany(
+            LegacyDeficiency::class,
+            'cadastro.fisica_deficiencia',
+            'ref_idpes',
+            'ref_cod_deficiencia'
+        );
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function person()
+    {
+        return $this->hasOne(LegacyPerson::class, 'idpes', 'idpes');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function document()
+    {
+        return $this->hasOne(LegacyDocument::class, 'idpes');
+    }
+
+    /**
      * @inheritDoc
      */
     protected static function boot()
@@ -101,14 +148,6 @@ class LegacyIndividual extends EloquentBaseModel implements Transformable
             $model->operacao = 'I';
             $model->pais_residencia = $model->pais_residencia ?? 76;
         });
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function person()
-    {
-        return $this->belongsTo(LegacyPerson::class, 'idpes', 'idpes');
     }
 
     /**

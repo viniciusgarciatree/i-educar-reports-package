@@ -36,13 +36,18 @@ class LegacyRegistration extends Model
      * @var array
      */
     protected $fillable = [
+        'ref_ref_cod_serie',
+        'ref_ref_cod_escola',
+        'ref_cod_curso',
         'ref_cod_aluno',
         'data_cadastro',
         'ano',
         'ref_usuario_cad',
         'dependencia',
-        'ref_ref_cod_serie',
-        'ref_cod_curso',
+        'ativo',
+        'aprovado',
+        'data_matricula',
+        'ultima_matricula'
     ];
 
     /**
@@ -214,5 +219,13 @@ class LegacyRegistration extends Model
         }
 
         return $evaluationRuleGradeYear->evaluationRule;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusDescriptionAttribute()
+    {
+        return (new RegistrationStatus)->getDescriptiveValues()[(int) $this->aprovado];
     }
 }
