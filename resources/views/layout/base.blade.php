@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        @if (config('legacy.app.name'))
-            {{config('legacy.app.name')}}
+        @if (config('legacy.app.title'))
+            {{config('legacy.app.title')}}
         @elseif (isset($title)))
             {!! $title !!}
         @else
