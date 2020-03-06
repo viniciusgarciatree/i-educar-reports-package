@@ -4,9 +4,15 @@
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="-1">
-
-    <title>i-Educar @if(isset($title)) - {!! $title !!} @endif</title>
-
+    <title>
+        @if (config('legacy.app.title'))
+            {{config('legacy.app.title')}}
+        @elseif (isset($title)))
+            {!! $title !!}
+        @else
+            i-Educar
+        @endif
+    </title>
     <script>
         dataLayer = [{
             'slug': '{{$config['app']['database']['dbname']}}',
@@ -160,7 +166,17 @@
         <td colspan="2">
             <header class="ieducar-header">
                 <div class="ieducar-header-logo">
-                    <h1><a href="{{ url('/') }}">i-Educar</a></h1>
+                    <h1>
+                        <a href="{{ url('/') }}">
+                            @if (config('legacy.app.name'))
+                                {{config('legacy.app.name')}}
+                            @elseif (isset($title)))
+                                {!! $title !!}
+                            @else
+                                i-Educar
+                            @endif
+                        </a>
+                    </h1>
                 </div>
                 <div class="ieducar-header-links">
                     <div class="dropdown">
