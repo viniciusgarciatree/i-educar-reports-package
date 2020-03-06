@@ -871,6 +871,12 @@ class DiarioApiController extends ApiCoreController
                             '
                         );
 
+                        $query->whereHas('registration', function ($query) {
+                            $query->whereHas('student', function ($query) {
+                                $query->where('ativo', 1);
+                            });
+                        });
+
                         $query->where('ativo', 1);
                     },
                 ])
@@ -918,7 +924,7 @@ class DiarioApiController extends ApiCoreController
                 $turmaId = $enrollment->ref_cod_turma;
                 $serieId = $registration->ref_ref_cod_serie;
                 $componenteCurricularId = $this->getRequest()->componente_curricular_id;
-                $disciplinasDependenciaId = $enrollment->registration->dependencies->values();
+                $disciplinasDependenciaId = $enrollment->registration->dependencies->pluck('ref_cod_disciplina')->toArray();
                 $matriculaDependencia = $enrollment->registration->dependencia;
 
                 if (!empty($componenteCurricularId) && $matriculaDependencia && !in_array($componenteCurricularId, $disciplinasDependenciaId)) {
@@ -1537,7 +1543,7 @@ class DiarioApiController extends ApiCoreController
             return null;
         }
 
-        $nota = urldecode($this->serviceBoletim()->preverNotaRecuperacao($componenteCurricularId));
+        $nota = $this->serviceBoletim()->preverNotaRecuperacao($componenteCurricularId);
 
         return str_replace(',', '.', $nota);
     }
@@ -1707,6 +1713,7 @@ class DiarioApiController extends ApiCoreController
         }
 
         $rule['nomenclatura_exame'] = config('legacy.app.diario.nomenclatura_exame') == 0 ? 'exame' : 'conselho';
+        $rule['regra_dependencia'] = config('legacy.app.matricula.dependencia') ? true : false;
 
         $tipoRecuperacaoParalela = $evaluationRule->tipo_recuperacao_paralela;
 

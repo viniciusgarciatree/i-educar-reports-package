@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\LegacyEvaluationRule;
+use App\Models\LegacyGrade;
+use App\Models\LegacyInstitution;
 use App\Services\StageScoreCalculationService;
 use iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass;
 use iEducar\Modules\EvaluationRules\Exceptions\EvaluationRuleNotDefinedInLevel;
@@ -635,6 +637,10 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
         $situacaoNotas = $this->getSituacaoNotas(true);
         $situacaoFaltas = $this->getSituacaoFaltas();
 
+        if ($this->allowsApproveWithDependence($situacaoNotas->situacao)) {
+            $situacaoNotas->situacao = App_Model_MatriculaSituacao::APROVADO_COM_DEPENDENCIA;
+        }
+
         $situacao = $this->getSituacaoNotaFalta($situacaoNotas->situacao, $situacaoFaltas->situacao);
         $situacao->nota = $situacaoNotas;
         $situacao->falta = $situacaoFaltas;
@@ -744,6 +750,11 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
 
         // Carrega as médias pois este método pode ser chamado após a chamada a saveNotas()
         $mediasComponentes = $this->_loadMedias()->getMediasComponentes();
+
+        // Mantém apenas lançamentos para componentes da matrícula
+        $componentesMatricula = App_Model_IedFinder::getComponentesPorMatricula($matriculaId, null, null, null, $this->getOption('etapaAtual'), $this->getOption('ref_cod_turma'));
+        $mediasComponentes = array_intersect_key($mediasComponentes, $componentesMatricula);
+
         $mediasComponenentesTotal = $mediasComponentes;
 
         if (!$calcularSituacaoAluno) {
@@ -875,14 +886,20 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
                 if ($this->hasRegraAvaliacaoReprovacaoAutomatica()) {
                     if (!is_numeric($this->preverNotaRecuperacao($id))) {
                         $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::REPROVADO;
-                        $qtdComponenteReprovado++;
+                        if ($this->exibeSituacao($id)) {
+                            $qtdComponenteReprovado++;
+                        }
                     }
                 }
             } elseif ($etapa == $lastStage && $media < $this->getRegraAvaliacaoMedia()) {
-                $qtdComponenteReprovado++;
+                if ($this->exibeSituacao($id)) {
+                    $qtdComponenteReprovado++;
+                }
                 $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::REPROVADO;
             } elseif ((string)$etapa == 'Rc' && $media < $this->getRegraAvaliacaoMediaRecuperacao()) {
-                $qtdComponenteReprovado++;
+                if ($this->exibeSituacao($id)) {
+                    $qtdComponenteReprovado++;
+                }
                 $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::REPROVADO;
             } elseif ((string)$etapa == 'Rc' && $media >= $this->getRegraAvaliacaoMediaRecuperacao() && $this->hasRegraAvaliacaoFormulaRecuperacao()) {
                 $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::APROVADO_APOS_EXAME;
@@ -903,22 +920,6 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
         // Copia situação da primeira disciplina para o restante
         foreach ($codigosAglutinados as $id) {
             $situacao->componentesCurriculares[$id]->situacao = $situacao->componentesCurriculares[$codigosAglutinados[0]]->situacao;
-        }
-
-        $matricula = $this->getOption('matriculaData');
-        $serie = App_Model_IedFinder::getSerie($matricula['ref_ref_cod_serie']);
-        $instituicao = App_Model_IedFinder::getInstituicao($matricula['ref_cod_instituicao']);
-
-        $anoConcluinte = ($serie['concluinte'] == 2);
-        $reprovaAnoConcluinte = dbBool($instituicao['reprova_dependencia_ano_concluinte']);
-
-        $aprovaDependencia = !($reprovaAnoConcluinte && $anoConcluinte);
-        $aprovaDependencia = ($aprovaDependencia && !dbBool($matricula['dependencia']));
-        $aprovaDependencia = ($aprovaDependencia && $situacaoGeral == App_Model_MatriculaSituacao::REPROVADO);
-        $aprovaDependencia = ($aprovaDependencia && $qtdComponenteReprovado <= $this->getRegraAvaliacaoQtdDisciplinasDependencia());
-
-        if ($aprovaDependencia) {
-            $situacaoGeral = App_Model_MatriculaSituacao::APROVADO_COM_DEPENDENCIA;
         }
 
         if ($situacaoGeral == App_Model_MatriculaSituacao::REPROVADO
@@ -1117,7 +1118,10 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
 
         // Na última etapa seta situação presença como aprovado ou reprovado.
         if ($etapa == $this->getOption('etapas') || $etapa === 'Rc') {
-            $aprovado           = ($presenca->porcentagemPresenca >= $this->getRegraAvaliacaoPorcentagemPresenca());
+            $aprovado           = (
+                $presenca->porcentagemPresenca >= $this->getRegraAvaliacaoPorcentagemPresenca() ||
+                $this->getRegraAvaliacaoTipoProgressao() == RegraAvaliacao_Model_TipoProgressao::CONTINUADA
+            );
             $presenca->situacao = $aprovado ? App_Model_MatriculaSituacao::APROVADO :
                 App_Model_MatriculaSituacao::REPROVADO;
         }
@@ -2056,6 +2060,9 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
             return $this->getRegraAvaliacaoTabelaArredondamentoConceitual()->round($media, 2);
         }
 
+        //Arredonda média para quantidade de casas decimais permitidas
+        $media = round($media, $this->getRegraAvaliacaoQtdCasasDecimais());
+
         return $this->getRegraAvaliacaoTabelaArredondamento()->round($media, 2);
     }
 
@@ -2071,6 +2078,12 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
      */
     public function preverNotaRecuperacao($id)
     {
+        $turmaId = $this->getOption('ref_cod_turma');
+        $infosMatricula = $this->getOption('matriculaData');
+        $matriculaId = $infosMatricula['cod_matricula'];
+        $serieId = $infosMatricula['ref_ref_cod_serie'];
+        $escolaId = $infosMatricula['ref_ref_cod_escola'];
+
         $notasComponentes = $this->getNotasComponentes();
 
         if (is_null($this->getRegraAvaliacaoFormulaRecuperacao()) || !isset($notasComponentes[$id])) {
@@ -2079,6 +2092,23 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
 
         $etapaNotas = $this->calculaEtapaNotasAglutinada($id, $notasComponentes);
 
+        $qtdeEtapas = $this->getOption('etapas');
+
+        if ($this->getRegraAvaliacaoDefinirComponentePorEtapa() == '1') {
+            $qtdeEtapaEspecifica = App_Model_IedFinder::getQtdeEtapasComponente($turmaId, $id, $infosMatricula['ref_cod_aluno']);
+
+            $qtdeEtapas = ($qtdeEtapaEspecifica ? $qtdeEtapaEspecifica : $qtdeEtapas);
+        }
+        $verificaDispensa = App_Model_IedFinder::validaDispensaPorMatricula($matriculaId, $serieId, $escolaId, $id);
+        $consideraEtapas = [];
+
+        for ($i = 1; $i <= $qtdeEtapas; $i++) {
+            $consideraEtapas['C' . $i] = in_array($i, $verificaDispensa) ? 0 : 1;
+
+            if (in_array($i, $verificaDispensa)) {
+                $consideraEtapas['E' . $i] = 0;
+            }
+        }
 
         $somaEtapas = array_sum($etapaNotas);
 
@@ -2087,6 +2117,8 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
             'Et' => $this->getOption('etapas'),
             'Rc' => null
         ];
+
+        $data = array_merge($data, $consideraEtapas);
 
         foreach ($etapaNotas as $etapa => $nota) {
             $data['E' . $etapa] = $nota;
@@ -2111,7 +2143,7 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
             }
         }
 
-        return null;
+        return "+{$notaMax}";
     }
 
     /**
@@ -3057,6 +3089,10 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
 
         $evaluationRule = $this->getEvaluationRule();
 
+        if ($evaluationRule->isSpecificRetake()) {
+            return $score;
+        }
+
         $service = new StageScoreCalculationService();
 
         if ($evaluationRule->isAverageBetweenScoreAndRemedialCalculation()) {
@@ -3068,5 +3104,53 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
         }
 
         return $service->calculateRemedial($score, $remedial);
+    }
+
+    /**
+     * Verifica se a matrícula pode ficar aprovada com dependência
+     *
+     * @param integer $status
+     * @return bool
+     * @throws App_Model_Exception
+     * @throws Exception
+     */
+    private function allowsApproveWithDependence($newRegistrationStatus)
+    {
+        $matricula = $this->getOption('matriculaData');
+        $serie = LegacyGrade::find($matricula['ref_ref_cod_serie']);
+        $instituicao = app(LegacyInstitution::class);
+
+        $concluding = ($serie->concluinte == 2);
+        $reprovesConcluding = $instituicao->reprova_dependencia_ano_concluinte;
+
+        if ($concluding && $reprovesConcluding) {
+            return false;
+        }
+
+        if ($matricula['dependencia']) {
+            return false;
+        }
+
+        if ($newRegistrationStatus != App_Model_MatriculaSituacao::REPROVADO) {
+            return false;
+        }
+
+        $disciplineAverages = $this->_loadMedias()->getMediasComponentes();
+
+        $amountReproved = 0;
+        foreach ($disciplineAverages as $disciplineId => $disciplineAverage) {
+            $disciplineAverage = $disciplineAverage[0];
+
+            if (!$this->exibeSituacao($disciplineId)) {
+                continue;
+            }
+
+            if ($disciplineAverage->situacao == App_Model_MatriculaSituacao::REPROVADO) {
+                $amountReproved++;
+            }
+
+        }
+
+        return $amountReproved <= $this->getRegraAvaliacaoQtdDisciplinasDependencia();
     }
 }

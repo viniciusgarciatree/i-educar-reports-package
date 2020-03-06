@@ -48,7 +48,7 @@ trait DiarioApiFakeDataTestTrait
         ]);
         $level = $schoolClass->grade;
 
-        $level->evaluationRules()->attach($evaluationRule->id, ['ano_letivo' => 2019]);
+        $level->evaluationRules()->attach($evaluationRule->id, ['ano_letivo' => now()->year]);
 
         $school = $schoolClass->school;
 
@@ -108,6 +108,22 @@ trait DiarioApiFakeDataTestTrait
         ]);
 
         $evaluationRule = factory(LegacyEvaluationRule::class, 'media-presenca-sem-recuperacao')->create([
+            'tabela_arredondamento_id' => $roundingTable->id,
+        ]);
+
+        $enrollment = $this->getCommonFakeData($evaluationRule);
+
+        return $enrollment;
+    }
+
+    public function getProgressionWithAverageCalculationWeightedRecovery()
+    {
+        $roundingTable = factory(LegacyRoundingTable::class, 'numeric')->create();
+        factory(LegacyValueRoundingTable::class, 10)->create([
+            'tabela_arredondamento_id' => $roundingTable->id,
+        ]);
+
+        $evaluationRule = factory(LegacyEvaluationRule::class, 'progressao-calculo-media-recuperacao-ponderada')->create([
             'tabela_arredondamento_id' => $roundingTable->id,
         ]);
 

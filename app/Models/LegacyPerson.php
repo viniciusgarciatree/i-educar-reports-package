@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -27,7 +29,7 @@ class LegacyPerson extends EloquentBaseModel implements Transformable
      * @var array
      */
     protected $fillable = [
-        'nome', 'data_cad', 'tipo', 'situacao', 'origem_gravacao', 'operacao',
+        'nome', 'data_cad', 'tipo', 'situacao', 'origem_gravacao', 'operacao', 'email'
     ];
 
     /**
@@ -56,6 +58,30 @@ class LegacyPerson extends EloquentBaseModel implements Transformable
     public function getNameAttribute()
     {
         return $this->nome;
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function address()
+    {
+        return $this->hasOne(LegacyPersonAddress::class, 'idpes', 'idpes');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function phone()
+    {
+        return $this->hasMany(LegacyPhone::class, 'idpes', 'idpes');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function individual()
+    {
+        return $this->hasOne(LegacyIndividual::class, 'idpes', 'idpes');
     }
 
     /**
