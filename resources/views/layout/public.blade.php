@@ -5,8 +5,8 @@
     <title>
         @if (config('legacy.app.title'))
             {{config('legacy.app.title')}}
-        @elseif (isset($title)))
-        {!! $title !!}
+        @elseif (isset($title))
+            {!! $title !!}
         @else
             i-Educar
         @endif
