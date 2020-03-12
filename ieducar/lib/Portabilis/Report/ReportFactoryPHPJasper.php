@@ -97,8 +97,8 @@ class Portabilis_Report_ReportFactoryPHPJasper extends Portabilis_Report_ReportF
         unset($report->args['add_logo_arg']);
 
         if ($options['add_logo_arg']) {
-            $report->addArg('logo1', $this->logoPath());
-            $report->addArg('logo2', $this->logo2Path());
+            $report->addArg('logo', $this->logoPath());
+//            $report->addArg('logo2', $this->logo2Path());
         }
 
         $dataFile = $this->getReportsPath() . time() . '-' . mt_rand();
