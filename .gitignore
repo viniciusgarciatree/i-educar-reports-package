@@ -64,6 +64,6 @@ website/i18n/*
 ieducar/tests/log
 
 # Imagens das empresas.
-public/logo_prefeitura.jpg
+/public/logo_prefeitura.jpg
 .~lock.*
 composer.lock
