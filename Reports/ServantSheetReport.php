@@ -24,7 +24,6 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
     {
         $this->addRequiredArg('instituicao');
         $this->addRequiredArg('escola');
-//        $this->addRequiredArg('servidor');
         $this->addRequiredArg('ano');
     }
 
@@ -35,7 +34,6 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
     {
         $queryMainReport = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
-
         $servants = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
 
         $instituition = $this->args['instituicao'] ?: 0;
@@ -43,13 +41,6 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
 
         foreach ($servants as $servant) {
             $ids[] = $servant['cod_servidor'];
-        }
-
-        if (!isset($ids[0])) {
-            return [
-                'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
-                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport)
-            ];
         }
 
         return [
@@ -67,7 +58,7 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
-        return $this->args['branco'] == 1
+        return $this->args['branco']
             ? $this->getSqlBlankReport()
             : $this->getSqlReport();
     }
@@ -85,8 +76,8 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
         return "
 
             SELECT 
-                pmieducar.instituicao.nm_instituicao as nome_instituicao,
-                cadastro.juridica.fantasia as nm_escola,
+                pmieducar.instituicao.nm_instituicao as \"nome_instituicao\",
+                cadastro.juridica.fantasia as \"nm_escola\",
                 to_char(CURRENT_DATE,'dd/mm/yyyy') AS data_atual,
                 to_char(current_timestamp, 'HH24:MI:SS') AS hora_atual
             FROM 
@@ -273,7 +264,7 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
      * Retorna os dados e formação dos servidores com IDs.
      *
      * @param array $servidoresIds IDs dos servidores
-     * @param int $instituicao
+     * @param int   $instituicao
      *
      * @return array
      *
@@ -286,6 +277,13 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
         }
 
         $servidoresIds = implode(', ', $servidoresIds);
+        $andServidores = "";
+        $limit = "";
+        if(!empty($servidoresIds)){
+            $andServidores = " AND servidor.cod_servidor IN ({$servidoresIds}) ";
+        }else{
+            $limit = " limit 1 ";
+        }
 
         $sql = "
         
@@ -367,8 +365,8 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 TRUE AND curso_tres.id = servidor.codigo_curso_superior_3
             WHERE TRUE 
                 AND servidor.ref_cod_instituicao = {$instituicao}
-                AND servidor.cod_servidor IN ({$servidoresIds})
-        
+                $andServidores
+                $limit
         ";
 
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);
@@ -378,8 +376,8 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
      * Retorna os dados profissionais dos servidores.
      *
      * @param array $servidoresIds IDs dos servidores
-     * @param int $ano
-     * @param int $instituicao
+     * @param int   $ano
+     * @param int   $instituicao
      *
      * @return array
      *
@@ -387,11 +385,21 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
      */
     private function getServantDataProfessional($servidoresIds, $ano, $instituicao)
     {
+
         if (empty($servidoresIds)) {
             return [];
         }
 
         $servidoresIds = implode(', ', $servidoresIds);
+
+        $andServidores = "";
+        $limit = "";
+
+        if(!empty($servidoresIds)){
+            $andServidores = " AND servidor.cod_servidor IN ({$servidoresIds}) ";
+        }else{
+            $limit = " limit 1 ";
+        }
 
         $sql = "
         
@@ -447,11 +455,11 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 AND escola.ref_idpes = juridica.idpes
             WHERE TRUE 
                 AND servidor_alocacao.ano = {$ano}
-                AND servidor.ref_cod_instituicao = {$instituicao}
-                AND servidor.cod_servidor IN ({$servidoresIds})
+                AND servidor.ref_cod_instituicao = {$instituicao} 
+                $andServidores
                 AND servidor_alocacao.ativo = 1
                 AND fisica.ativo = 1
-        
+            $limit
         ";
 
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);
