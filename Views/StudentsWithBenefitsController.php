@@ -24,7 +24,7 @@ class StudentsWithBenefitsController extends Portabilis_Controller_ReportCoreCon
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Relatório de alunos que recebem benefícios', [
+        $this->breadcrumb('Relatório de alunos que recebem benefícioss', [
             'educar_index.php' => 'Escola',
         ]);
     }
@@ -40,6 +40,13 @@ class StudentsWithBenefitsController extends Portabilis_Controller_ReportCoreCon
         $this->inputsHelper()->dynamic('serie', ['required' => false]);
         $this->inputsHelper()->dynamic('turma', ['required' => false]);
         $this->inputsHelper()->dynamic('situacaoMatricula', ['required' => false]);
+
+        $resources = [
+            1 => 'Analítico',
+            2 => 'Quantitativo',
+        ];
+        $options = ['label' => 'Modelo', 'resources' => $resources, 'value' => 1];
+        $this->inputsHelper()->select('modelo', $options);
     }
 
     /**
@@ -54,6 +61,7 @@ class StudentsWithBenefitsController extends Portabilis_Controller_ReportCoreCon
         $this->report->addArg('serie', (int) $this->getRequest()->ref_cod_serie);
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
         $this->report->addArg('situacao', (int) $this->getRequest()->situacao_matricula_id);
+        $this->report->addArg('modelo', (int) $this->getRequest()->modelo);
     }
 
     /**

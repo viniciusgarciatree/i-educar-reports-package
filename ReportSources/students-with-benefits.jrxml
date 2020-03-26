@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_alunos_beneficios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ef87295-af95-4969-8128-8f3de74fb453">
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="students-with-benefits" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ef87295-af95-4969-8128-8f3de74fb453">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
@@ -34,6 +34,7 @@
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
+	<parameter name="modelo" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -75,6 +76,9 @@
 		<property name="com.jaspersoft.studio.field.label" value="situacao"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="view_situacao"/>
 	</field>
+	<field name="ano" class="java.lang.Integer"/>
+	<field name="idade" class="java.lang.Integer"/>
+	<field name="quantidade" class="java.lang.Integer"/>
 	<variable name="aluno_count" class="java.lang.Integer" calculation="DistinctCount">
 		<variableExpression><![CDATA[$F{cod_aluno}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
@@ -86,6 +90,7 @@
 		<groupExpression><![CDATA[$F{escola}]]></groupExpression>
 		<groupHeader>
 			<band height="14">
+				<printWhenExpression><![CDATA[$P{modelo}.equals( 1 )]]></printWhenExpression>
 				<textField>
 					<reportElement x="0" y="0" width="555" height="12" uuid="93279b8c-c96e-4333-a600-97f869cc979f">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -102,6 +107,7 @@
 		</groupHeader>
 		<groupFooter>
 			<band height="24">
+				<printWhenExpression><![CDATA[$P{modelo}.equals( 1 )]]></printWhenExpression>
 				<staticText>
 					<reportElement x="0" y="3" width="158" height="12" uuid="64b03b2f-b029-4e96-a530-1b6ae1e9a100"/>
 					<textElement>
@@ -123,6 +129,7 @@
 		<groupExpression><![CDATA[$F{cod_aluno}]]></groupExpression>
 		<groupHeader>
 			<band height="14">
+				<printWhenExpression><![CDATA[$P{modelo}.equals( 1 )]]></printWhenExpression>
 				<rectangle>
 					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="1" width="555" height="12" isPrintWhenDetailOverflows="true" forecolor="#F0F0F0" backcolor="#F0F0F0" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
 						<printWhenExpression><![CDATA[new Boolean(($V{aluno_count} % 2) == 1)]]></printWhenExpression>
@@ -198,7 +205,7 @@
 					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
-					<subreportParameterExpression><![CDATA["Alunos que recebem benefícios"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["" + ($P{modelo}.equals( 1 ) ? "Analítico de alunos que recebem benefícios " : "Quantitativo alunos que recebem benefícios por faixa etária")]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
@@ -223,71 +230,125 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="19" splitType="Stretch">
-			<line>
-				<reportElement x="0" y="17" width="555" height="1" uuid="42d040bb-1187-409e-9a6d-eb69c640262f"/>
-				<graphicElement>
-					<pen lineWidth="0.2"/>
-				</graphicElement>
-			</line>
-			<staticText>
-				<reportElement x="0" y="4" width="52" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Código]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="314" y="4" width="75" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Benefício(s)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="199" y="4" width="115" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Aluno]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="51" y="4" width="75" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Código INEP]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="125" y="4" width="75" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Código NIS]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="389" y="4" width="62" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Série]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="451" y="4" width="51" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Turma]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="502" y="4" width="51" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Situação]]></text>
-			</staticText>
+		<band height="20" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="1" width="555" height="19" uuid="a91941be-4687-42bb-a078-ce5bdaf6fccb">
+					<printWhenExpression><![CDATA[$P{modelo}.equals( 1 )]]></printWhenExpression>
+				</reportElement>
+				<line>
+					<reportElement x="0" y="17" width="555" height="1" uuid="42d040bb-1187-409e-9a6d-eb69c640262f"/>
+					<graphicElement>
+						<pen lineWidth="0.2"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="0" y="4" width="52" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Código]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="314" y="4" width="75" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Benefício(s)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="199" y="4" width="115" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Aluno]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="51" y="4" width="75" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Código INEP]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="125" y="4" width="75" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Código NIS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="389" y="4" width="62" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Série]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="451" y="4" width="51" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Turma]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="502" y="4" width="51" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Situação]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="0" y="1" width="555" height="19" uuid="7364802e-7131-4df1-8ee5-8a0cdbc72cd2">
+					<printWhenExpression><![CDATA[$P{modelo}.equals( 2 )]]></printWhenExpression>
+				</reportElement>
+				<line>
+					<reportElement x="0" y="17" width="555" height="1" uuid="3295553f-426a-47f3-aa33-61c84bf736ab"/>
+					<graphicElement>
+						<pen lineWidth="0.2"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="52" y="4" width="60" height="12" uuid="f8357a6b-ff2f-4361-b927-9f8d78c0a6cd"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Quanitdade]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="4" width="52" height="12" uuid="e20599e5-9f3e-4fed-bd68-88c17cc73647"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Idade]]></text>
+				</staticText>
+			</frame>
 		</band>
 	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{modelo}.equals( 2 )]]></printWhenExpression>
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="1" width="555" height="12" isPrintWhenDetailOverflows="true" forecolor="#F0F0F0" backcolor="#F0F0F0" uuid="bb67afbb-b376-4b1f-a8d2-c9fb97051172">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="52" height="12" uuid="e89419c0-5e3b-4958-9c95-c24c15107925"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="0" width="60" height="12" uuid="c35ee73f-6979-4e28-8027-a3716a88ffd0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
 	<pageFooter>
 		<band height="23">
 			<staticText>
@@ -328,6 +389,7 @@
 	</pageFooter>
 	<summary>
 		<band height="23">
+			<printWhenExpression><![CDATA[$P{modelo}.equals( 1 )]]></printWhenExpression>
 			<line>
 				<reportElement x="0" y="1" width="555" height="1" uuid="42d040bb-1187-409e-9a6d-eb69c640262f"/>
 				<graphicElement>
