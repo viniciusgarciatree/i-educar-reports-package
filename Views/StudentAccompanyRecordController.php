@@ -24,7 +24,7 @@ class StudentAccompanyRecordController extends Portabilis_Controller_ReportCoreC
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Emissão do histórico escolar', [
+        $this->breadcrumb('Ficha de acompanhamento individual do aluno', [
             'educar_index.php' => 'Escola',
         ]);
 
