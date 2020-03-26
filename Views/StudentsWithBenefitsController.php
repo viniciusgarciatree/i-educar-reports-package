@@ -24,7 +24,7 @@ class StudentsWithBenefitsController extends Portabilis_Controller_ReportCoreCon
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Relatório de alunos que recebem benefícioss', [
+        $this->breadcrumb('Relatório de alunos que recebem benefícios', [
             'educar_index.php' => 'Escola',
         ]);
     }
