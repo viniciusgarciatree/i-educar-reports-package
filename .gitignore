@@ -68,3 +68,4 @@ ieducar/tests/log
 /public/*
 .~lock.*
 composer.lock
+ieducar/intranet/*.log
