@@ -203,9 +203,7 @@
 				<textFieldExpression><![CDATA[$F{uf_nascimento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="254" y="33" width="147" height="10" uuid="97dca840-6113-4c57-b9cc-bc15402c13ff">
-					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 1]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="254" y="33" width="147" height="10" uuid="97dca840-6113-4c57-b9cc-bc15402c13ff"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>

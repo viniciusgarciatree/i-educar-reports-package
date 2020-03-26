@@ -68,7 +68,7 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $arrReport['falta_total'] = "" . ($arrReport['falta1'] + $arrReport['falta2'] + $arrReport['falta3'] + $arrReport['falta4']);
 
         /**
-         * Verificar onde estão estes dados de processo de formação 
+         * Verificar onde estão estes dados de processo de formação
          */
         $arrReport['data_notas']                 = $dataNotas;
         for($x=0;$x<5;$x++){
