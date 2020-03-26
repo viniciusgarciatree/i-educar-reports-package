@@ -313,7 +313,7 @@
 					<textElement textAlignment="Right">
 						<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Quanitdade]]></text>
+					<text><![CDATA[Quantidade]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="0" y="4" width="52" height="12" uuid="e20599e5-9f3e-4fed-bd68-88c17cc73647"/>
