@@ -280,7 +280,7 @@
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="10" y="168" width="30" height="26" uuid="5293d98d-4216-4427-a69f-5cbf5bc42d5f"/>
+				<reportElement x="8" y="168" width="32" height="26" uuid="5293d98d-4216-4427-a69f-5cbf5bc42d5f"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

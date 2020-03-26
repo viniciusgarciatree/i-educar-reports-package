@@ -67,57 +67,19 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $arrReport['falta_total'] = "";
         $arrReport['falta_total'] = "" . ($arrReport['falta1'] + $arrReport['falta2'] + $arrReport['falta3'] + $arrReport['falta4']);
 
+        /**
+         * Verificar onde estão estes dados de processo de formação 
+         */
         $arrReport['data_notas']                 = $dataNotas;
-        $arrReport['data_notas_diversificada'][] = array(
-            'curricular_nome' => "",
-            'nota1'           => "",
-            'nota2'           => "",
-            'nota3'           => "",
-            'nota4'           => "",
-        );
-        $arrReport['data_notas_diversificada'][] = array(
-            'curricular_nome' => "",
-            'nota1'           => "",
-            'nota2'           => "",
-            'nota3'           => "",
-            'nota4'           => "",
-        );
-
-        $arrReport['data_processo_formacao'][] = array(
-            'curricular_nome' => "Atividade e Valores Éticos",
-            'nota1'           => "",
-            'nota2'           => "",
-            'nota3'           => "",
-            'nota4'           => "",
-        );
-        $arrReport['data_processo_formacao'][] = array(
-            'curricular_nome' => "Compromissos/Assiduidade",
-            'nota1'           => "",
-            'nota2'           => "",
-            'nota3'           => "",
-            'nota4'           => "",
-        );
-        $arrReport['data_processo_formacao'][] = array(
-            'curricular_nome' => "Criatividade/Criticidade",
-            'nota1'           => "",
-            'nota2'           => "",
-            'nota3'           => "",
-            'nota4'           => "",
-        );
-        $arrReport['data_processo_formacao'][] = array(
-            'curricular_nome' => "Participação da Família",
-            'nota1'           => "",
-            'nota2'           => "",
-            'nota3'           => "",
-            'nota4'           => "",
-        );
-        $arrReport['data_processo_formacao'][] = array(
-            'curricular_nome' => "Faltas",
-            'nota1'           => "",
-            'nota2'           => "",
-            'nota3'           => "",
-            'nota4'           => "",
-        );
+        for($x=0;$x<5;$x++){
+            $arrReport['data_notas_diversificada'][] = array(
+                'curricular_nome' => "",
+                'nota1'           => "",
+                'nota2'           => "",
+                'nota3'           => "",
+                'nota4'           => "",
+            );
+        }
 
         $arrObs = array();
         for ($x = 0; $x < 30; $x++) {
