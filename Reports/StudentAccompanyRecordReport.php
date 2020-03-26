@@ -32,25 +32,24 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
      */
     public function getJsonData()
     {
-        $queryMainReport = $this->getSqlMainReport();
+        $queryMainReport   = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
         $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
-        $header = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
+        $header  = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
-
-        if(count($arrMain)==0){
+        if (count($arrMain) == 0) {
             return array();
         }
 
-        $dataNotas = array();
+        $dataNotas  = array();
         $dataFaltas = array('falta1' => 0, 'falta2' => 0, 'falta3' => 0, 'falta4' => 0);
         foreach ($arrMain as $index => $value) {
             $dataFaltas['falta1'] += $value['falta1'];
             $dataFaltas['falta2'] += $value['falta2'];
             $dataFaltas['falta3'] += $value['falta3'];
             $dataFaltas['falta4'] += $value['falta4'];
-            $dataNotas[] = array(
+            $dataNotas[]          = array(
                 'curricular_nome' => $value['curricular_nome'],
                 'nota1'           => $value['nota1'],
                 'nota2'           => $value['nota2'],
@@ -58,19 +57,31 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
                 'nota4'           => $value['nota4'],
             );
         }
-        $arrReport = array();
-        $arrReport = $arrMain[0];
-        $arrMain[] = $arrMain[0];
-        $arrReport['falta1'] = $dataFaltas['falta1'];
-        $arrReport['falta2'] = $dataFaltas['falta2'];
-        $arrReport['falta3'] = $dataFaltas['falta3'];
-        $arrReport['falta4'] = $dataFaltas['falta4'];
+        $arrReport                = array();
+        $arrReport                = $arrMain[0];
+        $arrMain[]                = $arrMain[0];
+        $arrReport['falta1']      = $dataFaltas['falta1'];
+        $arrReport['falta2']      = $dataFaltas['falta2'];
+        $arrReport['falta3']      = $dataFaltas['falta3'];
+        $arrReport['falta4']      = $dataFaltas['falta4'];
         $arrReport['falta_total'] = "";
         $arrReport['falta_total'] = "" . ($arrReport['falta1'] + $arrReport['falta2'] + $arrReport['falta3'] + $arrReport['falta4']);
 
-        $arrReport['data_notas'] = $dataNotas;
-        $arrReport['data_notas_diversificada'][] = $dataNotas[0];
-        $arrReport['data_notas_diversificada'][] = $dataNotas[1];
+        $arrReport['data_notas']                 = $dataNotas;
+        $arrReport['data_notas_diversificada'][] = array(
+            'curricular_nome' => "",
+            'nota1'           => "",
+            'nota2'           => "",
+            'nota3'           => "",
+            'nota4'           => "",
+        );
+        $arrReport['data_notas_diversificada'][] = array(
+            'curricular_nome' => "",
+            'nota1'           => "",
+            'nota2'           => "",
+            'nota3'           => "",
+            'nota4'           => "",
+        );
 
         $arrReport['data_processo_formacao'][] = array(
             'curricular_nome' => "Atividade e Valores Éticos",
@@ -108,15 +119,15 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
             'nota4'           => "",
         );
 
-        $arrObs  =array();
-        for($x =0 ; $x<30;$x++){
+        $arrObs = array();
+        for ($x = 0; $x < 30; $x++) {
             $arrObs[] = array("obs" => "");
         }
         $arrReport['data_obs'] = $arrObs;
-        $arrReport['cidade'] = $header[0]['cidade'] . "/" . $header[0]['uf'];
+        $arrReport['cidade']   = $header[0]['cidade'] . "/" . $header[0]['uf'];
 
         $return = [
-            'main' => $arrReport,
+            'main'   => $arrReport,
             'header' => $header,
         ];
 
@@ -132,13 +143,13 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
-        $escola = $this->args['escola'] ?: 0;
+        $escola      = $this->args['escola'] ?: 0;
         $instituicao = $this->args['instituicao'] ?: 0;
-        $aluno = $this->args['aluno'] ?: 0;
-        $curso = $this->args['curso'] ?: 0;
-        $serie = $this->args['serie'] ?: 0;
-        $turma = $this->args['turma'] ?: 0;
-        $ano = $this->args['ano'] ?: 0;
+        $aluno       = $this->args['aluno'] ?: 0;
+        $curso       = $this->args['curso'] ?: 0;
+        $serie       = $this->args['serie'] ?: 0;
+        $turma       = $this->args['turma'] ?: 0;
+        $ano         = $this->args['ano'] ?: 0;
 
         return "
         SELECT matricula.cod_matricula AS cod_matricula,
@@ -355,8 +366,8 @@ ORDER BY sequencial_fechamento,
     public function getSqlHeaderReport()
     {
         $instituicao = $this->args['instituicao'] ?: 0;
-        $escola = $this->args['escola'] ?: 0;
-        $notSchool = empty($this->args['escola']) ? 'true' : 'false';
+        $escola      = $this->args['escola'] ?: 0;
+        $notSchool   = empty($this->args['escola']) ? 'true' : 'false';
 
         $sql = "
 
