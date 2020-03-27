@@ -43,8 +43,8 @@ class StudentsWithBenefitsController extends Portabilis_Controller_ReportCoreCon
 
         $resources = [
             0 => 'Todos',
-            1 => 'Bolsa Família',
-            2 => 'Vulnerabilidade',
+            1 => 'Vulnerabilidade',
+            2 => 'Bolsa Família',
         ];
         $options = ['label' => 'Tipo do benefício', 'resources' => $resources, 'value' => 0,'required' => false];
         $this->inputsHelper()->select('tipoBeneficio', $options);
