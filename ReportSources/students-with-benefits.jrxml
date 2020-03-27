@@ -207,7 +207,7 @@
 					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
-					<subreportParameterExpression><![CDATA["" + ($P{modelo}.equals( 1 ) ? "Analítico de alunos que recebem benefícios " : "Quantitativo alunos que recebem benefícios por faixa etária")]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[($P{modelo}.equals( 1 ) ? "Analítico de alunos que recebem benefícios" : "Quantitativo alunos que recebem benefícios por faixa etária") + "" + ($P{codigo_nis}.equals( 1 ) ? " com somente código NIS" : "")]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
