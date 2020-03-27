@@ -42,6 +42,16 @@ class StudentsWithBenefitsController extends Portabilis_Controller_ReportCoreCon
         $this->inputsHelper()->dynamic('situacaoMatricula', ['required' => false]);
 
         $resources = [
+            0 => 'Todos',
+            1 => 'Bolsa Família',
+            2 => 'Vulnerabilidade',
+        ];
+        $options = ['label' => 'Tipo do benefício', 'resources' => $resources, 'value' => 0,'required' => false];
+        $this->inputsHelper()->select('tipoBeneficio', $options);
+
+        $this->inputsHelper()->checkbox('codigo_nis', ['label' => 'Somente Código NIS?']);
+
+        $resources = [
             1 => 'Analítico',
             2 => 'Quantitativo',
         ];
@@ -62,6 +72,8 @@ class StudentsWithBenefitsController extends Portabilis_Controller_ReportCoreCon
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
         $this->report->addArg('situacao', (int) $this->getRequest()->situacao_matricula_id);
         $this->report->addArg('modelo', (int) $this->getRequest()->modelo);
+        $this->report->addArg('beneficio', (int) $this->getRequest()->tipoBeneficio);
+        $this->report->addArg('codigo_nis', $this->getRequest()->codigo_nis ? 1 : 0);
     }
 
     /**

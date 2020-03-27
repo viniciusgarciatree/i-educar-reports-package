@@ -68,16 +68,17 @@ class StudentsWithBenefitsReport extends Portabilis_Report_ReportCore
         $serie = $this->args['serie'];
         $turma = $this->args['turma'];
         $modelo = $this->args['modelo'];
-
+        $beneficio = $this->args['beneficio'];
+        $codigo_nis = (int)$this->args['codigo_nis'];
 
         // Quantitaivo
         if($modelo == 2){
             self::setTemplateName('students-with-benefits-quantitative');
-            return "
+            $return = "
 select 
-quantidade::integer,ano::integer,(to_char(now(),'YYYY'))::integer - ano::integer as idade  
+quantidade::integer,ano::integer,(to_char(now(),'YYYY'))::integer - ano::integer as idade,nm_beneficio 
 from (
-SELECT count(*) as quantidade,to_char(fisica.data_nasc,'YYYY') AS ano
+SELECT count(*) as quantidade,to_char(fisica.data_nasc,'YYYY') AS ano,nm_beneficio
   FROM pmieducar.matricula
   LEFT OUTER JOIN pmieducar.aluno ON (matricula.ref_cod_aluno = aluno.cod_aluno)
   LEFT OUTER JOIN cadastro.fisica ON (aluno.ref_idpes = fisica.idpes)
@@ -99,14 +100,22 @@ AND view_situacao.cod_turma = turma.cod_turma
    AND matricula.ativo = 1
    AND aluno.ativo = 1
    AND matricula.ano = {$ano}
-   AND nm_beneficio IS NOT NULL 
+   AND (CASE 
+        WHEN {$beneficio} = 0 THEN nm_beneficio IS NOT NULL 
+        ELSE aluno_beneficio_id = {$beneficio} 
+    END)
+    AND (CASE 
+        WHEN $codigo_nis = 1 THEN fisica.nis_pis_pasep IS NOT NULL 
+        ELSE TRUE
+    END)
    AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE escola.cod_escola = {$escola} END)
    AND (CASE WHEN {$curso} = 0 THEN TRUE ELSE curso.cod_curso = {$curso} END)
    AND (CASE WHEN {$serie} = 0 THEN TRUE ELSE serie.cod_serie = {$serie} END)
    AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE turma.cod_turma = {$turma} END)
- GROUP BY to_char(fisica.data_nasc,'YYYY')
-) as t ORDER BY ano desc
+ GROUP BY to_char(fisica.data_nasc,'YYYY'),nm_beneficio
+) as t ORDER BY ano desc,nm_beneficio
         ";
+            return $return;
         }
 
         $return = "
@@ -143,7 +152,14 @@ SELECT pe.nome as escola,
    AND matricula.ativo = 1
    AND aluno.ativo = 1
    AND matricula.ano = {$ano}
-   AND nm_beneficio IS NOT NULL 
+   AND (CASE 
+        WHEN {$beneficio} = 0 THEN nm_beneficio IS NOT NULL 
+        ELSE aluno_beneficio_id = {$beneficio} 
+    END) 
+    AND (CASE 
+        WHEN $codigo_nis = 1 THEN fisica.nis_pis_pasep IS NOT NULL 
+        ELSE TRUE
+    END) 
    AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE escola.cod_escola = {$escola} END)
    AND (CASE WHEN {$curso} = 0 THEN TRUE ELSE curso.cod_curso = {$curso} END)
    AND (CASE WHEN {$serie} = 0 THEN TRUE ELSE serie.cod_serie = {$serie} END)
@@ -151,7 +167,6 @@ SELECT pe.nome as escola,
  GROUP BY pe.nome, cod_aluno, aluno, nm_serie, nm_turma, fisica.nis_pis_pasep, texto_situacao
  ORDER BY pe.nome, relatorio.get_texto_sem_caracter_especial(pessoa.nome), nm_beneficio
         ";
-
         return $return;
     }
 }

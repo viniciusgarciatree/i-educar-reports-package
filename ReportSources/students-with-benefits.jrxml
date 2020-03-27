@@ -35,6 +35,8 @@
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
 	<parameter name="modelo" class="java.lang.Integer"/>
+	<parameter name="beneficio" class="java.lang.Integer"/>
+	<parameter name="codigo_nis" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -322,30 +324,44 @@
 					</textElement>
 					<text><![CDATA[Idade]]></text>
 				</staticText>
+				<staticText>
+					<reportElement x="120" y="4" width="75" height="12" uuid="f7f0bae0-efca-4095-b8ba-ba7243e5ab38"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Benefício(s)]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="13" splitType="Stretch">
+		<band height="14" splitType="Stretch">
 			<printWhenExpression><![CDATA[$P{modelo}.equals( 2 )]]></printWhenExpression>
 			<rectangle>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="1" width="555" height="12" isPrintWhenDetailOverflows="true" forecolor="#F0F0F0" backcolor="#F0F0F0" uuid="bb67afbb-b376-4b1f-a8d2-c9fb97051172">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="14" isPrintWhenDetailOverflows="true" forecolor="#F0F0F0" backcolor="#F0F0F0" uuid="bb67afbb-b376-4b1f-a8d2-c9fb97051172">
 					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
 			<textField>
-				<reportElement x="0" y="0" width="52" height="12" uuid="e89419c0-5e3b-4958-9c95-c24c15107925"/>
+				<reportElement x="0" y="1" width="52" height="12" uuid="e89419c0-5e3b-4958-9c95-c24c15107925"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{idade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="52" y="0" width="60" height="12" uuid="c35ee73f-6979-4e28-8027-a3716a88ffd0"/>
+				<reportElement x="52" y="1" width="60" height="12" uuid="c35ee73f-6979-4e28-8027-a3716a88ffd0"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="120" y="1" width="75" height="12" uuid="75bbb331-ad65-4f91-85d7-274e0aaa0674"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_beneficio}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
