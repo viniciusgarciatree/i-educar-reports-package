@@ -100,7 +100,7 @@ class ForgotPasswordController extends Controller
                 $response = "Erro ao enviar o e-mail!";
             }
         }catch(\Exception $e){
-            $response = "Falha em enviar e-mail!";
+            $response = "Falha em enviar e-mail! " . $e->getMessage();
         }
         return $response == Password::RESET_LINK_SENT
             ? $this->sendResetLinkResponse($request, $response)
