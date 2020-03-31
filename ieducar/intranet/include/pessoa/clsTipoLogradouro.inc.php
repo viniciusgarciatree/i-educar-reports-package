@@ -122,6 +122,10 @@ class clsTipoLogradouro
      */
     public function detalhe()
     {
+        if(empty($this->idtlog)){
+            return false;
+        }
+
         $db = new clsBanco();
         $db->Consulta("SELECT idtlog, descricao FROM {$this->schema}.{$this->tabela} WHERE idtlog = '{$this->idtlog}' ");
         if ($db->ProximoRegistro()) {
