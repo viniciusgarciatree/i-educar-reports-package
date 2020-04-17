@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use PHPMailer\PHPMailer\PHPMailer;
+use Illuminate\Support\Facades\Lang;
 
 class ForgotPasswordController extends Controller
 {
@@ -23,6 +27,13 @@ class ForgotPasswordController extends Controller
     use SendsPasswordResetEmails;
 
     /**
+     * The password token repository.
+     *
+     * @var \Illuminate\Auth\Passwords\TokenRepositoryInterface
+     */
+    protected $tokens;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -30,6 +41,7 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->tokens = TokenRepositoryInterface::class;
     }
 
     /**
@@ -40,14 +52,56 @@ class ForgotPasswordController extends Controller
      */
     public function sendResetLinkEmail(Request $request)
     {
-        try{
-            $response = $this->broker()->sendResetLink(
-                $request->only('login')
-            );
-        }catch (\Exception $e){
-            dd($e);
+        $credentials = $request->only('login');
+        $user = $this->broker()->getUser($credentials);
+
+        if (is_null($user)) {
+            return static::INVALID_USER;
         }
 
+        $file = getcwd() . '/../resources/twig/forgot-password.twig';
+        $contaConteudo = "";
+        if(file_exists($file)){
+            $contaConteudo = file_get_contents($file);
+        }
+
+        $tituloApp = 'i - Educar';
+        if (config('legacy.app.title')) {
+            $tituloApp = config('legacy.app.title');
+        }
+
+        $token = $this->broker()->createToken($user);
+
+        $urlReset = url(config('app.url').route('password.reset', ['token' => $token, 'email' => $user->getEmailForPasswordReset()], false));
+
+        $contaConteudo = str_replace("{{ usuario }}",$user->getNameAttribute(),$contaConteudo);
+        $contaConteudo = str_replace("{{ tituloApp }}",$tituloApp,$contaConteudo);
+        $contaConteudo = str_replace("{{ redefinir }}",$urlReset,$contaConteudo);
+
+        $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+        $response = "";
+        try{
+            $mail->isSMTP();
+            $mail->CharSet = 'utf-8';
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = config('mail.encryption');
+            $mail->Host = config('mail.host');
+            $mail->Port = config('mail.port');
+            $mail->Username = config('mail.username');
+            $mail->Password = config('mail.password');
+            $mail->setFrom(config('mail.from.address'), config('mail.from.name'));
+            $mail->Subject = Lang::getFromJson('Reset Password Notification');
+            $mail->MsgHTML($contaConteudo);
+            $mail->addAddress($user->getEmailAttribute() , $user->getNameAttribute());
+            $mail->send();
+            if($mail){
+                $response = Password::RESET_LINK_SENT;
+            }else{
+                $response = "Erro ao enviar o e-mail!";
+            }
+        }catch(\Exception $e){
+            $response = "Falha em enviar e-mail! " . $e->getMessage();
+        }
         return $response == Password::RESET_LINK_SENT
             ? $this->sendResetLinkResponse($request, $response)
             : $this->sendResetLinkFailedResponse($request, $response);
