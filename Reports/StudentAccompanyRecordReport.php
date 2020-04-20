@@ -42,14 +42,20 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
             return array();
         }
 
+        $tipoBase = ComponenteCurricular_Model_TipoBase::getInstance();
+        $tipos = $tipoBase->getKeys();
+
         $dataNotas  = array();
         $dataFaltas = array('falta1' => 0, 'falta2' => 0, 'falta3' => 0, 'falta4' => 0);
         foreach ($arrMain as $index => $value) {
+            $tipoId = (int)$value['tipo_base'];
             $dataFaltas['falta1'] += $value['falta1'];
             $dataFaltas['falta2'] += $value['falta2'];
             $dataFaltas['falta3'] += $value['falta3'];
             $dataFaltas['falta4'] += $value['falta4'];
             $dataNotas[]          = array(
+                'tipo'            => $tipoBase[$tipoId],
+                'tipo_id'         => $tipoId,                
                 'curricular_nome' => $value['curricular_nome'],
                 'nota1'           => $value['nota1'],
                 'nota2'           => $value['nota2'],
@@ -92,7 +98,6 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
             'main'   => $arrReport,
             'header' => $header,
         ];
-
         return $return;
     }
 
@@ -265,7 +270,8 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
 			ELSE ''
 		END as clico,
 		substring(serie.nm_serie::text, 1, 1) as serie,
-		serie.dias_letivos:: float,'999' AS dias_letivos	
+        serie.dias_letivos:: float,'999' AS dias_letivos,
+        modules.componente_curricular.tipo_base	
  FROM pmieducar.instituicao
 INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
 INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola)
@@ -313,8 +319,8 @@ WHERE instituicao.cod_instituicao = {$instituicao}
 ORDER BY sequencial_fechamento,
          nome_aluno,
          cod_aluno,
-         componente_order,
-         curricular_nome
+         modules.componente_curricular.tipo_base,
+         modules.componente_curricular.ordenamento
         ";
     }
 
