@@ -221,7 +221,7 @@
 					<textElement verticalAlignment="Bottom">
 						<font fontName="DejaVu Sans" size="7"/>
 					</textElement>
-					<text><![CDATA[RG COMPLETO]]></text>
+					<text><![CDATA[RG]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="433" y="29" width="60" height="10" uuid="c73d49f9-766b-44fa-a8ca-353041a6ae46"/>
