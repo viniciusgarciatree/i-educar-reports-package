@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teacher-report-card" language="groovy" printOrder="Horizontal" pageWidth="842" pageHeight="595" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bee45616-9f88-4ff8-8f5d-640c268ac7e3">
 	<property name="ireport.zoom" value="1.3310000000000115"/>
 	<property name="ireport.x" value="0"/>
@@ -62,7 +62,9 @@
 					<crosstabParameter name="data_manual" class="java.lang.Boolean">
 						<parameterValueExpression><![CDATA[$P{data_manual}]]></parameterValueExpression>
 					</crosstabParameter>
-					<crosstabDataset isDataPreSorted="true"/>
+					<crosstabDataset isDataPreSorted="true">
+						<dataset resetType="Report"/>
+					</crosstabDataset>
 					<crosstabHeaderCell>
 						<cellContents>
 							<box>
@@ -364,7 +366,7 @@
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans" size="8" isBold="false"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media})))]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{media}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
 								<reportElement style="Crosstab Data Text" x="0" y="0" width="39" height="14" uuid="136f4f4f-ca4b-467d-9384-043f183414d9"/>
@@ -437,7 +439,9 @@
 					<crosstabParameter name="data_manual" class="java.lang.Boolean">
 						<parameterValueExpression><![CDATA[$P{data_manual}]]></parameterValueExpression>
 					</crosstabParameter>
-					<crosstabDataset isDataPreSorted="true"/>
+					<crosstabDataset isDataPreSorted="true">
+						<dataset resetType="Report"/>
+					</crosstabDataset>
 					<crosstabHeaderCell>
 						<cellContents>
 							<box>
@@ -739,7 +743,7 @@
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans" size="8" isBold="false"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}.matches("[-+]?\\d+(\\.\\d+)?") ? ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media}))) : $V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{media}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
 								<reportElement style="Crosstab Data Text" x="0" y="0" width="39" height="14" uuid="136f4f4f-ca4b-467d-9384-043f183414d9"/>
@@ -812,7 +816,9 @@
 					<crosstabParameter name="data_manual" class="java.lang.Boolean">
 						<parameterValueExpression><![CDATA[$P{data_manual}]]></parameterValueExpression>
 					</crosstabParameter>
-					<crosstabDataset isDataPreSorted="true"/>
+					<crosstabDataset isDataPreSorted="true">
+						<dataset resetType="Report"/>
+					</crosstabDataset>
 					<crosstabHeaderCell>
 						<cellContents>
 							<box>
@@ -1114,7 +1120,7 @@
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans" size="8" isBold="false"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}.matches("[-+]?\\d+(\\.\\d+)?") ? ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media}))) : $V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{media}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
 								<reportElement style="Crosstab Data Text" x="0" y="0" width="39" height="14" uuid="136f4f4f-ca4b-467d-9384-043f183414d9"/>
@@ -1187,7 +1193,9 @@
 					<crosstabParameter name="data_manual" class="java.lang.Boolean">
 						<parameterValueExpression><![CDATA[$P{data_manual}]]></parameterValueExpression>
 					</crosstabParameter>
-					<crosstabDataset isDataPreSorted="true"/>
+					<crosstabDataset isDataPreSorted="true">
+						<dataset resetType="Report"/>
+					</crosstabDataset>
 					<crosstabHeaderCell>
 						<cellContents>
 							<box>
@@ -1489,7 +1497,7 @@
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans" size="8" isBold="false"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}.matches("[-+]?\\d+(\\.\\d+)?") ? ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media}))) : $V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{media}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
 								<reportElement style="Crosstab Data Text" x="0" y="0" width="39" height="14" uuid="136f4f4f-ca4b-467d-9384-043f183414d9"/>
