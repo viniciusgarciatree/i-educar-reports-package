@@ -565,7 +565,7 @@ class ProcessamentoApiController extends Core_Controller_Page_EditController
                     $historicoEscolar->cadastra();
                     $this->recreateHistoricoDisciplinas($sequencial, $alunoId, $dadosMatricula['turma_id']);
 
-                    $this->appendMsg('Histórico processado com sucesso sim', 'success');
+                    $this->appendMsg('Histórico processado com sucesso', 'success');
                 } else {
                     $sequencial = $this->getSequencial($alunoId, $ano, $matriculaId);
 
@@ -605,7 +605,7 @@ class ProcessamentoApiController extends Core_Controller_Page_EditController
 
                     $historicoEscolar->edita();
                     $this->recreateHistoricoDisciplinas($sequencial, $alunoId, $dadosMatricula['turma_id']);
-                    $this->appendMsg('Histórico reprocessado com sucesso não', 'success');
+                    $this->appendMsg('Histórico reprocessado com sucesso', 'success');
                 }
             } catch (Exception $e) {
                 $this->appendMsg('Erro ao processar histórico, detalhes:' . $e->getMessage(), 'error', true);
