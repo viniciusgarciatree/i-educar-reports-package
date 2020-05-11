@@ -104,19 +104,18 @@ class StudentsByDataReport extends Portabilis_Report_ReportCore
             LEFT JOIN pmieducar.turma_turno ON TRUE  AND turma_turno.id = turma.turma_turno_id AND turma.cod_turma = matricula_turma.ref_cod_turma
             INNER JOIN pmieducar.aluno ON TRUE  AND pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
             INNER JOIN cadastro.fisica ON TRUE  AND cadastro.fisica.idpes = pmieducar.aluno.ref_idpes
-            INNER JOIN cadastro.pessoa ON TRUE  AND cadastro.pessoa.idpes = cadastro.fisica.idpes
+            LEFT JOIN cadastro.pessoa ON TRUE  AND cadastro.pessoa.idpes = cadastro.fisica.idpes
             LEFT JOIN cadastro.juridica ON TRUE  AND juridica.idpes = escola.ref_idpes
             LEFT JOIN cadastro.documento ON TRUE  AND documento.idpes = fisica.idpes
             LEFT JOIN modules.educacenso_cod_aluno ON TRUE  AND educacenso_cod_aluno.cod_aluno = aluno.cod_aluno
-            inner join cadastro.fisica f ON f.idpes = aluno.ref_idpes
-            left join cadastro.v_endereco endpes ON endpes.idpes = aluno.ref_idpes
-            left join cadastro.v_endereco endpes_mae ON endpes_mae.idpes = f.idpes_mae
-            left join cadastro.v_endereco endpes_pai ON endpes_pai.idpes = f.idpes_pai
-            left join cadastro.v_fone_pessoa AS fone_mae ON fone_mae.idpes = f.idpes_mae
-            left join cadastro.v_fone_pessoa AS fone_pai ON fone_pai.idpes = f.idpes_pai
-            WHERE matricula.aprovado = 3
-              AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE {$escola} = escola.cod_escola END)
+            LEFT JOIN cadastro.v_endereco endpes ON endpes.idpes = aluno.ref_idpes
+            LEFT JOIN cadastro.v_endereco endpes_mae ON endpes_mae.idpes = fisica.idpes_mae
+            LEFT JOIN cadastro.v_endereco endpes_pai ON endpes_pai.idpes = fisica.idpes_pai
+            LEFT JOIN cadastro.v_fone_pessoa AS fone_mae ON fone_mae.idpes = fisica.idpes_mae
+            LEFT JOIN cadastro.v_fone_pessoa AS fone_pai ON fone_pai.idpes = fisica.idpes_pai
+            WHERE (CASE WHEN {$escola} = 0 THEN TRUE ELSE {$escola} = escola.cod_escola END)
               AND (CASE WHEN {$aluno} = 0 THEN TRUE ELSE {$aluno} = aluno.cod_aluno END)
+              AND (CASE WHEN {$ano} = 0 THEN TRUE ELSE {$ano} = escola_ano_letivo.ano END)
               AND (CASE WHEN {$curso} = 0 THEN TRUE ELSE {$curso} = curso.cod_curso END)
               AND (CASE WHEN {$serie} = 0 THEN TRUE ELSE {$serie} = serie.cod_serie END)
               AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE {$turma} = turma.cod_turma END)
