@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teacher-report-card" language="groovy" pageWidth="842" pageHeight="620" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bee45616-9f88-4ff8-8f5d-640c268ac7e3">
+	<style name="linha-zebrado" hTextAlign="Center" hImageAlign="Center">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style mode="Transparent" backcolor="#C78685"/>
+		</conditionalStyle>
+	</style>
 	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
@@ -57,13 +63,44 @@
 	<field name="periodo" class="java.lang.String"/>
 	<field name="id_disciplina" class="java.lang.Integer"/>
 	<field name="nome_disciplina" class="java.lang.String"/>
+	<field name="cod_matricula" class="java.lang.String"/>
+	<field name="nome_aluno" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="dep" class="java.lang.Boolean"/>
+	<field name="frequencia" class="java.lang.String"/>
+	<field name="sequencial" class="java.lang.Integer"/>
+	<field name="media" class="java.lang.String"/>
+	<field name="falta" class="java.lang.String"/>
+	<field name="nota_exame" class="java.lang.String"/>
+	<field name="situacao" class="java.lang.String"/>
+	<field name="nota_etapa_1" class="java.lang.String"/>
+	<field name="nota_etapa_2" class="java.lang.String"/>
+	<field name="nota_etapa_3" class="java.lang.String"/>
+	<field name="nota_etapa_4" class="java.lang.String"/>
+	<field name="falta_1" class="java.lang.String"/>
+	<field name="falta_2" class="java.lang.String"/>
+	<field name="falta_3" class="java.lang.String"/>
+	<field name="falta_4" class="java.lang.String"/>
+	<field name="bimestral_1" class="java.lang.String"/>
+	<field name="bimestral_2" class="java.lang.String"/>
+	<field name="bimestral_3" class="java.lang.String"/>
+	<field name="bimestral_4" class="java.lang.String"/>
+	<variable name="qtd_aluno" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{cod_matricula}]]></variableExpression>
+	</variable>
 	<group name="turma">
 		<groupExpression><![CDATA[$F{nm_turma}]]></groupExpression>
+		<groupFooter>
+			<band height="20" splitType="Stretch">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupFooter>
 	</group>
 	<group name="disciplina" isStartNewPage="true" isReprintHeaderOnEachPage="true" keepTogether="true">
 		<groupExpression><![CDATA[$F{nome_disciplina}+$F{cod_turma}]]></groupExpression>
 		<groupHeader>
-			<band height="79" splitType="Stretch">
+			<band height="60" splitType="Stretch">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<rectangle>
 					<reportElement x="58" y="1" width="685" height="33" uuid="7524dbca-a091-42d6-ba06-3ff5118eb34e"/>
 					<graphicElement>
@@ -161,32 +198,6 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$P{servidor} == "" ? $P{professor} : $P{servidor}]]></textFieldExpression>
 				</textField>
-				<subreport>
-					<reportElement x="58" y="34" width="685" height="45" uuid="d7dcf01a-84c5-43be-b85e-1df46083827d"/>
-					<subreportParameter name="SUBREPORT_DIR"/>
-					<subreportParameter name="turma">
-						<subreportParameterExpression><![CDATA[$F{cod_turma}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="componente_curricular">
-						<subreportParameterExpression><![CDATA[$F{id_disciplina}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="linha">
-						<subreportParameterExpression><![CDATA[$P{linha}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="data_manual">
-						<subreportParameterExpression><![CDATA[$P{data_manual}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="ano">
-						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="situacao">
-						<subreportParameterExpression><![CDATA[$P{situacao}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="source">
-						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "teacher-report-card-crosstab.jasper"]]></subreportExpression>
-				</subreport>
 				<textField isBlankWhenNull="true">
 					<reportElement x="116" y="19" width="165" height="13" uuid="9f75a813-12b3-467e-91a0-da8be38969e2"/>
 					<textElement>
@@ -194,10 +205,109 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="58" y="34" width="165" height="26" uuid="cd10d17e-e33f-4aa7-b0df-857f5a4353b9">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2691d3b-314e-42b2-9490-bbf3f5aa36bb"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Aluno]]></text>
+				</staticText>
+				<subreport>
+					<reportElement x="223" y="34" width="520" height="26" uuid="3e0a2fe6-3ea4-45e4-9957-6443e50efb89">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="situacao">
+						<subreportParameterExpression><![CDATA[$F{situacao} ? $F{situacao} : ""]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="sequencial">
+						<subreportParameterExpression><![CDATA[$F{sequencial}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "teacher-report-card-bimistre-header.jasper"]]></subreportExpression>
+				</subreport>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band/>
+			<band height="20" splitType="Stretch">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="692" y="5" width="51" height="13" uuid="e873cec3-ff69-471c-8350-5517b100523b">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="59" y="5" width="82" height="13" uuid="7d16a89a-abb4-4de2-b73d-dd671ef84e00">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2691d3b-314e-42b2-9490-bbf3f5aa36bb"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total de Alunos:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="141" y="5" width="100" height="13" uuid="3aff2773-9657-4e73-9b3c-b05268ca1fd4">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{qtd_aluno}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="610" y="5" width="82" height="13" uuid="3de4d9d2-ae3b-4dee-bbf4-fcc7de7bd9d5">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2691d3b-314e-42b2-9490-bbf3f5aa36bb"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data:]]></text>
+				</staticText>
+			</band>
 		</groupFooter>
 	</group>
 	<background>
@@ -236,7 +346,82 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band splitType="Stretch"/>
+		<band height="13" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement mode="Opaque" x="58" y="0" width="165" height="13" forecolor="#F0F0F0" backcolor="#F0F0F0" uuid="a7d3d3d4-dfc0-4b07-b844-de85c72f9821">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[!new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<subreport>
+				<reportElement x="223" y="0" width="520" height="13" uuid="ba2f4a81-8008-4180-8c2d-cce2149226bb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="situacao">
+					<subreportParameterExpression><![CDATA[$F{situacao} ? $F{situacao} : ""]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sequencial">
+					<subreportParameterExpression><![CDATA[$F{sequencial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nota_etapa_1">
+					<subreportParameterExpression><![CDATA[$F{nota_etapa_1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nota_etapa_2">
+					<subreportParameterExpression><![CDATA[$F{nota_etapa_2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nota_etapa_3">
+					<subreportParameterExpression><![CDATA[$F{nota_etapa_3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nota_etapa_4">
+					<subreportParameterExpression><![CDATA[$F{nota_etapa_4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="falta_1">
+					<subreportParameterExpression><![CDATA[$F{falta_1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="falta_2">
+					<subreportParameterExpression><![CDATA[$F{falta_2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="falta_3">
+					<subreportParameterExpression><![CDATA[$F{falta_3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="falta_4">
+					<subreportParameterExpression><![CDATA[$F{falta_4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nota_exame">
+					<subreportParameterExpression><![CDATA[$F{nota_exame}?$F{nota_exame}:""]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="media">
+					<subreportParameterExpression><![CDATA[$F{media}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="frequencia">
+					<subreportParameterExpression><![CDATA[$F{frequencia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="zebrado">
+					<subreportParameterExpression><![CDATA[!new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "teacher-report-card-bimistre.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement style="linha-zebrado" x="58" y="0" width="165" height="13" uuid="e0d65d57-8261-4eee-9cba-af82c019dc3d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2691d3b-314e-42b2-9490-bbf3f5aa36bb"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_aluno}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<lastPageFooter>
 		<band height="30">
