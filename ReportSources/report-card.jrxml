@@ -687,7 +687,7 @@
 		<groupFooter>
 			<band height="14">
 				<printWhenExpression><![CDATA[!$P{observacoes}.trim().equals("")]]></printWhenExpression>
-				<textField textAdjust="StretchHeight">
+				<textField>
 					<reportElement x="0" y="-1" width="555" height="15" uuid="6a41299f-4150-4f3c-a891-e411e507c361"/>
 					<box>
 						<leftPen lineWidth="0.25"/>
