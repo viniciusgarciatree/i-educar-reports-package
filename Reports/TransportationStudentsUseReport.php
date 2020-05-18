@@ -60,12 +60,18 @@ class TransportationStudentsUseReport extends Portabilis_Report_ReportCore
         ELSE 1
           END
           AS usa_transporte_sim,
-		  CASE
-			WHEN ta.responsavel = 1  THEN 'Estado'
-			WHEN ta.responsavel = 2  THEN 'Municipal'
-			ELSE 'Outros'
-		  END
-		  AS tipo
+regexp_replace(trim(CONCAT(CASE WHEN ARRAY[1] <@ al.veiculo_transporte_escolar THEN 'Vans/Kombis' ELSE '' END,'  ',
+CASE WHEN ARRAY[2] <@ al.veiculo_transporte_escolar THEN 'Microônibus' ELSE '' END,'  ',
+CASE WHEN ARRAY[3] <@ al.veiculo_transporte_escolar THEN 'Ônibus' ELSE '' END,'  ',
+CASE WHEN ARRAY[2] <@ al.veiculo_transporte_escolar THEN 'Bicicleta' ELSE '' END,'  ',
+CASE WHEN ARRAY[5] <@ al.veiculo_transporte_escolar THEN 'Tração animal' ELSE '' END,'  ',
+CASE WHEN ARRAY[6] <@ al.veiculo_transporte_escolar THEN 'Outro' ELSE '' END,'  ',
+CASE WHEN ARRAY[7] <@ al.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade de até 5 alunos' ELSE '' END,'  ',
+CASE WHEN ARRAY[8] <@ al.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade entre 5 a 15 alunos' ELSE '' END,'  ',
+CASE WHEN ARRAY[9] <@ al.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade entre 15 a 35 alunos' ELSE '' END,'  ',
+CASE WHEN ARRAY[10] <@ al.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade acima de 35 alunos' ELSE '' END,'  ',
+CASE WHEN ARRAY[11] <@ al.veiculo_transporte_escolar THEN 'Ferroviário - Trem/Metrô' ELSE '' END))
+	   ,'(  ){2,}', ' - ', 'g') AS tipo
         FROM pmieducar.matricula a
 left outer join pmieducar.serie b on b.cod_serie = a.ref_ref_cod_serie
 left outer join pmieducar.matricula_turma j on j.ref_cod_matricula = a.cod_matricula
@@ -76,6 +82,7 @@ left outer join pmieducar.turma_turno g on g.id = c.turma_turno_id
 left outer join pmieducar.aluno al on al.cod_aluno = a.ref_cod_aluno
 left outer join cadastro.pessoa pa on al.ref_idpes = pa.idpes
 left outer join modules.transporte_aluno ta on ta.aluno_id = al.cod_aluno
+left outer join modules.pessoa_transporte pt on pt.ref_idpes = pa.idpes
 WHERE  a.ativo = 1 AND a.ano = {$ano} AND e.ref_cod_instituicao = {$instituicao}
         AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE a.ref_ref_cod_escola = {$escola} END)
         AND (CASE WHEN {$curso} = 0 THEN TRUE ELSE a.ref_cod_curso = {$curso} END)

@@ -1,451 +1,453 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="transportation-students-use" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7af52acc-d9d8-4452-93bd-8aeb6f58bafb">
-    <property name="ireport.zoom" value="1.2100000000000009"/>
-    <property name="ireport.x" value="0"/>
-    <property name="ireport.y" value="0"/>
-    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
-    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-    <style name="Crosstab_CH" mode="Opaque" backcolor="#F0F8FF">
-        <box>
-            <pen lineWidth="0.5" lineColor="#000000"/>
-            <topPen lineWidth="0.5" lineColor="#000000"/>
-            <leftPen lineWidth="0.5" lineColor="#000000"/>
-            <bottomPen lineWidth="0.5" lineColor="#000000"/>
-            <rightPen lineWidth="0.5" lineColor="#000000"/>
-        </box>
-    </style>
-    <style name="Crosstab_CG" mode="Opaque" backcolor="#FFFFFF">
-        <box>
-            <pen lineWidth="0.5" lineColor="#000000"/>
-            <topPen lineWidth="0.5" lineColor="#000000"/>
-            <leftPen lineWidth="0.5" lineColor="#000000"/>
-            <bottomPen lineWidth="0.5" lineColor="#000000"/>
-            <rightPen lineWidth="0.5" lineColor="#000000"/>
-        </box>
-    </style>
-    <style name="Crosstab_CT" mode="Opaque" backcolor="#FFFFFF">
-        <box>
-            <pen lineWidth="0.5" lineColor="#000000"/>
-            <topPen lineWidth="0.5" lineColor="#000000"/>
-            <leftPen lineWidth="0.5" lineColor="#000000"/>
-            <bottomPen lineWidth="0.5" lineColor="#000000"/>
-            <rightPen lineWidth="0.5" lineColor="#000000"/>
-        </box>
-    </style>
-    <style name="Crosstab_CD" mode="Opaque" backcolor="#FFFFFF">
-        <box>
-            <pen lineWidth="0.5" lineColor="#000000"/>
-            <topPen lineWidth="0.5" lineColor="#000000"/>
-            <leftPen lineWidth="0.5" lineColor="#000000"/>
-            <bottomPen lineWidth="0.5" lineColor="#000000"/>
-            <rightPen lineWidth="0.5" lineColor="#000000"/>
-        </box>
-    </style>
-    <parameter name="ano" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="instituicao" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="escola" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="curso" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="serie" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="turma" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="data_inicial" class="java.lang.String">
-        <parameterDescription><![CDATA[]]></parameterDescription>
-        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
-    </parameter>
-    <parameter name="data_final" class="java.lang.String">
-        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
-    </parameter>
-    <parameter name="logo1" class="java.lang.String"/>
-    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
-    </parameter>
-    <parameter name="data_emissao" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
-    </parameter>
-    <parameter name="etapa" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
-    </parameter>
-    <parameter name="situacao" class="java.lang.String"/>
-    <parameter name="database" class="java.lang.String"/>
-    <parameter name="source" class="java.lang.String"/>
-    <parameter name="separar" class="java.lang.String">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="turno" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="rota" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-    </parameter>
-    <parameter name="logo2" class="java.lang.String"/>
-    <queryString>
-        <![CDATA[]]>
-    </queryString>
-    <field name="escola" class="java.lang.String">
-        <property name="com.jaspersoft.studio.field.label" value="escola"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
-    </field>
-    <field name="nome" class="java.lang.String">
-        <property name="com.jaspersoft.studio.field.label" value="nome"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
-    </field>
-    <field name="usa_transporte_nao" class="java.lang.Integer"/>
-    <field name="usa_transporte_sim" class="java.lang.Integer"/>
-    <field name="usa_transporte" class="java.lang.String">
-        <property name="com.jaspersoft.studio.field.label" value="nm_serie"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="serie"/>
-    </field>
-    <field name="tipo" class="java.lang.String">
-        <property name="com.jaspersoft.studio.field.label" value="nm_turma"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="turma"/>
-    </field>
-    <variable name="total" class="java.lang.Integer" calculation="Count">
-        <variableExpression><![CDATA[$F{escola}]]></variableExpression>
-    </variable>
-    <variable name="usa_transporte_sim1" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
-        <variableExpression><![CDATA[$F{usa_transporte_sim}]]></variableExpression>
-    </variable>
-    <variable name="usa_transporte_nao1" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
-        <variableExpression><![CDATA[$F{usa_transporte_nao}]]></variableExpression>
-    </variable>
-    <variable name="total_usa_nao" class="java.lang.Integer" calculation="Sum">
-        <variableExpression><![CDATA[$F{usa_transporte_nao}]]></variableExpression>
-    </variable>
-    <variable name="total_usa_sim" class="java.lang.Integer" calculation="Sum">
-        <variableExpression><![CDATA[$F{usa_transporte_sim}]]></variableExpression>
-    </variable>
-    <group name="escola">
-        <groupExpression><![CDATA[$F{escola}]]></groupExpression>
-        <groupHeader>
-            <band height="13">
-                <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                <line>
-                    <reportElement x="0" y="1" width="554" height="1" uuid="c2414f81-a10d-4f4c-a417-992b77c337b6">
-                        <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
-                    </reportElement>
-                    <graphicElement>
-                        <pen lineWidth="0.25"/>
-                    </graphicElement>
-                </line>
-                <line>
-                    <reportElement x="0" y="0" width="554" height="1" uuid="2ff6712e-5a36-418f-99b3-5f435d0f67bb">
-                        <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                    </reportElement>
-                    <graphicElement>
-                        <pen lineWidth="0.25"/>
-                    </graphicElement>
-                </line>
-                <staticText>
-                    <reportElement x="0" y="1" width="170" height="11" uuid="0a0e32a7-47d4-4993-9c59-7bb3d7297ce8">
-                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
-                    </reportElement>
-                    <textElement verticalAlignment="Bottom">
-                        <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                        <paragraph leftIndent="2"/>
-                    </textElement>
-                    <text><![CDATA[Aluno(a)]]></text>
-                </staticText>
-                <staticText>
-                    <reportElement x="170" y="1" width="199" height="11" uuid="73319b40-b201-4eb2-a5bb-531dcf3ce717">
-                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
-                    </reportElement>
-                    <textElement verticalAlignment="Bottom">
-                        <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                        <paragraph leftIndent="2"/>
-                    </textElement>
-                    <text><![CDATA[Escola]]></text>
-                </staticText>
-                <staticText>
-                    <reportElement x="369" y="1" width="70" height="11" uuid="42ccb6bc-0a4d-4b86-8aac-9d8ffb767083">
-                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
-                    </reportElement>
-                    <textElement verticalAlignment="Bottom">
-                        <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                        <paragraph leftIndent="2"/>
-                    </textElement>
-                    <text><![CDATA[Usa Sim/Não]]></text>
-                </staticText>
-                <staticText>
-                    <reportElement x="439" y="1" width="115" height="11" uuid="a4b4856d-b100-4f2a-9dbc-e1ccd6772b11">
-                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
-                    </reportElement>
-                    <textElement verticalAlignment="Bottom">
-                        <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                        <paragraph leftIndent="2"/>
-                    </textElement>
-                    <text><![CDATA[Tipo]]></text>
-                </staticText>
-            </band>
-        </groupHeader>
-        <groupFooter>
-            <band height="14">
-                <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                <staticText>
-                    <reportElement x="434" y="1" width="100" height="12" uuid="d44f8942-e5c3-4d1f-a513-9fa9097391a8"/>
-                    <textElement textAlignment="Right" verticalAlignment="Middle">
-                        <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                        <paragraph rightIndent="2"/>
-                    </textElement>
-                    <text><![CDATA[Total escola:]]></text>
-                </staticText>
-                <textField>
-                    <reportElement x="534" y="1" width="20" height="12" uuid="838f5465-8a0a-4b5a-bcf3-3e6f958ecb40"/>
-                    <textElement textAlignment="Right" verticalAlignment="Middle">
-                        <font fontName="DejaVu Sans" size="8"/>
-                        <paragraph rightIndent="2"/>
-                    </textElement>
-                    <textFieldExpression><![CDATA[$V{escola_COUNT}]]></textFieldExpression>
-                </textField>
-                <line>
-                    <reportElement x="0" y="0" width="554" height="1" uuid="9fbfc8fe-a70a-46ed-afea-7a1091018de8">
-                        <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                    </reportElement>
-                    <graphicElement>
-                        <pen lineWidth="0.25"/>
-                    </graphicElement>
-                </line>
-                <staticText>
-                    <reportElement x="310" y="1" width="100" height="12" uuid="291ddb8e-96a7-457c-8c5b-7cae89b8cae5"/>
-                    <textElement textAlignment="Right" verticalAlignment="Middle">
-                        <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                        <paragraph rightIndent="2"/>
-                    </textElement>
-                    <text><![CDATA[Não usa transporte:]]></text>
-                </staticText>
-                <staticText>
-                    <reportElement x="190" y="1" width="100" height="12" uuid="41cdd1b9-a61f-466b-bf36-fb94a8eab885"/>
-                    <textElement textAlignment="Right" verticalAlignment="Middle">
-                        <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                        <paragraph rightIndent="2"/>
-                    </textElement>
-                    <text><![CDATA[Usa transporte:]]></text>
-                </staticText>
-                <textField>
-                    <reportElement x="290" y="1" width="20" height="12" uuid="1e554fd2-68b8-46af-963f-68c3052cef37">
-                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                        <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                    </reportElement>
-                    <textElement verticalAlignment="Middle">
-                        <font fontName="DejaVu Sans" size="8"/>
-                    </textElement>
-                    <textFieldExpression><![CDATA[$V{usa_transporte_sim1}]]></textFieldExpression>
-                </textField>
-                <textField>
-                    <reportElement x="410" y="1" width="20" height="12" uuid="c9303633-1b21-435d-98e0-bffe110391f9">
-                        <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    </reportElement>
-                    <textElement verticalAlignment="Middle">
-                        <font fontName="DejaVu Sans" size="8"/>
-                    </textElement>
-                    <textFieldExpression><![CDATA[$V{usa_transporte_nao1}]]></textFieldExpression>
-                </textField>
-            </band>
-        </groupFooter>
-    </group>
-    <group name="GroupTransporte">
-        <groupExpression><![CDATA[$F{escola}+$F{usa_transporte}]]></groupExpression>
-        <groupHeader>
-            <band>
-                <property name="com.jaspersoft.studio.unit.height" value="px"/>
-            </band>
-        </groupHeader>
-        <groupFooter>
-            <band>
-                <property name="com.jaspersoft.studio.unit.height" value="px"/>
-            </band>
-        </groupFooter>
-    </group>
-    <title>
-        <band height="80" splitType="Stretch">
-            <property name="com.jaspersoft.studio.unit.height" value="px"/>
-            <subreport>
-                <reportElement x="0" y="0" width="554" height="80" uuid="dad7af0b-5528-4932-a3a2-39a69d5ef6f8">
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                </reportElement>
-                <subreportParameter name="logo1">
-                    <subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
-                </subreportParameter>
-                <subreportParameter name="titulo">
-                    <subreportParameterExpression><![CDATA["Relação de alunos usam (Sim/Não) transporte escolar"]]></subreportParameterExpression>
-                </subreportParameter>
-                <subreportParameter name="cod_instituicao">
-                    <subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
-                </subreportParameter>
-                <subreportParameter name="cod_escola">
-                    <subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
-                </subreportParameter>
-                <subreportParameter name="ano">
-                    <subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
-                </subreportParameter>
-                <subreportParameter name="data_emissao">
-                    <subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
-                </subreportParameter>
-                <subreportParameter name="source">
-                    <subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-                </subreportParameter>
-                <subreportParameter name="logo2">
-                    <subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
-                </subreportParameter>
-                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
-            </subreport>
-        </band>
-    </title>
-    <detail>
-        <band height="12">
-            <rectangle>
-                <reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="12" isPrintWhenDetailOverflows="true" forecolor="#FFFFFF" backcolor="#CBCBCB" uuid="b9c6e7bb-e7f2-4f17-b6f0-4bea2b61a6aa">
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                    <printWhenExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0]]></printWhenExpression>
-                </reportElement>
-            </rectangle>
-            <textField>
-                <reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="170" height="12" isPrintWhenDetailOverflows="true" uuid="fb428752-70b5-49ca-aa3a-7cf5bb15dc1f"/>
-                <textElement verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8"/>
-                    <paragraph leftIndent="2"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
-            </textField>
-            <textField isBlankWhenNull="true">
-                <reportElement stretchType="RelativeToTallestObject" x="170" y="0" width="199" height="12" isPrintWhenDetailOverflows="true" uuid="c5e5310b-723a-43c8-9add-b98ae44eba58"/>
-                <textElement verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8"/>
-                    <paragraph leftIndent="2"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
-            </textField>
-            <textField isBlankWhenNull="true">
-                <reportElement stretchType="RelativeToTallestObject" x="440" y="0" width="114" height="12" isPrintWhenDetailOverflows="true" uuid="d3f2b53f-1b27-41eb-812d-3858e24eee25"/>
-                <textElement verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8"/>
-                    <paragraph leftIndent="2"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
-            </textField>
-            <textField isBlankWhenNull="true">
-                <reportElement stretchType="RelativeToTallestObject" x="369" y="-1" width="70" height="12" isPrintWhenDetailOverflows="true" uuid="0b428fc8-4949-4c3f-88d0-1b33538765fb"/>
-                <textElement verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8"/>
-                    <paragraph leftIndent="2"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$F{usa_transporte}]]></textFieldExpression>
-            </textField>
-        </band>
-    </detail>
-    <pageFooter>
-        <band height="23">
-            <property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-            <staticText>
-                <reportElement x="2" y="12" width="55" height="11" uuid="f79ae65b-6aac-4728-ad7a-f69f130ea0d7"/>
-                <textElement>
-                    <font fontName="DejaVu Sans" size="7" isBold="true"/>
-                </textElement>
-                <text><![CDATA[Data e hora:]]></text>
-            </staticText>
-            <textField>
-                <reportElement x="447" y="12" width="92" height="11" uuid="f2bc9c1d-b5fe-4764-bf9a-058ca056eaa4"/>
-                <textElement textAlignment="Right" markup="html">
-                    <font fontName="DejaVu Sans" size="7" isBold="false"/>
-                </textElement>
-                <textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
-            </textField>
-            <textField evaluationTime="Report">
-                <reportElement x="539" y="12" width="13" height="11" uuid="eb8b49aa-ef73-4dbf-a960-3fa5f20089e8"/>
-                <textElement>
-                    <font fontName="DejaVu Sans" size="7"/>
-                </textElement>
-                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="57" y="12" width="100" height="11" uuid="799c4fbc-0390-43a8-89da-f27fcd477f8c"/>
-                <textElement>
-                    <font fontName="DejaVu Sans" size="7"/>
-                </textElement>
-                <textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
-            </textField>
-            <line>
-                <reportElement x="0" y="10" width="554" height="1" uuid="274ebde8-2315-4805-a8ad-822f7db0f517">
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                </reportElement>
-                <graphicElement>
-                    <pen lineWidth="0.5"/>
-                </graphicElement>
-            </line>
-        </band>
-    </pageFooter>
-    <summary>
-        <band height="14">
-            <property name="com.jaspersoft.studio.unit.height" value="px"/>
-            <staticText>
-                <reportElement x="434" y="1" width="100" height="12" uuid="0aeebc89-7021-4818-a854-cb4d6ebbb376"/>
-                <textElement textAlignment="Right" verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                    <paragraph rightIndent="2"/>
-                </textElement>
-                <text><![CDATA[Total alunos:]]></text>
-            </staticText>
-            <textField>
-                <reportElement x="534" y="1" width="20" height="12" uuid="8c777a66-423b-4792-ae37-8f7d83243a7f"/>
-                <textElement textAlignment="Right" verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8"/>
-                    <paragraph rightIndent="2"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="410" y="1" width="30" height="12" uuid="0cff7e66-e0ab-4500-a5a8-4371674b37d5">
-                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
-                </reportElement>
-                <textElement verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$V{total_usa_nao}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="290" y="1" width="30" height="12" uuid="a9102673-2c93-45d5-97f2-03a7688aa478">
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
-                </reportElement>
-                <textElement verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$V{total_usa_sim}]]></textFieldExpression>
-            </textField>
-            <staticText>
-                <reportElement x="190" y="1" width="100" height="12" uuid="6da2f3ae-d02b-4867-88c9-096bf9052322"/>
-                <textElement textAlignment="Right" verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                    <paragraph rightIndent="2"/>
-                </textElement>
-                <text><![CDATA[Total usa transporte:]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="310" y="1" width="100" height="12" uuid="e258e7c0-f7b8-4785-a004-4e08f3757d01"/>
-                <textElement textAlignment="Right" verticalAlignment="Middle">
-                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
-                    <paragraph rightIndent="2"/>
-                </textElement>
-                <text><![CDATA[Total não usa transporte:]]></text>
-            </staticText>
-        </band>
-    </summary>
+	<property name="ireport.zoom" value="1.2100000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Crosstab_CH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CG" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CT" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="serie" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turma" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_inicial" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_final" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="etapa" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="situacao" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="separar" class="java.lang.String">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turno" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rota" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="escola" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="escola"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="usa_transporte_nao" class="java.lang.Integer"/>
+	<field name="usa_transporte_sim" class="java.lang.Integer"/>
+	<field name="usa_transporte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_serie"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="serie"/>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_turma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="turma"/>
+	</field>
+	<variable name="total" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{escola}]]></variableExpression>
+	</variable>
+	<variable name="usa_transporte_sim1" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
+		<variableExpression><![CDATA[$F{usa_transporte_sim}]]></variableExpression>
+	</variable>
+	<variable name="usa_transporte_nao1" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
+		<variableExpression><![CDATA[$F{usa_transporte_nao}]]></variableExpression>
+	</variable>
+	<variable name="total_usa_nao" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{usa_transporte_nao}]]></variableExpression>
+	</variable>
+	<variable name="total_usa_sim" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{usa_transporte_sim}]]></variableExpression>
+	</variable>
+	<group name="escola">
+		<groupExpression><![CDATA[$F{escola}]]></groupExpression>
+		<groupHeader>
+			<band height="13">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<line>
+					<reportElement x="0" y="1" width="554" height="1" uuid="c2414f81-a10d-4f4c-a417-992b77c337b6">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="554" height="1" uuid="2ff6712e-5a36-418f-99b3-5f435d0f67bb">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="0" y="1" width="170" height="11" uuid="0a0e32a7-47d4-4993-9c59-7bb3d7297ce8">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<text><![CDATA[Aluno(a)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="170" y="1" width="199" height="11" uuid="73319b40-b201-4eb2-a5bb-531dcf3ce717">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<text><![CDATA[Escola]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="358" y="1" width="41" height="11" uuid="42ccb6bc-0a4d-4b86-8aac-9d8ffb767083">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<text><![CDATA[Sim/Não]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="400" y="1" width="154" height="11" uuid="a4b4856d-b100-4f2a-9dbc-e1ccd6772b11">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<text><![CDATA[Tipo]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<staticText>
+					<reportElement x="434" y="1" width="100" height="12" uuid="d44f8942-e5c3-4d1f-a513-9fa9097391a8"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<text><![CDATA[Total escola:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="534" y="1" width="20" height="12" uuid="838f5465-8a0a-4b5a-bcf3-3e6f958ecb40"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{escola_COUNT}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="554" height="1" uuid="9fbfc8fe-a70a-46ed-afea-7a1091018de8">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="310" y="1" width="100" height="12" uuid="291ddb8e-96a7-457c-8c5b-7cae89b8cae5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<text><![CDATA[Não usa transporte:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="190" y="1" width="100" height="12" uuid="41cdd1b9-a61f-466b-bf36-fb94a8eab885"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<text><![CDATA[Usa transporte:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="290" y="1" width="20" height="12" uuid="1e554fd2-68b8-46af-963f-68c3052cef37">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{usa_transporte_sim1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="410" y="1" width="20" height="12" uuid="c9303633-1b21-435d-98e0-bffe110391f9">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{usa_transporte_nao1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="GroupTransporte">
+		<groupExpression><![CDATA[$F{escola}+$F{usa_transporte}]]></groupExpression>
+		<groupHeader>
+			<band>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="80" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport>
+				<reportElement x="0" y="0" width="554" height="80" uuid="dad7af0b-5528-4932-a3a2-39a69d5ef6f8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Relação de alunos usam (Sim/Não) transporte escolar"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<detail>
+		<band height="12">
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="12" isPrintWhenDetailOverflows="true" forecolor="#FFFFFF" backcolor="#CBCBCB" uuid="b9c6e7bb-e7f2-4f17-b6f0-4bea2b61a6aa">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="170" height="12" isPrintWhenDetailOverflows="true" uuid="fb428752-70b5-49ca-aa3a-7cf5bb15dc1f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="170" y="0" width="199" height="12" isPrintWhenDetailOverflows="true" uuid="c5e5310b-723a-43c8-9add-b98ae44eba58"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escola}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="400" y="0" width="154" height="12" isPrintWhenDetailOverflows="true" uuid="d3f2b53f-1b27-41eb-812d-3858e24eee25"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="369" y="-1" width="30" height="12" isPrintWhenDetailOverflows="true" uuid="0b428fc8-4949-4c3f-88d0-1b33538765fb">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usa_transporte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="2" y="12" width="55" height="11" uuid="f79ae65b-6aac-4728-ad7a-f69f130ea0d7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e hora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="447" y="12" width="92" height="11" uuid="f2bc9c1d-b5fe-4764-bf9a-058ca056eaa4"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="539" y="12" width="13" height="11" uuid="eb8b49aa-ef73-4dbf-a960-3fa5f20089e8"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="12" width="100" height="11" uuid="799c4fbc-0390-43a8-89da-f27fcd477f8c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="10" width="554" height="1" uuid="274ebde8-2315-4805-a8ad-822f7db0f517">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="14">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="434" y="1" width="100" height="12" uuid="0aeebc89-7021-4818-a854-cb4d6ebbb376"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[Total alunos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="534" y="1" width="20" height="12" uuid="8c777a66-423b-4792-ae37-8f7d83243a7f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="1" width="30" height="12" uuid="0cff7e66-e0ab-4500-a5a8-4371674b37d5">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_usa_nao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="1" width="30" height="12" uuid="a9102673-2c93-45d5-97f2-03a7688aa478">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_usa_sim}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="1" width="100" height="12" uuid="6da2f3ae-d02b-4867-88c9-096bf9052322"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[Total usa transporte:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="1" width="100" height="12" uuid="e258e7c0-f7b8-4785-a004-4e08f3757d01"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<text><![CDATA[Total não usa transporte:]]></text>
+			</staticText>
+		</band>
+	</summary>
 </jasperReport>
