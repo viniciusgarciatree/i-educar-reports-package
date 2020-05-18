@@ -281,7 +281,7 @@
 					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
-					<subreportParameterExpression><![CDATA["Relação de alunos usuários do transporte escolar"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["Relação de alunos usam (Sim/Não) transporte escolar"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
