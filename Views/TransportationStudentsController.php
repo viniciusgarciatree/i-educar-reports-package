@@ -72,9 +72,7 @@ class TransportationStudentsController extends Portabilis_Controller_ReportCoreC
         $this->report->addArg('curso', (int) $this->getRequest()->ref_cod_curso);
         $this->report->addArg('serie', (int) $this->getRequest()->ref_cod_serie);
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
-        $this->report->addArg('modelo', (int) $this->getRequest()->rota);
         $this->report->addArg('rota', (int) $this->getRequest()->rota);
-        $this->report->addArg('transporte', (int) $this->getRequest()->rota);
     }
 
     /**
