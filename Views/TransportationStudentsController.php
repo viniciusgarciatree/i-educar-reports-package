@@ -52,6 +52,26 @@ class TransportationStudentsController extends Portabilis_Controller_ReportCoreC
             $rota_resources["{$reg['cod_rota_transporte_escolar']}"] = "{$reg['descricao']} - {$reg['ano']}";
         }
 
+        $this->inputsHelper()->select('modelo', [
+            'label' => 'Modelo',
+            'resources' => [
+                1 => 'Por Rotas',
+                2 => 'Por Transporte',
+            ],
+            'value' => 1
+        ]);
+
+        $this->inputsHelper()->select('transporte', [
+            'label' => 'Usa transporte',
+            'resources' => [
+                1 => 'Selecione se usa transporte',
+                2 => 'Sim',
+                3 => 'Não',
+                4 => 'Ambos',
+            ],
+            'value' => 1
+        ]);
+
         // Rota
         $options = [
             'label' => 'Rota',
@@ -72,7 +92,9 @@ class TransportationStudentsController extends Portabilis_Controller_ReportCoreC
         $this->report->addArg('curso', (int) $this->getRequest()->ref_cod_curso);
         $this->report->addArg('serie', (int) $this->getRequest()->ref_cod_serie);
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
+        $this->report->addArg('modelo', (int) $this->getRequest()->rota);
         $this->report->addArg('rota', (int) $this->getRequest()->rota);
+        $this->report->addArg('transporte', (int) $this->getRequest()->rota);
     }
 
     /**
