@@ -22,6 +22,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
      */
     public function requiredArgs()
     {
+        $stop = "";
         $this->addRequiredArg('instituicao');
         $this->addRequiredArg('escola');
         $this->addRequiredArg('modelo');
@@ -40,7 +41,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
         $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'] ?: 0;
         $aluno = $this->args['aluno'] ?: 0;
 
-        return "
+        $returno = "
         SELECT vhsa.cod_aluno,
        vhsa.disciplina AS nm_disciplina,
        pessoa.nome AS nome_aluno,
@@ -49,6 +50,18 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
        municipio.sigla_uf AS uf_nascimento,
        municipio.nome AS cidade_nascimento,
        to_char(fisica.data_nasc,'DD/MM/YYYY') AS data_nasc,
+       public.data_para_extenso(fisica.data_nasc) as data_nascimento_extenso,
+       CASE
+            WHEN fisica.nacionalidade = 1 THEN 'Brasileira'
+            WHEN fisica.nacionalidade = 2 THEN 'Naturalizado Brasileiro'
+            ELSE 'Estrangeiro'
+       END as nacionalidade,
+       CASE
+            WHEN fisica.sexo = 'M' THEN 'Masculino'
+       ELSE 'Feminino'
+       END as sexo,
+       COALESCE((SELECT documento.rg from cadastro.documento where documento.idpes = fisica.idpes),'') as identidade,
+       COALESCE((SELECT CONCAT(COALESCE(rg.sigla,''),'/',COALESCE(doc.sigla_uf_exp_rg),'')  FROM cadastro.documento  doc left join cadastro.orgao_emissor_rg as rg ON rg.idorg_rg = doc.idorg_exp_rg WHERE doc.idpes = fisica.idpes AND doc.rg is not null),'') AS orgao_emissor,
        relatorio.get_pai_aluno(vhsa.cod_aluno) AS nome_do_pai,
        relatorio.get_mae_aluno(vhsa.cod_aluno) AS nome_da_mae,
        vhsa.carga_horaria_disciplina1 AS chd1,
@@ -201,7 +214,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
        (SELECT DISTINCT '' || (replace(textcat_all((' ')),' <br> ','<br>'))
 		  FROM generate_series(1,(SELECT ROUND((250 - (COUNT(DISTINCT trim(relatorio.get_texto_sem_caracter_especial(nm_disciplina))) * 12)) / 12)
-		                            FROM historico_disciplinas hd
+		                            FROM pmieducar.historico_disciplinas hd
 		                           INNER JOIN pmieducar.historico_escolar he ON (he.ref_cod_aluno = hd.ref_ref_cod_aluno
 		                                                                         AND hd.ref_sequencial = he.sequencial)
 		                           WHERE ref_ref_cod_aluno = vhsa.cod_aluno)::INTEGER)) AS espaco_branco,
@@ -219,7 +232,29 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
                  WHERE phe.ref_cod_aluno = vhsa.cod_aluno
                    AND phe.ativo = 1
                    AND (CASE WHEN {$nao_emitir_reprovado} THEN phe.aprovado <> 2 ELSE 1=1 END)
-                 ORDER BY phe.ano)tabl) AS observacao_all
+                 ORDER BY phe.ano)tabl) AS observacao_all,
+       (SELECT CASE
+	   		WHEN substring(nm_serie::text, 1, 1) = '1'
+				OR substring(nm_serie::text, 1, 1) = '2'
+				OR substring(nm_serie::text, 1, 1) = '3'
+				THEN 'alfabetizacao'
+			WHEN substring(nm_serie::text, 1, 1) = '4'
+				OR substring(nm_serie::text, 1, 1) = '5'
+				THEN 'complementar'
+			ELSE ''
+		     END as clico
+         FROM pmieducar.historico_escolar he
+        WHERE
+         he.ref_cod_aluno = vhsa.cod_aluno AND  he.ativo = 1 AND he.historico_grade_curso_id = 2
+        ORDER BY he.ano DESC LIMIT 1) as ciclo,
+       (
+SELECT CASE WHEN isnumeric(\"substring\"(nm_serie::text, 1, 1)) THEN concat(substring(nm_serie::text, 1, 1),'º') ELSE '' END
+         FROM pmieducar.historico_escolar he
+        WHERE
+         he.ref_cod_aluno = vhsa.cod_aluno
+		AND  he.ativo = 1 AND he.historico_grade_curso_id = 2
+        ORDER BY he.ano DESC LIMIT 1
+	   ) as ano_conclusao
   FROM relatorio.view_historico_series_anos vhsa
  INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = vhsa.cod_aluno)
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)
@@ -228,5 +263,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
   LEFT JOIN public.municipio ON (municipio.idmun = fisica.idmun_nascimento)
  WHERE vhsa.cod_aluno = {$aluno}
         ";
+        // dd($returno);
+        return $returno;
     }
 }

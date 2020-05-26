@@ -44,10 +44,6 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 
         $this->inputsHelper()->checkbox('lote', ['label' => 'Emitir em lote?']);
 
-        $resources = [
-            3 => 'Série/Anos',
-        ];
-
         $this->inputsHelper()->checkbox('emitir_historico_dependencia', [
             'label' => 'Emitir histórico de dependências?'
         ]);
@@ -75,6 +71,11 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
         }
 
         $this->inputsHelper()->checkbox('emitir_carga_horaria_frequentada', ['label' => 'Emitir Carga horária frequentada']);
+
+        $resources = [
+            1 => 'Histórico escolar',
+            2 => 'Certificado de conclusão',
+        ];
 
         if ($modelo_visivel) {
             $options = ['label' => 'Modelo', 'resources' => $resources, 'value' => 1];
