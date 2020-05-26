@@ -1413,7 +1413,7 @@
 					</textElement>
 					<text><![CDATA[Obs.:]]></text>
 				</staticText>
-				<textField textAdjust="StretchHeight">
+				<textField>
 					<reportElement x="469" y="-1" width="81" height="12" uuid="532d09dc-69ce-40fb-bab5-364a92255f0f"/>
 					<textElement markup="html"/>
 					<textFieldExpression><![CDATA[$F{espaco_branco}]]></textFieldExpression>
@@ -1557,7 +1557,7 @@
 					</textElement>
 					<text><![CDATA[DISCIPLINA]]></text>
 				</staticText>
-				<textField textAdjust="StretchHeight">
+				<textField>
 					<reportElement positionType="Float" x="10" y="33" width="533" height="34" uuid="76d4f30f-c664-4da6-a2b6-d77dd7af368c"/>
 					<textElement textAlignment="Justified" markup="html">
 						<font fontName="DejaVu Sans" size="8"/>
@@ -1781,7 +1781,7 @@ $P{cabecalho_alternativo} != 1]]></printWhenExpression>
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</rectangle>
-				<textField textAdjust="StretchHeight">
+				<textField>
 					<reportElement positionType="Float" x="10" y="33" width="533" height="48" uuid="76d4f30f-c664-4da6-a2b6-d77dd7af368c">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -2045,7 +2045,7 @@ $P{cabecalho_alternativo} != 1]]></printWhenExpression>
 					</textElement>
 					<textFieldExpression><![CDATA[($P{cabecalho_alternativo} == 2) ? "CERTIFICADO DE CONCLUSÃO DO ENSINO FUNDAMENTAL" : "CERTIFICADO DE CONCLUSÃO " + (($F{nome_curso} == "") ? "DO ENSINO FUNDAMENTAL - ANOS INICIAIS" : $F{nome_curso} )]]></textFieldExpression>
 				</textField>
-				<textField textAdjust="StretchHeight">
+				<textField>
 					<reportElement positionType="Float" x="10" y="21" width="533" height="50" uuid="748b08df-fe95-427a-82f8-602705d3c25d">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
