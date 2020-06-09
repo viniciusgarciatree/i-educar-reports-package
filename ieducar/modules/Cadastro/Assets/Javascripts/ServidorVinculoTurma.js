@@ -154,7 +154,7 @@ $j(document).ready(function() {
       $turnoField.closest('tr').show();
     } else {
       $turnoField.closest('tr').hide();
-      $turnoField.val('');
+      $turnoField.val(turno_id);
     }
   };
 

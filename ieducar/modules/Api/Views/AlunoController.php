@@ -1434,7 +1434,7 @@ class AlunoController extends ApiCoreController
                 $matriculas[$index]['codigo_situacao'] = $matricula['situacao'];
                 $matriculas[$index]['user_can_access'] = Portabilis_Utils_User::canAccessEscola($matricula['escola_id']);
                 $matriculas[$index]['user_can_change_date'] = $this->loadAcessoDataEntradaSaida();
-                $matriculas[$index]['user_can_change_situacao'] = $this->isUsuarioAdmin();
+                $matriculas[$index]['user_can_change_situacao'] = Portabilis_Utils_User::hasNivelAcesso('POLI_INSTITUCIONAL');
                 $matriculas[$index]['transferencia_em_aberto'] = $this->possuiTransferenciaEmAberto($matricula['id']);
             }
 

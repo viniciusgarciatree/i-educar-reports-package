@@ -17,6 +17,7 @@ class Portabilis_Report_ReportFactoryPHPJasper extends Portabilis_Report_ReportF
     {
         $this->settings['db'] = $config->app->database;
         $this->settings['logo_file_name'] = $config->report->logo_file_name;
+        $this->settings['logo2_file_name'] = $config->report->logo2_file_name;
     }
 
     /**
@@ -54,6 +55,30 @@ class Portabilis_Report_ReportFactoryPHPJasper extends Portabilis_Report_ReportF
     }
 
     /**
+     * Retorna o arquivo da logo utilizada nos relatórios.
+     *
+     * @return string
+     *
+     * @throws CoreExt_Exception
+     * @throws Exception
+     */
+    public function logo2Path()
+    {
+        if (!$this->settings['logo2_file_name']) {
+            throw new Exception('No report.logo_file_name defined in configurations!');
+        }
+
+        $rootPath = dirname(dirname(dirname(dirname(__FILE__))));
+        $filePath = $rootPath . "/modules/Reports/ReportLogos/{$this->settings['logo2_file_name']}";
+
+        if (!file_exists($filePath)) {
+            throw new CoreExt_Exception("Report logo '{$this->settings['logo2_file_name']}' not found in path '$filePath'");
+        }
+
+        return $filePath;
+    }
+
+    /**
      * Renderiza o relatório.
      *
      * @param Portabilis_Report_ReportCore $report
@@ -66,11 +91,14 @@ class Portabilis_Report_ReportFactoryPHPJasper extends Portabilis_Report_ReportF
     public function dumps($report, $options = [])
     {
         $options = self::mergeOptions($options, [
-            'add_logo_arg' => true
+            'add_logo_arg' => isset($report->args['add_logo_arg']) ? $report->args['add_logo_arg'] : true
         ]);
 
+        unset($report->args['add_logo_arg']);
+
         if ($options['add_logo_arg']) {
-            $report->addArg('logo', $this->logoPath());
+            $report->addArg('logo1', $this->logoPath());
+            $report->addArg('logo2', $this->logo2Path());
         }
 
         $dataFile = $this->getReportsPath() . time() . '-' . mt_rand();

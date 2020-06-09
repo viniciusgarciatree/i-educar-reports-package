@@ -211,9 +211,13 @@ class Menu extends Model
      */
     public static function user(User $user)
     {
+        /**
+         * Desabilitado em 2020-04-06 Usuário admin estão tendo acesso as menus que estão com active false.
+         * */
         if ($user->isAdmin()) {
             return static::roots();
         }
+
 
         $ids = $user->menu()->pluck('id')->sortBy('id')->toArray();
 
