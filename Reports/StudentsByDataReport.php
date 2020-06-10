@@ -46,7 +46,12 @@ class StudentsByDataReport extends Portabilis_Report_ReportCore
            SELECT  aluno.cod_aluno AS cod_aluno,
 		        fcn_upper(pessoa.nome) AS nome_aluno,
 		        to_char(fisica.data_nasc,'dd/mm/yyyy') AS data_nasc,
-		        endpes.cidade,concat(endpes.idtlog, ' ', endpes.logradouro) as logradouro,endpes.bairro,endpes.numero,endpes.complemento,endpes.cep,
+		        instituicao.cidade,
+                logradouro.nome as logradouro,
+                bairro.nome as bairro,
+                endpes.numero,
+                endpes.complemento,
+                endpes.cep,
                 aluno.aluno_estado_id AS serie_ciasc,
                 curso.nm_curso AS nome_curso,
                 turma.nm_turma AS nome_turma,
@@ -56,40 +61,40 @@ class StudentsByDataReport extends Portabilis_Report_ReportCore
                 juridica.fantasia AS nm_escola,
                 turma_turno.nome AS periodo,
                 (
-                    SELECT 
+                    SELECT
                         infra_predio.nm_predio
-                    FROM 
+                    FROM
                         pmieducar.infra_predio_comodo,
                         pmieducar.infra_comodo_funcao,
                         pmieducar.infra_predio
-                    WHERE TRUE 
-                        AND infra_comodo_funcao.cod_infra_comodo_funcao = infra_predio_comodo.ref_cod_infra_comodo_funcao  
-                        AND infra_comodo_funcao.ref_cod_escola = escola.cod_escola 
-                        AND infra_predio.cod_infra_predio = infra_predio_comodo.ref_cod_infra_predio 
-                        AND infra_predio.ref_cod_escola = escola.cod_escola 
-                        AND infra_predio.ativo = 1 
+                    WHERE TRUE
+                        AND infra_comodo_funcao.cod_infra_comodo_funcao = infra_predio_comodo.ref_cod_infra_comodo_funcao
+                        AND infra_comodo_funcao.ref_cod_escola = escola.cod_escola
+                        AND infra_predio.cod_infra_predio = infra_predio_comodo.ref_cod_infra_predio
+                        AND infra_predio.ref_cod_escola = escola.cod_escola
+                        AND infra_predio.ativo = 1
                         AND infra_predio_comodo.cod_infra_predio_comodo = turma.ref_cod_infra_predio_comodo
                 ) AS predio,
                 (
                     SELECT nm_comodo
-                    FROM 
+                    FROM
                         pmieducar.infra_predio_comodo,
                         pmieducar.infra_comodo_funcao,
                         pmieducar.infra_predio
-                    WHERE TRUE 
-                        AND infra_comodo_funcao.cod_infra_comodo_funcao = infra_predio_comodo.ref_cod_infra_comodo_funcao  
-                        AND infra_comodo_funcao.ref_cod_escola = escola.cod_escola 
-                        AND infra_predio.cod_infra_predio = infra_predio_comodo.ref_cod_infra_predio 
-                        AND infra_predio.ref_cod_escola = escola.cod_escola 
-                        AND infra_predio.ativo = 1 
+                    WHERE TRUE
+                        AND infra_comodo_funcao.cod_infra_comodo_funcao = infra_predio_comodo.ref_cod_infra_comodo_funcao
+                        AND infra_comodo_funcao.ref_cod_escola = escola.cod_escola
+                        AND infra_predio.cod_infra_predio = infra_predio_comodo.ref_cod_infra_predio
+                        AND infra_predio.ref_cod_escola = escola.cod_escola
+                        AND infra_predio.ativo = 1
                         AND infra_predio_comodo.cod_infra_predio_comodo = turma.ref_cod_infra_predio_comodo
                 ) AS sala,
                 view_situacao.texto_situacao AS situacao,pessoa.email,
-                trim(leading ' ' from concat(fone_mae.ddd_1,'', to_char(fone_mae.fone_1, '99999-9999'))::text) as mae_telefone,
-                trim(leading ' ' from concat(fone_mae.ddd_mov,'',to_char(fone_mae.fone_mov, '9 9999-9999'))::text) as mae_celular,		
-                trim(leading ' ' from concat(fone_pai.ddd_1,'',to_char(fone_pai.fone_1, '99999-9999'))::text) as pai_telefone,
-                trim(leading ' ' from concat(fone_pai.ddd_mov,'',to_char(fone_pai.fone_mov, '9 9999-9999'))::text) as pai_celular
-                FROM 
+                trim(leading ' ' from concat(telefone_mae.ddd,'', to_char(telefone_mae.fone, '99999-9999'))::text) as mae_telefone,
+                trim(leading ' ' from concat(celular_mae.ddd,'',to_char(celular_mae.fone, '9 9999-9999'))::text) as mae_celular,
+                trim(leading ' ' from concat(telefone_pai.ddd,'',to_char(telefone_pai.fone, '99999-9999'))::text) as pai_telefone,
+                trim(leading ' ' from concat(celular_pai.ddd,'',to_char(celular_pai.fone, '9 9999-9999'))::text) as pai_celular
+                FROM
                 pmieducar.instituicao
             INNER JOIN pmieducar.escola ON TRUE  AND escola.ref_cod_instituicao = instituicao.cod_instituicao
             INNER JOIN pmieducar.escola_ano_letivo ON TRUE  AND pmieducar.escola_ano_letivo.ref_cod_escola = pmieducar.escola.cod_escola
@@ -108,18 +113,24 @@ class StudentsByDataReport extends Portabilis_Report_ReportCore
             LEFT JOIN cadastro.juridica ON TRUE  AND juridica.idpes = escola.ref_idpes
             LEFT JOIN cadastro.documento ON TRUE  AND documento.idpes = fisica.idpes
             LEFT JOIN modules.educacenso_cod_aluno ON TRUE  AND educacenso_cod_aluno.cod_aluno = aluno.cod_aluno
-            LEFT JOIN cadastro.v_endereco endpes ON endpes.idpes = aluno.ref_idpes
-            LEFT JOIN cadastro.v_endereco endpes_mae ON endpes_mae.idpes = fisica.idpes_mae
-            LEFT JOIN cadastro.v_endereco endpes_pai ON endpes_pai.idpes = fisica.idpes_pai
-            LEFT JOIN cadastro.v_fone_pessoa AS fone_mae ON fone_mae.idpes = fisica.idpes_mae
-            LEFT JOIN cadastro.v_fone_pessoa AS fone_pai ON fone_pai.idpes = fisica.idpes_pai
+            LEFT JOIN cadastro.endereco_pessoa endpes ON endpes.idpes = aluno.ref_idpes
+			LEFT JOIN public.logradouro ON logradouro.idlog = endpes.idlog
+			LEFT JOIN public.bairro ON bairro.idbai = endpes.idbai			
+            LEFT JOIN cadastro.fone_pessoa endpes_mae ON endpes_mae.idpes = fisica.idpes_mae
+            LEFT JOIN cadastro.fone_pessoa endpes_pai ON endpes_pai.idpes = fisica.idpes_pai
+            LEFT JOIN cadastro.fone_pessoa AS fone_mae ON fone_mae.idpes = fisica.idpes_mae
+            LEFT JOIN cadastro.fone_pessoa AS fone_pai ON fone_pai.idpes = fisica.idpes_pai
+            LEFT JOIN cadastro.fone_pessoa telefone_mae ON TRUE AND telefone_mae.idpes = fisica.idpes_mae  AND telefone_mae.tipo = 1
+            LEFT JOIN cadastro.fone_pessoa celular_mae ON TRUE  AND celular_mae.idpes = fisica.idpes_mae AND celular_mae.tipo = 3
+			LEFT JOIN cadastro.fone_pessoa telefone_pai ON TRUE AND telefone_pai.idpes = fisica.idpes_pai  AND telefone_pai.tipo = 1
+            LEFT JOIN cadastro.fone_pessoa celular_pai ON TRUE  AND celular_pai.idpes = fisica.idpes_pai AND celular_pai.tipo = 3
             WHERE (CASE WHEN {$escola} = 0 THEN TRUE ELSE {$escola} = escola.cod_escola END)
               AND (CASE WHEN {$aluno} = 0 THEN TRUE ELSE {$aluno} = aluno.cod_aluno END)
               AND (CASE WHEN {$ano} = 0 THEN TRUE ELSE {$ano} = escola_ano_letivo.ano END)
               AND (CASE WHEN {$curso} = 0 THEN TRUE ELSE {$curso} = curso.cod_curso END)
               AND (CASE WHEN {$serie} = 0 THEN TRUE ELSE {$serie} = serie.cod_serie END)
               AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE {$turma} = turma.cod_turma END)
-            GROUP BY 
+            GROUP BY
                 nm_escola,
                 nome_curso,
                 nome_serie,
@@ -131,20 +142,25 @@ class StudentsByDataReport extends Portabilis_Report_ReportCore
                 escola.cod_escola,
                 turma_turno.nome,
                 view_situacao.texto_situacao,
-                endpes.cidade,endpes.idtlog, endpes.logradouro,endpes.bairro,endpes.numero,endpes.complemento,endpes.cep,
+                instituicao.cidade,
+                logradouro.nome,bairro.nome,endpes.numero,endpes.complemento,endpes.cep,
                 pessoa.email,
-                fone_mae.fone_mov,fone_mae.ddd_mov,fone_mae.fone_1,fone_mae.ddd_1,
-                fone_pai.fone_mov,fone_pai.ddd_mov,fone_pai.fone_1,fone_pai.ddd_1
-              ORDER BY 
+                telefone_mae.ddd,telefone_mae.fone,celular_mae.ddd,celular_mae.fone,
+                telefone_pai.ddd,telefone_pai.fone,celular_pai.ddd,celular_pai.fone
+              ORDER BY
                 nm_escola,
                 nome_curso,
                 nome_serie,
                 nome_turma,
                 cod_turma,
-                endpes.cidade,endpes.idtlog, endpes.logradouro,endpes.bairro,endpes.numero,endpes.complemento,endpes.cep,
+                instituicao.cidade,
+                logradouro.nome,
+                bairro.nome,
+                endpes.numero,
+                endpes.complemento,
+                endpes.cep,
                 nome_aluno
         ";
-        //  dd($return);
         return $return;
     }
 }

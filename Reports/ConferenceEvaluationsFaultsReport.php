@@ -75,7 +75,7 @@ class ConferenceEvaluationsFaultsReport extends Portabilis_Report_ReportCore
         select public.fcn_upper(instituicao.nm_instituicao) as nm_instituicao,
            public.fcn_upper(instituicao.nm_responsavel) as nm_responsavel,
            (case when {$notSchool} then 'SECRETARIA DE EDUCAÇÃO' else fcn_upper(view_dados_escola.nome) end) as nm_escola,
-           (case when {$notSchool} then instituicao.ref_idtlog else view_dados_escola.tipo_logradouro end),
+           COALESCE(instituicao.logradouro, '') = '' as logradouro,
 	   (case when {$notSchool} then instituicao.logradouro else view_dados_escola.logradouro end),
 	   (case when {$notSchool} then instituicao.bairro else view_dados_escola.bairro end),
 	   (case when {$notSchool} then instituicao.numero else view_dados_escola.numero end),
