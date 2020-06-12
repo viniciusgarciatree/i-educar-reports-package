@@ -250,9 +250,16 @@ class User extends Authenticatable
      */
     public function menu()
     {
-        return $this->processes()
-            ->wherePivot('visualiza', 1)
-            ->withPivot(['visualiza', 'cadastra', 'exclui']);
+        if(self::isAdmin()){
+            return $this->processes()
+                ->where('active', '=', 'true');
+        }else{
+            return $this->processes()
+                ->where('active', '=', 'true')
+                ->wherePivot('visualiza', 1)
+                ->withPivot(['visualiza', 'cadastra', 'exclui']);
+        }
+
     }
 
     /**

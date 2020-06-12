@@ -23,6 +23,7 @@ trait JsonDataSource
         $queryMainReport = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
+
         return [
             'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
             'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
@@ -49,48 +50,63 @@ trait JsonDataSource
         $instituicao = $this->args['instituicao'] ?: 0;
         $escola = $this->args['escola'] ?: 0;
         $notSchool = empty($this->args['escola']) ? 'true' : 'false';
+        $select = "";
+        if($notSchool){
+            $select .= " '' AS nm_escola, ";
+            $select .= " instituicao.ref_idtlog, ";
+            $select .= " instituicao.logradouro, ";
+            $select .= " instituicao.bairro, ";
+            $select .= " instituicao.ddd_telefone AS fone_ddd, ";
+            $select .= " 0  AS cel_ddd, ";
+            $select .= " to_char(instituicao.telefone, '99999-9999') AS fone, ";
+            $select .= " ' ' AS cel, ";
+            $select .= " ' ' AS email, "; 
+        }else{
+            $select .= " fcn_upper(view_dados_escola.nome) AS nm_escola, ";
+            $select .= " view_dados_escola.tipo_logradouro, ";
+            $select .= " view_dados_escola.logradouro, ";
+            $select .= " view_dados_escola.bairro, ";
+            $select .= " view_dados_escola.telefone_ddd  AS fone_ddd, ";
+            $select .= " view_dados_escola.celular_ddd AS cel_ddd, ";
+            $select .= " view_dados_escola.telefone AS fone, ";
+            $select .= " view_dados_escola.celular AS cel, ";
+            $select .= " view_dados_escola.email AS email, "; 
+        }
 
         $sql = "
 
-            SELECT 
+            SELECT
                 public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
                 public.fcn_upper(instituicao.nm_responsavel) AS nm_responsavel,
-                (CASE WHEN {$notSchool} THEN 'SECRETARIA DE EDUCAÇÃO' ELSE fcn_upper(view_dados_escola.nome) END) AS nm_escola,
-                (CASE WHEN {$notSchool} THEN instituicao.logradouro ELSE view_dados_escola.logradouro END),
-                (CASE WHEN {$notSchool} THEN instituicao.bairro ELSE view_dados_escola.bairro END),
-                (CASE WHEN {$notSchool} THEN instituicao.ddd_telefone ELSE view_dados_escola.telefone_ddd END) AS fone_ddd,
-                (CASE WHEN {$notSchool} THEN 0 ELSE view_dados_escola.celular_ddd END) AS cel_ddd,
-                (CASE WHEN {$notSchool} THEN to_char(instituicao.telefone, '99999-9999') ELSE view_dados_escola.telefone END) AS fone,
-                (CASE WHEN {$notSchool} THEN ' ' ELSE view_dados_escola.celular END) AS cel,
-                (CASE WHEN {$notSchool} THEN ' ' ELSE view_dados_escola.email END),
+                $select
                 instituicao.ref_sigla_uf AS uf,
                 instituicao.cidade,
                 a.address AS logradouro,
                 a.number AS numero,
                 a.postal_code AS cep,
                 view_dados_escola.inep
-            FROM 
+            FROM
                 pmieducar.instituicao
             INNER JOIN pmieducar.escola ON TRUE
                 AND (instituicao.cod_instituicao = escola.ref_cod_instituicao)
-            INNER JOIN relatorio.view_dados_escola ON TRUE 
+            INNER JOIN relatorio.view_dados_escola ON TRUE
                 AND (escola.cod_escola = view_dados_escola.cod_escola)
             LEFT JOIN person_has_place php ON TRUE
                 AND php.person_id = escola.ref_idpes AND php.type = 1
-            LEFT JOIN addresses a ON TRUE 
+            LEFT JOIN addresses a ON TRUE
                 AND a.id = php.place_id
-            WHERE TRUE 
+            WHERE TRUE
                 AND instituicao.cod_instituicao = {$instituicao}
-                AND 
+                AND
                 (
-                    CASE WHEN {$notSchool} THEN 
-                        TRUE 
-                    ELSE 
-                        view_dados_escola.cod_escola = {$escola} 
+                    CASE WHEN {$notSchool} THEN
+                        TRUE
+                    ELSE
+                        view_dados_escola.cod_escola = {$escola}
                     END
                 )
             LIMIT 1
-     
+
         ";
 
         return $sql;

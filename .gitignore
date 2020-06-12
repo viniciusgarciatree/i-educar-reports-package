@@ -65,3 +65,10 @@ website/i18n/*
 
 # this is the code coverage generated when running phpunit.
 ieducar/tests/log
+
+# Imagens das empresas.
+/public/logo_prefeitura.jpg
+/public/*
+.~lock.*
+composer.lock
+ieducar/intranet/*.log

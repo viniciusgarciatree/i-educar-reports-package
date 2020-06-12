@@ -5,7 +5,15 @@
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="-1"/>
 
-    <title>i-Educar @if(isset($title)) - {{$title}} @endif</title>
+    <title>
+        @if (config('legacy.app.title'))
+            {{config('legacy.app.title')}}
+        @elseif (isset($title))
+            {!! $title !!}
+        @else
+            i-Educar
+        @endif
+    </title>
 
     <script>
         dataLayer = [{
@@ -25,7 +33,7 @@
         window.useEcho = '{{ config('broadcasting.default') }}' !== '';
     </script>
 
-@if(!empty($config['app']['gtm']['id']))
+    @if(!empty($config['app']['gtm']['id']))
     <!-- Google Tag Manager -->
         <script>(function (w, d, s, l, i) {
                 w[l] = w[l] || [];

@@ -127,7 +127,7 @@ class indice extends clsCadastro
 
             $this->mensagem .= "Cadastro efetuado com sucesso.<br>";
             throw new HttpResponseException(
-                new RedirectResponse('educar_calendario_dia_motivo_lst')
+                new RedirectResponse('educar_calendario_dia_motivo_lst.php')
             );
         }
 
@@ -153,7 +153,7 @@ class indice extends clsCadastro
 
             $this->mensagem .= "Edi&ccedil;&atilde;o efetuada com sucesso.<br>";
             throw new HttpResponseException(
-                new RedirectResponse('educar_calendario_dia_motivo_lst')
+                new RedirectResponse('educar_calendario_dia_motivo_lst.php')
             );
         }
 
@@ -176,7 +176,7 @@ class indice extends clsCadastro
 
             $this->mensagem .= "Exclus&atilde;o efetuada com sucesso.<br>";
             throw new HttpResponseException(
-                new RedirectResponse('educar_calendario_dia_motivo_lst')
+                new RedirectResponse('educar_calendario_dia_motivo_lst.php')
             );
         }
 

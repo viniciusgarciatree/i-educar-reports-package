@@ -615,6 +615,7 @@ class ProcessamentoApiController extends Core_Controller_Page_EditController
             } catch (Exception $e) {
                 DB::rollBack();
                 $this->appendMsg('Erro ao processar histórico, detalhes:' . $e->getMessage(), 'error', true);
+                $textLog = date("H:i:s") . " Erro ". $e->getMessage() .".\n";
             }
 
             $situacaoHistorico = $this->getSituacaoHistorico($alunoId, $ano, $matriculaId, $reload = true);
@@ -670,10 +671,17 @@ class ProcessamentoApiController extends Core_Controller_Page_EditController
             $isGlobalScoreForStage = $this->getService()->getEvaluationRule()->isGlobalScore();
 
             foreach ($this->getService()->getComponentes() as $componenteCurricular) {
+
                 if (!$this->shouldProcessAreaConhecimento($componenteCurricular->get('area_conhecimento'))) {
                     continue;
                 }
-                $ccId = $componenteCurricular->get('id');
+                $ccId = (int)$componenteCurricular->get('id');
+//                try{
+//                    dd($componenteCurricular);
+//                }catch (\Exception $e){
+//                    continue;
+//                }
+
                 $reprovado = $mediasCc[$ccId][0]->situacao == 2;
                 $disciplinaDependencia = ($aprovadoDependencia && $reprovado);
                 $nome = $componenteCurricular->nome;
@@ -686,6 +694,7 @@ class ProcessamentoApiController extends Core_Controller_Page_EditController
 
                 if (clsPmieducarTurma::verificaDisciplinaDispensada($turmaId, $ccId)) {
                     $nota = $this->DISCIPLINA_DISPENSADA;
+
                 } elseif ($this->getRequest()->notas == 'buscar-boletim') {
                     if ($tpNota == $cnsNota::CONCEITUAL) {
                         if (config('legacy.app.processar_historicos_conceituais') == '1') {
@@ -700,6 +709,7 @@ class ProcessamentoApiController extends Core_Controller_Page_EditController
                     }
                 } else {
                     $nota = $this->getRequest()->notas;
+
                 }
 
                 if (is_numeric($nota)) {

@@ -2,7 +2,15 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8"/>
-    <title>i-Educar</title>
+    <title>
+        @if (config('legacy.app.title'))
+            {{config('legacy.app.title')}}
+        @elseif (isset($title))
+            {!! $title !!}
+        @else
+            i-Educar
+        @endif
+    </title>
 
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" type="text/css" href="{{ url('intranet/styles/login.css') }}">
