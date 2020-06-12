@@ -13,7 +13,7 @@ class DefaultDataPublicMenus extends Migration
      */
     public function up()
     {
-        Artisan::call('db:seed', ['--class' => DefaultMenusTableSeeder::class, '--force' => true]);
+        //Artisan::call('db:seed', ['--class' => DefaultMenusTableSeeder::class, '--force' => true]);
     }
 
     /**
@@ -23,6 +23,6 @@ class DefaultDataPublicMenus extends Migration
      */
     public function down()
     {
-        DB::raw('TRUNCATE menus CASCADE;');
+        //DB::raw('TRUNCATE menus CASCADE;');
     }
 }
