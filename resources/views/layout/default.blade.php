@@ -4,6 +4,7 @@
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="-1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @if (config('legacy.app.title'))
             {{config('legacy.app.title')}}
@@ -28,6 +29,7 @@
             'teachers_count': '{{ $loggedUser->teachers_count }}',
             'classes_count': '{{ $loggedUser->classes_count }}',
         }];
+        window.useEcho = '{{ config('broadcasting.default') }}' !== '';
     </script>
 
     @if(!empty($config['app']['gtm']['id']))
@@ -191,9 +193,19 @@
                     <a href="{{ url('intranet/meusdados.php') }}" class="avatar" title="Meus dados">
                         <img height="35" src="{{ url('intranet/imagens/user-perfil.png') }}" alt="Perfil">
                     </a>
-                    <a href="#" class="notifications">
-                        <img alt="Notificação" id="notificacao" src="{{ url('intranet/imagens/icon-nav-notifications.png') }}">
-                    </a>
+                    <div class="dropdown notifications">
+                        <div class="dropbtn notifications">
+                            <img alt="Notificação" src="{{ url('intranet/imagens/icon-nav-notifications.png') }}">
+                            <span class="notification-balloon"></span>
+                        </div>
+                        <div class="dropdown-content-notifications">
+                            <div class="notifications-bar">
+                                <span> Notificações </span>
+                                <a href="/notificacoes" class="btn-all-notifications">Ver todas</a>
+                                <a class="btn-mark-all-read">Marcar todas como lidas (<span class="not-read-count">0</span>)</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </header>
         </td>
@@ -306,6 +318,15 @@
 <script type="text/javascript" src="{{ Asset::get("/intranet/scripts/select2/select2.full.min.js") }}"></script>
 <script type="text/javascript" src="{{ Asset::get("/intranet/scripts/select2/pt-BR.js") }}"></script>
 <script type="text/javascript" src="{{ Asset::get("/intranet/scripts/flash-messages.js") }}"></script>
+<script type="text/javascript" src="{{ Asset::get("/js/app.js") }}"></script>
+<script type="text/javascript" src="{{ Asset::get("/intranet/scripts/notifications.js") }}"></script>
+<script>
+    getNotifications();
+
+    if (window.useEcho) {
+        startListenChannel('ieducar-{{\DB::getDefaultConnection()}}-notification-{{md5($loggedUser->personId)}}');
+    }
+</script>
 
 @include('layout.vue')
 
