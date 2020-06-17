@@ -5,6 +5,7 @@ use iEducar\Reports\JsonDataSource;
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'Reports/Tipos/TipoBoletim.php';
 require_once 'App/Model/IedFinder.php';
+require_once "include/pmieducar/geral.inc.php";
 
 class ReportCardReport extends Portabilis_Report_ReportCore
 {
@@ -59,14 +60,14 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
     public function getJsonData()
     {
-        if($this->templateName() == "report-card-boletim"){
+        if($this->templateName() == "report-card-boletim"){            
             $queryMainReport = $this->getSqlMainReport();        
             $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
             $queryHeaderReport = $this->getSqlHeaderReport();
             $arrDados = [];
             $arrDadosNota=[];
             $arrAreaConhecimento = [];
-            foreach ($dados as $key => $value) {          
+            foreach ($dados as $key => $value) {
                 $arrAreaConhecimento[$value['area_conhecimento']][] = [
                     'nome_disciplina' => $value['nome_disciplina'],
                     'nota1num' => $value['nota1num'],
@@ -217,26 +218,27 @@ class ReportCardReport extends Portabilis_Report_ReportCore
           TRUNC(coalesce(regra_avaliacao.media, 0.00), 1) AS media_recuperacao,
           relatorio.get_media_geral_turma(turma.cod_turma, view_componente_curricular.id) AS medianumturma,
           relatorio.get_total_falta_componente(matricula.cod_matricula, view_componente_curricular.id) AS total_faltas_componente,
-          (SELECT string_agg(DISTINCT pessoa.nome, ', ') FROM  pmieducar.turma 
-INNER JOIN modules.professor_turma ON TRUE 
-    AND professor_turma.turma_id = turma.cod_turma
-    AND professor_turma.funcao_exercida IN(1)
-INNER JOIN pmieducar.servidor ON TRUE 
-    AND servidor.cod_servidor = professor_turma.servidor_id
-    AND servidor.ativo = 1  
-INNER JOIN cadastro.pessoa ON TRUE 
-    AND pessoa.idpes = servidor.cod_servidor
-INNER JOIN cadastro.fisica ON TRUE 
-    AND fisica.idpes = servidor.cod_servidor
-LEFT JOIN educacenso_cod_docente ON TRUE 
-    AND educacenso_cod_docente.cod_servidor = servidor.cod_servidor
-LEFT JOIN cadastro.escolaridade ON TRUE 
-    AND escolaridade.idesco = servidor.ref_idesco
-INNER JOIN relatorio.view_componente_curricular ON TRUE 
-    AND view_componente_curricular.cod_turma = turma.cod_turma
-INNER JOIN modules.professor_turma_disciplina ON TRUE  AND professor_turma_disciplina.professor_turma_id = professor_turma.id AND professor_turma_disciplina.componente_curricular_id = view_componente_curricular.id
-WHERE turma.cod_turma = {$turma} and professor_turma.ano = {$ano}
-group by turma.cod_turma) as professor
+          (SELECT string_agg(DISTINCT pessoa.nome, ', ') FROM  pmieducar.turma
+            INNER JOIN modules.professor_turma ON TRUE 
+                AND professor_turma.turma_id = turma.cod_turma
+                AND professor_turma.funcao_exercida IN(1)
+            INNER JOIN pmieducar.servidor ON TRUE 
+                AND servidor.cod_servidor = professor_turma.servidor_id
+                AND servidor.ativo = 1  
+            INNER JOIN cadastro.pessoa ON TRUE 
+                AND pessoa.idpes = servidor.cod_servidor
+            INNER JOIN cadastro.fisica ON TRUE 
+                AND fisica.idpes = servidor.cod_servidor
+            LEFT JOIN educacenso_cod_docente ON TRUE 
+                AND educacenso_cod_docente.cod_servidor = servidor.cod_servidor
+            LEFT JOIN cadastro.escolaridade ON TRUE 
+                AND escolaridade.idesco = servidor.ref_idesco
+            INNER JOIN relatorio.view_componente_curricular ON TRUE 
+                AND view_componente_curricular.cod_turma = turma.cod_turma
+            INNER JOIN modules.professor_turma_disciplina ON TRUE  AND professor_turma_disciplina.professor_turma_id = professor_turma.id AND professor_turma_disciplina.componente_curricular_id = view_componente_curricular.id
+            WHERE turma.cod_turma = {$turma} and professor_turma.ano = {$ano}
+            group by turma.cod_turma) as professor,
+    CASE WHEN UPPER(substring(serie.nm_serie,1,5)) = 'MULTI'  THEN substring(etapa_ensino.descricao,6,length(etapa_ensino.descricao)) ELSE serie.nm_serie END as etapa_ensino_descricao
    FROM pmieducar.instituicao
    INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
    INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
@@ -331,6 +333,7 @@ group by turma.cod_turma) as professor
    LEFT JOIN modules.regra_avaliacao_serie_ano rasa on(serie.cod_serie = rasa.serie_id AND matricula.ano = rasa.ano_letivo)
    LEFT JOIN modules.regra_avaliacao on(rasa.regra_avaliacao_id = regra_avaliacao.id)
    LEFT JOIN modules.area_conhecimento ON area_conhecimento.id = view_componente_curricular.area_conhecimento_id
+   LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
    WHERE instituicao.cod_instituicao = {$instituicao}
      AND escola.cod_escola = {$escola}
      AND curso.cod_curso = {$curso}

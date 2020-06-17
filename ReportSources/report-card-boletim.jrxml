@@ -237,6 +237,7 @@
 	<field name="area_conhecimento" class="java.lang.String"/>
 	<field name="data_nota" class="java.lang.String"/>
 	<field name="professor" class="java.lang.String"/>
+	<field name="etapa_ensino_descricao" class="java.lang.String"/>
 	<group name="matricula" keepTogether="true">
 		<groupExpression><![CDATA[$F{matricula}]]></groupExpression>
 		<groupHeader>
@@ -325,7 +326,7 @@
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="4" y="17" width="50" height="12" uuid="0fbb3a4d-614f-480b-af57-1ebe315dc08e">
+					<reportElement x="4" y="17" width="45" height="12" uuid="0fbb3a4d-614f-480b-af57-1ebe315dc08e">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
@@ -335,27 +336,31 @@
 					<text><![CDATA[03 - SÉRIE:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement x="55" y="17" width="137" height="12" uuid="c2322f74-63e3-4a04-8240-abab9fa228c0">
+					<reportElement x="50" y="17" width="182" height="12" uuid="c2322f74-63e3-4a04-8240-abab9fa228c0">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{nome_serie}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{etapa_ensino_descricao}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement x="193" y="15" width="1" height="15" uuid="48b1114b-2db0-49d4-ab0e-d3e3e016864b">
+					<reportElement x="233" y="15" width="1" height="15" uuid="48b1114b-2db0-49d4-ab0e-d3e3e016864b">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<graphicElement>
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="195" y="17" width="70" height="12" uuid="ce0c8bb1-4f35-4833-a3f0-671cc3c71b8a">
+					<reportElement x="235" y="17" width="70" height="12" uuid="ce0c8bb1-4f35-4833-a3f0-671cc3c71b8a">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8"/>
@@ -363,9 +368,10 @@
 					<text><![CDATA[04 - ANO LETIVO:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement x="267" y="17" width="60" height="12" uuid="d9feb046-c8a4-45e8-aa29-694b59cfe00c">
+					<reportElement x="307" y="17" width="30" height="12" uuid="d9feb046-c8a4-45e8-aa29-694b59cfe00c">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8" isBold="true"/>
@@ -373,18 +379,20 @@
 					<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement x="329" y="16" width="1" height="15" uuid="7fe39c7f-b89e-466d-9f6f-0c3b8020708b">
+					<reportElement x="339" y="16" width="1" height="15" uuid="7fe39c7f-b89e-466d-9f6f-0c3b8020708b">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<graphicElement>
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="332" y="17" width="50" height="12" uuid="6bba32be-ef16-4597-af02-f9394e94cdcd">
+					<reportElement x="342" y="17" width="50" height="12" uuid="6bba32be-ef16-4597-af02-f9394e94cdcd">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8"/>
@@ -392,9 +400,10 @@
 					<text><![CDATA[05 - TURMA:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement x="383" y="17" width="170" height="12" uuid="9f483e3d-fd74-40f6-b7a8-7c5ff0cb1366">
+					<reportElement x="393" y="17" width="160" height="12" uuid="9f483e3d-fd74-40f6-b7a8-7c5ff0cb1366">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8" isBold="true"/>
