@@ -216,7 +216,27 @@ class ReportCardReport extends Portabilis_Report_ReportCore
           TRUNC(nota_exame.nota_arredondada::NUMERIC, 1) AS nota_exame,
           TRUNC(coalesce(regra_avaliacao.media, 0.00), 1) AS media_recuperacao,
           relatorio.get_media_geral_turma(turma.cod_turma, view_componente_curricular.id) AS medianumturma,
-          relatorio.get_total_falta_componente(matricula.cod_matricula, view_componente_curricular.id) AS total_faltas_componente
+          relatorio.get_total_falta_componente(matricula.cod_matricula, view_componente_curricular.id) AS total_faltas_componente,
+          (SELECT string_agg(DISTINCT pessoa.nome, ', ') FROM  pmieducar.turma 
+INNER JOIN modules.professor_turma ON TRUE 
+    AND professor_turma.turma_id = turma.cod_turma
+    AND professor_turma.funcao_exercida IN(1)
+INNER JOIN pmieducar.servidor ON TRUE 
+    AND servidor.cod_servidor = professor_turma.servidor_id
+    AND servidor.ativo = 1  
+INNER JOIN cadastro.pessoa ON TRUE 
+    AND pessoa.idpes = servidor.cod_servidor
+INNER JOIN cadastro.fisica ON TRUE 
+    AND fisica.idpes = servidor.cod_servidor
+LEFT JOIN educacenso_cod_docente ON TRUE 
+    AND educacenso_cod_docente.cod_servidor = servidor.cod_servidor
+LEFT JOIN cadastro.escolaridade ON TRUE 
+    AND escolaridade.idesco = servidor.ref_idesco
+INNER JOIN relatorio.view_componente_curricular ON TRUE 
+    AND view_componente_curricular.cod_turma = turma.cod_turma
+INNER JOIN modules.professor_turma_disciplina ON TRUE  AND professor_turma_disciplina.professor_turma_id = professor_turma.id AND professor_turma_disciplina.componente_curricular_id = view_componente_curricular.id
+WHERE turma.cod_turma = {$turma} and professor_turma.ano = {$ano}
+group by turma.cod_turma) as professor
    FROM pmieducar.instituicao
    INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
    INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
