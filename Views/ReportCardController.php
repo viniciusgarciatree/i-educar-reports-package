@@ -80,6 +80,8 @@ class ReportCardController extends Portabilis_Controller_ReportCoreController
             'placeholder' => 'Utilize este espaço para exibir uma mensagem ou recado no boletim.'
         ]);
 
+        $this->inputsHelper()->select('modelo', ['label' => 'Modelo', 'resources' => [1 => 'Modelo 1',2 => 'Modelo 2'], 'value' => 1]);
+
         $this->loadResourceAssets($this->getDispatcher());
     }
 
@@ -101,6 +103,7 @@ class ReportCardController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('grafico_preto', (bool) $this->getRequest()->grafico_preto);
         $this->report->addArg('alunos_diferenciados', (int) ($this->getRequest()->alunos_diferenciados ?: 0));
         $this->report->addArg('observacoes', $this->getRequest()->observacoes);
+        $this->report->addArg('modelo', $this->getRequest()->modelo);
 
         if (is_null($this->getRequest()->ref_cod_matricula)) {
             $this->report->addArg('matricula', 0);

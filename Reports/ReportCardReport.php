@@ -9,6 +9,7 @@ require_once 'App/Model/IedFinder.php';
 class ReportCardReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
+    private $modeloTemplatePadrao = true;
 
     /**
      * @return string
@@ -49,76 +50,89 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             throw new Exception('Não foi possivel recuperar nome do template para o boletim.');
         }
 
-        $template = 'report-card-boletim';
+        if($this->args['modelo'] == 2 && $template == "report-card"){
+            $template = 'report-card-boletim';
+        }
 
         return $template;
     }
 
     public function getJsonData()
     {
-        $queryMainReport = $this->getSqlMainReport();        
-        $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
-        $queryHeaderReport = $this->getSqlHeaderReport();
-        $arrDados = [];
-        $arrDadosNota=[];
-        $arrAreaConhecimento = [];
-        foreach ($dados as $key => $value) {          
-            $arrAreaConhecimento[$value['area_conhecimento']][] = [
-                'nome_disciplina' => $value['nome_disciplina'],
-                'nota1num' => $value['nota1num'],
-                'nota1'    => $value['nota1'],
-                'nota2num' => $value['nota2num'],
-                'nota2'    => $value['nota2'],
-                'nota3num' => $value['nota3num'],
-                'nota3'    => $value['nota3'],
-                'nota4num' => $value['nota4num'],
-                'nota4'    => $value['nota4'],
-                'nota_exame exame' => $value['nota_exame exame'],
-                'matricula' => $value['matricula'],
-                'frequencia' => $value['frequencia'],
-                'nota1numturma' => $value['nota1numturma'],
-                'nota2numturma' => $value['nota2numturma'],
-                'nota3numturma' => $value['nota3numturma'],
-                'nota4numturma' => $value['nota4numturma'],
-                'total_faltas_et1' => $value['total_faltas_et1'],
-                'total_faltas_et2' => $value['total_faltas_et2'],
-                'total_faltas_et3' => $value['total_faltas_et3'],
-                'total_faltas_et4' => $value['total_faltas_et4'],
-                'faltas_componente_et1' => $value['faltas_componente_et1'],
-                'faltas_componente_et2' => $value['faltas_componente_et2'],
-                'faltas_componente_et3' => $value['faltas_componente_et3'],
-                'faltas_componente_et4' => $value['faltas_componente_et4'],
-                'total_geral_faltas_componente' => $value['total_geral_faltas_componente'],
-                'total_faltas' => $value['total_faltas'],
-                'curso_hora_falta' => $value['curso_hora_falta'],
-                'carga_horaria_componente' => $value['carga_horaria_componente'],
-                'carga_horaria_serie' => $value['carga_horaria_serie'],
-                'media' => $value['media'],
-                'medianum' => $value['medianum'],
-                'nota_exame' => $value['nota_exame'],
-                'media_recuperacao' => $value['media_recuperacao'],
-                'medianumturma' => $value['medianumturma'],
-                'total_faltas_component' => $value['total_faltas_component']
-            ];
+        if($this->templateName() == "report-card-boletim"){
+            $queryMainReport = $this->getSqlMainReport();        
+            $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
+            $queryHeaderReport = $this->getSqlHeaderReport();
+            $arrDados = [];
+            $arrDadosNota=[];
+            $arrAreaConhecimento = [];
+            foreach ($dados as $key => $value) {          
+                $arrAreaConhecimento[$value['area_conhecimento']][] = [
+                    'nome_disciplina' => $value['nome_disciplina'],
+                    'nota1num' => $value['nota1num'],
+                    'nota1'    => $value['nota1'],
+                    'nota2num' => $value['nota2num'],
+                    'nota2'    => $value['nota2'],
+                    'nota3num' => $value['nota3num'],
+                    'nota3'    => $value['nota3'],
+                    'nota4num' => $value['nota4num'],
+                    'nota4'    => $value['nota4'],
+                    'nota_exame exame' => $value['nota_exame exame'],
+                    'matricula' => $value['matricula'],
+                    'frequencia' => $value['frequencia'],
+                    'nota1numturma' => $value['nota1numturma'],
+                    'nota2numturma' => $value['nota2numturma'],
+                    'nota3numturma' => $value['nota3numturma'],
+                    'nota4numturma' => $value['nota4numturma'],
+                    'total_faltas_et1' => $value['total_faltas_et1'],
+                    'total_faltas_et2' => $value['total_faltas_et2'],
+                    'total_faltas_et3' => $value['total_faltas_et3'],
+                    'total_faltas_et4' => $value['total_faltas_et4'],
+                    'faltas_componente_et1' => $value['faltas_componente_et1'],
+                    'faltas_componente_et2' => $value['faltas_componente_et2'],
+                    'faltas_componente_et3' => $value['faltas_componente_et3'],
+                    'faltas_componente_et4' => $value['faltas_componente_et4'],
+                    'total_geral_faltas_componente' => $value['total_geral_faltas_componente'],
+                    'total_faltas' => $value['total_faltas'],
+                    'curso_hora_falta' => $value['curso_hora_falta'],
+                    'carga_horaria_componente' => $value['carga_horaria_componente'],
+                    'carga_horaria_serie' => $value['carga_horaria_serie'],
+                    'media' => $value['media'],
+                    'medianum' => $value['medianum'],
+                    'nota_exame' => $value['nota_exame'],
+                    'media_recuperacao' => $value['media_recuperacao'],
+                    'medianumturma' => $value['medianumturma'],
+                    'total_faltas_component' => $value['total_faltas_component']
+                ];
 
-            if(!isset($arrDados[$value['area_conhecimento']])){
-              $arrDados[$value['area_conhecimento']] = $value;
+                if(!isset($arrDados[$value['area_conhecimento']])){
+                  $arrDados[$value['area_conhecimento']] = $value;
+                }
             }
+
+            $arrMain = [];
+            $index = 0;
+
+            foreach ($arrDados as $key => $value) {
+              $arrMain[$index] = $value;
+              $arrMain[$index]['data_nota'] = $arrAreaConhecimento[$value['area_conhecimento']];
+              $index++;
+
+            }
+            unset($this->args['modelo']);
+            return array_merge([
+                'main' => $arrMain,
+                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
+            ]);
+        }else{
+            unset($this->args['modelo']);
+            $queryMainReport = $this->getSqlMainReport();
+            $queryHeaderReport = $this->getSqlHeaderReport();
+            return array_merge([
+                'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
+                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
+            ]);
         }
-
-        $arrMain = [];
-        $index = 0;
-
-        foreach ($arrDados as $key => $value) {
-          $arrMain[$index] = $value;
-          $arrMain[$index]['data_nota'] = $arrAreaConhecimento[$value['area_conhecimento']];
-          $index++;
-
-        }
-        return array_merge([
-            'main' => $arrMain,
-            'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
-        ]);
     }
 
     /**
