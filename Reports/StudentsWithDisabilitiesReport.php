@@ -65,7 +65,7 @@ class StudentsWithDisabilitiesReport extends Portabilis_Report_ReportCore
            AND m.ano = {$ano}
            AND (CASE WHEN 0={$escola} THEN TRUE ELSE m.ref_ref_cod_escola = {$escola} END)
            AND mt.sequencial = (SELECT MAX(mtt.sequencial)
-                                  FROM matricula_turma mtt
+                                  FROM pmieducar.matricula_turma mtt
                                  WHERE mtt.ref_cod_matricula = m.cod_matricula AND mtt.ativo = 1)) AS nome_turma_turno
 
   FROM pmieducar.instituicao

@@ -43,8 +43,10 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
         $queryMainReport   = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
+
         $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $arrMain = [];
+
 
         foreach ($dados as $index => $value) {
             self::getAlunosBoletim(
