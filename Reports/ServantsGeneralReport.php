@@ -5,7 +5,7 @@ use iEducar\Reports\JsonDataSource;
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'App/Model/IedFinder.php';
 
-class ServantsBindingsReport extends Portabilis_Report_ReportCore
+class ServantsGeneralReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
 
@@ -14,7 +14,7 @@ class ServantsBindingsReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return 'servants-bindings';
+        return 'servants-general';
     }
 
     /**
@@ -43,11 +43,16 @@ class ServantsBindingsReport extends Portabilis_Report_ReportCore
         $periodo = $this->args['periodo'] ?: 0;
         $nao_emitir_afastados = $this->args['nao_emitir_afastados'];
 
-        $return = "select * from (SELECT 
-distinct on(servidor.cod_servidor) cod_servidor,
-servidor_funcao.matricula,
-pessoa.nome AS nm_servidor,
-nm_vinculo
+        $return = " SELECT  * FROM (
+    SELECT 
+    DISTINCT on(servidor.cod_servidor) cod_servidor,
+    COALESCE( NULLIF(servidor_funcao.matricula,'-') , '-' ) as matricula,
+    pessoa.nome AS nm_servidor,
+    COALESCE( NULLIF(nm_vinculo,'-') , '-' ) as nm_vinculo,
+    escola.cod_escola,
+    pessoa_escola.nome as escola,
+    funcao.nm_funcao,
+    COALESCE( NULLIF(fisica.ocupacao,'-') , '-' ) as ocupacao    
   FROM pmieducar.instituicao
  INNER JOIN pmieducar.servidor ON (servidor.ref_cod_instituicao = instituicao.cod_instituicao)
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = servidor.cod_servidor)
@@ -67,6 +72,7 @@ nm_vinculo
   LEFT JOIN portal.funcionario_vinculo ON (funcionario_vinculo.cod_funcionario_vinculo = servidor_alocacao.ref_cod_funcionario_vinculo)
   LEFT JOIN pmieducar.escola ON (servidor_alocacao.ref_cod_escola = escola.cod_escola)
   LEFT JOIN cadastro.juridica pessoa_juridica ON (pessoa_juridica.idpes = escola.ref_idpes)
+  LEFT JOIN cadastro.pessoa pessoa_escola ON (pessoa_escola.idpes = pessoa_juridica.idpes)
   LEFT JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola AND escola_ano_letivo.ano = {$ano})
  WHERE instituicao.cod_instituicao = {$instituicao}
    AND servidor.ativo = 1
@@ -81,7 +87,7 @@ nm_vinculo
                                        WHERE sa.ativo = 1)
              ELSE TRUE
         END)
- ORDER BY servidor.cod_servidor) as tmp  order by nm_vinculo, nm_servidor";
+ ORDER BY servidor.cod_servidor) as tmp  order by escola,nm_servidor, nm_vinculo,ocupacao,escola,nm_vinculo,nm_funcao";
 
         //dd($return);
         return $return;
