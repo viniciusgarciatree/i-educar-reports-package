@@ -172,7 +172,7 @@
 					</textElement>
 					<text><![CDATA[ESCOLA:]]></text>
 				</staticText>
-				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<textField isBlankWhenNull="true">
 					<reportElement stretchType="RelativeToBandHeight" x="60" y="0" width="495" height="15" uuid="46d36191-09df-4898-8951-fbfdb9d0a7d5">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -286,7 +286,7 @@
 					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="60" y="0" width="215" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
@@ -302,7 +302,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_servidor}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="275" y="0" width="80" height="15" uuid="e9448d19-c84c-40fa-80f4-d04f1ec72315">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
@@ -318,7 +318,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_vinculo}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="355" y="0" width="100" height="15" uuid="24e51f29-f7bd-4528-8593-ba5d9f9a1b2e">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -335,7 +335,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_funcao}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="455" y="0" width="100" height="15" uuid="c8096653-526a-4bd3-9971-b2c31ae4a506">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -352,7 +352,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ocupacao}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="60" height="15" uuid="ead616e6-3e1c-4edb-ba81-55f271d0bd4b">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
