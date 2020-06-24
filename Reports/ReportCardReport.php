@@ -44,15 +44,17 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             throw new Exception('Não foi definido o tipo de boletim no cadastro de turmas.');
         }
 
+        
+
+        if($this->args['modelo'] == 2){
+            $template = 'report-card-boletim';
+        }
+
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
-        $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : '';
+        $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : $template;
 
         if (empty($template)) {
             throw new Exception('Não foi possivel recuperar nome do template para o boletim.');
-        }
-
-        if($this->args['modelo'] == 2 && $template == "report-card"){
-            $template = 'report-card-boletim';
         }
 
         return $template;
@@ -349,7 +351,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             view_componente_curricular.ordenamento,
             area_conhecimento.nome,
             view_componente_curricular.nome";
-            //dd($return);
+            dd($return);
             return $return;
     }
 }
