@@ -39,17 +39,17 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         }
 
         if($this->args['modelo'] == 1){
-          $template = 'report-card';
+            $template = 'report-card';
+            if (empty($flagTipoBoletimTurma)) {
+                throw new Exception('Não foi definido o tipo de boletim no cadastro de turmas.');
+            }
+    
+            $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
+            $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : $template;
+
         }elseif($this->args['modelo'] == 2){
             $template = 'report-card-boletim';
         }
-
-        if (empty($flagTipoBoletimTurma)) {
-            throw new Exception('Não foi definido o tipo de boletim no cadastro de turmas.');
-        }
-
-        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
-        $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : $template;
 
         if (empty($template)) {
             throw new Exception('Não foi possivel recuperar nome do template para o boletim.');
@@ -248,7 +248,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             WHERE turma.cod_turma = {$turma} and professor_turma.ano = {$ano}
             group by turma.cod_turma) as professor,
     CASE WHEN UPPER(substring(serie.nm_serie,1,5)) = 'MULTI'  THEN 
-          (CASE WHEN etapa_ensino.descricao = '' or etapa_ensino.descricao is null THEN 'ETAPA DO ALUNO NÃO INFORMADA' ELSE substring(etapa_ensino.descricao,6,length(etapa_ensino.descricao)) END )   
+          (CASE WHEN etapa_ensino.descricao = '' or etapa_ensino.descricao is null  THEN 'ETAPA DO ALUNO NÃO INFORMADA' ELSE substring(etapa_ensino.descricao,6,length(etapa_ensino.descricao)) END )   
         ELSE serie.nm_serie END as etapa_ensino_descricao
    FROM pmieducar.instituicao
    INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
