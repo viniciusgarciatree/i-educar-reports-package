@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="servants" pageWidth="595" pageHeight="840" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0378c531-ef85-4c42-9c57-3c8660b99c2d">
 	<style name="table">
 		<box>
@@ -81,6 +81,7 @@
 	<field name="telefone" class="java.lang.Long"/>
 	<field name="ddd_telefone" class="java.lang.Long"/>
 	<field name="periodo" class="java.lang.String"/>
+	<field name="funcao_abreviatura" class="java.lang.String"/>
 	<variable name="contagem" class="java.lang.Integer" resetType="None" incrementType="Column" calculation="DistinctCount">
 		<variableExpression><![CDATA[]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
@@ -160,6 +161,7 @@
 		<groupExpression><![CDATA[$F{nm_escola_servidor}]]></groupExpression>
 		<groupHeader>
 			<band height="37">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<rectangle>
 					<reportElement x="0" y="0" width="555" height="22" uuid="03144c3c-1804-42ed-b626-a68f1e4139c1"/>
 					<graphicElement>
@@ -180,7 +182,10 @@
 					<text><![CDATA[SERVIDOR]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="506" y="22" width="49" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<reportElement x="511" y="22" width="44" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.25"/>
 						<leftPen lineWidth="0.25"/>
@@ -200,7 +205,9 @@
 					<textFieldExpression><![CDATA[$F{nm_escola_servidor}.equals("") ? "NÃO ALOCADOS" : $F{nm_escola_servidor}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="172" y="22" width="88" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<reportElement x="172" y="22" width="83" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.25"/>
 						<leftPen lineWidth="0.25"/>
@@ -213,7 +220,10 @@
 					<text><![CDATA[ESCOLARIDADE]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="476" y="22" width="30" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<reportElement x="486" y="22" width="25" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.25"/>
 						<leftPen lineWidth="0.25"/>
@@ -226,7 +236,10 @@
 					<text><![CDATA[C.H.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="421" y="22" width="55" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<reportElement x="396" y="22" width="45" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.25"/>
 						<leftPen lineWidth="0.25"/>
@@ -239,7 +252,10 @@
 					<text><![CDATA[VÍNCULO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="260" y="22" width="78" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<reportElement x="255" y="22" width="73" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.25"/>
 						<leftPen lineWidth="0.25"/>
@@ -252,7 +268,10 @@
 					<text><![CDATA[CPF]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="338" y="22" width="83" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<reportElement x="328" y="22" width="68" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.25"/>
 						<leftPen lineWidth="0.25"/>
@@ -263,6 +282,21 @@
 						<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					</textElement>
 					<text><![CDATA[TELEFONE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="441" y="22" width="45" height="15" uuid="80c8617b-81d0-4208-968f-3fb854efb682">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[FUNÇÃO]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -310,13 +344,16 @@
 	</columnHeader>
 	<detail>
 		<band height="15">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
 				<reportElement mode="Opaque" x="0" y="0" width="555" height="15" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
 					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
 			<textField>
-				<reportElement x="0" y="0" width="172" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<reportElement x="0" y="0" width="172" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -325,12 +362,16 @@
 				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
-					<paragraph leftIndent="10"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_servidor}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="506" y="0" width="49" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<reportElement x="511" y="0" width="44" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -339,12 +380,15 @@
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
-					<paragraph leftIndent="10"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="476" y="0" width="30" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<reportElement x="486" y="0" width="25" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -353,12 +397,16 @@
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
-					<paragraph leftIndent="10"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{carga_horaria_total}+"h"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="421" y="0" width="55" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<reportElement x="396" y="0" width="45" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -367,12 +415,16 @@
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
-					<paragraph leftIndent="10"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vinculo} == null ? "" : $F{vinculo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="338" y="0" width="83" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<reportElement x="328" y="0" width="68" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -381,12 +433,15 @@
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
-					<paragraph leftIndent="10"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefone} == 0 ? "" : "(" + $F{ddd_telefone} + ")" + $F{telefone}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="172" y="0" width="88" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<reportElement x="172" y="0" width="83" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -395,12 +450,16 @@
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
-					<paragraph leftIndent="10"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{escolaridade} == null ? "" : $F{escolaridade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="0" width="78" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<reportElement x="255" y="0" width="73" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -409,9 +468,27 @@
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
-					<paragraph leftIndent="10"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cpf} == null ? "" : $F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="441" y="0" width="45" height="15" uuid="e3d77948-80af-4621-a05c-57f1b5b155c5">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{funcao_abreviatura} == null ? "" : $F{funcao_abreviatura}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -469,7 +546,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA["<b>Total geral: </b>" + $V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement stretchType="RelativeToBandHeight" x="2" y="8" width="419" height="10" uuid="7aab6e38-06ab-4c7b-8bc7-e21ff4832108">
 					<printWhenExpression><![CDATA[$P{emitir_totalizadores}]]></printWhenExpression>
 				</reportElement>
