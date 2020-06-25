@@ -175,7 +175,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $alunos_diferenciados = $this->args['alunos_diferenciados'] ?: 0;
         $matricula = $this->args['matricula'] ?: 0;
 
-        $return = "SELECT fcn_upper(instituicao.nm_instituicao) AS nome_instituicao,
+        return "SELECT fcn_upper(instituicao.nm_instituicao) AS nome_instituicao,
           fcn_upper(instituicao.nm_responsavel) AS nome_responsavel,
           relatorio.get_nome_escola(escola.cod_escola) AS nm_escola,
           escola_ano_letivo.ano AS ano,
@@ -360,8 +360,5 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             view_componente_curricular.ordenamento,
             area_conhecimento.nome,
             view_componente_curricular.nome";
-
-        //dd($return);
-        return $return;
     }
 }
