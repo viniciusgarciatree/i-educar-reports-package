@@ -38,18 +38,109 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             $flagTipoBoletimTurma = $flagTipoBoletimTurma['tipo_boletim'];
         }
 
+        if($this->args['modelo'] == 1){
+          $template = 'report-card';
+        }elseif($this->args['modelo'] == 2){
+            $template = 'report-card-boletim';
+        }
+
         if (empty($flagTipoBoletimTurma)) {
             throw new Exception('Não foi definido o tipo de boletim no cadastro de turmas.');
         }
 
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
-        $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : '';
+        $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : $template;
 
         if (empty($template)) {
             throw new Exception('Não foi possivel recuperar nome do template para o boletim.');
         }
 
         return $template;
+    }
+
+    public function getJsonData()
+    {
+        if($this->templateName() == "report-card-boletim"){            
+            $queryMainReport = $this->getSqlMainReport();        
+            $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
+            $queryHeaderReport = $this->getSqlHeaderReport();
+
+            $arrNota = [];
+            $arrMain = [];
+            $areaConhecimento = "";
+
+            foreach ($dados as $key => $value) {
+                if(empty($areaConhecimento)){
+                  $areaConhecimento = $value['area_conhecimento_id'];
+                }
+
+                if($areaConhecimento <> $value['area_conhecimento_id']){
+                    $valueArea = $value;
+                    $valueArea['data_nota'] = $arrNota;                  
+                    $arrMain[] = $valueArea;
+                    $arrNota = [];
+                }
+
+                $areaConhecimento = $value['area_conhecimento_id'];
+
+                $arrNota[] = [
+                    'nome_disciplina' => $value['nome_disciplina'],
+                    'nota1num' => $value['nota1num'],
+                    'nota1'    => $value['nota1'],
+                    'nota2num' => $value['nota2num'],
+                    'nota2'    => $value['nota2'],
+                    'nota3num' => $value['nota3num'],
+                    'nota3'    => $value['nota3'],
+                    'nota4num' => $value['nota4num'],
+                    'nota4'    => $value['nota4'],
+                    'nota_exame exame' => $value['nota_exame exame'],
+                    'matricula' => $value['matricula'],
+                    'frequencia' => $value['frequencia'],
+                    'nota1numturma' => $value['nota1numturma'],
+                    'nota2numturma' => $value['nota2numturma'],
+                    'nota3numturma' => $value['nota3numturma'],
+                    'nota4numturma' => $value['nota4numturma'],
+                    'total_faltas_et1' => $value['total_faltas_et1'],
+                    'total_faltas_et2' => $value['total_faltas_et2'],
+                    'total_faltas_et3' => $value['total_faltas_et3'],
+                    'total_faltas_et4' => $value['total_faltas_et4'],
+                    'faltas_componente_et1' => $value['faltas_componente_et1'],
+                    'faltas_componente_et2' => $value['faltas_componente_et2'],
+                    'faltas_componente_et3' => $value['faltas_componente_et3'],
+                    'faltas_componente_et4' => $value['faltas_componente_et4'],
+                    'total_geral_faltas_componente' => $value['total_geral_faltas_componente'],
+                    'total_faltas' => $value['total_faltas'],
+                    'curso_hora_falta' => $value['curso_hora_falta'],
+                    'carga_horaria_componente' => $value['carga_horaria_componente'],
+                    'carga_horaria_serie' => $value['carga_horaria_serie'],
+                    'media' => $value['media'],
+                    'medianum' => $value['medianum'],
+                    'nota_exame' => $value['nota_exame'],
+                    'media_recuperacao' => $value['media_recuperacao'],
+                    'medianumturma' => $value['medianumturma'],
+                    'total_faltas_component' => $value['total_faltas_component']
+                ];
+                
+            }
+            $valueArea = $value;
+            $valueArea['data_nota'] = $arrNota;                  
+            $arrMain[] = $valueArea;
+            $arrNota = [];
+
+            unset($this->args['modelo']);
+            return array_merge([
+                'main' => $arrMain,
+                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
+            ]);
+        }else{
+            unset($this->args['modelo']);
+            $queryMainReport = $this->getSqlMainReport();
+            $queryHeaderReport = $this->getSqlHeaderReport();
+            return array_merge([
+                'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
+                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
+            ]);
+        }
     }
 
     /**
@@ -84,7 +175,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $alunos_diferenciados = $this->args['alunos_diferenciados'] ?: 0;
         $matricula = $this->args['matricula'] ?: 0;
 
-        return "SELECT fcn_upper(instituicao.nm_instituicao) AS nome_instituicao,
+        $return = "SELECT fcn_upper(instituicao.nm_instituicao) AS nome_instituicao,
           fcn_upper(instituicao.nm_responsavel) AS nome_responsavel,
           relatorio.get_nome_escola(escola.cod_escola) AS nm_escola,
           escola_ano_letivo.ano AS ano,
@@ -97,6 +188,9 @@ class ReportCardReport extends Portabilis_Report_ReportCore
           public.fcn_upper(pessoa.nome) AS nome_aluno,
           turma_turno.nome AS periodo,
           view_situacao.texto_situacao AS situacao,
+          area_conhecimento.id as area_conhecimento_id,
+          area_conhecimento.nome as area_conhecimento,
+          view_componente_curricular.id AS nome_disciplina_id,
           view_componente_curricular.nome AS nome_disciplina,
           TRUNC(nota_etapa1.nota::NUMERIC, 1) AS nota1num,
           nota_etapa1.nota_arredondada AS nota1,
@@ -132,7 +226,30 @@ class ReportCardReport extends Portabilis_Report_ReportCore
           TRUNC(nota_exame.nota_arredondada::NUMERIC, 1) AS nota_exame,
           TRUNC(coalesce(regra_avaliacao.media, 0.00), 1) AS media_recuperacao,
           relatorio.get_media_geral_turma(turma.cod_turma, view_componente_curricular.id) AS medianumturma,
-          relatorio.get_total_falta_componente(matricula.cod_matricula, view_componente_curricular.id) AS total_faltas_componente
+          relatorio.get_total_falta_componente(matricula.cod_matricula, view_componente_curricular.id) AS total_faltas_componente,
+          (SELECT string_agg(DISTINCT pessoa.nome, ', ') FROM  pmieducar.turma
+            INNER JOIN modules.professor_turma ON TRUE 
+                AND professor_turma.turma_id = turma.cod_turma
+                AND professor_turma.funcao_exercida IN(1)
+            INNER JOIN pmieducar.servidor ON TRUE 
+                AND servidor.cod_servidor = professor_turma.servidor_id
+                AND servidor.ativo = 1  
+            INNER JOIN cadastro.pessoa ON TRUE 
+                AND pessoa.idpes = servidor.cod_servidor
+            INNER JOIN cadastro.fisica ON TRUE 
+                AND fisica.idpes = servidor.cod_servidor
+            LEFT JOIN pmieducar.servidor as educacenso_cod_docente ON TRUE 
+                AND educacenso_cod_docente.cod_servidor = servidor.cod_servidor
+            LEFT JOIN cadastro.escolaridade ON TRUE 
+                AND escolaridade.idesco = servidor.ref_idesco
+            INNER JOIN relatorio.view_componente_curricular ON TRUE 
+                AND view_componente_curricular.cod_turma = turma.cod_turma
+            INNER JOIN modules.professor_turma_disciplina ON TRUE  AND professor_turma_disciplina.professor_turma_id = professor_turma.id AND professor_turma_disciplina.componente_curricular_id = view_componente_curricular.id
+            WHERE turma.cod_turma = {$turma} and professor_turma.ano = {$ano}
+            group by turma.cod_turma) as professor,
+    CASE WHEN UPPER(substring(serie.nm_serie,1,5)) = 'MULTI'  THEN 
+          (CASE WHEN etapa_ensino.descricao = '' or etapa_ensino.descricao is null THEN 'ETAPA DO ALUNO NÃO INFORMADA' ELSE substring(etapa_ensino.descricao,6,length(etapa_ensino.descricao)) END )   
+        ELSE serie.nm_serie END as etapa_ensino_descricao
    FROM pmieducar.instituicao
    INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
    INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
@@ -226,6 +343,8 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                                                            )
    LEFT JOIN modules.regra_avaliacao_serie_ano rasa on(serie.cod_serie = rasa.serie_id AND matricula.ano = rasa.ano_letivo)
    LEFT JOIN modules.regra_avaliacao on(rasa.regra_avaliacao_id = regra_avaliacao.id)
+   LEFT JOIN modules.area_conhecimento ON area_conhecimento.id = view_componente_curricular.area_conhecimento_id
+   LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
    WHERE instituicao.cod_instituicao = {$instituicao}
      AND escola.cod_escola = {$escola}
      AND curso.cod_curso = {$curso}
@@ -237,7 +356,12 @@ class ReportCardReport extends Portabilis_Report_ReportCore
      AND (CASE WHEN {$matricula} = 0 THEN TRUE ELSE matricula.cod_matricula = {$matricula} END)
    ORDER BY sequencial_fechamento,
             relatorio.get_texto_sem_caracter_especial(pessoa.nome),
+            area_conhecimento.ordenamento_ac,
             view_componente_curricular.ordenamento,
+            area_conhecimento.nome,
             view_componente_curricular.nome";
+
+        //dd($return);
+        return $return;
     }
 }
