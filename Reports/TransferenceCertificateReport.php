@@ -46,7 +46,7 @@ class TransferenceCertificateReport extends Portabilis_Report_ReportCore
         $instituicao = $this->args['instituicao'] ?: 0;
         $matricula = $this->args['matricula'] ?: 0;
 
-        return "
+        $return = "
         SELECT fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
        fcn_upper(instituicao.nm_responsavel) AS nm_responsavel,
        coalesce(instituicao.altera_atestado_para_declaracao, false) AS altera_atestado_para_declaracao,
@@ -194,7 +194,27 @@ class TransferenceCertificateReport extends Portabilis_Report_ReportCore
          INNER JOIN pmieducar.escola e ON (p.idpes = e.ref_idpes_secretario_escolar)
          WHERE e.cod_escola = {$escola}) as secretario,
 
-           fisica.nis_pis_pasep
+           fisica.nis_pis_pasep,
+           (
+         SELECT 
+         CASE WHEN UPPER(substring(serie.nm_serie,1,5)) = 'MULTI'  THEN 
+          (CASE WHEN etapa_ensino.descricao = '' or etapa_ensino.descricao is null THEN 'ETAPA DO ALUNO NÃO INFORMADA' ELSE substring(etapa_ensino.descricao,6,length(etapa_ensino.descricao)) END )  
+        ELSE serie.nm_serie END as etapa_ensino_descricao
+         from pmieducar.turma 
+     INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
+       LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
+     INNER JOIN pmieducar.serie ON (serie.cod_serie = matricula.ref_ref_cod_serie AND serie.ativo = 1)         
+     INNER JOIN pmieducar.escola_curso ON (escola_curso.ativo = 1 AND escola_curso.ref_cod_escola = escola.cod_escola)
+     INNER JOIN pmieducar.escola_serie ON (escola_serie.ativo = 1 AND escola_serie.ref_cod_escola = escola.cod_escola)
+         WHERE (turma.ref_ref_cod_escola = pmieducar.escola.cod_escola
+                                  AND turma.ref_cod_curso = escola_curso.ref_cod_curso
+                                  AND (
+                                           turma.ref_ref_cod_serie = escola_serie.ref_cod_serie OR
+                                           turma.ref_ref_cod_serie_mult = escola_serie.ref_cod_serie
+                                       )
+                                  AND turma.ativo = 1)
+      limit 1
+       ) as etapa_ensino_descricao
 
   FROM pmieducar.aluno,
        pmieducar.matricula,
@@ -238,5 +258,8 @@ class TransferenceCertificateReport extends Portabilis_Report_ReportCore
        escola.ativo = 1 AND
        instituicao.ativo = 1
         ";
+        //dd($return);
+        return $return;
+
     }
 }
