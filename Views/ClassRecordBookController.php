@@ -92,5 +92,6 @@ class ClassRecordBookController extends Portabilis_Controller_ReportCoreControll
         $this->report->addArg('buscar_professor', (bool)$this->getRequest()->buscar_professor);
         $this->report->addArg('disciplina', (string)$this->getRequest()->disciplina);
         $this->report->addArg('buscar_disciplina', (bool)$this->getRequest()->buscar_disciplina);
+        $this->report->addArg('regra_de_avaliacao', 1;
     }
 }

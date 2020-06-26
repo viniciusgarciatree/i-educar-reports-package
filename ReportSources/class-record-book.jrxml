@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="class-diary" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="7dc5cdf9-8f94-43cb-a2b6-91f22aeffc80">
 	<property name="ireport.zoom" value="0.9075000000000161"/>
 	<property name="ireport.x" value="0"/>
@@ -81,7 +81,9 @@
 			<band height="27">
 				<printWhenExpression><![CDATA[($P{modelo} == 1 || $P{modelo} == 3)]]></printWhenExpression>
 				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5">
+						<property name="com.jaspersoft.studio.element.name" value="Modelo 1 ou 3 registro de frequência "/>
+					</reportElement>
 					<subreportParameter name="logo">
 						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -97,7 +99,9 @@
 			<band height="27">
 				<printWhenExpression><![CDATA[$P{modelo} == 2]]></printWhenExpression>
 				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5">
+						<property name="com.jaspersoft.studio.element.name" value="Modelo 2 registro de frequência "/>
+					</reportElement>
 					<subreportParameter name="logo">
 						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -128,6 +132,9 @@
 					<subreportParameter name="source">
 						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "elementary-school-exams-record.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
@@ -143,6 +150,9 @@
 					</subreportParameter>
 					<subreportParameter name="source">
 						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "middle-school-exams-record.jasper"]]></subreportExpression>
 				</subreport>
