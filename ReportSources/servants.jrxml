@@ -546,7 +546,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA["<b>Total geral: </b>" + $V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement stretchType="RelativeToBandHeight" x="2" y="8" width="419" height="10" uuid="7aab6e38-06ab-4c7b-8bc7-e21ff4832108">
 					<printWhenExpression><![CDATA[$P{emitir_totalizadores}]]></printWhenExpression>
 				</reportElement>
