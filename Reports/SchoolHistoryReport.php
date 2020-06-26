@@ -40,7 +40,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
         $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'] ?: 0;
         $aluno = $this->args['aluno'] ?: 0;
 
-        return "
+        $return = "
         SELECT vhsa.cod_aluno,
        vhsa.disciplina AS nm_disciplina,
        pessoa.nome AS nome_aluno,
@@ -201,7 +201,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
        (SELECT DISTINCT '' || (replace(textcat_all((' ')),' <br> ','<br>'))
 		  FROM generate_series(1,(SELECT ROUND((250 - (COUNT(DISTINCT trim(relatorio.get_texto_sem_caracter_especial(nm_disciplina))) * 12)) / 12)
-		                            FROM historico_disciplinas hd
+		                            FROM pmieducar.historico_disciplinas hd
 		                           INNER JOIN pmieducar.historico_escolar he ON (he.ref_cod_aluno = hd.ref_ref_cod_aluno
 		                                                                         AND hd.ref_sequencial = he.sequencial)
 		                           WHERE ref_ref_cod_aluno = vhsa.cod_aluno)::INTEGER)) AS espaco_branco,
@@ -228,5 +228,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
   LEFT JOIN public.municipio ON (municipio.idmun = fisica.idmun_nascimento)
  WHERE vhsa.cod_aluno = {$aluno}
         ";
+        //dd($return);
+        return $return;
     }
 }
