@@ -46,6 +46,8 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 
         $resources = [
             3 => 'Série/Anos',
+            4 => 'Modelo Personalizado 01',
+            5 => 'Modelo Personalizado 02',
         ];
 
         $this->inputsHelper()->checkbox('emitir_historico_dependencia', [

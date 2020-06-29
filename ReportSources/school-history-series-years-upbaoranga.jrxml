@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="school-history-series-years" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="a79dda7b-5eab-4f10-b9e4-88b7ba7d8664">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="school-history-series-years-upbaoranga" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="a79dda7b-5eab-4f10-b9e4-88b7ba7d8664">
 	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
 	<subDataset name="dataset1" uuid="d908f52f-5cd9-45b2-8bba-8a08729e0436"/>
 	<subDataset name="dataset2" uuid="eeb007dc-7155-4973-97de-33ac02c4f90a"/>
@@ -1444,31 +1444,20 @@
 		</groupFooter>
 	</group>
 	<background>
-		<band height="418">
+		<band height="518">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="369" y="172" width="180" height="55" uuid="b8957cfb-7e79-4522-99a9-ec78059fb657"/>
+				<reportElement x="369" y="169" width="180" height="349" uuid="b8957cfb-7e79-4522-99a9-ec78059fb657">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box leftPadding="5"/>
-				<textElement textAlignment="Justified">
+				<textElement textAlignment="Justified" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA["O Ensino Fundamental das escolas municipais de Caratinga está organizado em ciclos, conforme LDB nº 9394/96, Parecer CME nº 02/2015 e Portaria SME nº 218/2015."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["O Ensino Fundamental, com duração de nove anos, está organizado nos cinco anos iniciais em Ciclos e nos quatro anos finais em anos de escolaridade, conforme LDBEN n.o 9394/96, Parecer CEE n.o 1132/97 e 1158/98 e Resolução SEE/MG n.o 469/03, a saber:<br>Ciclo Inicial de Alfabetização: Fase Introdutória, Fase I, Fase II.<br>Ciclo Complementar de Alfabetização (02 anos):Fase III, Fase IV.<br>Em 2008 vigora a Res. SEE no 1086/2008: Em 2012 Vigora a Res. SEE no2197/2012.<br>Ciclo de Alfabetização: 1o ano, 2o ano, 3o ano.<br>Ciclo Complementar: 4o ano, 5o ano<br><br>Referencial para preenchimento de avaliação de desempenho:<br><b>A</b> (excelente) - alcançou com êxito os objetivos de estudo;<br><b>B</b> (Bom) - alcançou satisfatoriamente os objetivos de estudo;<br><b>C</b> (Regular) - alcançou parcialmente os objetivos de estudo."]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="369" y="260" width="180" height="128" uuid="c55e909c-1f03-4215-900b-48a005d19910"/>
-				<box leftPadding="5"/>
-				<textElement markup="html">
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{parametros_compreensao}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="369" y="230" width="180" height="30" uuid="4c27c373-68a7-4100-96a9-2802482b1fc5"/>
-				<box leftPadding="5"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[PARÂMETROS PARA COMPREENSÃO DA FICHA DE AVALIAÇÃO DO DESEMPENHO DO ALUNO.]]></text>
-			</staticText>
 		</band>
 	</background>
 	<pageHeader>
@@ -1562,7 +1551,7 @@
 					<font fontName="DejaVu Sans" size="8"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, matrícula <b>"+$F{cod_aluno}+($F{cod_inep} == null ? "" : "</b>, cód. INEP: <b>"+$F{cod_inep}) +"</b>, natural de <b>"+$F{cidade_nascimento_uf}+"</b>, nascido(a) em <b>"+$F{data_nasc}+"</b>, filho(a) de <b>"+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ($F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae}.toUpperCase()) : (($F{nome_do_pai} == null) ? $F{nome_da_mae}.toUpperCase() : $F{nome_do_pai}.toUpperCase())) +"</b>, <b>"+ $F{nome_serie_aux}.toUpperCase() +"</b> conforme Histórico Escolar."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, matrícula <b>"+$F{cod_aluno}+($F{cod_inep} == null ? "" : "</b>, cód. INEP: <b>"+$F{cod_inep}) +"</b>, natural de <b>"+$F{cidade_nascimento_uf}+"</b>, nascido(a) em <b>"+$F{data_nasc}+"</b>, filho(a) de <b>"+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ($F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae}.toUpperCase()) : (($F{nome_do_pai} == null) ? $F{nome_da_mae}.toUpperCase() : $F{nome_do_pai}.toUpperCase())) +"</b>, <b>"+ ($F{nome_serie_aux} != null ? $F{nome_serie_aux}.toUpperCase():"") +"</b> conforme Histórico Escolar."]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="231" y="116" width="1" height="25" uuid="cf92ec55-59e6-4722-9394-b39b5d3d3733"/>
