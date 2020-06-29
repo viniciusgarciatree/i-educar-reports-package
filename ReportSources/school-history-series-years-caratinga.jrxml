@@ -1406,7 +1406,7 @@
 					</textElement>
 					<text><![CDATA[Obs.:]]></text>
 				</staticText>
-				<textField textAdjust="StretchHeight">
+				<textField>
 					<reportElement x="469" y="-1" width="81" height="12" uuid="532d09dc-69ce-40fb-bab5-364a92255f0f"/>
 					<textElement markup="html"/>
 					<textFieldExpression><![CDATA[$F{espaco_branco}]]></textFieldExpression>
@@ -1556,7 +1556,7 @@
 				</textElement>
 				<text><![CDATA[DISCIPLINA]]></text>
 			</staticText>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement positionType="Float" x="10" y="33" width="533" height="34" uuid="76d4f30f-c664-4da6-a2b6-d77dd7af368c"/>
 				<textElement textAlignment="Justified" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
