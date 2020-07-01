@@ -46,6 +46,9 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
         $escola = $this->args['escola'] ?: 0;
         $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'] ?: 0;
         $aluno = $this->args['aluno'] ?: 0;
+        $ano = $this->args['ano'];
+
+        $dataFim = " (SELECT MAX( data_fim ) FROM pmieducar.ano_letivo_modulo WHERE ref_ano = {$ano} AND ref_ref_cod_escola = {$escola}) ";
 
         $return = "
         SELECT vhsa.cod_aluno,
@@ -55,6 +58,10 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
        municipio.nome || '/' || municipio.sigla_uf AS cidade_nascimento_uf,
        municipio.sigla_uf AS uf_nascimento,
        municipio.nome AS cidade_nascimento,
+       relatorio.get_nacionalidade(fisica.nacionalidade) AS nacionalidade,
+       CASE WHEN fisica.sexo = 'M' THEN 'Masculino' ELSE 'Feminino' END as sexo,
+       concat(TO_CHAR(fisica.data_nasc, 'DD'),' de ',CASE (TO_CHAR(fisica.data_nasc, 'MM'))::integer WHEN 1 THEN 'Janeiro' WHEN 2 THEN 'Fevereiro' WHEN 3 THEN 'Março' WHEN 4 THEN 'Abril' WHEN 5 THEN 'Maio' WHEN 6 THEN 'Junho' WHEN 7 THEN 'Julho' WHEN 8 THEN 'Agosto' WHEN 9 THEN 'Setembro'
+           WHEN 10 THEN 'Outubro' WHEN 11 THEN 'Novembro' WHEN 12 THEN 'Dezembro' END,' de ', TO_CHAR(fisica.data_nasc, 'YYYY')) AS data_extenso,
        to_char(fisica.data_nasc,'DD/MM/YYYY') AS data_nasc,
        relatorio.get_pai_aluno(vhsa.cod_aluno) AS nome_do_pai,
        relatorio.get_mae_aluno(vhsa.cod_aluno) AS nome_da_mae,
@@ -227,6 +234,8 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
                    AND phe.ativo = 1
                    AND (CASE WHEN {$nao_emitir_reprovado} THEN phe.aprovado <> 2 ELSE 1=1 END)
                  ORDER BY phe.ano)tabl) AS observacao_all
+      ,concat(TO_CHAR(". $dataFim .", 'DD'),' de ',CASE (TO_CHAR(". $dataFim .", 'MM'))::integer WHEN 1 THEN 'Janeiro' WHEN 2 THEN 'Fevereiro' WHEN 3 THEN 'Março' WHEN 4 THEN 'Abril' WHEN 5 THEN 'Maio' WHEN 6 THEN 'Junho' WHEN 7 THEN 'Julho' WHEN 8 THEN 'Agosto' WHEN 9 THEN 'Setembro'
+           WHEN 10 THEN 'Outubro' WHEN 11 THEN 'Novembro' WHEN 12 THEN 'Dezembro' END,' de ', TO_CHAR(". $dataFim .", 'YYYY')) AS data_final
   FROM relatorio.view_historico_series_anos vhsa
  INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = vhsa.cod_aluno)
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)

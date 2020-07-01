@@ -168,6 +168,10 @@
 	<field name="espaco_branco" class="java.lang.String"/>
 	<field name="possui_historico_dependencia" class="java.lang.Long"/>
 	<field name="observacao_all" class="java.lang.String"/>
+	<field name="nacionalidade" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="data_extenso" class="java.lang.String"/>
+	<field name="data_final" class="java.lang.String"/>
 	<variable name="max_escola1" class="java.lang.String" resetType="Group" resetGroup="grupo" calculation="Highest">
 		<variableExpression><![CDATA[$F{escola_1serie}]]></variableExpression>
 	</variable>
@@ -1546,12 +1550,15 @@
 				<text><![CDATA[DISCIPLINA]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="10" y="33" width="533" height="34" uuid="76d4f30f-c664-4da6-a2b6-d77dd7af368c"/>
+				<reportElement positionType="Float" x="10" y="20" width="533" height="64" uuid="76d4f30f-c664-4da6-a2b6-d77dd7af368c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<textElement textAlignment="Justified" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, matrícula <b>"+$F{cod_aluno}+($F{cod_inep} == null ? "" : "</b>, cód. INEP: <b>"+$F{cod_inep}) +"</b>, natural de <b>"+$F{cidade_nascimento_uf}+"</b>, nascido(a) em <b>"+$F{data_nasc}+"</b>, filho(a) de <b>"+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ($F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae}.toUpperCase()) : (($F{nome_do_pai} == null) ? $F{nome_da_mae}.toUpperCase() : $F{nome_do_pai}.toUpperCase())) +"</b>, <b>"+ ($F{nome_serie_aux} != null ? $F{nome_serie_aux}.toUpperCase():"") +"</b> conforme Histórico Escolar."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, natural de <b>"+$F{cidade_nascimento}.toUpperCase()+"</b> UF <b>"+$F{uf_nascimento}.toUpperCase()+"</b> nacionalidade <b>"+$F{nacionalidade}.toUpperCase()+"</b> do sexo  <b>"+$F{sexo}.toUpperCase()+"</b>, nascido(a) em <b>"+$F{data_extenso}+"</b>, filho(a) de <b>"+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ($F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae}.toUpperCase()) : (($F{nome_do_pai} == null) ? $F{nome_da_mae}.toUpperCase() : $F{nome_do_pai}.toUpperCase())) + "</b> " + ($F{nome_serie_aux} != null ? " , Concluiu em <b>" + $F{data_final}.toUpperCase() + "</b> O ANO DO CICLO " + $F{nome_serie_aux}.toUpperCase() + " COMPLEMENTAR.":" ")]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="231" y="116" width="1" height="25" uuid="cf92ec55-59e6-4722-9394-b39b5d3d3733"/>
@@ -1708,7 +1715,7 @@ $P{cabecalho_alternativo} != 1]]></printWhenExpression>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($P{cabecalho_alternativo} == 1) ? "HISTÓRICO ESCOLAR" : ($P{cabecalho_alternativo} == 2) ? "CERTIFICADO DE CONCLUSÃO DO ENSINO FUNDAMENTAL" :  "CERTIFICADO DE CONCLUSÃO " + (($F{nome_curso} == "") ? "DO ENSINO FUNDAMENTAL - ANOS INICIAIS" : $F{nome_curso} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{cabecalho_alternativo} == 1) ? "HISTÓRICO ESCOLAR" : ($P{cabecalho_alternativo} == 2) ? "CERTIFICADO DE CONCLUSÃO DO ENSINO FUNDAMENTAL" :  "CERTIFICADO DE CONCLUSÃO EDUCAÇÃO BÁSICA - CICLO"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="407" y="33" width="51" height="10" uuid="a4d18f2b-2954-4bfb-ad7b-ab8d20924912">
