@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 use iEducar\Reports\JsonDataSource;
 
@@ -47,6 +47,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
         $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'] ?: 0;
         $aluno = $this->args['aluno'] ?: 0;
         $ano = $this->args['ano'];
+        $curso = $this->args['curso'] ?: 0;
 
         $dataFim = " (SELECT MAX( data_fim ) FROM pmieducar.ano_letivo_modulo WHERE ref_ano = {$ano} AND ref_ref_cod_escola = {$escola}) ";
 
@@ -236,6 +237,10 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
                  ORDER BY phe.ano)tabl) AS observacao_all
       ,concat(TO_CHAR(". $dataFim .", 'DD'),' de ',CASE (TO_CHAR(". $dataFim .", 'MM'))::integer WHEN 1 THEN 'Janeiro' WHEN 2 THEN 'Fevereiro' WHEN 3 THEN 'Março' WHEN 4 THEN 'Abril' WHEN 5 THEN 'Maio' WHEN 6 THEN 'Junho' WHEN 7 THEN 'Julho' WHEN 8 THEN 'Agosto' WHEN 9 THEN 'Setembro'
            WHEN 10 THEN 'Outubro' WHEN 11 THEN 'Novembro' WHEN 12 THEN 'Dezembro' END,' de ', TO_CHAR(". $dataFim .", 'YYYY')) AS data_final
+      ,(select nm_curso from pmieducar.curso where curso.cod_curso = {$curso}) as nm_curso
+      ,(select tipo_ensino.nm_tipo from pmieducar.curso 
+inner join pmieducar.tipo_ensino on cod_tipo_ensino = ref_cod_tipo_ensino
+where curso.cod_curso = {$curso} limit 1) as nm_tipo
   FROM relatorio.view_historico_series_anos vhsa
  INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = vhsa.cod_aluno)
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)

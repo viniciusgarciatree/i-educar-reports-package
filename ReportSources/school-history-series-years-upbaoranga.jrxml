@@ -172,6 +172,8 @@
 	<field name="sexo" class="java.lang.String"/>
 	<field name="data_extenso" class="java.lang.String"/>
 	<field name="data_final" class="java.lang.String"/>
+	<field name="nm_curso" class="java.lang.String"/>
+	<field name="nm_tipo" class="java.lang.String"/>
 	<variable name="max_escola1" class="java.lang.String" resetType="Group" resetGroup="grupo" calculation="Highest">
 		<variableExpression><![CDATA[$F{escola_1serie}]]></variableExpression>
 	</variable>
@@ -1451,9 +1453,9 @@
 		<band height="518">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="369" y="169" width="180" height="349" uuid="b8957cfb-7e79-4522-99a9-ec78059fb657">
+				<reportElement x="369" y="172" width="180" height="346" uuid="b8957cfb-7e79-4522-99a9-ec78059fb657">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box leftPadding="5"/>
@@ -1491,7 +1493,9 @@
 		<band height="141">
 			<property name="com.jaspersoft.studio.layout"/>
 			<rectangle>
-				<reportElement x="6" y="0" width="545" height="80" uuid="91c092c5-d0b0-4373-84f2-6ab5714e18ae"/>
+				<reportElement x="6" y="0" width="545" height="68" uuid="91c092c5-d0b0-4373-84f2-6ab5714e18ae">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
@@ -1558,7 +1562,7 @@
 					<font fontName="DejaVu Sans" size="8"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, natural de <b>"+$F{cidade_nascimento}.toUpperCase()+"</b> UF <b>"+$F{uf_nascimento}.toUpperCase()+"</b> nacionalidade <b>"+$F{nacionalidade}.toUpperCase()+"</b> do sexo  <b>"+$F{sexo}.toUpperCase()+"</b>, nascido(a) em <b>"+$F{data_extenso}+"</b>, filho(a) de <b>"+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ($F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae}.toUpperCase()) : (($F{nome_do_pai} == null) ? $F{nome_da_mae}.toUpperCase() : $F{nome_do_pai}.toUpperCase())) + "</b> " + ($F{nome_serie_aux} != null ? " , Concluiu em <b>" + $F{data_final}.toUpperCase() + "</b> O ANO DO CICLO " + $F{nome_serie_aux}.toUpperCase() + " COMPLEMENTAR.":" ")]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, natural de <b>"+$F{cidade_nascimento}.toUpperCase()+"</b> UF <b>"+$F{uf_nascimento}.toUpperCase()+"</b> nacionalidade <b>"+$F{nacionalidade}.toUpperCase()+"</b> do sexo  <b>"+$F{sexo}.toUpperCase()+"</b>, nascido(a) em <b>"+$F{data_extenso}+"</b>, filho(a) de <b>"+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ($F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae}.toUpperCase()) : (($F{nome_do_pai} == null) ? $F{nome_da_mae}.toUpperCase() : $F{nome_do_pai}.toUpperCase())) + "</b> " + ($F{nome_serie_aux} != null ? " , Concluiu em <b>" + $F{data_final}.toUpperCase() + "</b> O ANO DO CICLO " + $F{nome_serie_aux}.toUpperCase() + " COMPLEMENTAR." + " do Ensino " + $F{nm_tipo} + "" :" ") ]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="231" y="116" width="1" height="25" uuid="cf92ec55-59e6-4722-9394-b39b5d3d3733"/>
@@ -1595,8 +1599,8 @@
 				<text><![CDATA[5º Ano]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="10" y="85" width="358" height="16" uuid="021421f4-e6c1-4be7-8ab1-0ef26ab43d84"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+				<reportElement x="10" y="85" width="535" height="16" uuid="021421f4-e6c1-4be7-8ab1-0ef26ab43d84"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 					<font fontName="DejaVu Sans" size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($P{cabecalho_alternativo} == 1) ? "" : ($P{cabecalho_alternativo} == 2) ? "HISTÓRICO ESCOLAR DO ENSINO FUNDAMENTAL" : ("HISTÓRICO ESCOLAR DO " + (($F{nome_curso} == "" ) ? "ENSINO FUNDAMENTAL" : $F{nome_curso} ))]]></textFieldExpression>
@@ -1746,6 +1750,17 @@ $P{cabecalho_alternativo} != 1]]></printWhenExpression>
 				</textElement>
 				<text><![CDATA[BASE NACIONAL COMUM]]></text>
 			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="12" y="72" width="533" height="12" uuid="e2ac45cf-ffe4-4122-94dd-4099ca6d63c4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fundamentação Legal do curso: <b>LEI FEDERAL 9394/96 DE 23/12/1996; RESOLUÇÃO SEE No 2197 DE 26/10/2012.</b>"]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
