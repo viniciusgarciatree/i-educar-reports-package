@@ -1562,7 +1562,8 @@
 					<font fontName="DejaVu Sans" size="8"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, natural de <b>"+$F{cidade_nascimento}.toUpperCase()+"</b> UF <b>"+$F{uf_nascimento}.toUpperCase()+"</b> nacionalidade <b>"+$F{nacionalidade}.toUpperCase()+"</b> do sexo  <b>"+$F{sexo}.toUpperCase()+"</b>, nascido(a) em <b>"+$F{data_extenso}+"</b>, filho(a) de <b>"+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ($F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae}.toUpperCase()) : (($F{nome_do_pai} == null) ? $F{nome_da_mae}.toUpperCase() : $F{nome_do_pai}.toUpperCase())) + "</b> " + ($F{nome_serie_aux} != null ? " , Concluiu em <b>" + $F{data_final}.toUpperCase() + "</b> O ANO DO CICLO " + $F{nome_serie_aux}.toUpperCase() + " COMPLEMENTAR." + " do Ensino " + $F{nm_tipo} + "" :" ") ]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, natural de <b>"+$F{cidade_nascimento}.toUpperCase()+"</b> UF <b>"+$F{uf_nascimento}.toUpperCase()+"</b> nacionalidade <b>"+$F{nacionalidade}.toUpperCase()+"</b> do sexo  <b>"+$F{sexo}.toUpperCase()+"</b>, nascido(a) em <b>"+$F{data_extenso}+"</b>, filho(a) de "+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? "<b>" +($F{nome_do_pai}.toUpperCase() + "</b> e <b>" +$F{nome_da_mae}.toUpperCase())+"</b>" : (($F{nome_do_pai} == null) 
+? "<b>"+ $F{nome_da_mae}.toUpperCase() + "</b>" : "<b>" + $F{nome_do_pai}.toUpperCase()+ "</b>")) + ($F{nome_serie_aux} != null ? ", Concluiu em <b>" + $F{data_final}.toUpperCase() + "</b> o <b>" + $F{nome_serie_aux}.toUpperCase() + "</b> do cliclo complementar do Ensino <b>" + $F{nm_tipo} + "</b>." :". ") ]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="231" y="116" width="1" height="25" uuid="cf92ec55-59e6-4722-9394-b39b5d3d3733"/>

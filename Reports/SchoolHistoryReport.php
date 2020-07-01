@@ -177,7 +177,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
        public.data_para_extenso(CURRENT_DATE) AS data_atual_extenso,
 
        (SELECT CASE WHEN he.aprovado = 3 THEN 'está cursando '
-                    ELSE 'concluiu '
+                    ELSE ' '
                END || (CASE WHEN ((substring(nm_serie,1,1)::integer = 8
                                   AND historico_grade_curso_id = 1)
                                    OR (substring(nm_serie,1,1)::integer = 9)
