@@ -1549,12 +1549,12 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="7" y="116" width="74" height="24" uuid="35e643f8-8e93-4287-bcbe-599269969c51"/>
+				<reportElement x="7" y="116" width="137" height="24" uuid="35e643f8-8e93-4287-bcbe-599269969c51"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					<paragraph leftIndent="1"/>
 				</textElement>
-				<text><![CDATA[DISCIPLINA]]></text>
+				<text><![CDATA[COMPONENTE CURRICULAR]]></text>
 			</staticText>
 			<textField>
 				<reportElement positionType="Float" x="10" y="33" width="533" height="34" uuid="76d4f30f-c664-4da6-a2b6-d77dd7af368c"/>
@@ -1748,7 +1748,7 @@ $P{cabecalho_alternativo} != 1]]></printWhenExpression>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					<paragraph leftIndent="1"/>
 				</textElement>
-				<text><![CDATA[BASE NACIONAL COMUM]]></text>
+				<text><![CDATA[BASE NACIONAL COMUM CURRICULAR]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

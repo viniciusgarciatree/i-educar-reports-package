@@ -1462,7 +1462,7 @@
 				<textElement textAlignment="Justified" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA["O Ensino Fundamental, com duração de nove anos, está organizado nos cinco anos iniciais em Ciclos e nos quatro anos finais em anos de escolaridade, conforme LDBEN n.o 9394/96, Parecer CEE n.o 1132/97 e 1158/98 e Resolução SEE/MG n.o 469/03, a saber:<br>Ciclo Inicial de Alfabetização: Fase Introdutória, Fase I, Fase II.<br>Ciclo Complementar de Alfabetização (02 anos):Fase III, Fase IV.<br>Em 2008 vigora a Res. SEE no 1086/2008: Em 2012 Vigora a Res. SEE no2197/2012.<br>Ciclo de Alfabetização: 1o ano, 2o ano, 3o ano.<br>Ciclo Complementar: 4o ano, 5o ano<br><br>Referencial para preenchimento de avaliação de desempenho:<br><b>A</b> (excelente) - alcançou com êxito os objetivos de estudo;<br><b>B</b> (Bom) - alcançou satisfatoriamente os objetivos de estudo;<br><b>C</b> (Regular) - alcançou parcialmente os objetivos de estudo."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["O Ensino Fundamental, com duração de nove anos, está organizado nos cinco anos iniciais em Ciclos e nos quatro anos finais em anos de escolaridade, conforme LDBEN n.o 9394/96, Parecer CEE n.o 1132/97 e 1158/98 e Resolução SEE/MG n.o 469/03, a saber:<br>Ciclo Inicial de Alfabetização: Fase Introdutória, Fase I, Fase II.<br>Ciclo Complementar de Alfabetização (02 anos):Fase III, Fase IV.<br>Em 2008 vigora a Res. SEE no 1086/2008: Em 2012 Vigora a Res. SEE no2197/2012.<br>Ciclo de Alfabetização: 1o ano, 2o ano, 3o ano.<br>Ciclo Complementar: 4o ano, 5o ano<br><br><b>Referencial para preenchimento de avaliação de desempenho:<b/><br><b>A</b> (excelente) - alcançou com êxito os objetivos de estudo;<br><b>B</b> (Bom) - alcançou satisfatoriamente os objetivos de estudo;<br><b>C</b> (Regular) - alcançou parcialmente os objetivos de estudo."]]></textFieldExpression>
 			</textField>
 		</band>
 	</background>
@@ -1563,7 +1563,7 @@
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, natural de <b>"+$F{cidade_nascimento}.toUpperCase()+"</b> UF <b>"+$F{uf_nascimento}.toUpperCase()+"</b> nacionalidade <b>"+$F{nacionalidade}.toUpperCase()+"</b> do sexo  <b>"+$F{sexo}.toUpperCase()+"</b>, nascido(a) em <b>"+$F{data_extenso}+"</b>, filho(a) de "+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? "<b>" +($F{nome_do_pai}.toUpperCase() + "</b> e <b>" +$F{nome_da_mae}.toUpperCase())+"</b>" : (($F{nome_do_pai} == null) 
-? "<b>"+ $F{nome_da_mae}.toUpperCase() + "</b>" : "<b>" + $F{nome_do_pai}.toUpperCase()+ "</b>")) + ($F{nome_serie_aux} != null ? ", Concluiu em <b>" + $F{data_final}.toUpperCase() + "</b> o <b>" + $F{nome_serie_aux}.toUpperCase() + "</b> do cliclo complementar do Ensino <b>" + $F{nm_tipo} + "</b>." :". ") ]]></textFieldExpression>
+? "<b>"+ $F{nome_da_mae}.toUpperCase() + "</b>" : "<b>" + $F{nome_do_pai}.toUpperCase()+ "</b>")) + ($F{nome_serie_aux} != null ? ", Concluiu em <b>" + $F{data_final}.toUpperCase() + "</b> o <b>" + $F{nome_serie_aux}.toUpperCase() + "</b> do CICLO COMPLEMENTAR do Ensino <b>" + $F{nm_tipo} + "</b>." :". ")]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="231" y="116" width="1" height="25" uuid="cf92ec55-59e6-4722-9394-b39b5d3d3733"/>
