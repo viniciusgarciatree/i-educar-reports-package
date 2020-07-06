@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report-card-boletim-nota" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report-card-boletim-disciplina" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -157,10 +157,10 @@
 		<band splitType="Stretch"/>
 	</title>
 	<detail>
-		<band height="13" splitType="Stretch">
+		<band height="14" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement mode="Opaque" x="0" y="0" width="412" height="13" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+				<reportElement mode="Opaque" x="0" y="0" width="412" height="14" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
@@ -170,11 +170,14 @@
 				</graphicElement>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="1" width="141" height="11" uuid="935528ad-cd62-4726-94e8-05948e5435f3">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<reportElement x="0" y="0" width="141" height="14" uuid="935528ad-cd62-4726-94e8-05948e5435f3">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textElement>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
@@ -192,7 +195,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$F{nota1} != null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" markup="html">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota1}.matches( "[A-Z]" ) ? $F{nota1} : (
@@ -210,7 +213,7 @@
 				<reportElement x="165" y="1" width="20" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="d5ccefa6-8c9a-417b-9344-6c41431a4d77">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{faltas_componente_et1}]]></textFieldExpression>
@@ -228,7 +231,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$F{nota2} != null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" markup="html">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota2}.matches( "[A-Z]" ) ? $F{nota2} : (
@@ -246,7 +249,7 @@
 				<reportElement x="209" y="1" width="20" height="11" uuid="0d944d1e-52d7-4973-8f40-65083e45567b">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{faltas_componente_et2}]]></textFieldExpression>
@@ -264,7 +267,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$F{nota3} != null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" markup="html">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota3}.matches( "[A-Z]" ) ? $F{nota3} : (
@@ -282,7 +285,7 @@
 				<reportElement x="254" y="1" width="20" height="11" uuid="af083824-13fe-43d4-bcb9-8e1ca2851cba">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{faltas_componente_et3}]]></textFieldExpression>
@@ -300,7 +303,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$F{nota4} != null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" markup="html">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota4}.matches( "[A-Z]" ) ? $F{nota4} : (
@@ -318,7 +321,7 @@
 				<reportElement x="297" y="1" width="20" height="11" uuid="07e876cc-77d8-4abb-bc84-8649be31f795">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{faltas_componente_et4}]]></textFieldExpression>
@@ -336,7 +339,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$F{exame} != 0 && $P{emitir_nota_exame}]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_exame}]]></textFieldExpression>
@@ -354,7 +357,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$F{nota4} != null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" markup="html">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota4num} != null ?
@@ -375,7 +378,7 @@
 				<reportElement x="365" y="1" width="20" height="11" uuid="d62c2bab-5467-4d98-8368-592207b84207">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_faltas_componente}]]></textFieldExpression>
@@ -394,7 +397,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[100 - (($F{total_faltas_componente} * $F{curso_hora_falta})/$F{carga_horaria_componente}) != 100.0]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[100 - (($F{total_faltas_componente} * $F{curso_hora_falta})/$F{carga_horaria_componente})]]></textFieldExpression>

@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 use iEducar\Reports\JsonDataSource;
 
@@ -14,7 +14,14 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return 'school-history-series-years';
+        if($this->args['modelo'] == 4){
+            return 'school-history-series-years-caratinga';
+        }elseif($this->args['modelo'] == 5){
+          return 'school-history-series-years-upbaoranga';
+        }else{
+          return 'school-history-series-years';
+        }
+        
     }
 
     /**
@@ -25,6 +32,19 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
         $this->addRequiredArg('instituicao');
         $this->addRequiredArg('escola');
         $this->addRequiredArg('modelo');
+    }
+
+    public function getJsonData()
+    {
+        $queryMainReport = $this->getSqlMainReport();        
+        $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
+        $queryHeaderReport = $this->getSqlHeaderReport();
+        $arrMain = $dados;
+
+        return array_merge([
+                'main' => $arrMain,
+                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
+            ]);
     }
 
     /**
@@ -39,15 +59,37 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
         $escola = $this->args['escola'] ?: 0;
         $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'] ?: 0;
         $aluno = $this->args['aluno'] ?: 0;
+        $ano = $this->args['ano'];
+        $curso = $this->args['curso'] ?: 0;
 
-        return "
+        $dataFim = " (SELECT MAX( data_fim ) FROM pmieducar.ano_letivo_modulo WHERE ref_ano = {$ano} AND ref_ref_cod_escola = {$escola}) ";
+
+        $return = "
         SELECT vhsa.cod_aluno,
+        (select ordenamento
+          from pmieducar.historico_disciplinas disciplinas
+          where ref_ref_cod_aluno = disciplinas.ref_ref_cod_aluno
+          and btrim(relatorio.get_texto_sem_caracter_especial(nm_disciplina::character varying)::text) = vhsa.disciplina
+          and ordenamento is not null
+          order by ref_sequencial desc
+          limit 1) as ordenamento,
        vhsa.disciplina AS nm_disciplina,
+           (select tipo_base
+          from pmieducar.historico_disciplinas disciplinas
+          where disciplinas.ref_ref_cod_aluno = vhsa.cod_aluno
+          and btrim(relatorio.get_texto_sem_caracter_especial(nm_disciplina::character varying)::text) = vhsa.disciplina
+          and tipo_base is not null
+          order by ref_sequencial desc
+          limit 1) as tipo_base,
        pessoa.nome AS nome_aluno,
        eca.cod_aluno_inep AS cod_inep,
        municipio.nome || '/' || municipio.sigla_uf AS cidade_nascimento_uf,
        municipio.sigla_uf AS uf_nascimento,
        municipio.nome AS cidade_nascimento,
+       relatorio.get_nacionalidade(fisica.nacionalidade) AS nacionalidade,
+       CASE WHEN fisica.sexo = 'M' THEN 'Masculino' ELSE 'Feminino' END as sexo,
+       concat(TO_CHAR(fisica.data_nasc, 'DD'),' de ',CASE (TO_CHAR(fisica.data_nasc, 'MM'))::integer WHEN 1 THEN 'Janeiro' WHEN 2 THEN 'Fevereiro' WHEN 3 THEN 'Março' WHEN 4 THEN 'Abril' WHEN 5 THEN 'Maio' WHEN 6 THEN 'Junho' WHEN 7 THEN 'Julho' WHEN 8 THEN 'Agosto' WHEN 9 THEN 'Setembro'
+           WHEN 10 THEN 'Outubro' WHEN 11 THEN 'Novembro' WHEN 12 THEN 'Dezembro' END,' de ', TO_CHAR(fisica.data_nasc, 'YYYY')) AS data_extenso,
        to_char(fisica.data_nasc,'DD/MM/YYYY') AS data_nasc,
        relatorio.get_pai_aluno(vhsa.cod_aluno) AS nome_do_pai,
        relatorio.get_mae_aluno(vhsa.cod_aluno) AS nome_da_mae,
@@ -87,6 +129,15 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
        vhsa.frequencia7 AS freq7,
        vhsa.frequencia8 AS freq8,
        vhsa.frequencia9 AS freq9,
+       (((vhsa.carga_horaria1::integer/4) * vhsa.frequencia1::decimal))::integer as freq_dia_1,
+       (((vhsa.carga_horaria2::integer/4) * vhsa.frequencia2::decimal))::integer as freq_dia_2,
+       (((vhsa.carga_horaria3::integer/4) * vhsa.frequencia3::decimal))::integer as freq_dia_3,
+       (((vhsa.carga_horaria4::integer/4) * vhsa.frequencia4::decimal))::integer as freq_dia_4,
+       (((vhsa.carga_horaria5::integer/4) * vhsa.frequencia5::decimal))::integer as freq_dia_5,
+       (((vhsa.carga_horaria6::integer/4) * vhsa.frequencia6::decimal))::integer as freq_dia_6,
+       (((vhsa.carga_horaria7::integer/4) * vhsa.frequencia7::decimal))::integer as freq_dia_7,
+       (((vhsa.carga_horaria8::integer/4) * vhsa.frequencia8::decimal))::integer as freq_dia_8,
+       (((vhsa.carga_horaria9::integer/4) * vhsa.frequencia9::decimal))::integer as freq_dia_9,
        vhsa.nota_1serie,
        vhsa.nota_2serie,
        vhsa.nota_3serie,
@@ -162,7 +213,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
        public.data_para_extenso(CURRENT_DATE) AS data_atual_extenso,
 
        (SELECT CASE WHEN he.aprovado = 3 THEN 'está cursando '
-                    ELSE 'concluiu '
+                    ELSE ' '
                END || (CASE WHEN ((substring(nm_serie,1,1)::integer = 8
                                   AND historico_grade_curso_id = 1)
                                    OR (substring(nm_serie,1,1)::integer = 9)
@@ -201,7 +252,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
        (SELECT DISTINCT '' || (replace(textcat_all((' ')),' <br> ','<br>'))
 		  FROM generate_series(1,(SELECT ROUND((250 - (COUNT(DISTINCT trim(relatorio.get_texto_sem_caracter_especial(nm_disciplina))) * 12)) / 12)
-		                            FROM historico_disciplinas hd
+		                            FROM pmieducar.historico_disciplinas hd
 		                           INNER JOIN pmieducar.historico_escolar he ON (he.ref_cod_aluno = hd.ref_ref_cod_aluno
 		                                                                         AND hd.ref_sequencial = he.sequencial)
 		                           WHERE ref_ref_cod_aluno = vhsa.cod_aluno)::INTEGER)) AS espaco_branco,
@@ -220,13 +271,37 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
                    AND phe.ativo = 1
                    AND (CASE WHEN {$nao_emitir_reprovado} THEN phe.aprovado <> 2 ELSE 1=1 END)
                  ORDER BY phe.ano)tabl) AS observacao_all
+      ,concat(TO_CHAR(". $dataFim .", 'DD'),' de ',CASE (TO_CHAR(". $dataFim .", 'MM'))::integer WHEN 1 THEN 'Janeiro' WHEN 2 THEN 'Fevereiro' WHEN 3 THEN 'Março' WHEN 4 THEN 'Abril' WHEN 5 THEN 'Maio' WHEN 6 THEN 'Junho' WHEN 7 THEN 'Julho' WHEN 8 THEN 'Agosto' WHEN 9 THEN 'Setembro'
+           WHEN 10 THEN 'Outubro' WHEN 11 THEN 'Novembro' WHEN 12 THEN 'Dezembro' END,' de ', TO_CHAR(". $dataFim .", 'YYYY')) AS data_final
+      ,(select nm_curso from pmieducar.curso where curso.cod_curso = {$curso}) as nm_curso
+      ,(select tipo_ensino.nm_tipo from pmieducar.curso 
+inner join pmieducar.tipo_ensino on cod_tipo_ensino = ref_cod_tipo_ensino
+where curso.cod_curso = {$curso} limit 1) as nm_tipo,
+(SELECT 
+  CASE 
+    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN 'alfabetizacao'
+    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
+  ELSE ''
+    END as clico
+FROM pmieducar.serie
+INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
+INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
+INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
+INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula)
+INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = matricula.ref_cod_aluno)
+LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
+WHERE aluno.cod_aluno = vhsa.cod_aluno LIMIT 1 
+) as ciclo
   FROM relatorio.view_historico_series_anos vhsa
  INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = vhsa.cod_aluno)
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)
- INNER JOIN cadastro.fisica ON (fisica.idpes = aluno.ref_idpes)
+ INNER JOIN cadastro.fisica ON (fisica.idpes = aluno.ref_idpes) 
   LEFT JOIN modules.educacenso_cod_aluno eca ON (eca.cod_aluno = aluno.cod_aluno)
   LEFT JOIN public.municipio ON (municipio.idmun = fisica.idmun_nascimento)
  WHERE vhsa.cod_aluno = {$aluno}
+ ORDER BY pessoa.nome,tipo_base,ordenamento,vhsa.disciplina
         ";
+        //dd($return);
+        return $return;
     }
 }
