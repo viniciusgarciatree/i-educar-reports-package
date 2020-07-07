@@ -135,7 +135,7 @@
 		<groupHeader>
 			<band height="27">
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				<printWhenExpression><![CDATA[$P{modelo} == 1]]></printWhenExpression>
+				<printWhenExpression><![CDATA[$P{modelo} == 1 || $P{modelo} == 3]]></printWhenExpression>
 				<subreport>
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5">
 						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? false : true]]></printWhenExpression>
@@ -184,7 +184,7 @@
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="6d3743ca-7f83-4b6d-8f46-6bfa3dda882c">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? $P{tipo_regra} != "2" : false]]></printWhenExpression>
+						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? !($P{tipo_regra} == "2") : false]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="logo">
 						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
