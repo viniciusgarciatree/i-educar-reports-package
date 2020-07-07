@@ -549,7 +549,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font fontName="DejaVu Sans" size="6" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Turno]]></text>
+					<text><![CDATA[Turma]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="271" y="37" width="241" height="7" uuid="cb91db56-c50b-4608-a13e-ed5598c63c53">
