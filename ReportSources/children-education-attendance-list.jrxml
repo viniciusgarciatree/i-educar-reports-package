@@ -931,7 +931,7 @@ A]]></text>
 					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="5" y="2" width="136" height="9" forecolor="#000000" uuid="e7073903-0397-48c3-9c02-bba1b528fb1a"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="7"/>
