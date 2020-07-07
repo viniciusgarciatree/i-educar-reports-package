@@ -279,6 +279,9 @@
 			<band height="27">
 				<subreport>
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportParameter name="modelo_report">
+						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "scholar-subjects-and-objectives.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
@@ -290,6 +293,9 @@
 			<band height="27">
 				<subreport>
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportParameter name="modelo_report">
+						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "retake-tests-register.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
@@ -301,6 +307,9 @@
 			<band height="27">
 				<subreport>
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportParameter name="modelo_report">
+						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "parents-contact-notes.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
