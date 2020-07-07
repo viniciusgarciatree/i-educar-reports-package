@@ -320,7 +320,7 @@
 				<crosstabHeaderCell>
 					<cellContents>
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-						<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+						<textField isBlankWhenNull="true">
 							<reportElement x="0" y="0" width="213" height="65" uuid="b05823cc-5a4f-4402-a579-0facf091befd">
 								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 							</reportElement>
