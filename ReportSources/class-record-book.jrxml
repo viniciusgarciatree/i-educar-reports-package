@@ -273,6 +273,34 @@
 			</band>
 		</groupHeader>
 	</group>
+	<group name="descriptive-opinion" isStartNewColumn="true" isStartNewPage="true">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA[$P{modelo_report} == "2"]]></printWhenExpression>
+				<subreport>
+					<reportElement key="" stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="52acd7f5-b6db-4b64-b51e-9da1329db27e"/>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="tipo_regra">
+						<subreportParameterExpression><![CDATA[$P{tipo_regra}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="modelo_report">
+						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "class-diary-book-descriptive-opinion.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
 	<group name="content-register" isStartNewColumn="true" isStartNewPage="true">
 		<groupExpression><![CDATA[true]]></groupExpression>
 		<groupHeader>
@@ -341,34 +369,6 @@
 						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "scholar-content-taught.jasper"]]></subreportExpression>
-				</subreport>
-			</band>
-		</groupHeader>
-	</group>
-	<group name="descriptive-opinion" isStartNewColumn="true" isStartNewPage="true">
-		<groupExpression><![CDATA[true]]></groupExpression>
-		<groupHeader>
-			<band height="32">
-				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				<printWhenExpression><![CDATA[$P{modelo_report} == "2"]]></printWhenExpression>
-				<subreport>
-					<reportElement key="" stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="52acd7f5-b6db-4b64-b51e-9da1329db27e"/>
-					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="etapa">
-						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="source">
-						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="tipo_regra">
-						<subreportParameterExpression><![CDATA[$P{tipo_regra}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="modelo_report">
-						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "class-diary-book-descriptive-opinion.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</groupHeader>
