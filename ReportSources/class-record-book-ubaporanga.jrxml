@@ -54,8 +54,6 @@
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
-	<parameter name="tipo_regra" class="java.lang.String"/>
-	<parameter name="modelo_report" class="java.lang.String"/>
 	<field name="?column?" class="java.lang.Integer"/>
 	<group name="class-record-cover">
 		<groupExpression><![CDATA[true]]></groupExpression>
@@ -95,12 +93,6 @@
 					<subreportParameter name="source">
 						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="tipo_regra">
-						<subreportParameterExpression><![CDATA[$P{tipo_regra}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="modelo_report">
-						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "children-education-attendance-list.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
@@ -119,12 +111,6 @@
 					<subreportParameter name="source">
 						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="tipo_regra">
-						<subreportParameterExpression><![CDATA[$P{tipo_regra}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="modelo_report">
-						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "middle-school-attendance-list.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
@@ -134,12 +120,9 @@
 		<groupExpression><![CDATA[true]]></groupExpression>
 		<groupHeader>
 			<band height="27">
-				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<printWhenExpression><![CDATA[$P{modelo} == 1]]></printWhenExpression>
 				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5">
-						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? false : true]]></printWhenExpression>
-					</reportElement>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
 					<subreportParameter name="logo">
 						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -151,65 +134,14 @@
 					</subreportParameter>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="modelo_report">
-						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "elementary-school-exams-record.jasper"]]></subreportExpression>
-				</subreport>
-				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="d53885c2-71da-4db7-b644-9c284af120fa">
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? ($P{tipo_regra} == "2") : false]]></printWhenExpression>
-					</reportElement>
-					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="etapa">
-						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="source">
-						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="modelo_report">
-						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "elementary-school-exams-record-concept.jasper"]]></subreportExpression>
-				</subreport>
-				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="6d3743ca-7f83-4b6d-8f46-6bfa3dda882c">
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? $P{tipo_regra} != "2" : false]]></printWhenExpression>
-					</reportElement>
-					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="etapa">
-						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="source">
-						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="modelo_report">
-						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "elementary-school-exams-record-number.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 			<band height="27">
 				<printWhenExpression><![CDATA[$P{modelo} == 2]]></printWhenExpression>
 				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5">
-						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? false : true]]></printWhenExpression>
-					</reportElement>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
 					<subreportParameter name="logo">
 						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -223,52 +155,6 @@
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "middle-school-exams-record.jasper"]]></subreportExpression>
-				</subreport>
-				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="37677aa8-7571-4a5e-84f7-d1c7bc2811ad">
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? ($P{tipo_regra} == "2") : false]]></printWhenExpression>
-					</reportElement>
-					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="etapa">
-						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="source">
-						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="modelo_report">
-						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "elementary-school-exams-record-concept.jasper"]]></subreportExpression>
-				</subreport>
-				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="11f0f78e-613f-44b9-9cb1-b04c84264714">
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? $P{tipo_regra} != "2" : false]]></printWhenExpression>
-					</reportElement>
-					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="etapa">
-						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="source">
-						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="modelo_report">
-						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "elementary-school-exams-record-number.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</groupHeader>

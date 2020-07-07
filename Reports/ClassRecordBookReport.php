@@ -67,6 +67,45 @@ class ClassRecordBookReport extends Portabilis_Report_ReportCore
         $servidor_id = $this->args['servidor_id'] ?: 0;
         $professor = $this->args['professor'] ?: '';
 
+        if($this->args['modelo_report'] == 2){
+            $queryTipoNota = "
+            SELECT 
+			 ra.tipo_nota
+            FROM pmieducar.instituicao
+            INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
+            INNER JOIN relatorio.view_dados_escola ON (view_dados_escola.cod_escola = escola.cod_escola)
+            INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
+            INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola AND escola_curso.ativo = 1)
+            INNER JOIN pmieducar.escola_serie ON (escola_serie.ref_cod_escola = escola.cod_escola AND escola_serie.ativo = 1)
+            INNER JOIN pmieducar.curso ON (curso.cod_curso = escola_curso.ref_cod_curso AND curso.ativo = 1)
+            INNER JOIN pmieducar.serie ON (serie.cod_serie = escola_serie.ref_cod_serie AND serie.ativo = 1)
+            INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_escola = escola.cod_escola
+                AND turma.ref_cod_curso = curso.cod_curso
+                AND turma.ref_ref_cod_serie = serie.cod_serie
+                AND turma.ano = escola_ano_letivo.ano
+                AND turma.ativo = 1)
+            LEFT JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
+            
+			INNER JOIN modules.regra_avaliacao_serie_ano rasa ON TRUE 
+                AND rasa.serie_id = serie.cod_serie
+                AND escola_ano_letivo.ano = rasa.ano_letivo
+            INNER JOIN modules.regra_avaliacao ra ON TRUE 
+                AND ra.id = rasa.regra_avaliacao_id
+            WHERE instituicao.cod_instituicao = {$instituicao}
+            AND escola_ano_letivo.ano = {$ano}
+            AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE escola.cod_escola = {$escola} END)
+            AND (CASE WHEN {$curso} = 0 THEN TRUE ELSE curso.cod_curso = {$curso} END)
+            AND (CASE WHEN {$serie} = 0 THEN TRUE ELSE serie.cod_serie = {$serie} END)
+            AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE turma.cod_turma = {$turma} END) limit 1;
+            ";
+            $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryTipoNota);
+            if(isset($dados[0]) && isset($dados[0]['tipo_nota'])){
+                $this->args['tipo_regra'] = "" . $dados[0]['tipo_nota'];
+            }
+        }else{
+            $this->args['tipo_regra'] = "0";
+        }
+
         $classRecordCoverSql = "
             SELECT public.fcn_upper(nm_instituicao) AS nome_instituicao,
                 public.fcn_upper(nm_responsavel) AS nome_responsavel,
