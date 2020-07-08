@@ -35,6 +35,8 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $queryMainReport   = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
+        //dd($queryMainReport);
+
         $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $header  = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
@@ -63,15 +65,63 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
                 'nota4'           => $value['nota4'],
             );
         }
+
+        $exibir_apreceres = explode(',', trim($value['exibir_apreceres'], '{}'));
+
         $arrReport                = array();
         $arrReport                = $arrMain[0];
         $arrMain[]                = $arrMain[0];
-        $arrReport['falta1']      = $dataFaltas['falta1'];
-        $arrReport['falta2']      = $dataFaltas['falta2'];
-        $arrReport['falta3']      = $dataFaltas['falta3'];
-        $arrReport['falta4']      = $dataFaltas['falta4'];
-        $arrReport['falta_total'] = "";
-        $arrReport['falta_total'] = "" . ($arrReport['falta1'] + $arrReport['falta2'] + $arrReport['falta3'] + $arrReport['falta4']);
+        $tempo_da_aula = 0;
+        $value['carga_horaria'] = intval($value['carga_horaria']);
+        $value['dias_letivos'] = intval($value['dias_letivos']);
+        if(is_numeric($value['carga_horaria']) && is_numeric($value['dias_letivos']) && $value['carga_horaria']>0 && $value['dias_letivos']>0) {
+            $tempo_da_aula = ((($value['carga_horaria'] / $value['dias_letivos']) * 60) / 5);
+        }
+        $arrReport['falta_hora1'] =  "-";
+        $arrReport['falta_hora2'] =  "-";
+        $arrReport['falta_hora3'] =  "-";
+        $arrReport['falta_hora4'] =  "-";
+        $falta_hora_total = 0;
+        $calc_hora_falta = function ($hora){
+            $hora = intval($hora);
+            return ($hora>0 ? intval($hora/60).':'. intval($hora%60) : 0);
+        };
+        if($tempo_da_aula>0) {
+            if (is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1']) {
+                $arrReport['falta_hora1'] = $dataFaltas['falta1'] * $tempo_da_aula;
+                $falta_hora_total += $arrReport['falta_hora1'];
+                $arrReport['falta_hora1'] = $calc_hora_falta($arrReport['falta_hora1']);
+            }
+            if (is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2']) {
+                $arrReport['falta_hora2'] = $dataFaltas['falta2'] * $tempo_da_aula;
+                $falta_hora_total += $arrReport['falta_hora2'];
+                $arrReport['falta_hora2'] = $calc_hora_falta($arrReport['falta_hora2']);
+            }
+            if (is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3']) {
+                $arrReport['falta_hora3'] = $dataFaltas['falta3'] * $tempo_da_aula;
+                $falta_hora_total += $arrReport['falta_hora3'];
+                $arrReport['falta_hora3'] = $calc_hora_falta($arrReport['falta_hora3']);
+            }
+            if (is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4']) {
+                $arrReport['falta_hora4'] = $dataFaltas['falta4'] * $tempo_da_aula;
+                $falta_hora_total += $arrReport['falta_hora4'];
+                $arrReport['falta_hora4'] = $calc_hora_falta($arrReport['falta_hora4']);
+            }
+        }
+
+        $falta_hora_total = intval($falta_hora_total);
+        $arrReport['falta_hora_total'] = $falta_hora_total>0 ? $calc_hora_falta($falta_hora_total) : "-";
+
+        $arrReport['falta_total']      = is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1'] > 0 ? $dataFaltas['falta1'] : 0;
+        $arrReport['falta_total']      += is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : 0;
+        $arrReport['falta_total']      += is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3'] > 0 ? $dataFaltas['falta3'] : 0;
+        $arrReport['falta_total']      += is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4'] > 0 ? $dataFaltas['falta4'] : 0;
+
+        $arrReport['falta1']      = is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1'] > 0 ? $dataFaltas['falta1'] : "-";
+        $arrReport['falta2']      = is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : "-";
+        $arrReport['falta3']      = is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3'] > 0 ? $dataFaltas['falta3'] : "-";
+        $arrReport['falta4']      = is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4'] > 0 ? $dataFaltas['falta4'] : "-";
+
 
         /**
          * Verificar onde estão estes dados de processo de formação
@@ -88,9 +138,21 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         }
 
         $arrObs = array();
+        $contBimestre = 1;
+        $exibe_parecer = intval(30/count($exibir_apreceres));
+        $rowCont = $exibe_parecer;
+
         for ($x = 0; $x < 30; $x++) {
-            $arrObs[] = array("obs" => "");
+            if($rowCont == $exibe_parecer && $contBimestre <= count($exibir_apreceres)){
+                $arrObs[] = array("obs" => $contBimestre++ ." º Bimestre: ");
+                $rowCont = 0;
+            }else{
+                $arrObs[] = array("obs" => "");
+            }
+
+            $rowCont++;
         }
+
         $arrReport['data_obs'] = $arrObs;
         $arrReport['cidade']   = $header[0]['cidade'] . "/" . $header[0]['uf'];
 
@@ -270,8 +332,18 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
 			ELSE ''
 		END as clico,
 		substring(serie.nm_serie::text, 1, 1) as serie,
-        serie.dias_letivos:: float,'999' AS dias_letivos,
+        to_char(historico_escolar.dias_letivos::float,'999') AS dias_letivos,
+		to_char(historico_escolar.carga_horaria::float,'999') AS carga_horaria,
         modules.componente_curricular.tipo_base	
+        ,(
+            SELECT array_agg(ano_letivo_modulo.sequencial)  FROM pmieducar.ano_letivo_modulo 
+            WHERE ano_letivo_modulo.ref_ano = matricula.ano AND ano_letivo_modulo.ref_ref_cod_escola = escola.cod_escola 
+            -- AND current_date >= data_fim
+        ) AS exibir_apreceres,
+        (
+            SELECT max(sequencial)  FROM pmieducar.ano_letivo_modulo 
+            WHERE ano_letivo_modulo.ref_ano = matricula.ano AND ano_letivo_modulo.ref_ref_cod_escola = escola.cod_escola
+        ) AS semestres
  FROM pmieducar.instituicao
 INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
 INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola)
@@ -308,6 +380,7 @@ INNER JOIN relatorio.view_situacao ON (view_situacao.cod_matricula = matricula.c
                                        AND view_situacao.sequencial = matricula_turma.sequencial
                                        AND view_situacao.cod_situacao = 9)
 INNER JOIN modules.componente_curricular on componente_curricular.id = view_componente_curricular.id
+LEFT JOIN pmieducar.historico_escolar  on historico_escolar.ref_cod_aluno = aluno.cod_aluno and historico_escolar.ano = matricula.ano
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}
   AND escola.cod_escola = {$escola}
