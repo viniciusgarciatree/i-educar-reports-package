@@ -149,6 +149,20 @@ DOS CAMPOS áREA DE CONHECIMENTO]]></text>
 <li><b>C - </b> Com um pouco de esforço conseguirá alcançar os objetivos de estudo.</li>
 </ul>]]></text>
 			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="6" y="680" width="305" height="114" uuid="99d277fb-07dd-4a03-abcb-90e1ed3158c4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box topPadding="2" leftPadding="2">
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[Observações:]]></text>
+			</staticText>
 		</band>
 	</background>
 	<pageHeader>
@@ -684,23 +698,6 @@ DOS CAMPOS áREA DE CONHECIMENTO]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{falta_hora_total}]]></textFieldExpression>
 			</textField>
-		</band>
-		<band height="114">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="6" y="0" width="305" height="114" uuid="492c0183-b84b-422b-966d-4b63a60d205f">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box topPadding="2" leftPadding="2">
-					<pen lineWidth="0.25"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font fontName="DejaVu Sans" size="8" isBold="false"/>
-					<paragraph leftIndent="1"/>
-				</textElement>
-				<text><![CDATA[Observações:]]></text>
-			</staticText>
 		</band>
 		<band height="30" splitType="Stretch">
 			<break>
