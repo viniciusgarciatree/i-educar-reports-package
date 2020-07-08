@@ -153,6 +153,7 @@ DOS CAMPOS áREA DE CONHECIMENTO]]></text>
 				<reportElement positionType="FixRelativeToBottom" x="6" y="682" width="305" height="114" uuid="99d277fb-07dd-4a03-abcb-90e1ed3158c4">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="2" leftPadding="2">
 					<pen lineWidth="0.25"/>
