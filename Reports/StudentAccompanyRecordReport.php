@@ -338,7 +338,7 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         ,(
             SELECT array_agg(ano_letivo_modulo.sequencial)  FROM pmieducar.ano_letivo_modulo 
             WHERE ano_letivo_modulo.ref_ano = matricula.ano AND ano_letivo_modulo.ref_ref_cod_escola = escola.cod_escola 
-            -- AND current_date >= data_fim
+            AND current_date >= data_fim
         ) AS exibir_apreceres,
         (
             SELECT max(sequencial)  FROM pmieducar.ano_letivo_modulo 
