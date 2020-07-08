@@ -150,7 +150,7 @@ DOS CAMPOS áREA DE CONHECIMENTO]]></text>
 </ul>]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="6" y="680" width="305" height="114" uuid="99d277fb-07dd-4a03-abcb-90e1ed3158c4">
+				<reportElement positionType="FixRelativeToBottom" x="6" y="682" width="305" height="114" uuid="99d277fb-07dd-4a03-abcb-90e1ed3158c4">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
