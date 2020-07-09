@@ -120,7 +120,7 @@
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="315" y="255" width="231" height="25" uuid="a6632c25-545f-4080-9f89-f610cd4de1b9">
+				<reportElement x="315" y="261" width="231" height="25" uuid="a6632c25-545f-4080-9f89-f610cd4de1b9">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
 				</reportElement>
@@ -132,7 +132,7 @@
 DOS CAMPOS áREA DE CONHECIMENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="311" y="272" width="240" height="210" uuid="b0dd0a7b-f3f8-4d93-a5a7-7bd3c8722ed2">
+				<reportElement x="311" y="278" width="240" height="210" uuid="b0dd0a7b-f3f8-4d93-a5a7-7bd3c8722ed2">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
