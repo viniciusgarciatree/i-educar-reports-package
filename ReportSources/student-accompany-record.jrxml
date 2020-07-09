@@ -11,8 +11,6 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
-	<subDataset name="dataset1" uuid="d908f52f-5cd9-45b2-8bba-8a08729e0436"/>
-	<subDataset name="dataset2" uuid="eeb007dc-7155-4973-97de-33ac02c4f90a"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -83,7 +81,7 @@
 	<field name="data_nasc" class="java.lang.String"/>
 	<field name="nome_curso" class="java.lang.String"/>
 	<field name="nome_serie" class="java.lang.String"/>
-	<field name="clico" class="java.lang.String"/>
+	<field name="ciclo" class="java.lang.String"/>
 	<field name="nome_do_pai" class="java.lang.String"/>
 	<field name="nome_da_mae" class="java.lang.String"/>
 	<field name="serie" class="java.lang.String"/>
@@ -167,9 +165,13 @@ DOS CAMPOS áREA DE CONHECIMENTO]]></text>
 		</band>
 	</background>
 	<pageHeader>
-		<band height="71" splitType="Stretch">
-			<subreport>
-				<reportElement stretchType="RelativeToBandHeight" x="6" y="0" width="544" height="71" uuid="732ae0d7-8502-4f9a-83f2-cfca8711d86c"/>
+		<band height="88" splitType="Prevent">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport isUsingCache="false" overflowType="Stretch">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="6" y="0" width="545" height="88" uuid="732ae0d7-8502-4f9a-83f2-cfca8711d86c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<subreportParameter name="logo1">
 					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -391,14 +393,14 @@ DOS CAMPOS áREA DE CONHECIMENTO]]></text>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{clico}.equals( "alfabetizacao" ) ? "( X ) Alfabetização" : "(    ) Alfabetização"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ciclo}.equals("alfabetizacao")  ?  "( X ) Alfabetização" :  "(    ) Alfabetização"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="6" y="20" width="138" height="10" uuid="0c7b2d6c-1dbc-4eee-836b-47f91d8a46b9"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{clico}.equals( "complementar" ) ? "( X ) Complementar" : "(    ) Complementar"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ciclo}.equals("complementar")  ? "( X ) Complementar" : "(    ) Complementar"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="147" y="10" width="50" height="10" uuid="b36a204d-fb96-4a54-9c6a-993584609d7c"/>

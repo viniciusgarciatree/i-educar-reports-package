@@ -35,8 +35,6 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $queryMainReport   = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
-        //dd($queryMainReport);
-
         $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $header  = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
@@ -321,17 +319,39 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
       turma.nm_turma AS nome_turma,
       relatorio.get_qtde_modulo(turma.cod_turma) AS qtd_modulo,
       turma_turno.nome AS periodo,
-      CASE 
-	   		WHEN substring(serie.nm_serie::text, 1, 1) = '1'
-				OR substring(serie.nm_serie::text, 1, 1) = '2'
-				OR substring(serie.nm_serie::text, 1, 1) = '3'
-				THEN 'alfabetizacao'
-			WHEN substring(serie.nm_serie::text, 1, 1) = '4'
-				OR substring(serie.nm_serie::text, 1, 1) = '5'
-				THEN 'complementar'
-			ELSE ''
-		END as clico,
-		substring(serie.nm_serie::text, 1, 1) as serie,
+      (SELECT 
+  CASE 
+    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN 'alfabetizacao'
+    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
+  ELSE 'Não encontrado'
+    END as ciclo
+FROM pmieducar.serie
+INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
+INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
+INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
+INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula)
+INNER JOIN pmieducar.aluno aluno_ciclos ON (aluno.cod_aluno = matricula.ref_cod_aluno)
+LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno LIMIT 1 
+) as ciclo,
+		(SELECT
+  CASE 
+    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 THEN '1'
+    WHEN STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 THEN '2'
+    WHEN STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN '3'
+    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 THEN '4'
+    WHEN STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN '5'
+  ELSE ''
+    END as serie
+FROM pmieducar.serie
+INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
+INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
+INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
+INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula)
+INNER JOIN pmieducar.aluno aluno_ciclos ON (aluno.cod_aluno = matricula.ref_cod_aluno)
+LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno LIMIT 1 
+)as serie,
         to_char(historico_escolar.dias_letivos::float,'999') AS dias_letivos,
 		to_char(historico_escolar.carga_horaria::float,'999') AS carga_horaria,
         modules.componente_curricular.tipo_base	

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header-portrait" pageWidth="572" pageHeight="752" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
 	<property name="ireport.zoom" value="1.5026296018031557"/>
 	<property name="ireport.x" value="0"/>
@@ -75,7 +75,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_responsavel}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement x="0" y="25" width="566" height="13" uuid="217a8e9d-8548-4130-9768-7ae3d11f08fa">
 					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
 				</reportElement>
@@ -104,7 +104,7 @@
 				<textFieldExpression><![CDATA[("Cep "+$F{cep} )+($F{fone_ddd}!=null ? " - Tel: ("+$F{fone_ddd}+")" : "")+($F{fone} != null ? $F{fone} : "")+
 ($F{email} != null && !$F{email}.isEmpty() ? " - "+$F{email} : "")]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement positionType="Float" x="0" y="67" width="566" height="14" uuid="21170e65-0f01-4380-aba7-2c3067cf2e6b"/>
 				<box leftPadding="70" rightPadding="70"/>
 				<textElement textAlignment="Center" markup="html">
