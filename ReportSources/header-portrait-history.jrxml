@@ -59,7 +59,7 @@
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</rectangle>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement stretchType="RelativeToTallestObject" x="65" y="1" width="411" height="13" uuid="7afb3dd4-8949-4d70-a762-f620758eeb4d">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -70,7 +70,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_instituicao}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="14" width="411" height="13" uuid="bce50c10-9d01-43d8-9736-7a2f3aaa6da3">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -81,7 +81,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_responsavel}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="27" width="411" height="13" uuid="217a8e9d-8548-4130-9768-7ae3d11f08fa">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -93,7 +93,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="39" width="411" height="10" uuid="f302258a-2400-4ebf-91fe-3580368f96e1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -104,7 +104,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[($F{tipo_logradouro} != null ? $F{tipo_logradouro}.substring(0,1).toUpperCase()+$F{tipo_logradouro}.substring(1,$F{tipo_logradouro}.length()).toLowerCase()+" " : "" )+($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? ", "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="49" width="411" height="10" uuid="8b4f92fb-5d1a-486a-b0a8-35c509c49978">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>

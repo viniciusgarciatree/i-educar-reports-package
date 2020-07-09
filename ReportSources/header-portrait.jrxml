@@ -75,7 +75,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_responsavel}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement x="0" y="25" width="566" height="13" uuid="217a8e9d-8548-4130-9768-7ae3d11f08fa">
 					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
 				</reportElement>
@@ -104,7 +104,7 @@
 				<textFieldExpression><![CDATA[("Cep "+$F{cep} )+($F{fone_ddd}!=null ? " - Tel: ("+$F{fone_ddd}+")" : "")+($F{fone} != null ? $F{fone} : "")+
 ($F{email} != null && !$F{email}.isEmpty() ? " - "+$F{email} : "")]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement positionType="Float" x="0" y="67" width="566" height="14" uuid="21170e65-0f01-4380-aba7-2c3067cf2e6b"/>
 				<box leftPadding="70" rightPadding="70"/>
 				<textElement textAlignment="Center" markup="html">
