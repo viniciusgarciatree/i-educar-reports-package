@@ -262,7 +262,7 @@ DOS CAMPOS áREA DE CONHECIMENTO]]></text>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					<paragraph lineSpacing="Fixed"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($P{cabecalho_alternativo} == 1) ? "FICHA DE ACOMPANHAMENTO INDIVIDUAL DO ALUNO " : ($P{cabecalho_alternativo} == 2) ? "FICHA DE ACOMPANHAMENTO INDIVIDUAL DO ALUNO ENSINO FUNDAMENTAL" :  "FICHA DE ACOMPANHAMENTO INDIVIDUAL DO ALUNO " + (($F{nome_curso} == "") ? " ENSINO FUNDAMENTAL - ANOS INICIAIS" : $F{nome_curso} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($P{cabecalho_alternativo} == 1) ? "FICHA DE ACOMPANHAMENTO INDIVIDUAL DO ALUNO " : ($P{cabecalho_alternativo} == 2) ? "FICHA DE ACOMPANHAMENTO INDIVIDUAL DO ALUNO ENSINO FUNDAMENTAL" :  "FICHA DE ACOMPANHAMENTO INDIVIDUAL DO ALUNO "]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="404" y="33" width="51" height="10" uuid="a4d18f2b-2954-4bfb-ad7b-ab8d20924912"/>
