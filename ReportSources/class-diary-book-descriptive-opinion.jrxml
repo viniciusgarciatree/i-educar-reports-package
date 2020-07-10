@@ -45,7 +45,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Nome do aluno]]></text>
+					<text><![CDATA[Nome do Aluno]]></text>
 				</staticText>
 				<line>
 					<reportElement x="142" y="1" width="1" height="41" uuid="9201494a-b1cd-46e0-b123-1831dd5d0816"/>

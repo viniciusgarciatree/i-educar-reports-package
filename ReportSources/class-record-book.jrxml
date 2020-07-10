@@ -304,7 +304,8 @@
 	<group name="content-register" isStartNewColumn="true" isStartNewPage="true">
 		<groupExpression><![CDATA[true]]></groupExpression>
 		<groupHeader>
-			<band height="27">
+			<band height="27" splitType="Stretch">
+				<printWhenExpression><![CDATA[$P{modelo_report} == "1"]]></printWhenExpression>
 				<subreport>
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
 					<subreportParameter name="modelo_report">
@@ -318,7 +319,8 @@
 	<group name="retake-tests-register" isStartNewColumn="true" isStartNewPage="true">
 		<groupExpression><![CDATA[true]]></groupExpression>
 		<groupHeader>
-			<band height="27">
+			<band height="27" splitType="Stretch">
+				<printWhenExpression><![CDATA[$P{modelo_report} == "1"]]></printWhenExpression>
 				<subreport>
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
 					<subreportParameter name="modelo_report">
@@ -332,7 +334,8 @@
 	<group name="parents-contact-notes" isStartNewColumn="true" isStartNewPage="true">
 		<groupExpression><![CDATA[true]]></groupExpression>
 		<groupHeader>
-			<band height="27">
+			<band height="27" splitType="Stretch">
+				<printWhenExpression><![CDATA[$P{modelo_report} == "1"]]></printWhenExpression>
 				<subreport>
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
 					<subreportParameter name="modelo_report">

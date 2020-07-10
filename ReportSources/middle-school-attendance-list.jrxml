@@ -944,7 +944,7 @@ A]]></text>
 	</columnHeader>
 	<detail>
 		<band height="12" splitType="Stretch">
-			<printWhenExpression><![CDATA[$F{nome_aluno} == null || !$P{branco}]]></printWhenExpression>
+			<printWhenExpression><![CDATA[$F{nome_aluno} == null || !$P{branco} ? $P{modelo_report} =="1" : false]]></printWhenExpression>
 			<rectangle>
 				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="1" y="1" width="822" height="11" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="fae6f2e1-ead3-4071-91fe-7b8dd32f6923">
 					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
@@ -958,13 +958,15 @@ A]]></text>
 				<textFieldExpression><![CDATA[$F{nome_aluno}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1" y="-2" width="1" height="14" uuid="0a1efd8d-1214-44dd-adbe-b61621f965e7"/>
+				<reportElement positionType="Float" x="2" y="11" width="822" height="1" uuid="56b06366-79c9-4da3-b031-e708f7b15f2f">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" x="2" y="11" width="822" height="1" uuid="56b06366-79c9-4da3-b031-e708f7b15f2f"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1" y="-2" width="1" height="14" uuid="0a1efd8d-1214-44dd-adbe-b61621f965e7"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
@@ -1337,6 +1339,415 @@ A]]></text>
 			</line>
 			<line>
 				<reportElement stretchType="RelativeToBandHeight" x="823" y="0" width="1" height="12" uuid="0a1efd8d-1214-44dd-adbe-b61621f965e7"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="24" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$F{nome_aluno} == null || !$P{branco} ? $P{modelo_report} =="2" : false]]></printWhenExpression>
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="1" y="0" width="822" height="24" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="af60e6b6-9519-4afc-99cf-d0163f4ab26b">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="5" y="2" width="136" height="22" forecolor="#000000" uuid="fb640f45-9b33-4a0e-a639-ac232df7fc2c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_aluno}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="2" y="23" width="822" height="1" uuid="73ac585a-60ce-4264-ace7-37549542b943">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1" y="-2" width="1" height="26" uuid="3ecdd379-698d-4305-a185-3410ef617b41">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="450" y="-2" width="1" height="26" uuid="9e36f06a-fb74-4a1f-964f-e9bd59c47035"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="252" y="-2" width="1" height="26" uuid="e43e1c23-fc35-4b8b-bb4d-aff16fc4a249"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="559" y="-2" width="1" height="26" uuid="6fac0207-b4a9-43e3-b0b1-d544180db223"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="208" y="-2" width="1" height="26" uuid="830c106e-d7a4-4492-ab36-52c9745daab7"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="581" y="-2" width="1" height="26" uuid="8e2d403d-147d-417b-8c80-c836c4c61bdf"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="603" y="-2" width="1" height="26" uuid="8994c31a-bfa2-4d27-9c5d-5d43b4c31a51"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="494" y="-2" width="1" height="26" uuid="81f2ce80-b148-40cf-a7dc-e83fae9fa3a8"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="428" y="-2" width="1" height="26" uuid="d2067d49-ef2f-453c-a091-c5d83bbabd65"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="570" y="-2" width="1" height="26" uuid="9ab7984b-57e7-4df2-bc4f-190dcf3afb29"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="351" y="-2" width="1" height="26" uuid="40721aa5-f307-4115-ac66-28c7de073872"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="186" y="-2" width="1" height="26" uuid="469f5314-6c85-4ad1-8696-012e79fadb83"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="505" y="-2" width="1" height="26" uuid="f826a6b0-4089-4fdf-8625-d27383e881b5"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="417" y="-2" width="1" height="26" uuid="cd371e6b-2ba6-4aaa-8ef3-d5fb1098640a"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="461" y="-2" width="1" height="26" uuid="6ddd94ae-74ed-4fdc-be22-b6a5ed7dff4e"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="472" y="-2" width="1" height="26" uuid="77cf9980-c197-429d-962f-dc38b236d796"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="406" y="-2" width="1" height="26" uuid="e659c342-3d06-4391-ad1a-f82d2a8f7cde"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="395" y="-2" width="1" height="26" uuid="77e77725-8836-4f75-9e21-e4ee815192e3"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="538" y="-2" width="1" height="26" uuid="471d5628-6311-49ba-9922-c01e661b7d1b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="340" y="-2" width="1" height="26" uuid="83490a0a-b3a1-4aa2-a966-33238b2ae2e2"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="307" y="-2" width="1" height="26" uuid="2ce1c9f3-dc12-4ca1-b057-95660cbf57b1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="274" y="-2" width="1" height="26" uuid="6c80feeb-d68a-4141-8b06-973345233db5"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="527" y="-2" width="1" height="26" uuid="4ea8e024-8fc9-4b3e-94be-593a25a644e6"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="318" y="-2" width="1" height="26" uuid="42918f87-3c04-454c-ba99-0f78f1f8df96"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="285" y="-2" width="1" height="26" uuid="c16e5d26-6a86-4553-81c7-a6171c4fa805"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="230" y="-2" width="1" height="26" uuid="cb0064b9-f749-4b59-a047-55db3a637dda"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="483" y="-2" width="1" height="26" uuid="e97f8ab6-ff01-4f53-9976-1da4fd62243a"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="384" y="-2" width="1" height="26" uuid="c294e406-7611-4e3c-acaf-492a6a7087dd"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="373" y="-2" width="1" height="26" uuid="5329fd0a-b89d-4b95-acf5-6838ea941ea2"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="241" y="-2" width="1" height="26" uuid="43580c73-1bc7-4ccb-96a3-8eecc30787c7"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="614" y="-2" width="1" height="26" uuid="02fc479d-580f-4d50-ab1f-1101f5c2e123"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="625" y="-2" width="1" height="26" uuid="9101f446-a131-4812-accd-ff8b0f3a175f"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="153" y="-2" width="1" height="26" uuid="39ce860b-e21b-44da-a4b7-02d0dbed521e"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="263" y="-2" width="1" height="26" uuid="ba691843-cb83-4f6c-b92f-54c947a374f5"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="647" y="-2" width="1" height="26" uuid="b0043e8f-b60e-4e16-b9b0-45f233d073e6"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="549" y="-2" width="1" height="26" uuid="f4c91a58-70c7-4ec4-9964-6a6684a35f39"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="329" y="-2" width="1" height="26" uuid="65ab57f2-9426-49ca-9237-c98b16fb7b8c"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="516" y="-2" width="1" height="26" uuid="2eb7c949-06ca-4da9-b9d6-3bb9b8a8e692"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="636" y="-2" width="1" height="26" uuid="d3af3656-2c5d-4e90-be8d-6e2f305f2430"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="219" y="-2" width="1" height="26" uuid="825ad8eb-4894-4446-99e1-92316004f25f"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="164" y="-2" width="1" height="26" uuid="adc301a6-334a-415f-8c70-de35b6106a55"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="592" y="-2" width="1" height="26" uuid="85c8516b-c8fb-4374-92a7-8ae89a901a32"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="669" y="-2" width="1" height="26" uuid="3f730b10-3dbb-4dd7-889d-01dda88873c2"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="296" y="-2" width="1" height="26" uuid="e28333a5-3f1a-4ffd-a828-2e0dc5fdc28b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="362" y="-2" width="1" height="26" uuid="8e8bdd64-60b2-404e-a6c3-74be1684462b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="439" y="-2" width="1" height="26" uuid="6219c8a4-f5da-4705-a927-aa811018d9ea"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="658" y="-2" width="1" height="26" uuid="629fea86-a51c-4824-a7bb-e50726d115b6"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="175" y="-2" width="1" height="26" uuid="84b87286-a099-4f7e-94b4-a627229e4efb"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="197" y="-2" width="1" height="26" uuid="7a658f93-8147-4bba-b562-5bf10ffb40fa"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="142" y="-2" width="1" height="26" uuid="dcf1192e-2acf-4673-93f3-cbe1ac103c8d"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="680" y="-2" width="1" height="26" uuid="bfe6b2b5-df1e-4df2-8bbb-5f78cc5274c9"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="735" y="-2" width="1" height="26" uuid="24af1de8-4c89-45d3-ab82-30907b1fead8"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="724" y="-2" width="1" height="26" uuid="555eff3a-a28b-4351-b0b5-07c48de7d78f"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="757" y="-2" width="1" height="26" uuid="b70abe0a-9c7b-490c-9c64-8c78e1b472bd"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="779" y="-2" width="1" height="26" uuid="c23bb5dc-c663-408f-940d-9eeef2c8543c"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="702" y="-2" width="1" height="26" uuid="ffecbd35-95f8-45de-8be4-d13a33ec4ba2"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="746" y="-2" width="1" height="26" uuid="6e4a2ec2-adaa-4152-a3f0-a449f1554e3d"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="790" y="-2" width="1" height="26" uuid="bb943273-fd9e-4471-84a2-932e23b0c5e1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="768" y="-2" width="1" height="26" uuid="044cedbd-4840-4d93-b559-d4467873b030"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="801" y="-2" width="1" height="26" uuid="b27a1344-5f13-4b81-8fad-f43f19aa5c7c"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="691" y="-2" width="1" height="26" uuid="79ae3a3f-5c23-402c-8286-543c69dc6105"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="713" y="-2" width="1" height="26" uuid="21e05524-3fbe-4ef0-90a2-194c038b8417"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="823" y="-2" width="1" height="26" uuid="73edf13a-810d-4b6d-a99e-4c4a3f451057"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
