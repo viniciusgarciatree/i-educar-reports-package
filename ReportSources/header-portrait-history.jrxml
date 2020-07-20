@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_cabecalho_retrato" language="groovy" pageWidth="545" pageHeight="752" columnWidth="545" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header-portrait-history" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
+	<property name="ireport.zoom" value="1.5026296018031557"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="logo1" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -8,15 +11,18 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="cod_escola" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
-	<parameter name="source" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
 	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
 	</parameter>
+	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -38,71 +44,89 @@
 	<field name="email" class="java.lang.String"/>
 	<field name="uf" class="java.lang.String"/>
 	<field name="cidade" class="java.lang.String"/>
-	<pageHeader>
-		<band height="71" splitType="Stretch">
+	<field name="inep" class="java.lang.Long"/>
+	<detail>
+		<band height="88" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement x="0" y="0" width="545" height="71" uuid="5a1c2a01-cd3c-4d40-acd1-cb3f27470544"/>
+				<reportElement x="0" y="0" width="545" height="88" uuid="661084fe-35ef-4189-a826-eaff979d8cfe">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</rectangle>
-			<image hAlign="Left" vAlign="Middle">
-				<reportElement x="3" y="5" width="70" height="61" uuid="60a516e7-bd44-4f43-ae2a-201ed9b07508">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
-			</image>
-			<image hAlign="Right" vAlign="Middle">
-				<reportElement x="471" y="5" width="70" height="61" uuid="238fbdb1-ec30-461f-a298-bdf46fda6b92">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
-			</image>
 			<textField>
-				<reportElement x="0" y="6" width="545" height="13" uuid="eebe4629-da04-4aa8-a765-354d2463bdde"/>
-				<box leftPadding="70" rightPadding="70"/>
+				<reportElement stretchType="RelativeToTallestObject" x="65" y="1" width="411" height="13" uuid="7afb3dd4-8949-4d70-a762-f620758eeb4d">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_instituicao}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="18" width="545" height="13" uuid="89fcb438-57d8-41f2-ae56-2aa138aefb25"/>
-				<box leftPadding="70" rightPadding="70"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="14" width="411" height="13" uuid="bce50c10-9d01-43d8-9736-7a2f3aaa6da3">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box leftPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_responsavel}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="30" width="545" height="13" uuid="3b5ac5f0-d724-406a-8e43-e57680d3cbe0">
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="27" width="411" height="13" uuid="217a8e9d-8548-4130-9768-7ae3d11f08fa">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
 				</reportElement>
-				<box leftPadding="70" rightPadding="70"/>
+				<box leftPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="0" y="44" width="545" height="10" uuid="0a621d76-d27e-4d8b-b44f-0ae07ca49410">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="39" width="411" height="10" uuid="f302258a-2400-4ebf-91fe-3580368f96e1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
-				<box leftPadding="70" rightPadding="70"/>
+				<box leftPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{tipo_logradouro} != null ? $F{tipo_logradouro}.substring(0,1).toUpperCase()+$F{tipo_logradouro}.substring(1,$F{tipo_logradouro}.length()).toLowerCase()+" " : "" )+($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? ", "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="0" y="54" width="545" height="10" uuid="00880ff8-38c2-4bf3-84de-9f8138ca57cf"/>
-				<box leftPadding="70" rightPadding="70"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="49" width="411" height="10" uuid="8b4f92fb-5d1a-486a-b0a8-35c509c49978">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[("Cep "+$F{cep} )+($F{fone_ddd}!=null ? " - Tel: ("+$F{fone_ddd}+")" : "")+($F{fone} != null ? $F{fone} : "")+
 ($F{email} != null && !$F{email}.isEmpty() ? " - "+$F{email} : "")]]></textFieldExpression>
 			</textField>
+			<image hAlign="Right" vAlign="Middle">
+				<reportElement x="474" y="8" width="70" height="61" uuid="148c52e0-012e-4310-a85c-9a40e1124fe2">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
+			</image>
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement x="2" y="8" width="70" height="61" uuid="9a72a65c-7596-4020-93b7-c3134fe56afa">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
 		</band>
-	</pageHeader>
+	</detail>
 </jasperReport>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report-card-boletim-area" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_nota_exame" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.String"/>
+	<field name="data_disciplina" class="java.lang.String"/>
+	<field name="area" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="0" width="145" height="14" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="13ccf4f4-d4d7-4b9b-b4e8-87e05af5ecb6">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="0" width="145" height="1" uuid="302abf76-405e-4fc1-ad68-203b3e33d79f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="1" y="0" width="141" height="14" uuid="935528ad-cd62-4726-94e8-05948e5435f3">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="145" y="0" width="450" height="14" uuid="7109c3d6-b9ea-479b-a551-00bf12f0f606">
+					<property name="com.jaspersoft.studio.element.name" value="report-card-boletim-nota"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="emitir_nota_exame">
+					<subreportParameterExpression><![CDATA[$P{emitir_nota_exame}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("data_disciplina")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "report-card-boletim-disciplina.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

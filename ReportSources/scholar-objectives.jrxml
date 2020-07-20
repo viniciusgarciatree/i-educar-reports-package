@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="scholar-subjects-and-objectives" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d0fe67f1-b370-4e00-9258-401b9aa27029">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="scholar-objectives" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d0fe67f1-b370-4e00-9258-401b9aa27029">
 	<property name="ireport.zoom" value="0.751314800901581"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -134,15 +134,6 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="63" y="1" width="375" height="23" uuid="72a9c553-709c-42ba-8ab1-5ccb68660ec3">
-					<printWhenExpression><![CDATA[!($P{modelo_report} == "2")]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10"/>
-				</textElement>
-				<text><![CDATA[Conteúdos e objetivos]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="63" y="1" width="734" height="23" uuid="5ae15c5b-6993-4954-83c0-acbee53a1acc">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -151,7 +142,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<text><![CDATA[Conteúdos e objetivos]]></text>
+				<text><![CDATA[Objetivos]]></text>
 			</staticText>
 			<line>
 				<reportElement x="4" y="348" width="793" height="1" uuid="672125b5-47f9-49a7-8ee9-4bf944cbd280"/>
@@ -243,15 +234,6 @@
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
-			<staticText>
-				<reportElement x="6" y="1" width="51" height="23" uuid="57f494ba-3dbe-412e-8fbf-f21a123e352e">
-					<printWhenExpression><![CDATA[!($P{modelo_report} == "2")]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10"/>
-				</textElement>
-				<text><![CDATA[Data]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="6" y="1" width="51" height="23" uuid="5893dc76-5c2d-4469-902a-b40fc3f31fff">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>

@@ -194,7 +194,41 @@ class TransferenceCertificateReport extends Portabilis_Report_ReportCore
          INNER JOIN pmieducar.escola e ON (p.idpes = e.ref_idpes_secretario_escolar)
          WHERE e.cod_escola = {$escola}) as secretario,
 
-           fisica.nis_pis_pasep
+           fisica.nis_pis_pasep,
+           (SELECT 
+         CASE WHEN UPPER(substring(serie.nm_serie,1,5)) = 'MULTI'  THEN 
+          (CASE WHEN etapa_ensino.descricao = '' or etapa_ensino.descricao is null  THEN 'ETAPA DO ALUNO NÃO INFORMADA' ELSE substring(etapa_ensino.descricao,6,length(etapa_ensino.descricao)) END )   
+        ELSE serie.nm_serie END
+   FROM pmieducar.instituicao
+   INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
+   INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
+   INNER JOIN relatorio.view_dados_escola ON (view_dados_escola.cod_escola = escola.cod_escola)
+   INNER JOIN pmieducar.escola_curso ON (escola_curso.ativo = 1
+                                         AND escola_curso.ref_cod_escola = escola.cod_escola)
+   INNER JOIN pmieducar.curso ON (curso.cod_curso = escola_curso.ref_cod_curso
+                                  AND curso.ativo = 1)
+   INNER JOIN pmieducar.escola_serie ON (escola_serie.ativo = 1
+                                         AND escola_serie.ref_cod_escola = escola.cod_escola)
+   INNER JOIN pmieducar.serie ON (serie.cod_serie = escola_serie.ref_cod_serie
+                                  AND serie.ativo = 1)
+   INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_escola = escola.cod_escola
+                                  AND turma.ref_cod_curso = escola_curso.ref_cod_curso
+                                  AND (
+                                           turma.ref_ref_cod_serie = escola_serie.ref_cod_serie OR
+                                           turma.ref_ref_cod_serie_mult = escola_serie.ref_cod_serie
+                                       )
+                                  AND turma.ativo = 1)
+   INNER JOIN relatorio.view_componente_curricular ON (view_componente_curricular.cod_turma = turma.cod_turma)
+   INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
+   INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula
+                                      AND matricula.ref_ref_cod_escola = escola.cod_escola
+                                      AND matricula.ref_cod_curso = curso.cod_curso
+                                      AND matricula.ref_ref_cod_serie = serie.cod_serie
+                                      AND matricula.ano = turma.ano
+                                      AND matricula.ativo = 1)
+   LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
+      where matricula.cod_matricula = {$matricula} limit 1
+       ) as etapa_ensino_descricao
 
   FROM pmieducar.aluno,
        pmieducar.matricula,
@@ -238,5 +272,6 @@ class TransferenceCertificateReport extends Portabilis_Report_ReportCore
        escola.ativo = 1 AND
        instituicao.ativo = 1
         ";
+
     }
 }

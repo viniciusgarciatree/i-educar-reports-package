@@ -61,6 +61,9 @@ class ClassRecordBookController extends Portabilis_Controller_ReportCoreControll
         $this->inputsHelper()->text('disciplina', $options);
         $this->inputsHelper()->dynamic(['componenteCurricular'], ['required' => false, 'label' => 'Disciplina: ']);
         $this->campoNumero('linha', 'Linhas em branco', 0, 2, 2, true);
+
+        $this->inputsHelper()->select('modelo_report', ['label' => 'Modelo Relatório', 'resources' => [1 => 'Padrão',2 => 'Personalizado'], 'value' => 1]);
+
         $this->loadResourceAssets($this->getDispatcher());
     }
 
@@ -92,5 +95,7 @@ class ClassRecordBookController extends Portabilis_Controller_ReportCoreControll
         $this->report->addArg('buscar_professor', (bool)$this->getRequest()->buscar_professor);
         $this->report->addArg('disciplina', (string)$this->getRequest()->disciplina);
         $this->report->addArg('buscar_disciplina', (bool)$this->getRequest()->buscar_disciplina);
+        $this->report->addArg('modelo', $this->getRequest()->modelo);
+        $this->report->addArg('modelo_report', $this->getRequest()->modelo_report);
     }
 }

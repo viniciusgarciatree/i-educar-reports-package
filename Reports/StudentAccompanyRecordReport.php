@@ -42,6 +42,8 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
             return array();
         }
 
+
+
         $tipoBase = ComponenteCurricular_Model_TipoBase::getInstance();
         $tipos = $tipoBase->getKeys();
 
@@ -63,15 +65,63 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
                 'nota4'           => $value['nota4'],
             );
         }
+
+        $exibir_apreceres = explode(',', trim($value['exibir_apreceres'], '{}'));
+
         $arrReport                = array();
         $arrReport                = $arrMain[0];
         $arrMain[]                = $arrMain[0];
-        $arrReport['falta1']      = $dataFaltas['falta1'];
-        $arrReport['falta2']      = $dataFaltas['falta2'];
-        $arrReport['falta3']      = $dataFaltas['falta3'];
-        $arrReport['falta4']      = $dataFaltas['falta4'];
-        $arrReport['falta_total'] = "";
-        $arrReport['falta_total'] = "" . ($arrReport['falta1'] + $arrReport['falta2'] + $arrReport['falta3'] + $arrReport['falta4']);
+        $tempo_da_aula = 0;
+        $value['carga_horaria'] = intval($value['carga_horaria']);
+        $value['dias_letivos'] = intval($value['dias_letivos']);
+        if(is_numeric($value['carga_horaria']) && is_numeric($value['dias_letivos']) && $value['carga_horaria']>0 && $value['dias_letivos']>0) {
+            $tempo_da_aula = ((($value['carga_horaria'] / $value['dias_letivos']) * 60) / 5);
+        }
+        $arrReport['falta_hora1'] =  "-";
+        $arrReport['falta_hora2'] =  "-";
+        $arrReport['falta_hora3'] =  "-";
+        $arrReport['falta_hora4'] =  "-";
+        $falta_hora_total = 0;
+        $calc_hora_falta = function ($hora){
+            $hora = intval($hora);
+            return ($hora>0 ? intval($hora/60).':'. intval($hora%60) : 0);
+        };
+        if($tempo_da_aula>0) {
+            if (is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1']) {
+                $arrReport['falta_hora1'] = $dataFaltas['falta1'] * $tempo_da_aula;
+                $falta_hora_total += $arrReport['falta_hora1'];
+                $arrReport['falta_hora1'] = $calc_hora_falta($arrReport['falta_hora1']);
+            }
+            if (is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2']) {
+                $arrReport['falta_hora2'] = $dataFaltas['falta2'] * $tempo_da_aula;
+                $falta_hora_total += $arrReport['falta_hora2'];
+                $arrReport['falta_hora2'] = $calc_hora_falta($arrReport['falta_hora2']);
+            }
+            if (is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3']) {
+                $arrReport['falta_hora3'] = $dataFaltas['falta3'] * $tempo_da_aula;
+                $falta_hora_total += $arrReport['falta_hora3'];
+                $arrReport['falta_hora3'] = $calc_hora_falta($arrReport['falta_hora3']);
+            }
+            if (is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4']) {
+                $arrReport['falta_hora4'] = $dataFaltas['falta4'] * $tempo_da_aula;
+                $falta_hora_total += $arrReport['falta_hora4'];
+                $arrReport['falta_hora4'] = $calc_hora_falta($arrReport['falta_hora4']);
+            }
+        }
+
+        $falta_hora_total = intval($falta_hora_total);
+        $arrReport['falta_hora_total'] = $falta_hora_total>0 ? $calc_hora_falta($falta_hora_total) : "-";
+
+        $arrReport['falta_total']      = is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1'] > 0 ? $dataFaltas['falta1'] : 0;
+        $arrReport['falta_total']      += is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : 0;
+        $arrReport['falta_total']      += is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3'] > 0 ? $dataFaltas['falta3'] : 0;
+        $arrReport['falta_total']      += is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4'] > 0 ? $dataFaltas['falta4'] : 0;
+
+        $arrReport['falta1']      = is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1'] > 0 ? $dataFaltas['falta1'] : "-";
+        $arrReport['falta2']      = is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : "-";
+        $arrReport['falta3']      = is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3'] > 0 ? $dataFaltas['falta3'] : "-";
+        $arrReport['falta4']      = is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4'] > 0 ? $dataFaltas['falta4'] : "-";
+
 
         /**
          * Verificar onde estão estes dados de processo de formação
@@ -88,9 +138,21 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         }
 
         $arrObs = array();
+        $contBimestre = 1;
+        $exibe_parecer = intval(30/count($exibir_apreceres));
+        $rowCont = $exibe_parecer;
+
         for ($x = 0; $x < 30; $x++) {
-            $arrObs[] = array("obs" => "");
+            if($rowCont == $exibe_parecer && $contBimestre <= count($exibir_apreceres)){
+                $arrObs[] = array("obs" => $contBimestre++ ." º Bimestre: ");
+                $rowCont = 0;
+            }else{
+                $arrObs[] = array("obs" => "");
+            }
+
+            $rowCont++;
         }
+
         $arrReport['data_obs'] = $arrObs;
         $arrReport['cidade']   = $header[0]['cidade'] . "/" . $header[0]['uf'];
 
@@ -259,19 +321,51 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
       turma.nm_turma AS nome_turma,
       relatorio.get_qtde_modulo(turma.cod_turma) AS qtd_modulo,
       turma_turno.nome AS periodo,
-      CASE 
-	   		WHEN substring(serie.nm_serie::text, 1, 1) = '1'
-				OR substring(serie.nm_serie::text, 1, 1) = '2'
-				OR substring(serie.nm_serie::text, 1, 1) = '3'
-				THEN 'alfabetizacao'
-			WHEN substring(serie.nm_serie::text, 1, 1) = '4'
-				OR substring(serie.nm_serie::text, 1, 1) = '5'
-				THEN 'complementar'
-			ELSE ''
-		END as clico,
-		substring(serie.nm_serie::text, 1, 1) as serie,
-        serie.dias_letivos:: float,'999' AS dias_letivos,
+      (SELECT 
+  CASE 
+    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN 'alfabetizacao'
+    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
+  ELSE 'Não encontrado'
+    END as ciclo
+FROM pmieducar.serie
+INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
+INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
+INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
+INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula)
+INNER JOIN pmieducar.aluno aluno_ciclos ON (aluno.cod_aluno = matricula.ref_cod_aluno)
+LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno LIMIT 1 
+) as ciclo,
+		(SELECT
+  CASE 
+    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 THEN '1'
+    WHEN STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 THEN '2'
+    WHEN STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN '3'
+    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 THEN '4'
+    WHEN STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN '5'
+  ELSE ''
+    END as serie
+FROM pmieducar.serie
+INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
+INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
+INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
+INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula)
+INNER JOIN pmieducar.aluno aluno_ciclos ON (aluno.cod_aluno = matricula.ref_cod_aluno)
+LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno LIMIT 1 
+)as serie,
+        to_char(historico_escolar.dias_letivos::float,'999') AS dias_letivos,
+		to_char(historico_escolar.carga_horaria::float,'999') AS carga_horaria,
         modules.componente_curricular.tipo_base	
+        ,(
+            SELECT array_agg(ano_letivo_modulo.sequencial)  FROM pmieducar.ano_letivo_modulo 
+            WHERE ano_letivo_modulo.ref_ano = matricula.ano AND ano_letivo_modulo.ref_ref_cod_escola = escola.cod_escola 
+            AND current_date >= data_fim
+        ) AS exibir_apreceres,
+        (
+            SELECT max(sequencial)  FROM pmieducar.ano_letivo_modulo 
+            WHERE ano_letivo_modulo.ref_ano = matricula.ano AND ano_letivo_modulo.ref_ref_cod_escola = escola.cod_escola
+        ) AS semestres
  FROM pmieducar.instituicao
 INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
 INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola)
@@ -308,6 +402,7 @@ INNER JOIN relatorio.view_situacao ON (view_situacao.cod_matricula = matricula.c
                                        AND view_situacao.sequencial = matricula_turma.sequencial
                                        AND view_situacao.cod_situacao = 9)
 INNER JOIN modules.componente_curricular on componente_curricular.id = view_componente_curricular.id
+LEFT JOIN pmieducar.historico_escolar  on historico_escolar.ref_cod_aluno = aluno.cod_aluno and historico_escolar.ano = matricula.ano
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}
   AND escola.cod_escola = {$escola}
@@ -343,13 +438,13 @@ ORDER BY sequencial_fechamento,
                 public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
                 public.fcn_upper(instituicao.nm_responsavel) AS nm_responsavel,
                 (CASE WHEN {$notSchool} THEN '' ELSE fcn_upper(view_dados_escola.nome) END) AS nm_escola,
-                COALESCE(instituicao.logradouro, '') = '' as logradouro,
+                (CASE WHEN {$notSchool} THEN instituicao.ref_idtlog::text ELSE view_dados_escola.tipo_logradouro::text END),
                 (CASE WHEN {$notSchool} THEN instituicao.logradouro ELSE view_dados_escola.logradouro END),
                 (CASE WHEN {$notSchool} THEN instituicao.bairro ELSE view_dados_escola.bairro END),
-                (CASE WHEN {$notSchool} THEN instituicao.numero ELSE view_dados_escola.numero END),
+                (CASE WHEN {$notSchool} THEN instituicao.numero::integer ELSE view_dados_escola.numero::integer END),
                 (CASE WHEN {$notSchool} THEN instituicao.ddd_telefone ELSE view_dados_escola.telefone_ddd END) AS fone_ddd,
                 (CASE WHEN {$notSchool} THEN 0 ELSE view_dados_escola.celular_ddd END) AS cel_ddd,
-                (CASE WHEN {$notSchool} THEN to_char(instituicao.cep, '99999-999') ELSE to_char(view_dados_escola.cep, '99999-999') END) AS cep,
+                (CASE WHEN {$notSchool} THEN to_char(instituicao.cep, '99999-999') ELSE to_char(view_dados_escola.cep::integer, '99999-999') END) AS cep,
                 (CASE WHEN {$notSchool} THEN to_char(instituicao.telefone, '99999-9999') ELSE view_dados_escola.telefone END) AS fone,
                 (CASE WHEN {$notSchool} THEN ' ' ELSE view_dados_escola.celular END) AS cel,
                 (CASE WHEN {$notSchool} THEN ' ' ELSE view_dados_escola.email END),

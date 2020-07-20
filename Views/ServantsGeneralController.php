@@ -13,7 +13,7 @@ class ServantsGeneralController extends Portabilis_Controller_ReportCoreControll
     /**
      * @var string
      */
-    protected $_titulo = 'Relatório Geral de Docentes por Vinculo, Função e Cargo';
+    protected $_titulo = 'Relatório Geral de Servidores por Vinculo, Função e Cargo';
 
     /**
      * @var int
@@ -34,7 +34,7 @@ class ServantsGeneralController extends Portabilis_Controller_ReportCoreControll
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Relatório Geral de Docentes', [
+        $this->breadcrumb('Relatório Geral de Servidores', [
             'educar_servidores_index.php' => 'Servidores',
         ]);
     }

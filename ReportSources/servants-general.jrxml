@@ -121,7 +121,7 @@
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[DOCENTES]]></text>
+					<text><![CDATA[SERVIDORES]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="355" y="15" width="100" height="15" uuid="8e5912ef-7083-46c7-8236-b11d6e98afef">
@@ -244,14 +244,14 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="102">
+		<band height="102" splitType="Stretch">
 			<subreport>
 				<reportElement x="0" y="1" width="555" height="100" uuid="15562236-bb5b-4ab7-bd34-638b125489f8"/>
 				<subreportParameter name="logo1">
 					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
-					<subreportParameterExpression><![CDATA["Relatório Geral de Docentes por Vinculo, Função e Cargo"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["Relatório Geral de Servidores por Vinculo, Função e Cargo"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>

@@ -1,3 +1,4 @@
+
 <?php
 
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
@@ -44,6 +45,12 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 
         $this->inputsHelper()->checkbox('lote', ['label' => 'Emitir em lote?']);
 
+        $resources = [
+            3 => 'Série/Anos',
+            4 => 'Modelo Personalizado 01',
+            5 => 'Modelo Personalizado 02',
+        ];
+
         $this->inputsHelper()->checkbox('emitir_historico_dependencia', [
             'label' => 'Emitir histórico de dependências?'
         ]);
@@ -72,11 +79,6 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 
         $this->inputsHelper()->checkbox('emitir_carga_horaria_frequentada', ['label' => 'Emitir Carga horária frequentada']);
 
-        $resources = [
-            1 => 'Histórico escolar',
-            2 => 'Certificado de conclusão',
-        ];
-
         if ($modelo_visivel) {
             $options = ['label' => 'Modelo', 'resources' => $resources, 'value' => 1];
             $this->inputsHelper()->select('modelo', $options);
@@ -86,7 +88,7 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
         $this->inputsHelper()->integer('ano_fim', ['placeholder' => '', 'required' => false, 'label' => 'Ano final', 'max_length' => 4, 'size' => 4]);
 
         $helperOptions = ['objectName' => 'cursoaluno'];
-        $options = ['label' => 'Cursos do aluno', 'size' => 120, 'required' => false, 'placeholder' => Todas, 'options' => ['value' => null]];
+        $options = ['label' => 'Cursos do aluno', 'size' => 120, 'required' => false, 'placeholder' => 'Todas', 'options' => ['value' => null]];
         $this->inputsHelper()->multipleSearchCursoAluno('', $options, $helperOptions);
 
         $this->campoOculto('sequencial', $this->sequencial);

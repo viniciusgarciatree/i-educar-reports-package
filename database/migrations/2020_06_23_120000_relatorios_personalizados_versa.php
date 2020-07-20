@@ -18,7 +18,7 @@ class RelatoriosPersonalizadosVersa extends Migration
             'old' => 999731
         ],[
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
-            'title' => 'Relatório Geral de Docentes por Vinculo, Função e Cargo',
+            'title' => 'Relatório Geral de Servidores por Vinculo, Função e Cargo',
             'description' => null,
             'link' => '/module/Reports/ServantsGeneral',
             'order' => 0,

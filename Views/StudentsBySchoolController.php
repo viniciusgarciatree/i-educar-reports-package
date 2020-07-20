@@ -35,7 +35,7 @@ class StudentsBySchoolController extends Portabilis_Controller_ReportCoreControl
      */
     public function form()
     {
-//        $this->inputsHelper()->dynamic(['ano', 'instituicao', 'escola', 'curso']);
+        //$this->inputsHelper()->dynamic(['ano', 'instituicao', 'escola', 'curso']);
         $this->inputsHelper()->dynamic(['ano', 'instituicao']);
         $this->inputsHelper()->select('situacao', [
             'label' => 'Situação',
@@ -50,6 +50,7 @@ class StudentsBySchoolController extends Portabilis_Controller_ReportCoreControl
             'value' => 3
         ]);
         $this->loadResourceAssets($this->getDispatcher());
+        $this->inputsHelper()->checkbox('exibe_aluno', ['label' => 'Exibir nome do aluno?']);
     }
 
     /**
@@ -60,6 +61,7 @@ class StudentsBySchoolController extends Portabilis_Controller_ReportCoreControl
         $this->report->addArg('ano', (int) $this->getRequest()->ano);
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);
         $this->report->addArg('situacao', (int) $this->getRequest()->situacao);
+        $this->report->addArg('exibe_aluno', (bool)$this->getRequest()->exibe_aluno);
     }
 
     /**
