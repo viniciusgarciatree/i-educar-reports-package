@@ -6,6 +6,7 @@
     ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "4ba20331b8ddfda3edef0e91ecb60250",
 =======
     "content-hash": "9648275f2d05cf234e3d3e7cd93a78b6",
@@ -13,6 +14,9 @@
 =======
     "content-hash": "b0338221ec76fe6b6115cf7ef64e906c",
 >>>>>>> 2.3.5
+=======
+    "content-hash": "57074c5c42e9b6372ce8b9e342d3810e",
+>>>>>>> 2.3.6
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -70,6 +74,7 @@
             "name": "aws/aws-sdk-php",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "3.147.1",
             "source": {
                 "type": "git",
@@ -85,13 +90,17 @@
 =======
             "version": "3.145.0",
 >>>>>>> 2.3.5
+=======
+            "version": "3.145.4",
+>>>>>>> 2.3.6
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "df5406b49f4f5774045e51e8fecc75717c4d6454"
+                "reference": "3c5a921f0de917f9fc3d51b2970106d3abfc6b8f"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/09a2e1ef4e684c9636d27029e1b163d90c4c166a",
                 "reference": "09a2e1ef4e684c9636d27029e1b163d90c4c166a",
@@ -100,6 +109,10 @@
                 "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/df5406b49f4f5774045e51e8fecc75717c4d6454",
                 "reference": "df5406b49f4f5774045e51e8fecc75717c4d6454",
 >>>>>>> 2.3.5
+=======
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3c5a921f0de917f9fc3d51b2970106d3abfc6b8f",
+                "reference": "3c5a921f0de917f9fc3d51b2970106d3abfc6b8f",
+>>>>>>> 2.3.6
                 "shasum": ""
             },
             "require": {
@@ -173,6 +186,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-07-20T18:18:31+00:00"
 =======
             "time": "2020-06-19T18:20:04+00:00"
@@ -180,6 +194,9 @@
 =======
             "time": "2020-07-02T18:12:35+00:00"
 >>>>>>> 2.3.5
+=======
+            "time": "2020-07-09T18:13:42+00:00"
+>>>>>>> 2.3.6
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -649,6 +666,7 @@
                 "xcache"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "funding": [
                 {
                     "url": "https://www.doctrine-project.org/sponsorship.html",
@@ -667,6 +685,9 @@
 =======
             "time": "2020-05-27T16:24:54+00:00"
 >>>>>>> 2.3.5
+=======
+            "time": "2020-07-07T18:54:01+00:00"
+>>>>>>> 2.3.6
         },
         {
             "name": "doctrine/dbal",
@@ -3333,6 +3354,7 @@
                 "x509"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "funding": [
                 {
                     "url": "https://github.com/terrafrost",
@@ -3351,6 +3373,9 @@
 =======
             "time": "2020-04-04T23:17:33+00:00"
 >>>>>>> 2.3.5
+=======
+            "time": "2020-07-08T09:08:33+00:00"
+>>>>>>> 2.3.6
         },
         {
             "name": "predis/predis",
@@ -4539,6 +4564,7 @@
                 "interoperability",
                 "standards"
             ],
+<<<<<<< HEAD
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4553,6 +4579,8 @@
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> 2.3.6
             "time": "2020-07-06T13:19:58+00:00"
         },
         {
@@ -5831,6 +5859,7 @@
                 "standards"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5849,6 +5878,9 @@
 =======
             "time": "2020-05-20T17:43:50+00:00"
 >>>>>>> 2.3.5
+=======
+            "time": "2020-07-06T13:23:11+00:00"
+>>>>>>> 2.3.6
         },
         {
             "name": "symfony/translation",
@@ -5986,6 +6018,7 @@
                 "standards"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -6004,6 +6037,9 @@
 =======
             "time": "2020-05-20T17:43:50+00:00"
 >>>>>>> 2.3.5
+=======
+            "time": "2020-07-06T13:23:11+00:00"
+>>>>>>> 2.3.6
         },
         {
             "name": "symfony/var-dumper",
@@ -8751,6 +8787,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -8769,6 +8806,9 @@
 =======
             "time": "2020-05-27T08:34:37+00:00"
 >>>>>>> 2.3.5
+=======
+            "time": "2020-06-06T08:49:21+00:00"
+>>>>>>> 2.3.6
         },
         {
             "name": "symfony/filesystem",
@@ -9041,6 +9081,7 @@
         {
             "name": "webmozart/assert",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.9.1",
             "source": {
                 "type": "git",
@@ -9053,16 +9094,24 @@
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
 =======
             "version": "1.9.0",
+=======
+            "version": "1.9.1",
+>>>>>>> 2.3.6
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "9dc4f203e36f2b486149058bade43c851dd97451"
+                "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/webmozart/assert/zipball/9dc4f203e36f2b486149058bade43c851dd97451",
                 "reference": "9dc4f203e36f2b486149058bade43c851dd97451",
 >>>>>>> 2.3.3
+=======
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
+>>>>>>> 2.3.6
                 "shasum": ""
             },
             "require": {
@@ -9099,10 +9148,14 @@
                 "validate"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-07-08T17:02:28+00:00"
 =======
             "time": "2020-06-16T10:16:42+00:00"
 >>>>>>> 2.3.3
+=======
+            "time": "2020-07-08T17:02:28+00:00"
+>>>>>>> 2.3.6
         }
     ],
     "aliases": [],
