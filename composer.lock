@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "4ba20331b8ddfda3edef0e91ecb60250",
+=======
+    "content-hash": "9648275f2d05cf234e3d3e7cd93a78b6",
+>>>>>>> 2.3.3
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -60,6 +64,7 @@
         },
         {
             "name": "aws/aws-sdk-php",
+<<<<<<< HEAD
             "version": "3.147.1",
             "source": {
                 "type": "git",
@@ -70,6 +75,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8a561a4a1645ccdd06413a4f2defe55d35e0eecc",
                 "reference": "8a561a4a1645ccdd06413a4f2defe55d35e0eecc",
+=======
+            "version": "3.142.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aws/aws-sdk-php.git",
+                "reference": "09a2e1ef4e684c9636d27029e1b163d90c4c166a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/09a2e1ef4e684c9636d27029e1b163d90c4c166a",
+                "reference": "09a2e1ef4e684c9636d27029e1b163d90c4c166a",
+>>>>>>> 2.3.3
                 "shasum": ""
             },
             "require": {
@@ -141,7 +158,11 @@
                 "s3",
                 "sdk"
             ],
+<<<<<<< HEAD
             "time": "2020-07-20T18:18:31+00:00"
+=======
+            "time": "2020-06-19T18:20:04+00:00"
+>>>>>>> 2.3.3
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -3178,6 +3199,7 @@
         },
         {
             "name": "phpoption/phpoption",
+<<<<<<< HEAD
             "version": "1.7.5",
             "source": {
                 "type": "git",
@@ -3188,6 +3210,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/994ecccd8f3283ecf5ac33254543eb0ac946d525",
                 "reference": "994ecccd8f3283ecf5ac33254543eb0ac946d525",
+=======
+            "version": "1.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/php-option.git",
+                "reference": "b2ada2ad5d8a32b89088b8adc31ecd2e3a13baf3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/b2ada2ad5d8a32b89088b8adc31ecd2e3a13baf3",
+                "reference": "b2ada2ad5d8a32b89088b8adc31ecd2e3a13baf3",
+>>>>>>> 2.3.3
                 "shasum": ""
             },
             "require": {
@@ -3239,7 +3273,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2020-07-20T17:29:33+00:00"
+=======
+            "time": "2020-06-07T10:40:07+00:00"
+>>>>>>> 2.3.3
         },
         {
             "name": "phpseclib/phpseclib",
@@ -6223,6 +6261,7 @@
         },
         {
             "name": "vlucas/phpdotenv",
+<<<<<<< HEAD
             "version": "v3.6.7",
             "source": {
                 "type": "git",
@@ -6233,12 +6272,28 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/2065beda6cbe75e2603686907b2e45f6f3a5ad82",
                 "reference": "2065beda6cbe75e2603686907b2e45f6f3a5ad82",
+=======
+            "version": "v3.6.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vlucas/phpdotenv.git",
+                "reference": "4669484ccbc38fe7c4e0c50456778f2010566aad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/4669484ccbc38fe7c4e0c50456778f2010566aad",
+                "reference": "4669484ccbc38fe7c4e0c50456778f2010566aad",
+>>>>>>> 2.3.3
                 "shasum": ""
             },
             "require": {
                 "php": "^5.4 || ^7.0 || ^8.0",
                 "phpoption/phpoption": "^1.5.2",
+<<<<<<< HEAD
                 "symfony/polyfill-ctype": "^1.17"
+=======
+                "symfony/polyfill-ctype": "^1.16"
+>>>>>>> 2.3.3
             },
             "require-dev": {
                 "ext-filter": "*",
@@ -6292,7 +6347,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2020-07-14T19:04:52+00:00"
+=======
+            "time": "2020-06-02T14:08:54+00:00"
+>>>>>>> 2.3.3
         },
         {
             "name": "wikimedia/composer-merge-plugin",
@@ -9055,6 +9114,7 @@
         },
         {
             "name": "webmozart/assert",
+<<<<<<< HEAD
             "version": "1.9.1",
             "source": {
                 "type": "git",
@@ -9065,6 +9125,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
+=======
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/assert.git",
+                "reference": "9dc4f203e36f2b486149058bade43c851dd97451"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/9dc4f203e36f2b486149058bade43c851dd97451",
+                "reference": "9dc4f203e36f2b486149058bade43c851dd97451",
+>>>>>>> 2.3.3
                 "shasum": ""
             },
             "require": {
@@ -9100,7 +9172,11 @@
                 "check",
                 "validate"
             ],
+<<<<<<< HEAD
             "time": "2020-07-08T17:02:28+00:00"
+=======
+            "time": "2020-06-16T10:16:42+00:00"
+>>>>>>> 2.3.3
         }
     ],
     "aliases": [],
