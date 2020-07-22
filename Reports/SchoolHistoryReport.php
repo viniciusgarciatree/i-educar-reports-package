@@ -277,7 +277,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
       ,(select tipo_ensino.nm_tipo from pmieducar.curso 
 inner join pmieducar.tipo_ensino on cod_tipo_ensino = ref_cod_tipo_ensino
 where curso.cod_curso = {$curso} limit 1) as nm_tipo,
-(SELECT 
+COALESCE((SELECT 
   CASE 
     WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN 'alfabetizacao'
     WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
@@ -292,7 +292,7 @@ INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.co
 INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
 WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
 AND turma_serie.cod_turma = turma.cod_turma LIMIT 1
-) as ciclo
+),'') as ciclo
   FROM relatorio.view_historico_series_anos vhsa
  INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = vhsa.cod_aluno)
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)

@@ -321,7 +321,7 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
       turma.nm_turma AS nome_turma,
       relatorio.get_qtde_modulo(turma.cod_turma) AS qtd_modulo,
       turma_turno.nome AS periodo,
-      (SELECT 
+      COALESCE((SELECT 
   CASE 
     WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN 'alfabetizacao'
     WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
@@ -336,9 +336,9 @@ INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.co
 INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
 WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
 AND turma_serie.cod_turma = turma.cod_turma LIMIT 1  
-) as ciclo,
+),'') as ciclo,
 (
-SELECT 
+COALESCE(SELECT 
 CASE 
     WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 THEN '1'
     WHEN STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 THEN '2'
@@ -356,7 +356,7 @@ INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.co
 INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
 WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
 AND turma_serie.cod_turma = turma.cod_turma LIMIT 1 
-)as serie,
+),'') as serie,
         COALESCE(to_char(historico_escolar.dias_letivos::float,'999'),'') AS dias_letivos,
 		COALESCE(to_char(historico_escolar.carga_horaria::float,'999'),'') AS carga_horaria,
         modules.componente_curricular.tipo_base	
