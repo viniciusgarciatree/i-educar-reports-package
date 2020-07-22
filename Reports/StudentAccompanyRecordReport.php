@@ -33,9 +33,11 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
     public function getJsonData()
     {
         $queryMainReport   = $this->getSqlMainReport();
+
         $queryHeaderReport = $this->getSqlHeaderReport();
 
         $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
+
         $header  = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
         if (count($arrMain) == 0) {
