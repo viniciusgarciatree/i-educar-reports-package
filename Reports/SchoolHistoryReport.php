@@ -281,16 +281,17 @@ where curso.cod_curso = {$curso} limit 1) as nm_tipo,
   CASE 
     WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN 'alfabetizacao'
     WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
-  ELSE ''
-    END as clico
-FROM pmieducar.serie
-INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
-INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
-INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
-INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula)
-INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = matricula.ref_cod_aluno)
-LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
-WHERE aluno.cod_aluno = vhsa.cod_aluno LIMIT 1 
+  ELSE 'Não encontrado'
+    END as ciclo
+FROM cadastro.etapa_ensino
+INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
+INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
+INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
+INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
+	AND matricula_turma.sequencial = view_situacao.sequencial
+INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
+AND turma_serie.cod_turma = turma.cod_turma LIMIT 1
 ) as ciclo
   FROM relatorio.view_historico_series_anos vhsa
  INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = vhsa.cod_aluno)
