@@ -676,11 +676,6 @@ class ProcessamentoApiController extends Core_Controller_Page_EditController
                     continue;
                 }
                 $ccId = (int)$componenteCurricular->get('id');
-//                try{
-//                    dd($componenteCurricular);
-//                }catch (\Exception $e){
-//                    continue;
-//                }
 
                 $reprovado = $mediasCc[$ccId][0]->situacao == 2;
                 $disciplinaDependencia = ($aprovadoDependencia && $reprovado);

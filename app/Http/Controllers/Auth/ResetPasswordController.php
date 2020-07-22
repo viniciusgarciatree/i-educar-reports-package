@@ -43,7 +43,6 @@ class ResetPasswordController extends Controller
      */
     protected function rules()
     {
-        $stop = "";
         return [
             'token' => 'required',
             'login' => 'required',
@@ -56,7 +55,6 @@ class ResetPasswordController extends Controller
      */
     protected function validationErrorMessages()
     {
-        $stop = "";
         return [
             'password.required' => 'O campo senha é obrigatório.',
             'password.confirmed' => 'As senhas não são iguais.',
@@ -69,7 +67,6 @@ class ResetPasswordController extends Controller
      */
     protected function credentials(Request $request)
     {
-        $stop = "";
         return $request->only(
             'login', 'password', 'password_confirmation', 'token'
         );
