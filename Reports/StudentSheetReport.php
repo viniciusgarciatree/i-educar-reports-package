@@ -118,7 +118,7 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
 
   (SELECT COALESCE(
                      (SELECT public.formata_cpf(fisica_cpf.cpf)
-                      FROM cadastro.fisica_cpf
+                      FROM cadastro.fisica as fisica_cpf
                       WHERE fisica_cpf.idpes = fisica.idpes_mae),
                      (SELECT public.formata_cpf(fs.cpf)
                       FROM cadastro.fisica fs
@@ -126,7 +126,7 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
 
   (SELECT COALESCE(
                      (SELECT public.formata_cpf(fisica_cpf.cpf)
-                      FROM cadastro.fisica_cpf
+                      FROM cadastro.fisica as fisica_cpf
                       WHERE fisica_cpf.idpes = fisica.idpes_mae),
                      (SELECT public.formata_cpf(fs.cpf)
                       FROM cadastro.fisica fs
