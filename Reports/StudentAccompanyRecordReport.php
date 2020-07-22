@@ -180,7 +180,7 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $turma       = $this->args['turma'] ?: 0;
         $ano         = $this->args['ano'] ?: 0;
 
-        return "
+        $return = "
         SELECT matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nome_aluno,
@@ -327,17 +327,19 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
     WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
   ELSE 'Não encontrado'
     END as ciclo
-FROM pmieducar.serie
-INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
-INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
-INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
-INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula)
-INNER JOIN pmieducar.aluno aluno_ciclos ON (aluno.cod_aluno = matricula.ref_cod_aluno)
-LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
-WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno LIMIT 1 
+FROM cadastro.etapa_ensino
+INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
+INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
+INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
+INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
+	AND matricula_turma.sequencial = view_situacao.sequencial
+INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
+AND turma_serie.cod_turma = turma.cod_turma LIMIT 1  
 ) as ciclo,
-		(SELECT
-  CASE 
+(
+SELECT 
+CASE 
     WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 THEN '1'
     WHEN STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 THEN '2'
     WHEN STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN '3'
@@ -345,17 +347,18 @@ WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno LIMIT 1
     WHEN STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN '5'
   ELSE ''
     END as serie
-FROM pmieducar.serie
-INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
-INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
-INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
-INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula)
-INNER JOIN pmieducar.aluno aluno_ciclos ON (aluno.cod_aluno = matricula.ref_cod_aluno)
-LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
-WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno LIMIT 1 
+FROM cadastro.etapa_ensino
+INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
+INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
+INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
+INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
+	AND matricula_turma.sequencial = view_situacao.sequencial
+INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
+AND turma_serie.cod_turma = turma.cod_turma LIMIT 1 
 )as serie,
-        to_char(historico_escolar.dias_letivos::float,'999') AS dias_letivos,
-		to_char(historico_escolar.carga_horaria::float,'999') AS carga_horaria,
+        COALESCE(to_char(historico_escolar.dias_letivos::float,'999'),'') AS dias_letivos,
+		COALESCE(to_char(historico_escolar.carga_horaria::float,'999'),'') AS carga_horaria,
         modules.componente_curricular.tipo_base	
         ,(
             SELECT array_agg(ano_letivo_modulo.sequencial)  FROM pmieducar.ano_letivo_modulo 
@@ -417,6 +420,7 @@ ORDER BY sequencial_fechamento,
          modules.componente_curricular.tipo_base,
          modules.componente_curricular.ordenamento
         ";
+        return $return;
     }
 
     /**
