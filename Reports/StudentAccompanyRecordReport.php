@@ -337,8 +337,7 @@ INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno 
 WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
 AND turma_serie.cod_turma = turma.cod_turma LIMIT 1  
 ),'') as ciclo,
-(
-COALESCE(SELECT 
+COALESCE((SELECT 
 CASE 
     WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 THEN '1'
     WHEN STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 THEN '2'
