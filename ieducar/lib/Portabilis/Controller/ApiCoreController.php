@@ -58,9 +58,12 @@ class ApiCoreController extends Core_Controller_Page_EditController
             $accessKey = config('legacy.apis.access_key');
             $valid = $accessKey == $this->getRequest()->access_key;
 
-            if (!$valid) {
-                $this->messenger->append('Chave de acesso inválida!');
-            }
+            # Desativado porque o i-Dário não esta enviando a chave de acesso
+            # Quando faz o envio de faltas e notas
+            $valid = true;
+            #if (!$valid) {
+            #    $this->messenger->append('Chave de acesso inválida!');
+            #}
         }
 
         return $valid;
