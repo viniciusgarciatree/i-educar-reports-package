@@ -147,7 +147,7 @@
 	</title>
 	<pageHeader>
 		<band height="122" splitType="Stretch">
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement x="21" y="50" width="513" height="71" uuid="131a3b2e-fdab-4db8-ba18-6d5d66ded657"/>
 				<textElement textAlignment="Justified">
 					<font fontName="DejaVu Sans" size="10"/>
