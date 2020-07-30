@@ -75,8 +75,8 @@ class StudentsTransportCardReport extends Portabilis_Report_ReportCore
                juridica.idpes = ps.idpes AND
 			   ps.idpes = escola.ref_idpes),(SELECT nm_escola FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS nm_escola,
 
-      (SELECT fcn_upper(substring(logradouro.idtlog from 1 for 1)) ||
-              lower(substring(logradouro.idtlog, 2))
+      (SELECT fcn_upper(substring(logradouro.idtlog::text from 1 for 1)) ||
+              lower(substring(logradouro.idtlog::text, 2))
          FROM public.logradouro,
               cadastro.juridica,
               cadastro.pessoa ps,
@@ -139,7 +139,7 @@ class StudentsTransportCardReport extends Portabilis_Report_ReportCore
         WHERE juridica.idpes = fone_pessoa.idpes AND
               juridica.idpes = escola.ref_idpes),(SELECT min(ddd_telefone) FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS fone_ddd,
 
-     (SELECT COALESCE((SELECT COALESCE((SELECT to_char(endereco_pessoa.cep, '99999-999')
+     (SELECT COALESCE((SELECT COALESCE((SELECT to_char(endereco_pessoa.cep::integer, '99999-999')
          FROM cadastro.endereco_pessoa,
               cadastro.juridica
         WHERE juridica.idpes = endereco_pessoa.idpes AND

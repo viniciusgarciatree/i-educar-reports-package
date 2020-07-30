@@ -177,14 +177,14 @@ class LibraryDevolutionReceiptReport extends Portabilis_Report_ReportCore
 
   (SELECT COALESCE(
                      (SELECT COALESCE(
-                                        (SELECT to_char(endereco_pessoa.cep, '99999-999')
+                                        (SELECT to_char(endereco_pessoa.cep::integer, '99999-999')
                                          FROM cadastro.endereco_pessoa, cadastro.juridica
                                          WHERE juridica.idpes = endereco_pessoa.idpes
                                            AND juridica.idpes = escola.ref_idpes),
                                         (SELECT to_char(endereco_externo.cep,'99999-999')
                                          FROM cadastro.endereco_externo
                                          WHERE endereco_externo.idpes = escola.ref_idpes))),
-                     (SELECT to_char(escola_complemento.cep,'99999-999')
+                     (SELECT to_char(escola_complemento.cep::integer,'99999-999')
                       FROM pmieducar.escola_complemento
                       WHERE escola_complemento.ref_cod_escola = escola.cod_escola))) AS cep,
 

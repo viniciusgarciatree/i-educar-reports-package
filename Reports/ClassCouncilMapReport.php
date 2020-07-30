@@ -172,8 +172,8 @@ to_char((100 - (((SELECT sum(falta_componente_curricular.quantidade)
          FROM pmieducar.instituicao
         WHERE instituicao.cod_instituicao = $instituicao) AS nome_instituicao,
 
-      (SELECT public.fcn_upper(substring(logradouro.idtlog from 1 for 1)) ||
-              lower(substring(logradouro.idtlog, 2))
+      (SELECT public.fcn_upper(substring(logradouro.idtlog::text from 1 for 1)) ||
+              lower(substring(logradouro.idtlog::text, 2))
          FROM public.logradouro,
               cadastro.juridica,
               cadastro.pessoa ps,
@@ -241,13 +241,13 @@ to_char((100 - (((SELECT sum(falta_componente_curricular.quantidade)
               juridica.idpes = escola.ref_idpes AND
               escola.cod_escola = $escola),(SELECT endereco_externo.numero FROM cadastro.endereco_externo, pmieducar.escola WHERE endereco_externo.idpes = escola.ref_idpes AND escola.cod_escola = $escola))),(SELECT numero FROM pmieducar.escola_complemento where ref_cod_escola = $escola))) AS numero,
 
-     (SELECT COALESCE((SELECT COALESCE((SELECT to_char(endereco_pessoa.cep, '99999-999')
+     (SELECT COALESCE((SELECT COALESCE((SELECT to_char(endereco_pessoa.cep::integer, '99999-999')
          FROM cadastro.endereco_pessoa,
               cadastro.juridica,
               pmieducar.escola
         WHERE juridica.idpes = endereco_pessoa.idpes AND
               juridica.idpes = escola.ref_idpes AND
-              escola.cod_escola = $escola),(SELECT to_char(endereco_externo.cep,'99999-999') FROM cadastro.endereco_externo, pmieducar.escola WHERE endereco_externo.idpes = escola.ref_idpes AND escola.cod_escola = $escola))),(SELECT to_char(escola_complemento.cep,'99999-999') FROM pmieducar.escola_complemento where escola_complemento.ref_cod_escola = $escola))) AS cep,
+              escola.cod_escola = $escola),(SELECT to_char(endereco_externo.cep::integer,'99999-999') FROM cadastro.endereco_externo, pmieducar.escola WHERE endereco_externo.idpes = escola.ref_idpes AND escola.cod_escola = $escola))),(SELECT to_char(escola_complemento.cep::integer,'99999-999') FROM pmieducar.escola_complemento where escola_complemento.ref_cod_escola = $escola))) AS cep,
 
      (SELECT COALESCE((SELECT min(fone_pessoa.ddd)
          FROM cadastro.fone_pessoa,

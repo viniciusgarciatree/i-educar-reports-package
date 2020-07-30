@@ -66,8 +66,8 @@ h.fantasia as nm_escola_servidor,
 
        public.fcn_upper(ref_sigla_uf) AS uf_instituicao,
 
-      (SELECT fcn_upper(substring(logradouro.idtlog from 1 for 1)) ||
-              lower(substring(logradouro.idtlog, 2))
+      (SELECT fcn_upper(substring(logradouro.idtlog::text from 1 for 1)) ||
+              lower(substring(logradouro.idtlog::text, 2))
          FROM public.logradouro,
               cadastro.juridica,
               cadastro.pessoa ps,
@@ -122,7 +122,7 @@ h.fantasia as nm_escola_servidor,
       (SELECT CASE WHEN 0 = 0 THEN
                  e.numero
 			  ELSE
-		         (SELECT COALESCE(endereco_pessoa.numero,0)
+		         (SELECT COALESCE(endereco_pessoa.numero::integer,0)
                    FROM cadastro.endereco_pessoa,
                         cadastro.juridica
                   WHERE juridica.idpes = endereco_pessoa.idpes AND
@@ -169,7 +169,7 @@ h.fantasia as nm_escola_servidor,
 	 (SELECT CASE WHEN 0 = 0 THEN
                   to_char(e.cep, '99999-999')
 			 ELSE
-                 (SELECT to_char(endereco_pessoa.cep, '99999-999')
+                 (SELECT to_char(endereco_pessoa.cep::integer, '99999-999')
                     FROM cadastro.endereco_pessoa,
                          cadastro.juridica
                    WHERE juridica.idpes = endereco_pessoa.idpes AND
