@@ -1,9 +1,12 @@
 <?php
 
+use iEducar\Reports\JsonDataSource;
 require_once 'lib/Portabilis/Report/ReportCore.php';
 
 class ConferenceEvaluationsFaultsReport extends Portabilis_Report_ReportCore
 {
+    use JsonDataSource;
+
     /**
      * @inheritdoc
      */

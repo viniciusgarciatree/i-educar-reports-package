@@ -4,10 +4,18 @@ use iEducar\Reports\JsonDataSource;
 
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'App/Model/IedFinder.php';
+require_once 'Reports/Queries/SchoolHistorySeriesYearsTrait.php';
+require_once 'Reports/Queries/SchoolHistoryCrosstabTrait.php';
+require_once 'Reports/Queries/SchoolHistoryCrosstabDatasetTrait.php';
 
 class SchoolHistoryReport extends Portabilis_Report_ReportCore
 {
-    use JsonDataSource;
+    use JsonDataSource, SchoolHistorySeriesYearsTrait, SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait {
+        SchoolHistorySeriesYearsTrait::query insteadof SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait;
+        SchoolHistorySeriesYearsTrait::query AS querySchoolHistorySeriesYears;
+        SchoolHistoryCrosstabTrait::query AS querySchoolHistoryCrosstab;
+        SchoolHistoryCrosstabDatasetTrait::query AS querySchoolHistoryCrosstabDataset;
+    }
 
     /**
      * @inheritdoc
@@ -21,7 +29,6 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
         }else{
           return 'school-history-series-years';
         }
-        
     }
 
     /**
