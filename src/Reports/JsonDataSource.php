@@ -23,7 +23,6 @@ trait JsonDataSource
         $queryMainReport = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
-
         return [
             'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
             'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
@@ -64,7 +63,7 @@ trait JsonDataSource
             $select .= " ' ' AS email, "; 
         }else{
             $select .= " fcn_upper(view_dados_escola.nome) AS nm_escola, ";
-            $select .= " view_dados_escola.tipo_logradouro, ";
+            $select .= " '' AS tipo_logradouro, ";
             $select .= " view_dados_escola.logradouro, ";
             $select .= " view_dados_escola.bairro, ";
             $select .= " view_dados_escola.telefone_ddd  AS fone_ddd, ";
@@ -96,6 +95,7 @@ trait JsonDataSource
                 AND php.person_id = escola.ref_idpes AND php.type = 1
             LEFT JOIN addresses a ON TRUE
                 AND a.id = php.place_id
+            LEFT JOIN addresses ad ON ad.id = php.place_id
             WHERE TRUE
                 AND instituicao.cod_instituicao = {$instituicao}
                 AND
