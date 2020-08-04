@@ -63,7 +63,7 @@ trait JsonDataSource
             $select .= " ' ' AS email, "; 
         }else{
             $select .= " fcn_upper(view_dados_escola.nome) AS nm_escola, ";
-            $select .= " '' AS tipo_logradouro, ";
+            $select .= " null AS tipo_logradouro, ";
             $select .= " view_dados_escola.logradouro, ";
             $select .= " view_dados_escola.bairro, ";
             $select .= " view_dados_escola.telefone_ddd  AS fone_ddd, ";
