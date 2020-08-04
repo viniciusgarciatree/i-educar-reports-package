@@ -50,8 +50,9 @@ trait JsonDataSource
         $instituicao = $this->args['instituicao'] ?: 0;
         $escola = $this->args['escola'] ?: 0;
         $notSchool = empty($this->args['escola']) ? 'true' : 'false';
+
         $select = "";
-        if($notSchool){
+        if($notSchool == 'true'){
             $select .= " '' AS nm_escola, ";
             $select .= " instituicao.ref_idtlog, ";
             $select .= " instituicao.logradouro, ";
