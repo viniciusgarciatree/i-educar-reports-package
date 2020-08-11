@@ -13,8 +13,9 @@ class CreatePmieducarInfraPredioTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'infra_predio');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.infra_predio_cod_infra_predio_seq
@@ -42,7 +43,8 @@ class CreatePmieducarInfraPredioTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.infra_predio_cod_infra_predio_seq\', 1, true);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarTipoRegimeTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'tipo_regime');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.tipo_regime_cod_tipo_regime_seq
@@ -40,7 +41,8 @@ class CreatePmieducarTipoRegimeTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.tipo_regime_cod_tipo_regime_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarReservaVagaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'reserva_vaga');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.reserva_vaga_cod_reserva_vaga_seq
@@ -43,7 +44,8 @@ class CreatePmieducarReservaVagaTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.reserva_vaga_cod_reserva_vaga_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

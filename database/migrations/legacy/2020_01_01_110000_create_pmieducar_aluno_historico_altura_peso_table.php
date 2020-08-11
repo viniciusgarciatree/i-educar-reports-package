@@ -13,8 +13,9 @@ class CreatePmieducarAlunoHistoricoAlturaPesoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'aluno_historico_altura_peso');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.aluno_historico_altura_peso (
@@ -24,7 +25,8 @@ class CreatePmieducarAlunoHistoricoAlturaPesoTable extends Migration
                     peso numeric(12,2) NOT NULL
                 );
             '
-        );
+            );
+        }
     }
 
     /**

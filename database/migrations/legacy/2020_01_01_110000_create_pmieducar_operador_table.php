@@ -13,8 +13,9 @@ class CreatePmieducarOperadorTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'operador');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.operador_cod_operador_seq
@@ -41,7 +42,8 @@ class CreatePmieducarOperadorTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.operador_cod_operador_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarAcervoAcervoAssuntoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'acervo_acervo_assunto');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.acervo_acervo_assunto (
@@ -25,7 +26,8 @@ class CreatePmieducarAcervoAcervoAssuntoTable extends Migration
                 ALTER TABLE ONLY pmieducar.acervo_acervo_assunto
                     ADD CONSTRAINT acervo_acervo_assunto_pkey PRIMARY KEY (ref_cod_acervo, ref_cod_acervo_assunto);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,14 +13,19 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('public.cities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('state_id');
-            $table->string('name');
-            $table->integer('ibge_code')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if(DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'public' AND tablename = 'cities');")[0]->exists == false) {
+            Schema::create(
+                'public.cities',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->integer('state_id');
+                    $table->string('name');
+                    $table->integer('ibge_code')->nullable();
+                    $table->timestamps();
+                    $table->softDeletes();
+                }
+            );
+        }
     }
 
     /**

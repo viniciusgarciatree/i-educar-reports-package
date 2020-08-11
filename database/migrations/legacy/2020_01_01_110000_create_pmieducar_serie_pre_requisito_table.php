@@ -13,8 +13,9 @@ class CreatePmieducarSeriePreRequisitoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'serie_pre_requisito');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE TABLE pmieducar.serie_pre_requisito (
@@ -27,7 +28,8 @@ class CreatePmieducarSeriePreRequisitoTable extends Migration
                 ALTER TABLE ONLY pmieducar.serie_pre_requisito
                     ADD CONSTRAINT serie_pre_requisito_pkey PRIMARY KEY (ref_cod_pre_requisito, ref_cod_operador, ref_cod_serie);
             '
-        );
+            );
+        }
     }
 
     /**

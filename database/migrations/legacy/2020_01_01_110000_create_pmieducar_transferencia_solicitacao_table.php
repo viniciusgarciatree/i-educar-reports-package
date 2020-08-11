@@ -13,8 +13,9 @@ class CreatePmieducarTransferenciaSolicitacaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'transferencia_solicitacao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE SEQUENCE pmieducar.transferencia_solicitacao_cod_transferencia_solicitacao_seq
@@ -47,7 +48,8 @@ class CreatePmieducarTransferenciaSolicitacaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.transferencia_solicitacao_cod_transferencia_solicitacao_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

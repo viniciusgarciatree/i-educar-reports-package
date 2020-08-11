@@ -13,15 +13,20 @@ class CreateEmployeeGraduationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_graduations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('employee_id')->unsigned();
-            $table->integer('course_id')->unsigned();
-            $table->integer('completion_year');
-            $table->integer('college_id')->unsigned();
-            $table->integer('discipline_id')->unsigned()->nullable();
-            $table->timestamps();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE tablename = 'employee_graduations');"))[0]->exists == false) {
+            Schema::create(
+                'employee_graduations',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->integer('employee_id')->unsigned();
+                    $table->integer('course_id')->unsigned();
+                    $table->integer('completion_year');
+                    $table->integer('college_id')->unsigned();
+                    $table->integer('discipline_id')->unsigned()->nullable();
+                    $table->timestamps();
+                }
+            );
+        }
     }
 
     /**

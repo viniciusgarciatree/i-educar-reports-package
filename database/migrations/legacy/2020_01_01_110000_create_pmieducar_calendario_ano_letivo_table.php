@@ -13,8 +13,9 @@ class CreatePmieducarCalendarioAnoLetivoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'calendario_ano_letivo');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.calendario_ano_letivo_cod_calendario_ano_letivo_seq
@@ -48,7 +49,8 @@ class CreatePmieducarCalendarioAnoLetivoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.calendario_ano_letivo_cod_calendario_ano_letivo_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

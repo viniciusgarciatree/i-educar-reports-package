@@ -13,8 +13,9 @@ class CreatePmieducarAlunoBeneficioTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'aluno_beneficio');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.aluno_beneficio_cod_aluno_beneficio_seq
@@ -46,7 +47,8 @@ class CreatePmieducarAlunoBeneficioTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.aluno_beneficio_cod_aluno_beneficio_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

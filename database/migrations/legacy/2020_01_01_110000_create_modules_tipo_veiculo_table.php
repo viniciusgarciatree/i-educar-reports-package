@@ -13,8 +13,9 @@ class CreateModulesTipoVeiculoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'tipo_veiculo');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE SEQUENCE modules.tipo_veiculo_seq
@@ -34,7 +35,8 @@ class CreateModulesTipoVeiculoTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.tipo_veiculo_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

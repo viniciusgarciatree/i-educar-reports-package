@@ -13,8 +13,9 @@ class CreatePmieducarBibliotecaDiaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'biblioteca_dia');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.biblioteca_dia (
@@ -25,7 +26,8 @@ class CreatePmieducarBibliotecaDiaTable extends Migration
                 ALTER TABLE ONLY pmieducar.biblioteca_dia
                     ADD CONSTRAINT biblioteca_dia_pkey PRIMARY KEY (ref_cod_biblioteca, dia);
             '
-        );
+            );
+        }
     }
 
     /**

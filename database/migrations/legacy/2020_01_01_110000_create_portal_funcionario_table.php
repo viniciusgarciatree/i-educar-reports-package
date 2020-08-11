@@ -13,8 +13,9 @@ class CreatePortalFuncionarioTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'portal' AND tablename = 'funcionario');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE TABLE portal.funcionario (
@@ -51,7 +52,8 @@ class CreatePortalFuncionarioTable extends Migration
                 ALTER TABLE ONLY portal.funcionario
                     ADD CONSTRAINT funcionario_pk PRIMARY KEY (ref_cod_pessoa_fj);
             '
-        );
+            );
+        }
     }
 
     /**

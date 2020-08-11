@@ -13,8 +13,9 @@ class CreateModulesNotaAlunoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'nota_aluno');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.nota_aluno_id_seq
@@ -45,7 +46,8 @@ class CreateModulesNotaAlunoTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.nota_aluno_id_seq\', 2, true);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePortalFuncionarioVinculoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'portal' AND tablename = 'funcionario_vinculo');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE SEQUENCE portal.funcionario_vinculo_cod_funcionario_vinculo_seq
@@ -35,7 +36,8 @@ class CreatePortalFuncionarioVinculoTable extends Migration
 
                 SELECT pg_catalog.setval(\'portal.funcionario_vinculo_cod_funcionario_vinculo_seq\', 7, true);
             '
-        );
+            );
+        }
     }
 
     /**

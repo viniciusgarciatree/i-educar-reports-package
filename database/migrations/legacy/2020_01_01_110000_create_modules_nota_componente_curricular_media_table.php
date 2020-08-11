@@ -13,8 +13,9 @@ class CreateModulesNotaComponenteCurricularMediaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'nota_componente_curricular_media');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE modules.nota_componente_curricular_media (
@@ -30,7 +31,8 @@ class CreateModulesNotaComponenteCurricularMediaTable extends Migration
                 ALTER TABLE ONLY modules.nota_componente_curricular_media
                     ADD CONSTRAINT nota_componente_curricular_media_pkey PRIMARY KEY (nota_aluno_id, componente_curricular_id);
             '
-        );
+            );
+        }
     }
 
     /**

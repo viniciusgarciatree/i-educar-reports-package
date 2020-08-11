@@ -13,8 +13,9 @@ class CreateModulesFaltaComponenteCurricularTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'falta_componente_curricular');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.falta_componente_curricular_id_seq
@@ -43,7 +44,8 @@ class CreateModulesFaltaComponenteCurricularTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.falta_componente_curricular_id_seq\', 1, true);
             '
-        );
+            );
+        }
     }
 
     /**

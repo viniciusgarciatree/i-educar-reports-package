@@ -12,9 +12,11 @@ class AddFunctionPublicCommacatIgnoreNulls extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            file_get_contents(__DIR__ . '/../../sqls/functions/public.commacat_ignore_nulls.sql')
-        );
+        if(DB::select("select exists(SELECT * FROM pg_proc WHERE proname = 'commacat_ignore_nulls' AND proisagg); ")[0]->exists == false) {
+            DB::unprepared(
+                file_get_contents(__DIR__ . '/../../sqls/functions/public.commacat_ignore_nulls.sql')
+            );
+        }
     }
 
     /**

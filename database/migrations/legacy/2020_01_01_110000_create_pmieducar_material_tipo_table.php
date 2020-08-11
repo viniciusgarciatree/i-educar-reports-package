@@ -13,8 +13,9 @@ class CreatePmieducarMaterialTipoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'material_tipo');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.material_tipo_cod_material_tipo_seq
@@ -41,7 +42,8 @@ class CreatePmieducarMaterialTipoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.material_tipo_cod_material_tipo_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

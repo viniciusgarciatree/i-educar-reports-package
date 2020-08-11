@@ -13,8 +13,9 @@ class CreatePmieducarServidorCursoMinistraTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'servidor_curso_ministra');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.servidor_curso_ministra (
@@ -26,7 +27,8 @@ class CreatePmieducarServidorCursoMinistraTable extends Migration
                 ALTER TABLE ONLY pmieducar.servidor_curso_ministra
                     ADD CONSTRAINT servidor_cuso_ministra_pkey PRIMARY KEY (ref_cod_curso, ref_ref_cod_instituicao, ref_cod_servidor);
             '
-        );
+            );
+        }
     }
 
     /**

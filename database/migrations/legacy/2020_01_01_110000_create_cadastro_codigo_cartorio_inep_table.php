@@ -13,8 +13,9 @@ class CreateCadastroCodigoCartorioInepTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'codigo_cartorio_inep');"))[0]->exists == false){
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE cadastro.codigo_cartorio_inep_id_seq
@@ -42,7 +43,8 @@ class CreateCadastroCodigoCartorioInepTable extends Migration
                 
                 SELECT pg_catalog.setval(\'cadastro.codigo_cartorio_inep_id_seq\', 14212, true);
             '
-        );
+            );
+        }
     }
 
     /**

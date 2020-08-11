@@ -13,15 +13,20 @@ class CreateModulesRegraAvaliacaoSerieAnoExcluidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules.regra_avaliacao_serie_ano_excluidos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('serie_id');
-            $table->integer('regra_avaliacao_id');
-            $table->integer('regra_avaliacao_diferenciada_id')->nullable();
-            $table->integer('ano_letivo');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'regra_avaliacao_serie_ano_excluidos');"))[0]->exists == false) {
+            Schema::create(
+                'modules.regra_avaliacao_serie_ano_excluidos',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->integer('serie_id');
+                    $table->integer('regra_avaliacao_id');
+                    $table->integer('regra_avaliacao_diferenciada_id')->nullable();
+                    $table->integer('ano_letivo');
+                    $table->timestamps();
+                    $table->softDeletes();
+                }
+            );
+        }
     }
 
     /**

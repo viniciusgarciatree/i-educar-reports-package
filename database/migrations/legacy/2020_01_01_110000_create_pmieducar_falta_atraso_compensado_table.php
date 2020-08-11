@@ -13,8 +13,9 @@ class CreatePmieducarFaltaAtrasoCompensadoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'falta_atraso_compensado');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.falta_atraso_compensado_cod_compensado_seq
@@ -43,7 +44,8 @@ class CreatePmieducarFaltaAtrasoCompensadoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.falta_atraso_compensado_cod_compensado_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

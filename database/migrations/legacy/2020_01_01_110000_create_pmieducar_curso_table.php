@@ -13,8 +13,9 @@ class CreatePmieducarCursoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'curso');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.curso_cod_curso_seq
@@ -76,7 +77,8 @@ class CreatePmieducarCursoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.curso_cod_curso_seq\', 1, true);
             '
-        );
+            );
+        }
     }
 
     /**

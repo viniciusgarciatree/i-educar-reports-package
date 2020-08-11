@@ -13,8 +13,9 @@ class CreatePmieducarBackupTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'backup');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE pmieducar.backup_id_seq
@@ -39,7 +40,8 @@ class CreatePmieducarBackupTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.backup_id_seq\', 1, true);
             '
-        );
+            );
+        }
     }
 
     /**

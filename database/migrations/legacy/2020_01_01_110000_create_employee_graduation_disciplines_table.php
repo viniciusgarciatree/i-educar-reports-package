@@ -13,10 +13,15 @@ class CreateEmployeeGraduationDisciplinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_graduation_disciplines', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE tablename = 'employee_graduation_disciplines');"))[0]->exists == false) {
+            Schema::create(
+                'employee_graduation_disciplines',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('name');
+                }
+            );
+        }
     }
 
     /**

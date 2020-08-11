@@ -13,8 +13,9 @@ class CreateCadastroFisicaFotoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'fisica_foto');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE cadastro.fisica_foto (
@@ -26,7 +27,8 @@ class CreateCadastroFisicaFotoTable extends Migration
                 ALTER TABLE ONLY cadastro.fisica_foto
                     ADD CONSTRAINT fisica_foto_pkey PRIMARY KEY (idpes);
             '
-        );
+            );
+        }
     }
 
     /**

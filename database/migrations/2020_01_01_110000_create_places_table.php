@@ -13,19 +13,24 @@ class CreatePlacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('public.places', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('city_id');
-            $table->string('address');
-            $table->string('number')->nullable();
-            $table->string('complement')->nullable();
-            $table->string('neighborhood');
-            $table->string('postal_code');
-            $table->float('latitude')->nullable();
-            $table->float('longitude')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if(count(DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'public' AND tablename = 'places');"))[0]=="false") {
+            Schema::create(
+                'public.places',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->integer('city_id');
+                    $table->string('address');
+                    $table->string('number')->nullable();
+                    $table->string('complement')->nullable();
+                    $table->string('neighborhood');
+                    $table->string('postal_code');
+                    $table->float('latitude')->nullable();
+                    $table->float('longitude')->nullable();
+                    $table->timestamps();
+                    $table->softDeletes();
+                }
+            );
+        }
     }
 
     /**

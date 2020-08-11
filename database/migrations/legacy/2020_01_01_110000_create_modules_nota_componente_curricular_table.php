@@ -13,8 +13,9 @@ class CreateModulesNotaComponenteCurricularTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'nota_componente_curricular');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.nota_componente_curricular_id_seq
@@ -51,7 +52,8 @@ class CreateModulesNotaComponenteCurricularTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.nota_componente_curricular_id_seq\', 1, true);
             '
-        );
+            );
+        }
     }
 
     /**

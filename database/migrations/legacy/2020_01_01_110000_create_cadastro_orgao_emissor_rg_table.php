@@ -13,8 +13,9 @@ class CreateCadastroOrgaoEmissorRgTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'orgao_emissor_rg');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE cadastro.orgao_emissor_rg_idorg_rg_seq
@@ -38,7 +39,8 @@ class CreateCadastroOrgaoEmissorRgTable extends Migration
 
                 SELECT pg_catalog.setval(\'cadastro.orgao_emissor_rg_idorg_rg_seq\', 31, true);
             '
-        );
+            );
+        }
     }
 
     /**

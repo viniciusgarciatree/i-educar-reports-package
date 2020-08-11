@@ -13,12 +13,17 @@ class CreatePmieducarAlunoExcluidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pmieducar.aluno_excluidos', function (Blueprint $table) {
-            $table->integer('cod_aluno')->primary();
-            $table->integer('ref_idpes')->nullable()->index();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'aluno_excluidos');"))[0]->exists == false) {
+            Schema::create(
+                'pmieducar.aluno_excluidos',
+                function (Blueprint $table) {
+                    $table->integer('cod_aluno')->primary();
+                    $table->integer('ref_idpes')->nullable()->index();
+                    $table->timestamps();
+                    $table->softDeletes();
+                }
+            );
+        }
     }
 
     /**

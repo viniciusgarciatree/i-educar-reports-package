@@ -13,8 +13,9 @@ class CreateModulesPessoaTransporteTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'pessoa_transporte');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE modules.pessoa_transporte_seq
@@ -39,7 +40,8 @@ class CreateModulesPessoaTransporteTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.pessoa_transporte_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

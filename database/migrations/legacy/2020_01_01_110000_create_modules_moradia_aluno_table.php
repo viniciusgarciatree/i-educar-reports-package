@@ -13,8 +13,9 @@ class CreateModulesMoradiaAlunoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'moradia_aluno');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE TABLE modules.moradia_aluno (
@@ -53,7 +54,8 @@ class CreateModulesMoradiaAlunoTable extends Migration
                 ALTER TABLE ONLY modules.moradia_aluno
                     ADD CONSTRAINT moradia_aluno_pkei PRIMARY KEY (ref_cod_aluno);
             '
-        );
+            );
+        }
     }
 
     /**

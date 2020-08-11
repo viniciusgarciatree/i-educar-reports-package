@@ -13,8 +13,9 @@ class CreatePmieducarHistoricoDisciplinasTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'historico_disciplinas');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE TABLE pmieducar.historico_disciplinas (
@@ -41,7 +42,8 @@ class CreatePmieducarHistoricoDisciplinasTable extends Migration
                 
                 CREATE UNIQUE INDEX pmieducar_historico_disciplinas_sequencial_ref_ref_cod_aluno_re ON pmieducar.historico_disciplinas USING btree (sequencial, ref_ref_cod_aluno, ref_sequencial);
             '
-        );
+            );
+        }
     }
 
     /**

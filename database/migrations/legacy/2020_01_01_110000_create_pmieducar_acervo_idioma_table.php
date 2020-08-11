@@ -13,8 +13,9 @@ class CreatePmieducarAcervoIdiomaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'acervo_idioma');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.acervo_idioma_cod_acervo_idioma_seq
@@ -40,7 +41,8 @@ class CreatePmieducarAcervoIdiomaTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.acervo_idioma_cod_acervo_idioma_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

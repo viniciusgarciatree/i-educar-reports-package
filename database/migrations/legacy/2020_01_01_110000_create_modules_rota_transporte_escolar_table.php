@@ -13,8 +13,9 @@ class CreateModulesRotaTransporteEscolarTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'rota_transporte_escolar');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE SEQUENCE modules.rota_transporte_escolar_seq
@@ -41,7 +42,8 @@ class CreateModulesRotaTransporteEscolarTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.rota_transporte_escolar_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

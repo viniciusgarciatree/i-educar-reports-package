@@ -13,8 +13,9 @@ class CreateModulesProfessorTurmaDisciplinaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'professor_turma_disciplina');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE TABLE modules.professor_turma_disciplina (
@@ -25,7 +26,8 @@ class CreateModulesProfessorTurmaDisciplinaTable extends Migration
                 ALTER TABLE ONLY modules.professor_turma_disciplina
                     ADD CONSTRAINT professor_turma_disciplina_pk PRIMARY KEY (professor_turma_id, componente_curricular_id);
             '
-        );
+            );
+        }
     }
 
     /**

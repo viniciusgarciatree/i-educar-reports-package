@@ -13,8 +13,9 @@ class CreateModulesMotoristaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'motorista');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE SEQUENCE modules.motorista_seq
@@ -40,7 +41,8 @@ class CreateModulesMotoristaTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.motorista_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

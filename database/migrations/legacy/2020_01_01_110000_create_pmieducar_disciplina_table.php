@@ -13,8 +13,9 @@ class CreatePmieducarDisciplinaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'disciplina');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.disciplina_cod_disciplina_seq
@@ -57,7 +58,8 @@ class CreatePmieducarDisciplinaTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.disciplina_cod_disciplina_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

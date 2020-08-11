@@ -13,8 +13,9 @@ class CreatePmieducarAcervoAssuntoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'acervo_assunto');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.acervo_assunto_cod_acervo_assunto_seq
@@ -41,7 +42,8 @@ class CreatePmieducarAcervoAssuntoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.acervo_assunto_cod_acervo_assunto_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

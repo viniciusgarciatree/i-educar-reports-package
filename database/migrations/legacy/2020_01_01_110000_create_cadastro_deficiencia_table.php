@@ -13,8 +13,9 @@ class CreateCadastroDeficienciaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'deficiencia');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE cadastro.deficiencia_cod_deficiencia_seq
@@ -37,7 +38,8 @@ class CreateCadastroDeficienciaTable extends Migration
 
                 SELECT pg_catalog.setval(\'cadastro.deficiencia_cod_deficiencia_seq\', 15, false);
             '
-        );
+            );
+        }
     }
 
     /**

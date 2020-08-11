@@ -13,8 +13,9 @@ class CreateModulesEducacensoCodTurmaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'educacenso_cod_turma');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE modules.educacenso_cod_turma (
@@ -29,7 +30,8 @@ class CreateModulesEducacensoCodTurmaTable extends Migration
                 ALTER TABLE ONLY modules.educacenso_cod_turma
                     ADD CONSTRAINT educacenso_cod_turma_pk PRIMARY KEY (cod_turma, cod_turma_inep);
             '
-        );
+            );
+        }
     }
 
     /**

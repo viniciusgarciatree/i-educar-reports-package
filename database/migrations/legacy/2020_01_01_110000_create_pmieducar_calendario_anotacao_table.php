@@ -13,8 +13,9 @@ class CreatePmieducarCalendarioAnotacaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'calendario_anotacao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.calendario_anotacao_cod_calendario_anotacao_seq
@@ -40,7 +41,8 @@ class CreatePmieducarCalendarioAnotacaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.calendario_anotacao_cod_calendario_anotacao_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

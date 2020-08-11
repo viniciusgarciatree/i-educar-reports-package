@@ -13,8 +13,9 @@ class CreateModulesFichaMedicaAlunoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'ficha_medica_aluno');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE modules.ficha_medica_aluno (
@@ -69,7 +70,8 @@ class CreateModulesFichaMedicaAlunoTable extends Migration
                 ALTER TABLE ONLY modules.ficha_medica_aluno
                     ADD CONSTRAINT ficha_medica_cod_aluno_pkey PRIMARY KEY (ref_cod_aluno);
             '
-        );
+            );
+        }
     }
 
     /**

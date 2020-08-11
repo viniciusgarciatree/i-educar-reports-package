@@ -13,8 +13,9 @@ class CreatePmieducarInfraComodoFuncaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'infra_comodo_funcao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.infra_comodo_funcao_cod_infra_comodo_funcao_seq
@@ -41,7 +42,8 @@ class CreatePmieducarInfraComodoFuncaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.infra_comodo_funcao_cod_infra_comodo_funcao_seq\', 1, true);
             '
-        );
+            );
+        }
     }
 
     /**

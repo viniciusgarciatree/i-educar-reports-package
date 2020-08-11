@@ -13,8 +13,9 @@ class CreatePmieducarClienteSuspensaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'cliente_suspensao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.cliente_suspensao (
@@ -31,7 +32,8 @@ class CreatePmieducarClienteSuspensaoTable extends Migration
                 ALTER TABLE ONLY pmieducar.cliente_suspensao
                     ADD CONSTRAINT cliente_suspensao_pkey PRIMARY KEY (sequencial, ref_cod_cliente, ref_cod_motivo_suspensao);
             '
-        );
+            );
+        }
     }
 
     /**

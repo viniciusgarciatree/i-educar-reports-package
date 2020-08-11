@@ -13,8 +13,9 @@ class CreatePmieducarMatriculaExcessaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'matricula_excessao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE pmieducar.matricula_excessao_cod_aluno_excessao_seq
@@ -42,7 +43,8 @@ class CreatePmieducarMatriculaExcessaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.matricula_excessao_cod_aluno_excessao_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

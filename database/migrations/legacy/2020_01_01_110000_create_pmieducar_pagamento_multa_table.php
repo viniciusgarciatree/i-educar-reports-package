@@ -13,8 +13,9 @@ class CreatePmieducarPagamentoMultaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'pagamento_multa');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.pagamento_multa_cod_pagamento_multa_seq
@@ -38,7 +39,8 @@ class CreatePmieducarPagamentoMultaTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.pagamento_multa_cod_pagamento_multa_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarServidorDisciplinaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'servidor_disciplina');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.servidor_disciplina (
@@ -27,7 +28,8 @@ class CreatePmieducarServidorDisciplinaTable extends Migration
                 ALTER TABLE ONLY pmieducar.servidor_disciplina
                     ADD CONSTRAINT servidor_disciplina_pkey PRIMARY KEY (ref_cod_disciplina, ref_ref_cod_instituicao, ref_cod_servidor, ref_cod_curso);
             '
-        );
+            );
+        }
     }
 
     /**

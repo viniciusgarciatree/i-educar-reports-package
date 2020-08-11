@@ -13,18 +13,23 @@ class CreateModulesComponenteCurricularTurmaExcluidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules.componente_curricular_turma_excluidos', function (Blueprint $table) {
-            $table->integer('componente_curricular_id');
-            $table->integer('ano_escolar_id');
-            $table->integer('escola_id');
-            $table->integer('turma_id');
-            $table->float('carga_horaria')->nullable();
-            $table->integer('docente_vinculado')->nullable();
-            $table->integer('etapas_especificas')->nullable();
-            $table->string('etapas_utilizadas')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'componente_curricular_turma_excluidos');"))[0]->exists == false) {
+            Schema::create(
+                'modules.componente_curricular_turma_excluidos',
+                function (Blueprint $table) {
+                    $table->integer('componente_curricular_id');
+                    $table->integer('ano_escolar_id');
+                    $table->integer('escola_id');
+                    $table->integer('turma_id');
+                    $table->float('carga_horaria')->nullable();
+                    $table->integer('docente_vinculado')->nullable();
+                    $table->integer('etapas_especificas')->nullable();
+                    $table->string('etapas_utilizadas')->nullable();
+                    $table->timestamps();
+                    $table->softDeletes();
+                }
+            );
+        }
     }
 
     /**

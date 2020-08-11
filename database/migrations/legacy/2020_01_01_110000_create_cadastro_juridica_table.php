@@ -13,8 +13,9 @@ class CreateCadastroJuridicaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'juridica');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE cadastro.juridica (
@@ -38,7 +39,8 @@ class CreateCadastroJuridicaTable extends Migration
                     
                 CREATE UNIQUE INDEX un_juridica_cnpj ON cadastro.juridica USING btree (cnpj);
             '
-        );
+            );
+        }
     }
 
     /**

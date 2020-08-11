@@ -13,8 +13,9 @@ class CreateModulesDocenteLicenciaturaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'docente_licenciatura');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE modules.docente_licenciatura_id_seq
@@ -50,7 +51,8 @@ class CreateModulesDocenteLicenciaturaTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.docente_licenciatura_id_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

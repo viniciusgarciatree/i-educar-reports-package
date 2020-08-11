@@ -13,10 +13,15 @@ class CreateManagerAccessCriteriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('manager_access_criterias', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE tablename = 'manager_access_criterias');"))[0]->exists == false) {
+            Schema::create(
+                'manager_access_criterias',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('name');
+                }
+            );
+        }
     }
 
     /**

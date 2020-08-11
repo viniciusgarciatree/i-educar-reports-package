@@ -13,8 +13,9 @@ class CreatePmieducarAlunoAlunoBeneficioTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'aluno_aluno_beneficio');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.aluno_aluno_beneficio (
@@ -25,7 +26,8 @@ class CreatePmieducarAlunoAlunoBeneficioTable extends Migration
                 ALTER TABLE ONLY pmieducar.aluno_aluno_beneficio
                     ADD CONSTRAINT aluno_aluno_beneficio_pk PRIMARY KEY (aluno_id, aluno_beneficio_id);
             '
-        );
+            );
+        }
     }
 
     /**

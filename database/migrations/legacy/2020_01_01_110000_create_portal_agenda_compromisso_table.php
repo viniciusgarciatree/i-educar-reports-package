@@ -13,8 +13,9 @@ class CreatePortalAgendaCompromissoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'portal' AND tablename = 'agenda_compromisso');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE TABLE portal.agenda_compromisso (
@@ -35,7 +36,8 @@ class CreatePortalAgendaCompromissoTable extends Migration
                 ALTER TABLE ONLY portal.agenda_compromisso
                     ADD CONSTRAINT agenda_compromisso_pkey PRIMARY KEY (cod_agenda_compromisso, versao, ref_cod_agenda);
             '
-        );
+            );
+        }
     }
 
     /**

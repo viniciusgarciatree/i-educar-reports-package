@@ -14,19 +14,28 @@ class CreateModulesComponenteCurricularAnoEscolarExcluidosTable extends Migratio
      */
     public function up()
     {
-        Schema::create('modules.componente_curricular_ano_escolar_excluidos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('componente_curricular_id');
-            $table->integer('ano_escolar_id');
-            $table->decimal('carga_horaria', 7, 3)->nullable();
-            $table->integer('tipo_nota')->nullable();
-            $table->string('anos_letivos');
-            $table->timestamp('updated_at')->nullable();
-            $table->softDeletes();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'componente_curricular_ano_escolar_excluidos');"))[0]->exists == false) {
+            Schema::create(
+                'modules.componente_curricular_ano_escolar_excluidos',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->integer('componente_curricular_id');
+                    $table->integer('ano_escolar_id');
+                    $table->decimal('carga_horaria', 7, 3)->nullable();
+                    $table->integer('tipo_nota')->nullable();
+                    $table->string('anos_letivos');
+                    $table->timestamp('updated_at')->nullable();
+                    $table->softDeletes();
+                }
+            );
 
-        DB::statement('ALTER TABLE modules.componente_curricular_ano_escolar_excluidos ALTER COLUMN anos_letivos TYPE smallint[] USING anos_letivos::smallint[]');
-        DB::statement('ALTER TABLE modules.componente_curricular_ano_escolar_excluidos ALTER COLUMN anos_letivos SET DEFAULT \'{}\'::smallint[]');
+            DB::statement(
+                'ALTER TABLE modules.componente_curricular_ano_escolar_excluidos ALTER COLUMN anos_letivos TYPE smallint[] USING anos_letivos::smallint[]'
+            );
+            DB::statement(
+                'ALTER TABLE modules.componente_curricular_ano_escolar_excluidos ALTER COLUMN anos_letivos SET DEFAULT \'{}\'::smallint[]'
+            );
+        }
     }
 
     /**

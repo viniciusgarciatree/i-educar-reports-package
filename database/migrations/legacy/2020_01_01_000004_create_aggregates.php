@@ -13,15 +13,17 @@ class CreateAggregates extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if(DB::select("select exists(SELECT * FROM pg_proc WHERE proname = 'textcat_all' AND proisagg); ")[0]->exists == false){
+            DB::unprepared(
+                '
                 CREATE AGGREGATE public.textcat_all(text) (
                     SFUNC = public.commacat_ignore_nulls,
                     STYPE = text,
                     INITCOND = \'\'
                 );
             '
-        );
+            );
+        }
     }
 
     /**

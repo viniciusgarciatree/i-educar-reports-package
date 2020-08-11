@@ -13,8 +13,9 @@ class CreatePmieducarRelacaoCategoriaAcervoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'relacao_categoria_acervo');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.relacao_categoria_acervo (
@@ -22,7 +23,8 @@ class CreatePmieducarRelacaoCategoriaAcervoTable extends Migration
                     categoria_id integer NOT NULL
                 );
             '
-        );
+            );
+        }
     }
 
     /**

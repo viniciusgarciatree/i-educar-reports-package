@@ -13,10 +13,15 @@ class CreateManagerRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('manager_roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE tablename = 'manager_roles');"))[0]->exists == false) {
+            Schema::create(
+                'manager_roles',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('name');
+                }
+            );
+        }
     }
 
     /**

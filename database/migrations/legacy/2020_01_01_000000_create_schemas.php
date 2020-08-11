@@ -13,16 +13,29 @@ class CreateSchemas extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
-                CREATE SCHEMA cadastro;
-                CREATE SCHEMA modules;
-                CREATE SCHEMA pmieducar;
-                CREATE SCHEMA portal;
-                CREATE SCHEMA relatorio;
-                CREATE SCHEMA urbano;
-            '
-        );
+        if((DB::select("SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'cadastro';"))==0){
+            DB::unprepared('CREATE SCHEMA cadastro;');
+        }
+
+        if((DB::select("SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'modules';"))==0){
+            DB::unprepared('CREATE SCHEMA modules;');
+        }
+
+        if((DB::select("SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'pmieducar';"))==0){
+            DB::unprepared('CREATE SCHEMA pmieducar;');
+        }
+
+        if((DB::select("SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'portal';"))==0){
+            DB::unprepared('CREATE SCHEMA portal;');
+        }
+
+        if((DB::select("SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'relatorio';"))==0){
+            DB::unprepared('CREATE SCHEMA relatorio;');
+        }
+
+        if((DB::select("SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'urbano';"))==0){
+            DB::unprepared('CREATE SCHEMA urbano;');
+        }
     }
 
     /**

@@ -13,14 +13,19 @@ class CreateCadastroDeficienciaExcluidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cadastro.deficiencia_excluidos', function (Blueprint $table) {
-            $table->integer('cod_deficiencia')->primary();
-            $table->string('nm_deficiencia');
-            $table->integer('deficiencia_educacenso')->nullable();
-            $table->boolean('desconsidera_regra_diferenciada')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'deficiencia_excluidos');"))[0]->exists == false) {
+            Schema::create(
+                'cadastro.deficiencia_excluidos',
+                function (Blueprint $table) {
+                    $table->integer('cod_deficiencia')->primary();
+                    $table->string('nm_deficiencia');
+                    $table->integer('deficiencia_educacenso')->nullable();
+                    $table->boolean('desconsidera_regra_diferenciada')->nullable();
+                    $table->timestamps();
+                    $table->softDeletes();
+                }
+            );
+        }
     }
 
     /**

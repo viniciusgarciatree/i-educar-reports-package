@@ -13,8 +13,9 @@ class CreatePmieducarConfiguracoesGeraisTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'configuracoes_gerais');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.configuracoes_gerais (
@@ -47,7 +48,8 @@ class CreatePmieducarConfiguracoesGeraisTable extends Migration
                 ALTER TABLE pmieducar.configuracoes_gerais 
                     ADD CONSTRAINT configuracoes_gerais_pkey PRIMARY KEY (ref_cod_instituicao);
             '
-        );
+            );
+        }
     }
 
     /**

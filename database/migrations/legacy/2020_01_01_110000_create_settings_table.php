@@ -13,14 +13,19 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('key')->unique();
-            $table->text('value')->nullable();
-            $table->string('type')->default('string');
-            $table->string('description')->nullable();
-            $table->timestamps();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE tablename = 'settings');"))[0]->exists == false) {
+            Schema::create(
+                'settings',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('key')->unique();
+                    $table->text('value')->nullable();
+                    $table->string('type')->default('string');
+                    $table->string('description')->nullable();
+                    $table->timestamps();
+                }
+            );
+        }
     }
 
     /**

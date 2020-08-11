@@ -13,8 +13,9 @@ class CreateModulesRegraAvaliacaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'regra_avaliacao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.regra_avaliacao_id_seq
@@ -69,7 +70,8 @@ class CreateModulesRegraAvaliacaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.regra_avaliacao_id_seq\', 2, true);
             '
-        );
+            );
+        }
     }
 
     /**

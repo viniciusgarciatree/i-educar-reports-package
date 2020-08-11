@@ -13,8 +13,9 @@ class CreateModulesEtapasCursoEducacensoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'etapas_curso_educacenso');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE TABLE modules.etapas_curso_educacenso (
@@ -25,7 +26,8 @@ class CreateModulesEtapasCursoEducacensoTable extends Migration
                 ALTER TABLE ONLY modules.etapas_curso_educacenso
                     ADD CONSTRAINT etapas_curso_educacenso_pk PRIMARY KEY (etapa_id, curso_id);
             '
-        );
+            );
+        }
     }
 
     /**

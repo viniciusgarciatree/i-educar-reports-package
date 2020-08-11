@@ -13,8 +13,9 @@ class CreatePmieducarProjetoAlunoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'projeto_aluno');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.projeto_aluno (
@@ -28,7 +29,8 @@ class CreatePmieducarProjetoAlunoTable extends Migration
                 ALTER TABLE ONLY pmieducar.projeto_aluno
                     ADD CONSTRAINT pmieducar_projeto_aluno_pk PRIMARY KEY (ref_cod_projeto, ref_cod_aluno);
             '
-        );
+            );
+        }
     }
 
     /**

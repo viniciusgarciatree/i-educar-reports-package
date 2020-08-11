@@ -13,8 +13,9 @@ class CreatePmieducarSequenciaSerieTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'sequencia_serie');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.sequencia_serie (
@@ -30,7 +31,8 @@ class CreatePmieducarSequenciaSerieTable extends Migration
                 ALTER TABLE ONLY pmieducar.sequencia_serie
                     ADD CONSTRAINT sequencia_serie_pkey PRIMARY KEY (ref_serie_origem, ref_serie_destino);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarTipoEnsinoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'tipo_ensino');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.tipo_ensino_cod_tipo_ensino_seq
@@ -41,7 +42,8 @@ class CreatePmieducarTipoEnsinoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.tipo_ensino_cod_tipo_ensino_seq\', 1, true);
             '
-        );
+            );
+        }
     }
 
     /**

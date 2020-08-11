@@ -13,8 +13,9 @@ class CreatePmieducarClienteTipoClienteTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'cliente_tipo_cliente');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.cliente_tipo_cliente (
@@ -31,7 +32,8 @@ class CreatePmieducarClienteTipoClienteTable extends Migration
                 ALTER TABLE ONLY pmieducar.cliente_tipo_cliente
                     ADD CONSTRAINT cliente_tipo_cliente_pk PRIMARY KEY (ref_cod_cliente_tipo, ref_cod_cliente);
             '
-        );
+            );
+        }
     }
 
     /**

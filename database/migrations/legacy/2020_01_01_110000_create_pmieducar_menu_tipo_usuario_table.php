@@ -13,8 +13,9 @@ class CreatePmieducarMenuTipoUsuarioTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'menu_tipo_usuario');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.menu_tipo_usuario (
@@ -28,7 +29,8 @@ class CreatePmieducarMenuTipoUsuarioTable extends Migration
                 ALTER TABLE ONLY pmieducar.menu_tipo_usuario
                     ADD CONSTRAINT menu_tipo_usuario_pkey PRIMARY KEY (ref_cod_tipo_usuario, menu_id);
             '
-        );
+            );
+        }
     }
 
     /**

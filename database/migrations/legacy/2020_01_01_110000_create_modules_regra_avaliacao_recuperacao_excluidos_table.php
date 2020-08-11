@@ -13,17 +13,22 @@ class CreateModulesRegraAvaliacaoRecuperacaoExcluidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules.regra_avaliacao_recuperacao_excluidos', function (Blueprint $table) {
-            $table->integer('id');
-            $table->integer('regra_avaliacao_id');
-            $table->string('descricao');
-            $table->string('etapas_recuperadas');
-            $table->boolean('substitui_menor_nota')->nullable();
-            $table->float('media');
-            $table->float('nota_maxima');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'regra_avaliacao_recuperacao_excluidos');"))[0]->exists == false) {
+            Schema::create(
+                'modules.regra_avaliacao_recuperacao_excluidos',
+                function (Blueprint $table) {
+                    $table->integer('id');
+                    $table->integer('regra_avaliacao_id');
+                    $table->string('descricao');
+                    $table->string('etapas_recuperadas');
+                    $table->boolean('substitui_menor_nota')->nullable();
+                    $table->float('media');
+                    $table->float('nota_maxima');
+                    $table->timestamps();
+                    $table->softDeletes();
+                }
+            );
+        }
     }
 
     /**

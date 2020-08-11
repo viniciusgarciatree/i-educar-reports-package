@@ -13,8 +13,9 @@ class CreatePmieducarAvaliacaoDesempenhoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'avaliacao_desempenho');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.avaliacao_desempenho (
@@ -33,7 +34,8 @@ class CreatePmieducarAvaliacaoDesempenhoTable extends Migration
                 ALTER TABLE ONLY pmieducar.avaliacao_desempenho
                     ADD CONSTRAINT avaliacao_desempenho_pkey PRIMARY KEY (sequencial, ref_cod_servidor, ref_ref_cod_instituicao);
             '
-        );
+            );
+        }
     }
 
     /**

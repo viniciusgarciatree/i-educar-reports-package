@@ -13,8 +13,9 @@ class CreateCadastroFisicaDeficienciaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'fisica_deficiencia');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE cadastro.fisica_deficiencia (
@@ -25,7 +26,8 @@ class CreateCadastroFisicaDeficienciaTable extends Migration
                 ALTER TABLE ONLY cadastro.fisica_deficiencia
                     ADD CONSTRAINT pk_fisica_deficiencia PRIMARY KEY (ref_idpes, ref_cod_deficiencia);
             '
-        );
+            );
+        }
     }
 
     /**

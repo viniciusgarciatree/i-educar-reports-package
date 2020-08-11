@@ -13,8 +13,9 @@ class CreateModulesComponenteCurricularTurmaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'componente_curricular_turma');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE modules.componente_curricular_turma (
@@ -34,7 +35,8 @@ class CreateModulesComponenteCurricularTurmaTable extends Migration
                     
                 CREATE INDEX componente_curricular_turma_turma_idx ON modules.componente_curricular_turma USING btree (turma_id);
             '
-        );
+            );
+        }
     }
 
     /**

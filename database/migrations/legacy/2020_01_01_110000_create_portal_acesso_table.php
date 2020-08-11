@@ -13,8 +13,9 @@ class CreatePortalAcessoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'portal' AND tablename = 'acesso');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE portal.acesso_cod_acesso_seq
@@ -39,7 +40,8 @@ class CreatePortalAcessoTable extends Migration
 
                 SELECT pg_catalog.setval(\'portal.acesso_cod_acesso_seq\', 19, true);
             '
-        );
+            );
+        }
     }
 
     /**

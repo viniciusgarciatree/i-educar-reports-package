@@ -13,8 +13,9 @@ class CreateModulesEducacensoCursoSuperiorTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'educacenso_curso_superior');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE modules.educacenso_curso_superior_id_seq
@@ -44,7 +45,8 @@ class CreateModulesEducacensoCursoSuperiorTable extends Migration
                 
                 SELECT pg_catalog.setval(\'modules.educacenso_curso_superior_id_seq\', 338, true);
             '
-        );
+            );
+        }
     }
 
     /**

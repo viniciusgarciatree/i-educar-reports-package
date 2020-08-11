@@ -13,8 +13,9 @@ class CreateCadastroPessoaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'pessoa');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE cadastro.seq_pessoa
@@ -48,7 +49,8 @@ class CreateCadastroPessoaTable extends Migration
 
                 SELECT pg_catalog.setval(\'cadastro.seq_pessoa\', 3, true);
             '
-        );
+            );
+        }
     }
 
     /**

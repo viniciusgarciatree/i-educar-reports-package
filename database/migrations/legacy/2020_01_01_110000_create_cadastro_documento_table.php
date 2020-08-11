@@ -13,8 +13,9 @@ class CreateCadastroDocumentoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'documento');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE cadastro.documento (
@@ -57,7 +58,8 @@ class CreateCadastroDocumentoTable extends Migration
                 ALTER TABLE ONLY cadastro.documento
                     ADD CONSTRAINT pk_documento PRIMARY KEY (idpes);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreateModulesRegraAvaliacaoSerieAnoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'regra_avaliacao_serie_ano');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE TABLE modules.regra_avaliacao_serie_ano (
@@ -28,7 +29,8 @@ class CreateModulesRegraAvaliacaoSerieAnoTable extends Migration
                 ALTER TABLE ONLY modules.regra_avaliacao_serie_ano
                     ADD CONSTRAINT regra_avaliacao_serie_ano_pkey PRIMARY KEY (serie_id, ano_letivo);
             '
-        );
+            );
+        }
     }
 
     /**

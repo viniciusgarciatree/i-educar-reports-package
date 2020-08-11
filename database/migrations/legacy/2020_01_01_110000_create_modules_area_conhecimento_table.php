@@ -13,8 +13,9 @@ class CreateModulesAreaConhecimentoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'area_conhecimento');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE modules.area_conhecimento_id_seq
@@ -44,7 +45,8 @@ class CreateModulesAreaConhecimentoTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.area_conhecimento_id_seq\', 2, true);
             '
-        );
+            );
+        }
     }
 
     /**

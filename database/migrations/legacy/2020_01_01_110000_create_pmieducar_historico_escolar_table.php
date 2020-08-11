@@ -13,8 +13,9 @@ class CreatePmieducarHistoricoEscolarTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'historico_escolar');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.historico_escolar (
@@ -72,7 +73,8 @@ class CreatePmieducarHistoricoEscolarTable extends Migration
                 
                 CREATE UNIQUE INDEX pmieducar_historico_escolar_ref_cod_aluno_sequencial_unique ON pmieducar.historico_escolar USING btree (ref_cod_aluno, sequencial);
             '
-        );
+            );
+        }
     }
 
     /**

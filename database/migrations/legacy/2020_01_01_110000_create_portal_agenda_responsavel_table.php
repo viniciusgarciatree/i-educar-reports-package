@@ -13,8 +13,9 @@ class CreatePortalAgendaResponsavelTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'portal' AND tablename = 'agenda_responsavel');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE TABLE portal.agenda_responsavel (
@@ -26,7 +27,8 @@ class CreatePortalAgendaResponsavelTable extends Migration
                 ALTER TABLE ONLY portal.agenda_responsavel
                     ADD CONSTRAINT agenda_responsavel_pkey PRIMARY KEY (ref_cod_agenda, ref_ref_cod_pessoa_fj);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarMatriculaTurmaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'matricula_turma');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.matricula_turma (
@@ -47,7 +48,8 @@ class CreatePmieducarMatriculaTurmaTable extends Migration
                 CREATE INDEX i_matricula_turma_ref_cod_turma ON pmieducar.matricula_turma USING btree (ref_cod_turma);
                 CREATE UNIQUE INDEX matricula_turma_uindex_matricula_turma_sequencial ON pmieducar.matricula_turma USING btree (ref_cod_matricula, ref_cod_turma, sequencial);
             '
-        );
+            );
+        }
     }
 
     /**

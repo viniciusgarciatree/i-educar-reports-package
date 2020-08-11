@@ -13,8 +13,9 @@ class CreateModulesTransporteAlunoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'transporte_aluno');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE modules.transporte_aluno (
@@ -28,7 +29,8 @@ class CreateModulesTransporteAlunoTable extends Migration
                 ALTER TABLE ONLY modules.transporte_aluno
                     ADD CONSTRAINT transporte_aluno_pk PRIMARY KEY (aluno_id);
             '
-        );
+            );
+        }
     }
 
     /**

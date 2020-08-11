@@ -13,8 +13,9 @@ class CreatePmieducarTipoOcorrenciaDisciplinarTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'tipo_ocorrencia_disciplinar');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.tipo_ocorrencia_disciplinar_cod_tipo_ocorrencia_disciplinar_seq
@@ -42,7 +43,8 @@ class CreatePmieducarTipoOcorrenciaDisciplinarTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.tipo_ocorrencia_disciplinar_cod_tipo_ocorrencia_disciplinar_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

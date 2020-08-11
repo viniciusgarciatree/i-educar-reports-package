@@ -12,6 +12,7 @@ class AddFunctionRelatorioExibeAlunoConformeParametroAlunosDiferenciados extends
      */
     public function up()
     {
+
         DB::unprepared(
             file_get_contents(__DIR__ . '/../sqls/functions/relatorio.exibe_aluno_conforme_parametro_alunos_diferenciados.sql')
         );

@@ -13,8 +13,9 @@ class CreateModulesMediaGeralTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'media_geral');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE modules.media_geral (
@@ -27,7 +28,8 @@ class CreateModulesMediaGeralTable extends Migration
                 ALTER TABLE ONLY modules.media_geral
                     ADD CONSTRAINT media_geral_pkey PRIMARY KEY (nota_aluno_id, etapa);
             '
-        );
+            );
+        }
     }
 
     /**

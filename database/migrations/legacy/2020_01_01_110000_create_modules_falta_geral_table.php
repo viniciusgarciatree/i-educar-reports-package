@@ -13,8 +13,13 @@ class CreateModulesFaltaGeralTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if ((
+                DB::select(
+                    "select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'falta_geral');"
+                )
+            )[0] == "false") {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.falta_geral_id_seq
@@ -42,7 +47,8 @@ class CreateModulesFaltaGeralTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.falta_geral_id_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

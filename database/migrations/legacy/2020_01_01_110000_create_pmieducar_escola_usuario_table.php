@@ -14,9 +14,9 @@ class CreatePmieducarEscolaUsuarioTable extends Migration
     public function up()
     {
         # FIXME
-
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'escola_usuario');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE pmieducar.escola_usuario_id_seq
@@ -42,7 +42,8 @@ class CreatePmieducarEscolaUsuarioTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.escola_usuario_id_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

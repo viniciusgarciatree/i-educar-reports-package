@@ -13,8 +13,9 @@ class CreateModulesCalendarioTurmaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'calendario_turma');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE modules.calendario_turma (
@@ -28,7 +29,8 @@ class CreateModulesCalendarioTurmaTable extends Migration
                 ALTER TABLE ONLY modules.calendario_turma
                     ADD CONSTRAINT calendario_turma_pk PRIMARY KEY (calendario_ano_letivo_id, ano, mes, dia, turma_id);
             '
-        );
+            );
+        }
     }
 
     /**

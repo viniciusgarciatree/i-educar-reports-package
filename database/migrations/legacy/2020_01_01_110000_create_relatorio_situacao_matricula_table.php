@@ -13,15 +13,17 @@ class CreateRelatorioSituacaoMatriculaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'relatorio' AND tablename = 'situacao_matricula');"))[0]->exists == false) {
+            DB::unprepared(
+                '
             CREATE TABLE relatorio.situacao_matricula (
                 cod_situacao int4 NOT NULL,
                 descricao varchar(50) NOT NULL,
                 CONSTRAINT situacao_matricula_pkey PRIMARY KEY (cod_situacao)
             );
             '
-        );
+            );
+        }
     }
 
     /**

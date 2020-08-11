@@ -13,8 +13,9 @@ class CreateCadastroOcupacaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'ocupacao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE cadastro.ocupacao (
@@ -25,7 +26,8 @@ class CreateCadastroOcupacaoTable extends Migration
                 ALTER TABLE ONLY cadastro.ocupacao
                     ADD CONSTRAINT pk_ocupacao PRIMARY KEY (idocup);
             '
-        );
+            );
+        }
     }
 
     /**

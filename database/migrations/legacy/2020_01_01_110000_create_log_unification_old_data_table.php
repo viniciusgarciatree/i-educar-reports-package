@@ -13,13 +13,18 @@ class CreateLogUnificationOldDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_unification_old_data', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('unification_id')->unsigned();
-            $table->string('table');
-            $table->json('keys');
-            $table->json('old_data');
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE tablename = 'log_unification_old_data');"))[0]->exists == false) {
+            Schema::create(
+                'log_unification_old_data',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->integer('unification_id')->unsigned();
+                    $table->string('table');
+                    $table->json('keys');
+                    $table->json('old_data');
+                }
+            );
+        }
     }
 
     /**

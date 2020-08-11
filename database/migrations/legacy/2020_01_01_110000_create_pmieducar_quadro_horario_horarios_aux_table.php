@@ -13,8 +13,9 @@ class CreatePmieducarQuadroHorarioHorariosAuxTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'quadro_horario_horarios_aux');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.quadro_horario_horarios_aux (
@@ -35,7 +36,8 @@ class CreatePmieducarQuadroHorarioHorariosAuxTable extends Migration
                 ALTER TABLE ONLY pmieducar.quadro_horario_horarios_aux
                     ADD CONSTRAINT quadro_horario_horarios_aux_pkey PRIMARY KEY (ref_cod_quadro_horario, sequencial);
             '
-        );
+            );
+        }
     }
 
     /**

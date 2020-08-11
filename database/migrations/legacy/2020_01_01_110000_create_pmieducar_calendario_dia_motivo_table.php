@@ -13,8 +13,9 @@ class CreatePmieducarCalendarioDiaMotivoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'calendario_dia_motivo');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.calendario_dia_motivo_cod_calendario_dia_motivo_seq
@@ -53,7 +54,8 @@ class CreatePmieducarCalendarioDiaMotivoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.calendario_dia_motivo_cod_calendario_dia_motivo_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

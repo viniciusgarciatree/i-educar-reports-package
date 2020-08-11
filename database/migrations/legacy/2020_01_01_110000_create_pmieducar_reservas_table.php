@@ -13,8 +13,9 @@ class CreatePmieducarReservasTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'reservas');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.reservas_cod_reserva_seq
@@ -41,7 +42,8 @@ class CreatePmieducarReservasTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.reservas_cod_reserva_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

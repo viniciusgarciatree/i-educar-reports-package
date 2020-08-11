@@ -13,8 +13,9 @@ class CreateModulesTabelaArredondamentoValorTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'tabela_arredondamento_valor');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE modules.tabela_arredondamento_valor_id_seq
@@ -47,7 +48,8 @@ class CreateModulesTabelaArredondamentoValorTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.tabela_arredondamento_valor_id_seq\', 26, true);
             '
-        );
+            );
+        }
     }
 
     /**

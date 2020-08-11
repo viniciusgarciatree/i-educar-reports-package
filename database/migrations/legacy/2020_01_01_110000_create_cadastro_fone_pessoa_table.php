@@ -13,8 +13,9 @@ class CreateCadastroFonePessoaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'fone_pessoa');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE cadastro.fone_pessoa (
@@ -36,7 +37,8 @@ class CreateCadastroFonePessoaTable extends Migration
                 ALTER TABLE ONLY cadastro.fone_pessoa
                     ADD CONSTRAINT pk_fone_pessoa PRIMARY KEY (idpes, tipo);
             '
-        );
+            );
+        }
     }
 
     /**

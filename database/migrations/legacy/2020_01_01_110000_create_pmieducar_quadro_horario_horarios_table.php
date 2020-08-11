@@ -13,8 +13,9 @@ class CreatePmieducarQuadroHorarioHorariosTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'quadro_horario_horarios');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.quadro_horario_horarios (
@@ -40,7 +41,8 @@ class CreatePmieducarQuadroHorarioHorariosTable extends Migration
                     
                 CREATE INDEX quadro_horario_horarios_busca_horarios_idx ON pmieducar.quadro_horario_horarios USING btree (ref_servidor, ref_cod_instituicao_servidor, dia_semana, hora_inicial, hora_final, ativo);
             '
-        );
+            );
+        }
     }
 
     /**

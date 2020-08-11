@@ -13,8 +13,9 @@ class CreatePmieducarFuncaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'funcao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.funcao_cod_funcao_seq
@@ -52,7 +53,8 @@ class CreatePmieducarFuncaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.funcao_cod_funcao_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarTipoAutorTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'tipo_autor');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.tipo_autor (
@@ -22,7 +23,8 @@ class CreatePmieducarTipoAutorTable extends Migration
                     tipo_autor character varying(255)
                 );
             '
-        );
+            );
+        }
     }
 
     /**

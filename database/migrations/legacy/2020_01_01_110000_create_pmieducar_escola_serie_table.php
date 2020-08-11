@@ -13,8 +13,9 @@ class CreatePmieducarEscolaSerieTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'escola_serie');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE TABLE pmieducar.escola_serie (
@@ -46,7 +47,8 @@ class CreatePmieducarEscolaSerieTable extends Migration
 
                 CREATE INDEX i_escola_serie_ref_usuario_cad ON pmieducar.escola_serie USING btree (ref_usuario_cad);
             '
-        );
+            );
+        }
     }
 
     /**

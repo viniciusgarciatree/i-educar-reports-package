@@ -13,8 +13,9 @@ class CreatePmieducarAbandonoTipoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'abandono_tipo');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE pmieducar.abandono_tipo_cod_abandono_tipo_seq
@@ -40,7 +41,8 @@ class CreatePmieducarAbandonoTipoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.abandono_tipo_cod_abandono_tipo_seq\', 2, true);
             '
-        );
+            );
+        }
     }
 
     /**

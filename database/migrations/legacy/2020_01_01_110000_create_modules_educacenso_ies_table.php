@@ -13,8 +13,9 @@ class CreateModulesEducacensoIesTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'educacenso_ies');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.educacenso_ies_id_seq
@@ -47,7 +48,8 @@ class CreateModulesEducacensoIesTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.educacenso_ies_id_seq\', 6179, true);
             '
-        );
+            );
+        }
     }
 
     /**

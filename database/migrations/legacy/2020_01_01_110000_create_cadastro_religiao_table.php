@@ -13,8 +13,9 @@ class CreateCadastroReligiaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'cadastro' AND tablename = 'religiao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE cadastro.religiao_cod_religiao_seq
@@ -39,7 +40,8 @@ class CreateCadastroReligiaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'cadastro.religiao_cod_religiao_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

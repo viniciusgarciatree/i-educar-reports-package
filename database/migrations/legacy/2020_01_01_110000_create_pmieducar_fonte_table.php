@@ -13,8 +13,9 @@ class CreatePmieducarFonteTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'fonte');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.fonte_cod_fonte_seq
@@ -41,7 +42,8 @@ class CreatePmieducarFonteTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.fonte_cod_fonte_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreateModulesProfessorTurmaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'professor_turma');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.professor_turma_id_seq
@@ -42,7 +43,8 @@ class CreateModulesProfessorTurmaTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.professor_turma_id_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarTurmaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'turma');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.turma_cod_turma_seq
@@ -96,7 +97,8 @@ class CreatePmieducarTurmaTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.turma_cod_turma_seq\', 2, true);
             '
-        );
+            );
+        }
     }
 
     /**

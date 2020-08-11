@@ -13,8 +13,9 @@ class CreatePmieducarAcervoAutorTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'acervo_autor');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.acervo_autor_cod_acervo_autor_seq
@@ -41,7 +42,8 @@ class CreatePmieducarAcervoAutorTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.acervo_autor_cod_acervo_autor_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarServidorTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'servidor');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.servidor (
@@ -60,7 +61,8 @@ class CreatePmieducarServidorTable extends Migration
                 
                 CREATE INDEX servidor_idx ON pmieducar.servidor USING btree (cod_servidor, ref_cod_instituicao, ativo);
             '
-        );
+            );
+        }
     }
 
     /**

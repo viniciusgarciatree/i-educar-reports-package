@@ -13,8 +13,9 @@ class CreatePmieducarBibliotecaUsuarioTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'biblioteca_usuario');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.biblioteca_usuario (
@@ -27,7 +28,8 @@ class CreatePmieducarBibliotecaUsuarioTable extends Migration
                     
                 CREATE INDEX fki_biblioteca_usuario_ref_cod_biblioteca_fk ON pmieducar.biblioteca_usuario USING btree (ref_cod_biblioteca);
             '
-        );
+            );
+        }
     }
 
     /**

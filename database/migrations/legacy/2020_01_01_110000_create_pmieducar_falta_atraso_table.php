@@ -13,8 +13,9 @@ class CreatePmieducarFaltaAtrasoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'falta_atraso');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.falta_atraso_cod_falta_atraso_seq
@@ -46,7 +47,8 @@ class CreatePmieducarFaltaAtrasoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.falta_atraso_cod_falta_atraso_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

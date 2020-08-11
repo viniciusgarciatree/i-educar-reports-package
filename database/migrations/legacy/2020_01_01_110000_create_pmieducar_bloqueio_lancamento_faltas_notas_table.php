@@ -13,8 +13,9 @@ class CreatePmieducarBloqueioLancamentoFaltasNotasTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'bloqueio_lancamento_faltas_notas');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE SEQUENCE public.bloqueio_lancamento_faltas_notas_seq
@@ -38,7 +39,8 @@ class CreatePmieducarBloqueioLancamentoFaltasNotasTable extends Migration
 
                 SELECT pg_catalog.setval(\'public.bloqueio_lancamento_faltas_notas_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

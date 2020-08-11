@@ -13,8 +13,9 @@ class CreatePublicSetorBaiTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'public' AND tablename = 'setor_bai');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE public.seq_setor_bai
@@ -34,7 +35,8 @@ class CreatePublicSetorBaiTable extends Migration
 
                 SELECT pg_catalog.setval(\'public.seq_setor_bai\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

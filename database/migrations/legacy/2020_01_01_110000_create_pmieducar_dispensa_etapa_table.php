@@ -13,8 +13,9 @@ class CreatePmieducarDispensaEtapaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'dispensa_etapa');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
 
                 CREATE TABLE pmieducar.dispensa_etapa (
@@ -22,7 +23,8 @@ class CreatePmieducarDispensaEtapaTable extends Migration
                     etapa integer
                 );
             '
-        );
+            );
+        }
     }
 
     /**

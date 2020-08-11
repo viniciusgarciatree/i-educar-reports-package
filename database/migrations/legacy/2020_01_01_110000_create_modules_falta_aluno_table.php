@@ -13,8 +13,9 @@ class CreateModulesFaltaAlunoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'falta_aluno');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.falta_aluno_id_seq
@@ -46,7 +47,8 @@ class CreateModulesFaltaAlunoTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.falta_aluno_id_seq\', 2, true);
             '
-        );
+            );
+        }
     }
 
     /**

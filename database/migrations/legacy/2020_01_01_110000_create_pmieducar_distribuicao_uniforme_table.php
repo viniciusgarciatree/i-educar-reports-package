@@ -13,8 +13,9 @@ class CreatePmieducarDistribuicaoUniformeTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'distribuicao_uniforme');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.distribuicao_uniforme_seq
@@ -58,7 +59,8 @@ class CreatePmieducarDistribuicaoUniformeTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.distribuicao_uniforme_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

@@ -13,8 +13,9 @@ class CreatePmieducarMotivoBaixaTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'motivo_baixa');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.motivo_baixa_cod_motivo_baixa_seq
@@ -41,7 +42,8 @@ class CreatePmieducarMotivoBaixaTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.motivo_baixa_cod_motivo_baixa_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

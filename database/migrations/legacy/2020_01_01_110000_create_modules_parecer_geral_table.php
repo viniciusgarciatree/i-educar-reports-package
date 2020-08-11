@@ -13,8 +13,9 @@ class CreateModulesParecerGeralTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'parecer_geral');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE modules.parecer_geral_id_seq
@@ -42,7 +43,8 @@ class CreateModulesParecerGeralTable extends Migration
 
                 SELECT pg_catalog.setval(\'modules.parecer_geral_id_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

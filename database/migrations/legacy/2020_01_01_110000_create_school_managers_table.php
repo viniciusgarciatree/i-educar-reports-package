@@ -13,17 +13,22 @@ class CreateSchoolManagersTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_managers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('employee_id')->unsigned();
-            $table->integer('school_id')->unsigned();
-            $table->integer('role_id')->nullable()->unsigned();
-            $table->integer('access_criteria_id')->nullable()->unsigned();
-            $table->string('access_criteria_description')->nullable();
-            $table->integer('link_type_id')->nullable()->unsigned();
-            $table->boolean('chief')->default(false);
-            $table->timestamps();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE tablename = 'school_managers');"))[0]->exists == false) {
+            Schema::create(
+                'school_managers',
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->integer('employee_id')->unsigned();
+                    $table->integer('school_id')->unsigned();
+                    $table->integer('role_id')->nullable()->unsigned();
+                    $table->integer('access_criteria_id')->nullable()->unsigned();
+                    $table->string('access_criteria_description')->nullable();
+                    $table->integer('link_type_id')->nullable()->unsigned();
+                    $table->boolean('chief')->default(false);
+                    $table->timestamps();
+                }
+            );
+        }
     }
 
     /**

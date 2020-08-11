@@ -13,8 +13,9 @@ class CreatePmieducarServidorAfastamentoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'servidor_afastamento');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE TABLE pmieducar.servidor_afastamento (
@@ -34,7 +35,8 @@ class CreatePmieducarServidorAfastamentoTable extends Migration
                 ALTER TABLE ONLY pmieducar.servidor_afastamento
                     ADD CONSTRAINT servidor_afastamento_pkey PRIMARY KEY (ref_cod_servidor, sequencial, ref_ref_cod_instituicao);
             '
-        );
+            );
+        }
     }
 
     /**

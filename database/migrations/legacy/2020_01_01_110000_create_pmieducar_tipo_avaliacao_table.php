@@ -13,8 +13,9 @@ class CreatePmieducarTipoAvaliacaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'tipo_avaliacao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
 
                 CREATE SEQUENCE pmieducar.tipo_avaliacao_cod_tipo_avaliacao_seq
@@ -41,7 +42,8 @@ class CreatePmieducarTipoAvaliacaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.tipo_avaliacao_cod_tipo_avaliacao_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

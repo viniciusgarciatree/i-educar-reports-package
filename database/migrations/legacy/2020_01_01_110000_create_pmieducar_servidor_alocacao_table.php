@@ -13,8 +13,9 @@ class CreatePmieducarServidorAlocacaoTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'servidor_alocacao');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = true;
                 
                 CREATE SEQUENCE pmieducar.servidor_alocacao_cod_servidor_alocacao_seq
@@ -55,7 +56,8 @@ class CreatePmieducarServidorAlocacaoTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.servidor_alocacao_cod_servidor_alocacao_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

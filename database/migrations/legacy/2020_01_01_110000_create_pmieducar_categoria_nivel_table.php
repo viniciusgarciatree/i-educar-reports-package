@@ -13,8 +13,9 @@ class CreatePmieducarCategoriaNivelTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'pmieducar' AND tablename = 'categoria_nivel');"))[0]->exists == false) {
+            DB::unprepared(
+                '
                 SET default_with_oids = false;
                 
                 CREATE SEQUENCE pmieducar.categoria_nivel_cod_categoria_nivel_seq
@@ -39,7 +40,8 @@ class CreatePmieducarCategoriaNivelTable extends Migration
 
                 SELECT pg_catalog.setval(\'pmieducar.categoria_nivel_cod_categoria_nivel_seq\', 1, false);
             '
-        );
+            );
+        }
     }
 
     /**

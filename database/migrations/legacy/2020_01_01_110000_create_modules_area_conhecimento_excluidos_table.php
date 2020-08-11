@@ -13,15 +13,20 @@ class CreateModulesAreaConhecimentoExcluidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules.area_conhecimento_excluidos', function (Blueprint $table) {
-            $table->integer('id');
-            $table->integer('instituicao_id');
-            $table->string('nome');
-            $table->string('secao')->nullable();
-            $table->integer('ordenamento_ac')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if((DB::select("select EXISTS (SELECT FROM pg_catalog.pg_tables WHERE schemaname = 'modules' AND tablename = 'area_conhecimento_excluidos');"))[0]->exists == false) {
+            Schema::create(
+                'modules.area_conhecimento_excluidos',
+                function (Blueprint $table) {
+                    $table->integer('id');
+                    $table->integer('instituicao_id');
+                    $table->string('nome');
+                    $table->string('secao')->nullable();
+                    $table->integer('ordenamento_ac')->nullable();
+                    $table->timestamps();
+                    $table->softDeletes();
+                }
+            );
+        }
     }
 
     /**
