@@ -64,6 +64,8 @@
 "B - Alcançou parcialmente os objetivos de estudo.<br>"+
 "C - Não alcançou os objetivos de estudo."]]></defaultValueExpression>
 	</parameter>
+	<parameter name="matricula" class="java.lang.String"/>
+	<parameter name="Parameter1" class="java.lang.String"/>
 	<field name="cod_aluno" class="java.lang.Integer"/>
 	<field name="nm_disciplina" class="java.lang.String"/>
 	<field name="nome_aluno" class="java.lang.String"/>

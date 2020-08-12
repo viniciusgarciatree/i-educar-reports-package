@@ -44,9 +44,11 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
     public function getJsonData()
     {
-        $queryMainReport = $this->getSqlMainReport();        
+        $queryMainReport = $this->getSqlMainReport();
+
         $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $queryHeaderReport = $this->getSqlHeaderReport();
+
         $arrMain = $dados;
 
         return array_merge([
@@ -66,7 +68,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
     {
         $escola = $this->args['escola'] ?: 0;
         $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'] ?: 0;
-        $aluno = $this->args['aluno'] ?: 0;
+        $matricula = $this->args['matricula'] ?: 0;
         $ano = $this->args['ano'];
         $curso = $this->args['curso'] ?: 0;
 
@@ -223,7 +225,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
        (SELECT COALESCE(fcn_upper(nm_curso),'')
           FROM pmieducar.historico_escolar he
-         WHERE he.ref_cod_aluno = {$aluno}
+         WHERE he.ref_cod_aluno = vhsa.cod_aluno
            AND he.ativo = 1
          ORDER BY ano DESC, relatorio.prioridade_historico(he.aprovado) ASC
          LIMIT 1) AS nome_curso,
@@ -311,15 +313,17 @@ INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.co
 	AND matricula_turma.sequencial = view_situacao.sequencial
 INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
 WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
-AND turma_serie.cod_turma = turma.cod_turma LIMIT 1
+AND turma_serie.cod_turma = matricula_turma.ref_cod_turma LIMIT 1
 ),'') as ciclo
   FROM relatorio.view_historico_series_anos vhsa
  INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = vhsa.cod_aluno)
+ INNER JOIN pmieducar.matricula ON pmieducar.matricula.ref_cod_aluno = aluno.cod_aluno
+ INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_matricula = matricula.cod_matricula
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)
  INNER JOIN cadastro.fisica ON (fisica.idpes = aluno.ref_idpes) 
   LEFT JOIN modules.educacenso_cod_aluno eca ON (eca.cod_aluno = aluno.cod_aluno)
   LEFT JOIN public.municipio ON (municipio.idmun = fisica.idmun_nascimento)
- WHERE vhsa.cod_aluno = {$aluno}
+ WHERE matricula.cod_matricula = {$matricula}
  ORDER BY pessoa.nome,tipo_base,ordenamento,vhsa.disciplina
         ";
     }
