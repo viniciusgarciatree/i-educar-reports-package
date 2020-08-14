@@ -22,7 +22,6 @@ trait JsonDataSource
     {
         $queryMainReport = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
-        dd($queryHeaderReport);
 
         return [
             'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
@@ -51,35 +50,18 @@ trait JsonDataSource
         $escola = $this->args['escola'] ?: 0;
         $notSchool = empty($this->args['escola']) ? 'true' : 'false';
 
-        $select = "";
-        if($notSchool == 'true'){
-            $select .= " '' AS nm_escola, ";
-            $select .= " instituicao.ref_idtlog, ";
-            $select .= " instituicao.logradouro, ";
-            $select .= " instituicao.bairro, ";
-            $select .= " instituicao.ddd_telefone AS fone_ddd, ";
-            $select .= " 0  AS cel_ddd, ";
-            $select .= " to_char(instituicao.telefone, '99999-9999') AS fone, ";
-            $select .= " ' ' AS cel, ";
-            $select .= " ' ' AS email, "; 
-        }else{
-            $select .= " fcn_upper(view_dados_escola.nome) AS nm_escola, ";
-            $select .= " null as tipo_logradouro, ";
-            $select .= " view_dados_escola.logradouro, ";
-            $select .= " view_dados_escola.bairro, ";
-            $select .= " view_dados_escola.telefone_ddd  AS fone_ddd, ";
-            $select .= " view_dados_escola.celular_ddd AS cel_ddd, ";
-            $select .= " view_dados_escola.telefone AS fone, ";
-            $select .= " view_dados_escola.celular AS cel, ";
-            $select .= " view_dados_escola.email AS email, "; 
-        }
-
         $sql = "
 
             SELECT
                 public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
                 public.fcn_upper(instituicao.nm_responsavel) AS nm_responsavel,
-                $select
+                (CASE WHEN {$notSchool} THEN 'SECRETARIA DE EDUCAÇÃO' ELSE fcn_upper(view_dados_escola.nome) END) AS nm_escola,
+                (CASE WHEN {$notSchool} THEN instituicao.bairro ELSE view_dados_escola.bairro END),
+                (CASE WHEN {$notSchool} THEN instituicao.ddd_telefone ELSE view_dados_escola.telefone_ddd END) AS fone_ddd,
+                (CASE WHEN {$notSchool} THEN 0 ELSE view_dados_escola.celular_ddd END) AS cel_ddd,
+                (CASE WHEN {$notSchool} THEN to_char(instituicao.telefone, '99999-9999') ELSE view_dados_escola.telefone END) AS fone,
+                (CASE WHEN {$notSchool} THEN ' ' ELSE view_dados_escola.celular END) AS cel,
+                (CASE WHEN {$notSchool} THEN ' ' ELSE view_dados_escola.email END),
                 instituicao.ref_sigla_uf AS uf,
                 instituicao.cidade,
                 a.address AS logradouro,
