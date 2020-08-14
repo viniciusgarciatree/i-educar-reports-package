@@ -120,7 +120,7 @@ class StudentsTransportCardReport extends Portabilis_Report_ReportCore
          FROM cadastro.endereco_pessoa,
               cadastro.juridica
         WHERE juridica.idpes = endereco_pessoa.idpes AND
-              juridica.idpes = escola.ref_idpes),(SELECT endereco_externo.numero FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),(SELECT numero FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS numero,
+              juridica.idpes = escola.ref_idpes),(SELECT endereco_externo.numero FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),(SELECT numero::varchar FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS numero,
 
 
       (SELECT COALESCE((SELECT COALESCE((SELECT municipio.sigla_uf
@@ -143,7 +143,7 @@ class StudentsTransportCardReport extends Portabilis_Report_ReportCore
          FROM cadastro.endereco_pessoa,
               cadastro.juridica
         WHERE juridica.idpes = endereco_pessoa.idpes AND
-              juridica.idpes = escola.ref_idpes),(SELECT to_char(endereco_externo.cep,'99999-999') FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),(SELECT to_char(escola_complemento.cep,'99999-999') FROM pmieducar.escola_complemento where escola_complemento.ref_cod_escola = escola.cod_escola))) AS cep,
+              juridica.idpes = escola.ref_idpes),(SELECT to_char(endereco_externo.cep::integer,'99999-999') FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),(SELECT to_char(escola_complemento.cep,'99999-999') FROM pmieducar.escola_complemento where escola_complemento.ref_cod_escola = escola.cod_escola))) AS cep,
 
 
      (SELECT COALESCE((SELECT min(to_char(fone_pessoa.fone, '9999-9999'))
@@ -249,6 +249,5 @@ where  escola_ano_letivo.ano = $ano AND
                END)
 
 ORDER BY nome_turma, nome_aluno";
-
     }
 }
