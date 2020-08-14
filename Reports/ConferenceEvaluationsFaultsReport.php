@@ -81,10 +81,10 @@ class ConferenceEvaluationsFaultsReport extends Portabilis_Report_ReportCore
            COALESCE(instituicao.logradouro, '') = '' as logradouro,
 	   (case when {$notSchool} then instituicao.logradouro else view_dados_escola.logradouro end),
 	   (case when {$notSchool} then instituicao.bairro else view_dados_escola.bairro end),
-	   (case when {$notSchool} then instituicao.numero else view_dados_escola.numero end),
+	   (case when {$notSchool} then instituicao.numero::varchar else view_dados_escola.numero end),
 	   (case when {$notSchool} then instituicao.ddd_telefone else view_dados_escola.telefone_ddd end) as fone_ddd,
 	   (case when {$notSchool} then 0 else view_dados_escola.celular_ddd end) as cel_ddd,
-	   (case when {$notSchool} then to_char(instituicao.cep, '99999-999') else to_char(view_dados_escola.cep, '99999-999') end) as cep,
+	   (case when {$notSchool} then to_char(instituicao.cep, '99999-999') else to_char(view_dados_escola.cep::integer, '99999-999') end) as cep,
 	   (case when {$notSchool} then to_char(instituicao.telefone, '99999-9999') else view_dados_escola.telefone end) as fone,
 	   (case when {$notSchool} then ' ' else view_dados_escola.celular end) as cel,
 	   (case when {$notSchool} then ' ' else view_dados_escola.email end),
@@ -118,7 +118,7 @@ inner join relatorio.view_dados_escola on (escola.cod_escola = view_dados_escola
         $serie = $this->args['serie'];
         $turma = $this->args['turma'];
 
-        $return =  "
+        return "
 SELECT matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nm_aluno,
@@ -298,7 +298,5 @@ ORDER BY sequencial_fechamento,
          componente_order,
          nm_componente_curricular
 ";
-        //dd($return);
-        return $return;
     }
 }
