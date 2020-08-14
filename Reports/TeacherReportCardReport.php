@@ -242,11 +242,12 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
             (CASE WHEN matricula.dependencia THEN true ELSE false END) AS dep,
             view_modulo.nome AS nome_modulo,
             view_modulo.sequencial AS sequencial,
-            (CASE WHEN falta_aluno.tipo_falta = 1 THEN falta_geral.quantidade
-            ELSE falta_componente_curricular.quantidade END)::varchar AS falta,
+            COALESCE((
+            CASE WHEN falta_aluno.tipo_falta = 1 THEN falta_geral.quantidade
+                ELSE falta_componente_curricular.quantidade END)::varchar,'') AS falta,
             view_componente_curricular.nome,
 
-            CASE WHEN nota_componente_curricular.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+            COALESCE(CASE WHEN nota_componente_curricular.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
                     replace(trunc(nota_componente_curricular.nota_arredondada::numeric, COALESCE(
                     ( SELECT regra_avaliacao.qtd_casas_decimais
                     FROM pmieducar.turma
@@ -259,16 +260,16 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
                     ), 1))::varchar, '.', ',')
                 ELSE
                     nota_componente_curricular.nota_arredondada
-                END AS nota_arredondada_etapa,
+                END,'') AS nota_arredondada_etapa,
                 (CASE
                     WHEN relatorio.get_situacao_componente(nota_componente_curricular_media.situacao) = '' THEN
                         view_situacao.texto_situacao
                     ELSE
                         relatorio.get_situacao_componente(nota_componente_curricular_media.situacao)
                 END) AS situacao,
-            replace(modules.frequencia_da_matricula(matricula.cod_matricula)::varchar,'.',',') AS frequencia,
-            relatorio.get_nota_exame(view_componente_curricular.id, matricula.cod_matricula) AS nota_exame,
-            nota_componente_curricular_media.media_arredondada AS media
+            COALESCE(replace(modules.frequencia_da_matricula(matricula.cod_matricula)::varchar,'.',','),'') AS frequencia,
+            COALESCE(relatorio.get_nota_exame(view_componente_curricular.id, matricula.cod_matricula),'') AS nota_exame,
+            COALESCE(nota_componente_curricular_media.media_arredondada,'') AS media
 
             FROM pmieducar.matricula
             INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_matricula = matricula.cod_matricula)
