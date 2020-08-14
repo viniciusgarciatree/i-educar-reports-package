@@ -2067,7 +2067,9 @@
 	<pageHeader>
 		<band height="50" splitType="Stretch">
 			<subreport>
-				<reportElement stretchType="RelativeToBandHeight" x="8" y="0" width="544" height="50" uuid="732ae0d7-8502-4f9a-83f2-cfca8711d86c"/>
+				<reportElement stretchType="RelativeToBandHeight" x="6" y="0" width="544" height="50" uuid="732ae0d7-8502-4f9a-83f2-cfca8711d86c">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
 				<subreportParameter name="logo1">
 					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>

@@ -63,7 +63,9 @@
 	<parameter name="diretor" class="java.lang.String"/>
 	<parameter name="boletim_transferencia" class="java.lang.String"/>
 	<parameter name="matricula" class="java.lang.String"/>
-	<parameter name="emitir_historico_dependencia" class="java.lang.String"/>
+	<parameter name="emitir_historico_dependencia" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
 	<field name="cod_aluno" class="java.lang.Integer"/>
 	<field name="nm_disciplina" class="java.lang.String"/>
 	<field name="nome_aluno" class="java.lang.String"/>
@@ -1562,7 +1564,7 @@
 					<font fontName="DejaVu Sans" size="8"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, matrícula <b>"+$F{cod_aluno}+($F{cod_inep} == null ? "" : "</b>, cód. INEP: <b>"+$F{cod_inep}) +"</b>, natural de <b>"+$F{cidade_nascimento_uf}+"</b>, nascido(a) em <b>"+$F{data_nasc}+"</b>, filho(a) de <b>"+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ($F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae}.toUpperCase()) : (($F{nome_do_pai} == null) ? $F{nome_da_mae}.toUpperCase() : $F{nome_do_pai}.toUpperCase())) +"</b>, <b>"+ $F{nome_serie_aux}.toUpperCase() +"</b> conforme Histórico Escolar."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Certificamos que <b>"+$F{nome_aluno}.toUpperCase()+ "</b>, matrícula <b>"+$F{cod_aluno}+($F{cod_inep} == null ? "" : "</b>, cód. INEP: <b>"+$F{cod_inep}) +"</b>, natural de <b>"+$F{cidade_nascimento_uf}+"</b>, nascido(a) em <b>"+$F{data_nasc}+"</b>, filho(a) de "+ ((($F{nome_do_pai} != null) && ($F{nome_da_mae} != null)) ? ("<b>" + $F{nome_do_pai}.toUpperCase() + "</b> e <b>" + $F{nome_da_mae} + "</b>") : (($F{nome_do_pai} == null) ? "<b>" + $F{nome_da_mae}.toUpperCase() + "</b>" : "<b>" + $F{nome_do_pai}.toUpperCase() + "</b>" )) +", <b>"+ $F{nome_serie_aux}.toUpperCase() +"</b> conforme Histórico Escolar."]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="231" y="116" width="1" height="25" uuid="cf92ec55-59e6-4722-9394-b39b5d3d3733"/>
