@@ -68,7 +68,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
     {
         $escola = $this->args['escola'] ?: 0;
         $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'] ?: 0;
-        $matricula = $this->args['matricula'] ?: 0;
+        $aluno = $this->args['aluno'] ?: 0;
         $ano = $this->args['ano'];
         $curso = $this->args['curso'] ?: 0;
 
@@ -113,8 +113,8 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
        END as sexo,
        COALESCE((SELECT documento.rg from cadastro.documento where documento.idpes = fisica.idpes),'') as identidade,
        COALESCE((SELECT CONCAT(COALESCE(rg.sigla,''),'/',COALESCE(doc.sigla_uf_exp_rg),'')  FROM cadastro.documento  doc left join cadastro.orgao_emissor_rg as rg ON rg.idorg_rg = doc.idorg_exp_rg WHERE doc.idpes = fisica.idpes AND doc.rg is not null),'') AS orgao_emissor,
-       relatorio.get_pai_aluno(vhsa.cod_aluno) AS nome_do_pai,
-       relatorio.get_mae_aluno(vhsa.cod_aluno) AS nome_da_mae,
+       COALESCE(relatorio.get_pai_aluno(vhsa.cod_aluno),'') AS nome_do_pai,
+       COALESCE(relatorio.get_mae_aluno(vhsa.cod_aluno),'') AS nome_da_mae,
        vhsa.carga_horaria_disciplina1 AS chd1,
        vhsa.carga_horaria_disciplina2 AS chd2,
        vhsa.carga_horaria_disciplina3 AS chd3,
@@ -234,7 +234,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
        to_char(CURRENT_TIMESTAMP, 'HH24:MI:SS') AS hora_atual,
        public.data_para_extenso(CURRENT_DATE) AS data_atual_extenso,
 
-       (SELECT CASE WHEN he.aprovado = 3 THEN 'está cursando '
+       COALESCE((SELECT CASE WHEN he.aprovado = 3 THEN 'está cursando '
                     ELSE ' '
                END || (CASE WHEN ((substring(nm_serie,1,1)::integer = 8
                                   AND historico_grade_curso_id = 1)
@@ -261,7 +261,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
            AND he.extra_curricular = 0
            AND ativo = 1
          ORDER BY ano DESC, relatorio.prioridade_historico(he.aprovado) ASC
-         LIMIT 1) AS nome_serie_aux,
+         LIMIT 1),'') AS nome_serie_aux,
 
        (SELECT count(hd.nota)
           FROM pmieducar.historico_disciplinas hd
@@ -317,13 +317,11 @@ AND turma_serie.cod_turma = matricula_turma.ref_cod_turma LIMIT 1
 ),'') as ciclo
   FROM relatorio.view_historico_series_anos vhsa
  INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = vhsa.cod_aluno)
- INNER JOIN pmieducar.matricula ON pmieducar.matricula.ref_cod_aluno = aluno.cod_aluno
- INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_matricula = matricula.cod_matricula
  INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)
  INNER JOIN cadastro.fisica ON (fisica.idpes = aluno.ref_idpes) 
   LEFT JOIN modules.educacenso_cod_aluno eca ON (eca.cod_aluno = aluno.cod_aluno)
   LEFT JOIN public.municipio ON (municipio.idmun = fisica.idmun_nascimento)
- WHERE matricula.cod_matricula = {$matricula}
+ WHERE aluno.cod_aluno = {$aluno}
  ORDER BY pessoa.nome,tipo_base,ordenamento,vhsa.disciplina
         ";
     }
