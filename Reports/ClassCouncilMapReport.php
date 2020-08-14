@@ -239,7 +239,7 @@ to_char((100 - (((SELECT sum(falta_componente_curricular.quantidade)
               pmieducar.escola
         WHERE juridica.idpes = endereco_pessoa.idpes AND
               juridica.idpes = escola.ref_idpes AND
-              escola.cod_escola = $escola),(SELECT endereco_externo.numero FROM cadastro.endereco_externo, pmieducar.escola WHERE endereco_externo.idpes = escola.ref_idpes AND escola.cod_escola = $escola))),(SELECT numero FROM pmieducar.escola_complemento where ref_cod_escola = $escola))) AS numero,
+              escola.cod_escola = $escola),(SELECT endereco_externo.numero FROM cadastro.endereco_externo, pmieducar.escola WHERE endereco_externo.idpes = escola.ref_idpes AND escola.cod_escola = $escola))),(SELECT numero::varchar FROM pmieducar.escola_complemento where ref_cod_escola = $escola))) AS numero,
 
      (SELECT COALESCE((SELECT COALESCE((SELECT to_char(endereco_pessoa.cep::integer, '99999-999')
          FROM cadastro.endereco_pessoa,
