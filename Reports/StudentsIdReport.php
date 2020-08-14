@@ -62,7 +62,7 @@ class StudentsIdReport extends Portabilis_Report_ReportCore
                         'Feminino'
                      END) as sexo,
        to_char(fisica.data_nasc,'dd/mm/yyyy') as data_nasc,
-       (SELECT documento.rg from cadastro.documento where documento.idpes = fisica.idpes) as identidade,
+       (SELECT documento.rg from cadastro.documento where documento.idpes = fisica.idpes)::varchar as identidade,
        curso.nm_curso as nome_curso,
        turma.nm_turma as nome_turma,
        serie.nm_serie as nome_serie,
@@ -120,7 +120,7 @@ class StudentsIdReport extends Portabilis_Report_ReportCore
          FROM cadastro.endereco_pessoa,
               cadastro.juridica
         WHERE juridica.idpes = endereco_pessoa.idpes AND
-              juridica.idpes = escola.ref_idpes),(SELECT endereco_externo.numero FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),(SELECT numero FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS numero,
+              juridica.idpes = escola.ref_idpes),(SELECT endereco_externo.numero FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),(SELECT numero::varchar FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS numero,
 
 
       (SELECT COALESCE((SELECT COALESCE((SELECT municipio.sigla_uf
