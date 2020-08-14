@@ -36,21 +36,10 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
     public function form()
     {
         $this->inputsHelper()->dynamic(['ano','instituicao', 'escola', 'curso', 'serie', 'turma']);
-        /**
-         * Alteração para selecionar o aluno e não precisar difitar o código dele
-         * vai retornar a matrícula do aluno não o código.
-         */
-        $this->inputsHelper()->dynamic(['matricula'],
-            [
-            'label' => 'Selecione a Matrícula do Aluno',
-            'required' => true
-            ]
-        );
+        $this->inputsHelper()->simpleSearchAluno(null);
 
-        $modelo_visivel = true;
         $mostrar_imprimir_nome_secretario_diretor = true;
         $mostrar_nao_emitir_aprovacao_pontos = true;
-        $mostrar_relatorios = $GLOBALS['coreExt']['Config']->report->mostrar_relatorios;
 
         $this->inputsHelper()->checkbox('lote', ['label' => 'Emitir em lote?']);
 
@@ -113,7 +102,7 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);
         $this->report->addArg('escola', (int) $this->getRequest()->ref_cod_escola);
-        $this->report->addArg('matricula', (int) $this->getRequest()->ref_cod_matricula);
+        $this->report->addArg('aluno', (int) $this->getRequest()->aluno_id);
         $this->report->addArg('modelo', (int) $this->getRequest()->modelo);
         $this->report->addArg('ano_ini', ($this->getRequest()->ano_ini == '' ? 0 : (int)$this->getRequest()->ano_ini));
         $this->report->addArg('ano_fim', ($this->getRequest()->ano_fim == '' ? 0 : (int)$this->getRequest()->ano_fim));
