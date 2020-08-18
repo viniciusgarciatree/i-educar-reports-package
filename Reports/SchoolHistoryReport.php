@@ -234,34 +234,53 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
        to_char(CURRENT_TIMESTAMP, 'HH24:MI:SS') AS hora_atual,
        public.data_para_extenso(CURRENT_DATE) AS data_atual_extenso,
 
-       COALESCE((SELECT CASE WHEN he.aprovado = 3 THEN 'está cursando '
-                    ELSE ' '
-               END || (CASE WHEN ((substring(nm_serie,1,1)::integer = 8
-                                  AND historico_grade_curso_id = 1)
-                                   OR (substring(nm_serie,1,1)::integer = 9)
-                                  AND historico_grade_curso_id = 2) THEN 'o ENSINO FUNDAMENTAL'
-                            ELSE CASE WHEN (SELECT substring(nm_serie,1,1)::integer
-                                             FROM pmieducar.historico_escolar he
-                                            WHERE he.ref_cod_aluno = vhsa.cod_aluno
-                                              AND he.ativo = 1
-                                              AND he.historico_grade_curso_id = 2
-                                            ORDER BY he.ano DESC LIMIT 1) = 1 THEN 'o ' || (substring(nm_serie,1,1)::integer::numeric) || 'º ano'
-                                       ELSE CASE WHEN historico_grade_curso_id = 1 THEN CASE WHEN substring(nm_serie,1,1)::integer = '0' THEN 'o ' || (substring(nm_serie,1,1)::integer::numeric +1) || 'º ano'
-                                                                                             ELSE ' ' || (substring(nm_serie,1,1)::integer::numeric +1) || 'º ano'
-                                                                                        END
-                                                 ELSE CASE WHEN (substring(nm_serie,1,1)::integer::numeric -1) = '0' THEN 'o ' || substring(nm_serie,1,1)::integer || 'º ano'
-                                                           ELSE ' ' || substring(nm_serie,1,1)::integer || 'º ano'
-                                                      END
-                                            END
-                                  END
-                       END)
-          FROM pmieducar.historico_escolar he
-         WHERE he.ref_cod_aluno = vhsa.cod_aluno
+       COALESCE ((
+       SELECT 
+	CASE 
+		WHEN he.aprovado = 3 THEN 'está cursando '
+		WHEN nm_serie = 'Multietapa' THEN 
+		(
+		SELECT 
+			CASE 
+				WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 THEN '1º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 THEN '2º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN '3º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 THEN '4º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN '5º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'6º Ano') <> 0 THEN '6º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'7º Ano') <> 0 THEN '7º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'8º Ano') <> 0 THEN '8º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'9º Ano') <> 0 THEN '9º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 THEN '1º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 THEN '2º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN '3º Ano'
+				WHEN STRPOS(etapa_ensino.descricao ,'1ª Série') <> 0 THEN '1ª Série'
+				WHEN STRPOS(etapa_ensino.descricao ,'2ª Série') <> 0 THEN '2ª Série'
+				WHEN STRPOS(etapa_ensino.descricao ,'3ª Série') <> 0 THEN '3ª Série'
+				WHEN STRPOS(etapa_ensino.descricao ,'4ª Série') <> 0 THEN '4ª Série'
+			ELSE nm_serie
+			END as ciclo
+		FROM cadastro.etapa_ensino
+		INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
+		INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
+		INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
+		INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
+			AND matricula_turma.sequencial = view_situacao.sequencial
+		INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = he.ref_cod_aluno
+		WHERE aluno_ciclos.cod_aluno = he.ref_cod_aluno
+		AND turma_serie.cod_turma = matricula_turma.ref_cod_turma LIMIT 1
+		)
+	ELSE nm_serie
+	END 
+FROM pmieducar.historico_escolar he
+         WHERE he.ref_cod_aluno = 1436
            AND he.aprovado NOT IN (2,3,4,6)
            AND he.extra_curricular = 0
            AND ativo = 1
          ORDER BY ano DESC, relatorio.prioridade_historico(he.aprovado) ASC
-         LIMIT 1),'') AS nome_serie_aux,
+         LIMIT 1
+       
+       ),'')AS nome_serie_aux,
 
        (SELECT count(hd.nota)
           FROM pmieducar.historico_disciplinas hd
