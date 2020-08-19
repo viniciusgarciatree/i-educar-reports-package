@@ -38,23 +38,30 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $header  = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
+
         if (count($arrMain) == 0) {
             return array();
         }
 
-
-
         $tipoBase = ComponenteCurricular_Model_TipoBase::getInstance();
         $tipos = $tipoBase->getKeys();
 
-        $dataNotas  = array();
-        $dataFaltas = array('falta1' => 0, 'falta2' => 0, 'falta3' => 0, 'falta4' => 0);
+        $dataNotas  = [];
+        $dataParece  = [];
+        $dataFaltas = ['falta1' => 0, 'falta2' => 0, 'falta3' => 0, 'falta4' => 0];
+
         foreach ($arrMain as $index => $value) {
             $tipoId = (int)$value['tipo_base'];
-            $dataFaltas['falta1'] += $value['falta1'];
-            $dataFaltas['falta2'] += $value['falta2'];
-            $dataFaltas['falta3'] += $value['falta3'];
-            $dataFaltas['falta4'] += $value['falta4'];
+            $dataFaltas['falta1'] = $value['falta1'];
+            $dataFaltas['falta2'] = $value['falta2'];
+            $dataFaltas['falta3'] = $value['falta3'];
+            $dataFaltas['falta4'] = $value['falta4'];
+
+            $dataParece['parecer1'] = $value['parecer1'];
+            $dataParece['parecer2'] = $value['parecer2'];
+            $dataParece['parecer3'] = $value['parecer3'];
+            $dataParece['parecer4'] = $value['parecer4'];
+
             $dataNotas[]          = array(
                 'tipo'            => $tipoBase[$tipoId],
                 'tipo_id'         => $tipoId,                
@@ -74,18 +81,26 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $tempo_da_aula = 0;
         $value['carga_horaria'] = intval($value['carga_horaria']);
         $value['dias_letivos'] = intval($value['dias_letivos']);
+
         if(is_numeric($value['carga_horaria']) && is_numeric($value['dias_letivos']) && $value['carga_horaria']>0 && $value['dias_letivos']>0) {
             $tempo_da_aula = ((($value['carga_horaria'] / $value['dias_letivos']) * 60) / 5);
         }
+
         $arrReport['falta_hora1'] =  "-";
         $arrReport['falta_hora2'] =  "-";
         $arrReport['falta_hora3'] =  "-";
         $arrReport['falta_hora4'] =  "-";
         $falta_hora_total = 0;
+
+
+        $quantidade_aulas_dias = config('legacy.report.diario_classe.quantidade_aulas_dias');
+        $tempo_da_aula = !empty($quantidade_aulas_dias) ?  $tempo_da_aula * intval($quantidade_aulas_dias) : $tempo_da_aula;
+
         $calc_hora_falta = function ($hora){
             $hora = intval($hora);
             return ($hora>0 ? intval($hora/60).':'. intval($hora%60) : 0);
         };
+
         if($tempo_da_aula>0) {
             if (is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1']) {
                 $arrReport['falta_hora1'] = $dataFaltas['falta1'] * $tempo_da_aula;
@@ -109,8 +124,14 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
             }
         }
 
+        $parecer = !empty($dataParece['parecer1']) ? " <b>1º Bimestre:</b> " . $dataParece['parecer1'] : "";
+        $parecer .= !empty($dataParece['parecer2']) ? "<br> <b>2º Bimestre:</b> " . $dataParece['parecer2'] : "";
+        $parecer .= !empty($dataParece['parecer3']) ? "<br> <b>3º Bimestre:</b> " . $dataParece['parecer3'] : "";
+        $parecer .= !empty($dataParece['parecer4']) ? "<br> <b>4º Bimestre:</b>" . $dataParece['parecer4'] : "";
+        $arrReport['parecer'] = $parecer;
+
         $falta_hora_total = intval($falta_hora_total);
-        $arrReport['falta_hora_total'] = $falta_hora_total>0 ? $calc_hora_falta($falta_hora_total) : "-";
+        $arrReport['falta_hora_total'] = $falta_hora_total > 0 ? $calc_hora_falta($falta_hora_total) : "-";
 
         $arrReport['falta_total']      = is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1'] > 0 ? $dataFaltas['falta1'] : 0;
         $arrReport['falta_total']      += is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : 0;
@@ -121,7 +142,6 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $arrReport['falta2']      = is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : "-";
         $arrReport['falta3']      = is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3'] > 0 ? $dataFaltas['falta3'] : "-";
         $arrReport['falta4']      = is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4'] > 0 ? $dataFaltas['falta4'] : "-";
-
 
         /**
          * Verificar onde estão estes dados de processo de formação
@@ -160,6 +180,8 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
             'main'   => $arrReport,
             'header' => $header,
         ];
+
+
         return $return;
     }
 
@@ -181,6 +203,12 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $ano         = $this->args['ano'] ?: 0;
 
         $return = "
+SELECT t.*, CASE 
+    WHEN STRPOS(serie ,'Período') <> 0 THEN 'Período'
+	WHEN STRPOS(serie ,'Ano') <> 0 THEN 'Ano'
+	WHEN STRPOS(serie ,'Série') <> 0 THEN 'Série'
+  ELSE serie
+END as periodo_ano_serie FROM (
         SELECT matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nome_aluno,
@@ -323,8 +351,10 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
       turma_turno.nome AS periodo,
       COALESCE((SELECT 
   CASE 
-    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN 'alfabetizacao'
-    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
+    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 
+        OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'Educação Infantil') <> 0 
+    THEN 'Alfabetização'
+    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'Complementar'
   ELSE 'Não encontrado'
     END as ciclo
 FROM cadastro.etapa_ensino
@@ -337,17 +367,11 @@ INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno 
 WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
 AND turma_serie.cod_turma = turma.cod_turma LIMIT 1  
 ),'') as ciclo,
-COALESCE((SELECT 
-CASE 
-    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 THEN '1'
-    WHEN STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 THEN '2'
-    WHEN STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN '3'
-    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 THEN '4'
-    WHEN STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN '5'
-  ELSE ''
-    END as serie
+COALESCE((
+    SELECT serie_serie.nm_serie AS serie
 FROM cadastro.etapa_ensino
 INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
+INNER JOIN pmieducar.serie as serie_serie ON (turma_serie.ref_ref_cod_serie = serie_serie.cod_serie)
 INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
 INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
 INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
@@ -356,8 +380,31 @@ INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno 
 WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
 AND turma_serie.cod_turma = turma.cod_turma LIMIT 1 
 ),'') as serie,
-        COALESCE(to_char(historico_escolar.dias_letivos::float,'999'),'') AS dias_letivos,
-		COALESCE(to_char(historico_escolar.carga_horaria::float,'999'),'') AS carga_horaria,
+COALESCE(to_char(historico_escolar.dias_letivos::float,'999'),COALESCE(to_char((
+		SELECT serie.dias_letivos AS serie
+FROM cadastro.etapa_ensino
+INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
+INNER JOIN pmieducar.serie as serie_serie ON (turma_serie.ref_ref_cod_serie = serie_serie.cod_serie)
+INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
+INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
+INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
+AND matricula_turma.sequencial = view_situacao.sequencial
+INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
+AND turma_serie.cod_turma = turma.cod_turma LIMIT 1 
+		)::float,'999'),'')) AS dias_letivos,
+        COALESCE(to_char(historico_escolar.carga_horaria::float,'999'),COALESCE(to_char((
+			SELECT serie.carga_horaria AS serie
+FROM cadastro.etapa_ensino
+INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
+INNER JOIN pmieducar.serie as serie_serie ON (turma_serie.ref_ref_cod_serie = serie_serie.cod_serie)
+INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
+INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
+INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
+AND matricula_turma.sequencial = view_situacao.sequencial
+INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
+WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
+AND turma_serie.cod_turma = turma.cod_turma LIMIT 1)::float,'999'),'')) AS carga_horaria,
         modules.componente_curricular.tipo_base	
         ,(
             SELECT array_agg(ano_letivo_modulo.sequencial)  FROM pmieducar.ano_letivo_modulo 
@@ -367,7 +414,18 @@ AND turma_serie.cod_turma = turma.cod_turma LIMIT 1
         (
             SELECT max(sequencial)  FROM pmieducar.ano_letivo_modulo 
             WHERE ano_letivo_modulo.ref_ano = matricula.ano AND ano_letivo_modulo.ref_ref_cod_escola = escola.cod_escola
-        ) AS semestres
+        ) AS semestres,
+        (SELECT textcat_all(obs)
+          FROM (SELECT observacao AS obs
+                  FROM pmieducar.historico_escolar phe
+                 WHERE phe.ref_cod_aluno = aluno.cod_aluno
+                   AND phe.ativo = 1
+                   AND phe.aprovado <> 2
+                 ORDER BY phe.ano)tabl) AS observacao_all
+        ,COALESCE(parecer_geral_etapa_1.parecer,'') as parecer1
+         ,COALESCE(parecer_geral_etapa_2.parecer,'') as parecer2
+         ,COALESCE(parecer_geral_etapa_3.parecer,'') as parecer3
+         ,COALESCE(parecer_geral_etapa_4.parecer,'') as parecer4
  FROM pmieducar.instituicao
 INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
 INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola)
@@ -405,6 +463,11 @@ INNER JOIN relatorio.view_situacao ON (view_situacao.cod_matricula = matricula.c
                                        AND view_situacao.cod_situacao = 9)
 INNER JOIN modules.componente_curricular on componente_curricular.id = view_componente_curricular.id
 LEFT JOIN pmieducar.historico_escolar  on historico_escolar.ref_cod_aluno = aluno.cod_aluno and historico_escolar.ano = matricula.ano
+LEFT JOIN modules.parecer_aluno ON (parecer_aluno.matricula_id = matricula.cod_matricula)
+LEFT JOIN modules.parecer_geral as parecer_geral_etapa_1 ON (parecer_geral_etapa_1.parecer_aluno_id = parecer_aluno.id AND parecer_geral_etapa_1.etapa = '1')
+LEFT JOIN modules.parecer_geral as parecer_geral_etapa_2 ON (parecer_geral_etapa_2.parecer_aluno_id = parecer_aluno.id AND parecer_geral_etapa_2.etapa = '2')
+LEFT JOIN modules.parecer_geral as parecer_geral_etapa_3 ON (parecer_geral_etapa_3.parecer_aluno_id = parecer_aluno.id AND parecer_geral_etapa_3.etapa = '3')
+LEFT JOIN modules.parecer_geral as parecer_geral_etapa_4 ON (parecer_geral_etapa_4.parecer_aluno_id = parecer_aluno.id AND parecer_geral_etapa_4.etapa = '4')
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}
   AND escola.cod_escola = {$escola}
@@ -418,6 +481,7 @@ ORDER BY sequencial_fechamento,
          cod_aluno,
          modules.componente_curricular.tipo_base,
          modules.componente_curricular.ordenamento
+) as t
         ";
         return $return;
     }

@@ -60,6 +60,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
     public function getJsonData()
     {
+        dd($this->getSqlMainReport());
         if($this->templateName() == "report-card-boletim"){            
             $queryMainReport = $this->getSqlMainReport();        
             $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
