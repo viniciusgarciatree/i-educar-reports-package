@@ -728,7 +728,7 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement x="6" y="15" width="545" height="10" uuid="2d15f93a-330a-418c-b587-c07e8ff295db"/>
 				<textElement verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8" isBold="false"/>
