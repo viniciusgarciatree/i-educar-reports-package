@@ -701,8 +701,9 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="560" splitType="Stretch">
+		<band height="531" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$F{parecer}.isEmpty()]]></printWhenExpression>
 			<break>
 				<reportElement x="0" y="0" width="555" height="1" uuid="ef8a8e47-20ad-44fa-8175-d544b3abf639"/>
 			</break>
@@ -724,7 +725,7 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<text><![CDATA[FICHA ACOMPANHAMENTO INDIVIDUAL DO ALUNO - ANO]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="6" y="31" width="545" height="529" uuid="2d15f93a-330a-418c-b587-c07e8ff295db">
+				<reportElement x="6" y="31" width="545" height="500" uuid="2d15f93a-330a-418c-b587-c07e8ff295db">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -743,33 +744,33 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="176" splitType="Stretch">
+		<band height="129" splitType="Stretch">
 			<line>
-				<reportElement x="290" y="71" width="250" height="1" uuid="6e509a49-8ebd-43bf-9cbf-18583137b122"/>
+				<reportElement x="290" y="48" width="250" height="1" uuid="6e509a49-8ebd-43bf-9cbf-18583137b122"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="290" y="127" width="250" height="1" uuid="2e48b507-b53e-4e1a-9967-433e2b372740"/>
+				<reportElement x="290" y="104" width="250" height="1" uuid="2e48b507-b53e-4e1a-9967-433e2b372740"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="20" y="127" width="250" height="1" uuid="1947c396-6d35-4cc9-b8af-46ad37ba5ff9"/>
+				<reportElement x="20" y="104" width="250" height="1" uuid="1947c396-6d35-4cc9-b8af-46ad37ba5ff9"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="20" y="71" width="250" height="1" uuid="9abbd3be-84c1-46bb-a5d8-59b49fc39547"/>
+				<reportElement x="20" y="48" width="250" height="1" uuid="9abbd3be-84c1-46bb-a5d8-59b49fc39547"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="21" y="128" width="249" height="10" uuid="de54e9ad-4e0a-4bee-bd05-926c95b3a6e6"/>
+				<reportElement x="21" y="105" width="249" height="10" uuid="de54e9ad-4e0a-4bee-bd05-926c95b3a6e6"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -784,7 +785,7 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<text><![CDATA[Ass. do(a) Secretário(a)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="128" width="249" height="10" uuid="73079652-81e1-4a46-babc-c5bb10e26217"/>
+				<reportElement x="290" y="105" width="249" height="10" uuid="73079652-81e1-4a46-babc-c5bb10e26217"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -799,7 +800,7 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<text><![CDATA[Ass. do(a) Diretor(a)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="72" width="249" height="10" uuid="8aa883af-2342-4e7c-add2-5f71e0b10a10"/>
+				<reportElement x="21" y="49" width="249" height="10" uuid="8aa883af-2342-4e7c-add2-5f71e0b10a10"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -814,7 +815,7 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<text><![CDATA[Ass. do(a) Professor(a)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="72" width="249" height="10" uuid="70ed3d9d-cdec-4efc-92be-bbc48243c091"/>
+				<reportElement x="290" y="49" width="249" height="10" uuid="70ed3d9d-cdec-4efc-92be-bbc48243c091"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -829,7 +830,7 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<text><![CDATA[Ass. do(a) Especialista de Educação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="30" width="553" height="10" uuid="d0c481e0-0aa0-4bf2-8eb9-b7a31990bbc1"/>
+				<reportElement x="0" y="7" width="553" height="10" uuid="d0c481e0-0aa0-4bf2-8eb9-b7a31990bbc1"/>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -844,14 +845,14 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<text><![CDATA[,_____ de _________________________________ de ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="374" y="30" width="110" height="10" uuid="88129293-7885-440b-b5bf-59785fecac08"/>
+				<reportElement x="374" y="7" width="110" height="10" uuid="88129293-7885-440b-b5bf-59785fecac08"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy").format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-1" y="30" width="182" height="10" uuid="a29ca4b8-205d-4b58-bd18-38b715e42d94"/>
+				<reportElement x="-1" y="7" width="182" height="10" uuid="a29ca4b8-205d-4b58-bd18-38b715e42d94"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
