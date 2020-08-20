@@ -684,7 +684,7 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					<paragraph leftIndent="1"/>
 				</textElement>
-				<text><![CDATA[FICHA CAOMPANAMENTO INDIVIDUAL DO ALUNO - ANO]]></text>
+				<text><![CDATA[FICHA ACOMPANHAMENTO INDIVIDUAL DO ALUNO - ANO]]></text>
 			</staticText>
 			<subreport>
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="6" y="12" width="545" height="14" uuid="2a1e6078-6151-42c0-9c00-abbf42f2a87e">
@@ -701,13 +701,15 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="30" splitType="Stretch">
+		<band height="560" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<break>
 				<reportElement x="0" y="0" width="555" height="1" uuid="ef8a8e47-20ad-44fa-8175-d544b3abf639"/>
 			</break>
 			<staticText>
-				<reportElement x="6" y="4" width="545" height="10" uuid="31099d95-fa6b-4951-8615-0414d0d673b3"/>
+				<reportElement positionType="Float" x="6" y="1" width="545" height="30" uuid="31099d95-fa6b-4951-8615-0414d0d673b3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -719,21 +721,26 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 					<paragraph leftIndent="1"/>
 				</textElement>
-				<text><![CDATA[FICHA CAOMPANAMENTO INDIVIDUAL DO ALUNO - ANO]]></text>
+				<text><![CDATA[FICHA ACOMPANHAMENTO INDIVIDUAL DO ALUNO - ANO]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="408" y="4" width="35" height="10" uuid="bd9cff37-2116-4bb7-a072-86351ebb56c3"/>
+				<reportElement x="6" y="31" width="545" height="529" uuid="2d15f93a-330a-418c-b587-c07e8ff295db">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parecer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="1" width="35" height="30" uuid="bd9cff37-2116-4bb7-a072-86351ebb56c3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="6" y="15" width="545" height="10" uuid="2d15f93a-330a-418c-b587-c07e8ff295db"/>
-				<textElement verticalAlignment="Middle" markup="html">
-					<font fontName="DejaVu Sans" size="8" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{parecer}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="176" splitType="Stretch">

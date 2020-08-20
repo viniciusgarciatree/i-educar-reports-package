@@ -81,6 +81,8 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $tempo_da_aula = 0;
         $value['carga_horaria'] = intval($value['carga_horaria']);
         $value['dias_letivos'] = intval($value['dias_letivos']);
+        $quatidade_hora_dia_aula = intval($value['dias_letivos']) > 0 ? $value['carga_horaria']/$value['dias_letivos'] : 0;
+        $quatidade_hora_dia_aula = $quatidade_hora_dia_aula>0 ? $quatidade_hora_dia_aula * 60 : 0;
 
         if(is_numeric($value['carga_horaria']) && is_numeric($value['dias_letivos']) && $value['carga_horaria']>0 && $value['dias_letivos']>0) {
             $tempo_da_aula = ((($value['carga_horaria'] / $value['dias_letivos']) * 60) / 5);
@@ -92,10 +94,6 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $arrReport['falta_hora4'] =  "-";
         $falta_hora_total = 0;
 
-
-        $quantidade_aulas_dias = config('legacy.report.diario_classe.quantidade_aulas_dias');
-        $tempo_da_aula = !empty($quantidade_aulas_dias) ?  $tempo_da_aula * intval($quantidade_aulas_dias) : $tempo_da_aula;
-
         $calc_hora_falta = function ($hora){
             $hora = intval($hora);
             return ($hora>0 ? intval($hora/60).':'. intval($hora%60) : 0);
@@ -103,31 +101,31 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
 
         if($tempo_da_aula>0) {
             if (is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1']) {
-                $arrReport['falta_hora1'] = $dataFaltas['falta1'] * $tempo_da_aula;
+                $arrReport['falta_hora1'] = $dataFaltas['falta1'] * $quatidade_hora_dia_aula;
                 $falta_hora_total += $arrReport['falta_hora1'];
                 $arrReport['falta_hora1'] = $calc_hora_falta($arrReport['falta_hora1']);
             }
             if (is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2']) {
-                $arrReport['falta_hora2'] = $dataFaltas['falta2'] * $tempo_da_aula;
+                $arrReport['falta_hora2'] = $dataFaltas['falta2'] * $quatidade_hora_dia_aula;
                 $falta_hora_total += $arrReport['falta_hora2'];
                 $arrReport['falta_hora2'] = $calc_hora_falta($arrReport['falta_hora2']);
             }
             if (is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3']) {
-                $arrReport['falta_hora3'] = $dataFaltas['falta3'] * $tempo_da_aula;
+                $arrReport['falta_hora3'] = $dataFaltas['falta3'] * $quatidade_hora_dia_aula;
                 $falta_hora_total += $arrReport['falta_hora3'];
                 $arrReport['falta_hora3'] = $calc_hora_falta($arrReport['falta_hora3']);
             }
             if (is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4']) {
-                $arrReport['falta_hora4'] = $dataFaltas['falta4'] * $tempo_da_aula;
+                $arrReport['falta_hora4'] = $dataFaltas['falta4'] * $quatidade_hora_dia_aula;
                 $falta_hora_total += $arrReport['falta_hora4'];
                 $arrReport['falta_hora4'] = $calc_hora_falta($arrReport['falta_hora4']);
             }
         }
 
         $parecer = !empty($dataParece['parecer1']) ? " <b>1º Bimestre:</b> " . $dataParece['parecer1'] : "";
-        $parecer .= !empty($dataParece['parecer2']) ? "<br> <b>2º Bimestre:</b> " . $dataParece['parecer2'] : "";
-        $parecer .= !empty($dataParece['parecer3']) ? "<br> <b>3º Bimestre:</b> " . $dataParece['parecer3'] : "";
-        $parecer .= !empty($dataParece['parecer4']) ? "<br> <b>4º Bimestre:</b>" . $dataParece['parecer4'] : "";
+        $parecer .= !empty($dataParece['parecer2']) ? "<br> <br> <b>2º Bimestre:</b> " . $dataParece['parecer2'] : "";
+        $parecer .= !empty($dataParece['parecer3']) ? "<br> <br> <b>3º Bimestre:</b> " . $dataParece['parecer3'] : "";
+        $parecer .= !empty($dataParece['parecer4']) ? "<br> <br> <b>4º Bimestre:</b>" . $dataParece['parecer4'] : "";
         $arrReport['parecer'] = $parecer;
 
         $falta_hora_total = intval($falta_hora_total);
@@ -482,6 +480,11 @@ ORDER BY sequencial_fechamento,
          modules.componente_curricular.tipo_base,
          modules.componente_curricular.ordenamento
 ) as t
+GROUP BY cod_matricula,cod_aluno,nome_aluno,data_nasc,nome_do_pai,nome_da_mae,cidade_nascimento_uf,uf_nascimento
+,cidade_nascimento,situacao_simplificado,frequencia_geral,nota1,nota2,nota3,nota4,legenda
+,falta1,falta2,falta3,falta4,componente_order,curricular_nome,curricular_abre,ano,nome_curso,nome_serie,nome_turma
+,qtd_modulo,periodo,ciclo,serie,dias_letivos,carga_horaria,tipo_base,exibir_apreceres,semestres,observacao_all
+,parecer1,parecer2,parecer3,parecer4,periodo_ano_serie
         ";
         return $return;
     }
