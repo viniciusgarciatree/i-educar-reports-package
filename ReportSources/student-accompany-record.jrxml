@@ -703,7 +703,7 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 		</band>
 		<band height="531" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<printWhenExpression><![CDATA[$F{parecer}.isEmpty()]]></printWhenExpression>
+			<printWhenExpression><![CDATA[!$F{parecer}.isEmpty()]]></printWhenExpression>
 			<break>
 				<reportElement x="0" y="0" width="555" height="1" uuid="ef8a8e47-20ad-44fa-8175-d544b3abf639"/>
 			</break>
