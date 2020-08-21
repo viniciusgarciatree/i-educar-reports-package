@@ -666,13 +666,17 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<textFieldExpression><![CDATA[$F{periodo_ano_serie}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="30" splitType="Stretch">
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[$F{parecer}.isEmpty()]]></printWhenExpression>
 			<break>
 				<reportElement x="0" y="0" width="555" height="1" uuid="a17b50cc-14a4-4ee6-bf84-7a519d5068c4"/>
 			</break>
 			<staticText>
-				<reportElement x="6" y="1" width="545" height="10" uuid="13faff8e-0c75-411d-af5f-bbd7ded26a36"/>
+				<reportElement x="6" y="1" width="545" height="22" uuid="13faff8e-0c75-411d-af5f-bbd7ded26a36">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -687,14 +691,17 @@ DOS CAMPOS ÁREA DE CONHECIMENTO]]></text>
 				<text><![CDATA[FICHA ACOMPANHAMENTO INDIVIDUAL DO ALUNO - ANO]]></text>
 			</staticText>
 			<subreport>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="6" y="12" width="545" height="14" uuid="2a1e6078-6151-42c0-9c00-abbf42f2a87e">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="6" y="23" width="545" height="14" uuid="2a1e6078-6151-42c0-9c00-abbf42f2a87e">
 					<property name="com.jaspersoft.studio.element.name" value="nivel_para_descritor"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("data_obs")]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "student-accompany-record-obs.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement x="406" y="1" width="35" height="10" uuid="d49ab5dd-87f7-401b-9fcb-050f4551a37e"/>
+				<reportElement x="406" y="1" width="35" height="22" uuid="d49ab5dd-87f7-401b-9fcb-050f4551a37e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
