@@ -26,6 +26,9 @@
 	<parameter name="logo2" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="borda" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
+	</parameter>
 	<queryString language="json">
 		<![CDATA[header]]>
 	</queryString>
@@ -48,12 +51,14 @@
 	<detail>
 		<band height="88" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$P{borda}]]></printWhenExpression>
 			<rectangle>
 				<reportElement x="0" y="0" width="545" height="88" uuid="661084fe-35ef-4189-a826-eaff979d8cfe">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$P{borda}]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
@@ -123,6 +128,78 @@
 			</image>
 			<image hAlign="Left" vAlign="Middle">
 				<reportElement x="2" y="8" width="70" height="61" uuid="9a72a65c-7596-4020-93b7-c3134fe56afa">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
+		</band>
+		<band height="80" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[!$P{borda}]]></printWhenExpression>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="65" y="1" width="411" height="13" uuid="a5da150e-4911-4a7f-b390-277b933a8ae4">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_instituicao}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="14" width="411" height="13" uuid="d9a98419-a2af-45b0-9522-76c8c34615eb">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box leftPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_responsavel}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="27" width="411" height="13" uuid="2d19d9d1-e52b-4604-9c12-61c9fca27b71">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="39" width="411" height="10" uuid="61d1e2e4-7221-498a-8c2d-556b95d2335b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{tipo_logradouro} != null ? $F{tipo_logradouro}.substring(0,1).toUpperCase()+$F{tipo_logradouro}.substring(1,$F{tipo_logradouro}.length()).toLowerCase()+" " : "" )+($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? ", "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="65" y="49" width="411" height="10" uuid="74994611-909d-48a8-8d40-5354737a9641">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("Cep "+$F{cep} )+($F{fone_ddd}!=null ? " - Tel: ("+$F{fone_ddd}+")" : "")+($F{fone} != null ? $F{fone} : "")+
+($F{email} != null && !$F{email}.isEmpty() ? " - "+$F{email} : "")]]></textFieldExpression>
+			</textField>
+			<image hAlign="Right" vAlign="Middle">
+				<reportElement x="474" y="8" width="70" height="61" uuid="d907cdd4-5c68-49f2-bd2f-0959216c6004">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
+			</image>
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement x="2" y="8" width="70" height="61" uuid="180b0d4a-edfb-4c47-af30-bcd916daa254">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
