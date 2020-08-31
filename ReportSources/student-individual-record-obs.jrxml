@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="student-individual-record-component" pageWidth="555" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="a79dda7b-5eab-4f10-b9e4-88b7ba7d8664">
+	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="aluno" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="cabecalho_alternativo" class="java.lang.Integer"/>
+	<parameter name="nm_secretario" class="java.lang.String"/>
+	<parameter name="nm_diretor" class="java.lang.String"/>
+	<parameter name="portaria_aprovacao_pontos" class="java.lang.String"/>
+	<parameter name="nao_emitir_reprovado" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mostrar_msg" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_historico_dependencia" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_secretario_escolar" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_nome_diretor" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_carga_horaria_frequentada" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano_ini" class="java.lang.String"/>
+	<parameter name="ano_fim" class="java.lang.String"/>
+	<parameter name="apenas_ultimo_registro" class="java.lang.String"/>
+	<parameter name="boletim_transferencia" class="java.lang.String"/>
+	<parameter name="curso" class="java.lang.String"/>
+	<parameter name="serie" class="java.lang.String"/>
+	<parameter name="turma" class="java.lang.String"/>
+	<parameter name="ano" class="java.lang.String"/>
+	<parameter name="diretor" class="java.lang.String"/>
+	<parameter name="secretario" class="java.lang.String"/>
+	<parameter name="emitir_assinatura_secretario_diretor" class="java.lang.String"/>
+	<parameter name="cursoaluno" class="java.lang.String"/>
+	<parameter name="sequencial" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="logo2" class="java.lang.String"/>
+	<parameter name="parametros_compreensao" class="java.lang.String">
+		<defaultValueExpression><![CDATA["A - Alcançou suficientemente os objetivos de estudo.<br>"+
+"B - Alcançou parcialmente os objetivos de estudo.<br>"+
+"C - Não alcançou os objetivos de estudo."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Parameter1" class="java.lang.String"/>
+	<field name="etapa" class="java.lang.String"/>
+	<field name="parecer" class="java.lang.String"/>
+	<group name="GroupTipoBase" minHeightToStartNewPage="77">
+		<groupExpression><![CDATA[$F{etapa}]]></groupExpression>
+	</group>
+	<group name="GroupTipo">
+		<groupExpression><![CDATA[$F{etapa}]]></groupExpression>
+	</group>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="10" y="0" width="535" height="14" uuid="eb1a03cc-6356-4b85-a174-2198d41d49c2">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parecer}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
