@@ -1142,7 +1142,6 @@
 					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{frequencia}]]></textFieldExpression>
-				<patternExpression><![CDATA[!$F{frequencia}.isEmpty()]]></patternExpression>
 			</textField>
 		</band>
 	</columnFooter>
