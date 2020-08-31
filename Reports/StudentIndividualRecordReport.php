@@ -446,7 +446,7 @@ modules.componente_curricular.tipo_base,
    		ELSE 0
    END)::integer AS carga_horaria
    ,COALESCE(texto_situacao,'') as texto_situacao
-   ,modules.frequencia_da_matricula(matricula.cod_matricula) AS frequencia
+   ,COALESCE(modules.frequencia_da_matricula(matricula.cod_matricula),'-') AS frequencia
  FROM pmieducar.instituicao
 INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
 INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola)
