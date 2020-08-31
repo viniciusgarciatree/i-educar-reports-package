@@ -120,7 +120,7 @@ SELECT
 		            OR STRPOS(etapa_ensino.descricao ,'1 ano') <> 0 
 		   			OR STRPOS(etapa_ensino.descricao ,'2 ano') <> 0 
 					OR STRPOS(etapa_ensino.descricao ,'3 ano') <> 0 
-		   			OR STRPOS(etapa_ensino.descricao ,'Educação Infantil') <> 0  
+		   			OR STRPOS(etapa_ensino.descricao ,'Educação Infantil') <> 0
 				THEN 'Alfabetização'
 				WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 
                    OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0
@@ -128,8 +128,7 @@ SELECT
                    OR STRPOS(etapa_ensino.descricao ,'7º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'8º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'9º Ano') <> 0
-                   OR STRPOS(etapa_ensino.descricao ,'9º Ano') <> 0
-		           OR STRPOS(etapa_ensino.descricao ,'4 ano') <> 0 
+                   OR STRPOS(etapa_ensino.descricao ,'4 ano') <> 0 
                    OR STRPOS(etapa_ensino.descricao ,'5 ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'6 ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'7 ano') <> 0

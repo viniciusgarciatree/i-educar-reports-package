@@ -702,7 +702,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{falta1} > 0 ? $F{falta1} : "-" ]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{falta1} > 0 ? $F{falta1} : "-"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="294" y="0" width="26" height="14" uuid="4e9a0c10-734b-40c3-95ef-e5c4343c72f4">
@@ -1142,6 +1142,7 @@
 					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{frequencia}]]></textFieldExpression>
+				<patternExpression><![CDATA[!$F{frequencia}.isEmpty()]]></patternExpression>
 			</textField>
 		</band>
 	</columnFooter>
