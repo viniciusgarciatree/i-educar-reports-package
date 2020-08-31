@@ -60,7 +60,6 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
     public function getJsonData()
     {
-        dd($this->getSqlMainReport());
         if($this->templateName() == "report-card-boletim"){            
             $queryMainReport = $this->getSqlMainReport();        
             $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
@@ -70,39 +69,18 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             $arrMain = [];
             $arrAreaConhecimento = [];
             $arrDisciplina = [];
-            $areaConhecimento = "";
             $indexMatricula = -1;
             $arrIndexMatricula = [];
             $arrMatricula = [];
 
-            //dd($dados);
-
             foreach ($dados as $key => $value) {
-                $id_area_diciplina = $value['area_conhecimento_id'] . ' - ' . $value['nome_disciplina_id'];
-
                 $arrAreaConhecimento[$value['area_conhecimento_id']] = $value['area_conhecimento'];
                 $arrDisciplina[$value['area_conhecimento_id']][$value['nome_disciplina_id']]=$value['nome_disciplina'];
-
-                $areaConhecimento = $value['area_conhecimento_id'];
 
                 $indexMatricula  = isset($arrIndexMatricula[$value['matricula']]) ? $indexMatricula : $indexMatricula + 1;
                 $arrIndexMatricula[$value['matricula']] = $indexMatricula;
 
                 $arrMatricula[$value['matricula']] = $value;
-                /*[
-                    'matricula' => $value['matricula'],
-                    'nome_curso' => $value['nome_curso'],
-                    'periodo' => $value['periodo'],
-                    'etapa_ensino_descricao' => $value['etapa_ensino_descricao'],
-                    'ano' => $value['ano'],
-                    'nome_turma' => $value['nome_turma'],
-                    'professor' => $value['professor'],
-                    'nome_aluno' => $value['nome_aluno'],
-                    'dt_nasc' => $value['dt_nasc'],
-                    'situacaosituacao' => $value['situacao'],
-                    'observacoes' => $value['observacoes'],
-                    'data_area' => "",
-                ];*/
 
                 $arrNota[$value['matricula']][$value['area_conhecimento_id']][$value['nome_disciplina_id']] = [
                     'nome_disciplina_id' => $value['nome_disciplina_id'],
@@ -157,7 +135,6 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                 $value['data_area'] = $arrArea;
                 $arrMain[] = $value;
             }
-            //dd($arrMain);
 
             unset($this->args['modelo']);
             return array_merge([

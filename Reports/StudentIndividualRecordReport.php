@@ -114,8 +114,13 @@ SELECT
        COALESCE((
 			  SELECT 
 			  CASE 
-				WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 
-					OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'Educação Infantil') <> 0 
+				WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 
+		   			OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 
+					OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 
+		            OR STRPOS(etapa_ensino.descricao ,'1 ano') <> 0 
+		   			OR STRPOS(etapa_ensino.descricao ,'2 ano') <> 0 
+					OR STRPOS(etapa_ensino.descricao ,'3 ano') <> 0 
+		   			OR STRPOS(etapa_ensino.descricao ,'Educação Infantil') <> 0  
 				THEN 'Alfabetização'
 				WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 
                    OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0
@@ -123,8 +128,16 @@ SELECT
                    OR STRPOS(etapa_ensino.descricao ,'7º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'8º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'9º Ano') <> 0
+                   OR STRPOS(etapa_ensino.descricao ,'9º Ano') <> 0
+		           OR STRPOS(etapa_ensino.descricao ,'4 ano') <> 0 
+                   OR STRPOS(etapa_ensino.descricao ,'5 ano') <> 0
+                   OR STRPOS(etapa_ensino.descricao ,'6 ano') <> 0
+                   OR STRPOS(etapa_ensino.descricao ,'7 ano') <> 0
+                   OR STRPOS(etapa_ensino.descricao ,'8 ano') <> 0
+                   OR STRPOS(etapa_ensino.descricao ,'9 ano') <> 0
+                   OR STRPOS(etapa_ensino.descricao ,'9 ano') <> 0
                 THEN 'Complementar'
-			    ELSE 'Não encontrado'
+			    ELSE ''
 				END as ciclo
 			FROM cadastro.etapa_ensino
 			INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
