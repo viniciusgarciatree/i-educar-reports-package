@@ -47,9 +47,10 @@ left outer join pmieducar.turma c on j.ref_cod_turma = c.cod_turma
 left outer join pmieducar.escola e on a.ref_ref_cod_escola = e.cod_escola
 left outer join cadastro.pessoa f on e.ref_idpes = f.idpes
 left outer join pmieducar.turma_turno g on g.id = c.turma_turno_id
-WHERE  a.ativo = 1 AND
-       a.ano =   $ano  AND
-       e.ref_cod_instituicao =  $instituicao  ".($situacao == 9 ? "" : " AND
+WHERE  a.ativo = 1
+       AND a.ano = $ano
+       AND j.remanejado is null
+       AND e.ref_cod_instituicao =  $instituicao  ".($situacao == 9 ? "" : " AND
        a.aprovado = $situacao").
 " group by 2,3,4  order by 2,3,4";
     }
