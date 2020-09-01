@@ -136,11 +136,13 @@ class TransferenceCertificateReport extends Portabilis_Report_ReportCore
               juridica.idpes = endereco_pessoa.idpes AND
               juridica.idpes = escola.ref_idpes), (SELECT endereco_externo.cidade FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),(SELECT municipio FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS municipio,
 
-      (SELECT COALESCE((SELECT COALESCE((SELECT endereco_pessoa.numero
+      (SELECT COALESCE((SELECT COALESCE((SELECT endereco_pessoa.numero::text
          FROM cadastro.endereco_pessoa,
               cadastro.juridica
         WHERE juridica.idpes = endereco_pessoa.idpes AND
-              juridica.idpes = escola.ref_idpes),(SELECT endereco_externo.numero FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),(SELECT numero::text FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS numero,
+              juridica.idpes = escola.ref_idpes),
+              (SELECT endereco_externo.numero::text FROM cadastro.endereco_externo WHERE endereco_externo.idpes = escola.ref_idpes))),
+              (SELECT numero::text FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS numero,
       (SELECT COALESCE((SELECT COALESCE((SELECT municipio.sigla_uf
          FROM public.municipio,
               cadastro.endereco_pessoa,
