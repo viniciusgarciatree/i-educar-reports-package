@@ -211,7 +211,8 @@ WHERE instituicao.cod_instituicao = {$instituicao}
   AND aluno.cod_aluno = {$aluno}
 ORDER BY sequencial_fechamento,
          nome_aluno,
-         cod_aluno      
+         cod_aluno  
+LIMIT 1    
         ";
 
         return $return;
