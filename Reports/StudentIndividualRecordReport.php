@@ -51,7 +51,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         }
 
         $arrMain[0]['data_componente'] = count($arrComponente) > 0 ? $arrComponente : [];
-        $arrMain[0]['parecerer'] = count($arrObservacao) > 0 && !empty($arrObservacao[0]["paracer"])? $arrObservacao : "";
+        $arrMain[0]['parecer'] = count($arrObservacao) > 0 && !empty($arrObservacao[0]["parecer"])? $arrObservacao[0]["parecer"] : "";
 
         $return = [
             'main'   => $arrMain,
@@ -503,10 +503,10 @@ ORDER BY tipo_base,componente_order,curricular_nome
 
         return "
         SELECT 
-            STRING_AGG(etapa || 'º Bimestre: ',parecer || '<br/>' ORDER BY  etapa ) AS parecer
-        FROM ( 
-          SELECT
-             parecer_geral_etapa.parecer,parecer_geral_etapa.etapa
+            array_to_string(array_agg(etapa ||'º Bimestre:: ' || parecer),'\n') AS parecer 
+        FROM ( SELECT
+             parecer_geral_etapa.parecer
+             ,parecer_geral_etapa.etapa
              FROM pmieducar.instituicao
             INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
             INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola)
@@ -528,7 +528,6 @@ ORDER BY tipo_base,componente_order,curricular_nome
               AND turma.cod_turma = {$turma}
               AND matricula.ativo = 1
               AND aluno.cod_aluno = {$aluno}
-            GROUP BY parecer_geral_etapa.parecer,parecer_geral_etapa.etapa
         ) AS T
         ";
     }
