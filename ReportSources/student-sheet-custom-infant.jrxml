@@ -37,6 +37,122 @@
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="branco" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
+	<field name="cod_aluno" class="java.lang.Integer"/>
+	<field name="nome_instituicao" class="java.lang.String"/>
+	<field name="nome_secretaria" class="java.lang.String"/>
+	<field name="cidade_instituicao" class="java.lang.String"/>
+	<field name="uf_instituicao" class="java.lang.String"/>
+	<field name="data_atual" class="java.lang.String"/>
+	<field name="hora_atual" class="java.lang.String"/>
+	<field name="aluno" class="java.lang.String"/>
+	<field name="nm_pai" class="java.lang.String"/>
+	<field name="nm_mae" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="data_nasc" class="java.lang.String"/>
+	<field name="religiao" class="java.lang.String"/>
+	<field name="nacionalidade" class="java.lang.String"/>
+	<field name="alfabetizado" class="java.lang.String"/>
+	<field name="municipio_nasc" class="java.lang.String"/>
+	<field name="municipio_uf" class="java.lang.String"/>
+	<field name="pais_origem" class="java.lang.String"/>
+	<field name="estado_civil" class="java.lang.String"/>
+	<field name="cpf_mae" class="java.lang.String"/>
+	<field name="cpf_pai" class="java.lang.String"/>
+	<field name="beneficio" class="java.lang.String"/>
+	<field name="numero" class="java.math.BigDecimal"/>
+	<field name="letra" class="java.lang.String"/>
+	<field name="bloco" class="java.lang.String"/>
+	<field name="andar" class="java.math.BigDecimal"/>
+	<field name="apartamento" class="java.math.BigDecimal"/>
+	<field name="complemento" class="java.lang.String"/>
+	<field name="cep" class="java.math.BigDecimal"/>
+	<field name="logradouro" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="sigla_uf" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="fone" class="java.math.BigDecimal"/>
+	<field name="ddd" class="java.math.BigDecimal"/>
+	<field name="fone2" class="java.math.BigDecimal"/>
+	<field name="ddd2" class="java.math.BigDecimal"/>
+	<field name="fone3" class="java.math.BigDecimal"/>
+	<field name="ddd3" class="java.math.BigDecimal"/>
+	<field name="fone_aluno2" class="java.math.BigDecimal"/>
+	<field name="fone_aluno3" class="java.math.BigDecimal"/>
+	<field name="deficiencia" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="pis" class="java.math.BigDecimal"/>
+	<field name="rg" class="java.lang.String"/>
+	<field name="data_exp_rg" class="java.sql.Date"/>
+	<field name="sigla_uf_exp_rg" class="java.lang.String"/>
+	<field name="orgao_emissor_rg" class="java.lang.String"/>
+	<field name="num_tit_eleitor" class="java.math.BigDecimal"/>
+	<field name="zona_tit_eleitor" class="java.math.BigDecimal"/>
+	<field name="secao_tit_eleitor" class="java.math.BigDecimal"/>
+	<field name="tipo_cert_civil" class="java.math.BigDecimal"/>
+	<field name="sigla_uf_cert_civil" class="java.lang.String"/>
+	<field name="data_emissao_cert_civil" class="java.lang.String"/>
+	<field name="num_termo" class="java.math.BigDecimal"/>
+	<field name="num_livro" class="java.lang.String"/>
+	<field name="num_folha" class="java.math.BigDecimal"/>
+	<field name="cartorio_cert_civil" class="java.lang.String"/>
+	<field name="certidao_nascimento" class="java.lang.String"/>
+	<field name="nome_responsavel" class="java.lang.String"/>
+	<field name="ocupacao_responsavel" class="java.lang.String"/>
+	<field name="cpf_responsavel" class="java.math.BigDecimal"/>
+	<field name="sexo_responsavel" class="java.lang.String"/>
+	<field name="ddd_responsavel" class="java.math.BigDecimal"/>
+	<field name="fone_responsavel" class="java.math.BigDecimal"/>
+	<field name="email_responsavel" class="java.lang.String"/>
+	<field name="numero_responsavel" class="java.math.BigDecimal"/>
+	<field name="letra_responsavel" class="java.lang.String"/>
+	<field name="bloco_responsavel" class="java.lang.String"/>
+	<field name="andar_responsavel" class="java.math.BigDecimal"/>
+	<field name="apartamento_responsavel" class="java.math.BigDecimal"/>
+	<field name="cep_responsavel" class="java.math.BigDecimal"/>
+	<field name="logradouro_responsavel" class="java.lang.String"/>
+	<field name="municipio_responsavel" class="java.lang.String"/>
+	<field name="sigla_uf_responsavel" class="java.lang.String"/>
+	<field name="bairro_responsavel" class="java.lang.String"/>
+	<field name="foto" class="java.lang.String"/>
+	<field name="existe_foto" class="java.lang.Integer"/>
+	<field name="codigo_sus" class="java.lang.String"/>
+	<field name="transferencia_matricula" class="java.lang.Boolean"/>
+	<field name="cod_inep" class="java.lang.Long"/>
+	<field name="seque_fecha" class="java.lang.Integer"/>
+	<field name="ultima_matricula_ano" class="java.lang.Integer"/>
+	<field name="ultima_matricula_serie" class="java.lang.String"/>
+	<field name="ultima_matricula_curso" class="java.lang.String"/>
+	<field name="ultima_matricula_escola" class="java.lang.String"/>
+	<field name="ultima_matricula_turno" class="java.lang.String"/>
+	<field name="atual_matricula_ano" class="java.lang.Integer"/>
+	<field name="atual_matricula_serie" class="java.lang.String"/>
+	<field name="atual_matricula_curso" class="java.lang.String"/>
+	<field name="atual_matricula_escola" class="java.lang.String"/>
+	<field name="atual_matricula_turno" class="java.lang.String"/>
+	<field name="autorizado_um" class="java.lang.String"/>
+	<field name="autorizado_dois" class="java.lang.String"/>
+	<field name="autorizado_tres" class="java.lang.String"/>
+	<field name="autorizado_quatro" class="java.lang.String"/>
+	<field name="autorizado_cinco" class="java.lang.String"/>
+	<field name="cor_raca" class="java.lang.String"/>
+	<field name="data_nasc_pai" class="java.lang.String"/>
+	<field name="rg_pai" class="java.lang.String"/>
+	<field name="data_nasc_mae" class="java.lang.String"/>
+	<field name="rg_mae" class="java.lang.String"/>
+	<field name="ddd_pai" class="java.math.BigDecimal"/>
+	<field name="telefone_pai" class="java.lang.String"/>
+	<field name="ddd_mae" class="java.math.BigDecimal"/>
+	<field name="telefone_mae" class="java.lang.String"/>
+	<field name="profissao_pai" class="java.lang.String"/>
+	<field name="profissao_mae" class="java.lang.String"/>
+	<field name="transporte_aluno" class="java.lang.String"/>
+	<field name="data_matricula" class="java.lang.String"/>
+	<field name="escola_logradouro" class="java.lang.String"/>
+	<field name="escola_municipio" class="java.lang.String"/>
+	<field name="escola_uf" class="java.lang.String"/>
+	<field name="escola_estado" class="java.lang.String"/>
+	<field name="nm_escola" class="java.lang.String"/>
 	<background>
 		<band height="860" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -53,34 +169,47 @@
 	<pageHeader>
 		<band height="90" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<subreport>
-				<reportElement stretchType="RelativeToBandHeight" x="3" y="0" width="551" height="90" uuid="5c05f044-2235-4e4c-a06c-3e8320699259"/>
-				<subreportParameter name="logo1">
-					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="titulo">
-					<subreportParameterExpression><![CDATA["FICHA DO ALUNO  – EDUCAÇÃO INFANTIL - CHECHE 0 ÀS 3 ANOS "]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="cod_instituicao">
-					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="cod_escola">
-					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="ano">
-					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="data_emissao">
-					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="source">
-					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="logo2">
-					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
-			</subreport>
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement x="2" y="3" width="70" height="61" uuid="953045f5-dd4b-4ded-b7ae-d319bdc054d7">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="1" width="566" height="20" uuid="0a8fbfee-f0f8-49e9-811b-e258374e43a7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="70" rightPadding="70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_instituicao}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="566" height="30" uuid="b1adcfb7-f074-4819-9364-3bce8c7d41a0">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="70" rightPadding="70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_secretaria}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="61" width="555" height="29" uuid="aae10037-5418-41d5-ab6e-875dc169323e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHA DE MATRÍCULA – EDUCAÇÃO INFANTIL – CRECHE 0 À 3 ANOS]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
@@ -1016,73 +1145,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="130" y="12" width="420" height="1" uuid="48498301-8dd5-4601-96d0-d318fdc7febf">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="65" y="30" width="485" height="1" uuid="a699fdc4-86b0-4dd7-90a2-1851d0eb7a14">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
 				<reportElement x="75" y="51" width="205" height="1" uuid="4b493998-d885-4a84-b32a-ff485e4f2b64">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="345" y="51" width="108" height="1" uuid="d9bc0aa9-ad3f-40a5-93aa-ec51fceb704b">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="505" y="51" width="45" height="1" uuid="2118bd0d-1f5f-4daf-85fa-c86c1bfa13ca">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="45" y="94" width="505" height="1" uuid="bdaec17b-d576-48bf-ab5d-341755ed5eee">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="125" y="116" width="70" height="1" uuid="3f1d055f-88b5-4576-a044-0b63164fc79c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1367,6 +1430,61 @@
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="131" y="0" width="419" height="15" uuid="9be530b8-b374-4f31-b173-8df6ba927702">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_escola}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="18" width="485" height="15" uuid="b7ead13a-367c-4590-83c4-966fcd9aa735">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escola_logradouro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="39" width="114" height="15" uuid="b41f0c32-91f1-46a5-95c3-26627db9ab9d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escola_municipio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="39" width="40" height="15" uuid="51ba39c0-8740-49b0-8787-3dc2dee0ab4c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escola_uf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="82" width="505" height="15" uuid="5f8ce052-b164-4399-b924-8705b2d34b6b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="103" width="75" height="15" uuid="d630ad2e-d8ba-49a7-a94f-06f4f095aa86">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_nasc}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="770" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>

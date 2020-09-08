@@ -5,7 +5,7 @@ use iEducar\Reports\JsonDataSource;
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'App/Model/IedFinder.php';
 
-class StudentSheetReport extends Portabilis_Report_ReportCore
+class StudentSheetbyCustomReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
 
@@ -14,7 +14,14 @@ class StudentSheetReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return $this->args['branco'] == 1 ? 'student-sheet-blank' : 'student-sheet';
+        $template = 'student-sheet-custom';
+        if($this->args['modelo'] == 2){
+            $template = 'student-sheet-custom-infant';
+        }elseif($this->args['modelo'] == 3){
+            $template = 'student-sheet-custom-fundamental';
+        }
+
+        return $this->args['branco'] == 1 ? $template . '-blank' : $template;
     }
 
     /**
@@ -34,6 +41,7 @@ class StudentSheetReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
+        //dd($this->getSqlReport());
         return $this->args['branco'] === 'true'
             ? $this->getSqlBlankReport()
             : $this->getSqlReport();
@@ -74,23 +82,29 @@ class StudentSheetReport extends Portabilis_Report_ReportCore
         $ano = $this->args['ano'] ?: 0;
         return "
 SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
-                    public.fcn_upper(nm_responsavel) AS nome_secretaria,
-                    instituicao.cidade AS cidade_instituicao,
-                    public.fcn_upper(ref_sigla_uf) AS uf_instituicao,
-                    to_char(CURRENT_DATE,'dd/mm/yyyy') AS data_atual,
-                    to_char(CURRENT_TIMESTAMP, 'HH24:MI:SS') AS hora_atual,
-                    pessoa.nome AS aluno,
-                    fcn_upper(COALESCE(relatorio.get_pai_aluno(aluno.cod_aluno), 'NAO INFORMADO')) AS nm_pai,
-                    fcn_upper(COALESCE(relatorio.get_mae_aluno(aluno.cod_aluno), 'NAO INFORMADO')) AS nm_mae,
-                    fisica.sexo,
-                    to_char(fisica.data_nasc,'dd/mm/yyyy') AS data_nasc,
-                    religiao.nm_religiao AS religiao,
-                    relatorio.get_nacionalidade(fisica.nacionalidade) AS nacionalidade,
-                    (CASE
-                         WHEN aluno.analfabeto = 0 THEN 'Sim'
-                         WHEN aluno.analfabeto = 1 THEN 'Não'
-                         ELSE ''
-                     END) AS alfabetizado,
+    public.fcn_upper(nm_responsavel) AS nome_secretaria,
+    public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
+    (CASE WHEN false THEN 'SECRETARIA DE EDUCAÇÃO' ELSE fcn_upper(view_dados_escola.nome) END) AS nm_escola,
+    view_dados_escola.logradouro as escola_logradouro,
+    view_dados_escola.municipio as escola_municipio,
+    view_dados_escola.uf_municipio as escola_uf,
+    states.name as escola_estado,
+    instituicao.cidade AS cidade_instituicao,
+    public.fcn_upper(ref_sigla_uf) AS uf_instituicao,
+    to_char(CURRENT_DATE,'dd/mm/yyyy') AS data_atual,
+    to_char(CURRENT_TIMESTAMP, 'HH24:MI:SS') AS hora_atual,
+    pessoa.nome AS aluno,
+    fcn_upper(COALESCE(relatorio.get_pai_aluno(aluno.cod_aluno), 'NAO INFORMADO')) AS nm_pai,
+    fcn_upper(COALESCE(relatorio.get_mae_aluno(aluno.cod_aluno), 'NAO INFORMADO')) AS nm_mae,
+    fisica.sexo,
+    to_char(fisica.data_nasc,'dd/mm/yyyy') AS data_nasc,
+    religiao.nm_religiao AS religiao,
+    relatorio.get_nacionalidade(fisica.nacionalidade) AS nacionalidade,
+    (CASE
+     WHEN aluno.analfabeto = 0 THEN 'Sim'
+     WHEN aluno.analfabeto = 1 THEN 'Não'
+     ELSE ''
+ END) AS alfabetizado,
 
   (SELECT municipio.nome
    FROM public.municipio
@@ -702,6 +716,8 @@ LEFT JOIN pmieducar.religiao ON (religiao.cod_religiao = fisica.ref_cod_religiao
 LEFT JOIN cadastro.fisica_raca ON (pessoa.idpes = fisica_raca.ref_idpes)
 LEFT JOIN cadastro.raca ON (fisica_raca.ref_cod_raca = raca.cod_raca)
 INNER JOIN pmieducar.turma_tipo ON (turma.ref_cod_turma_tipo = turma_tipo.cod_turma_tipo)
+INNER JOIN relatorio.view_dados_escola ON (escola.cod_escola = view_dados_escola.cod_escola)
+INNER JOIN public.states ON states.abbreviation = view_dados_escola.uf_municipio
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND escola.cod_escola = {$escola}
   AND curso.cod_curso = {$curso}

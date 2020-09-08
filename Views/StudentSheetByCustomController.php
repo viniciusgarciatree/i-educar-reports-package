@@ -1,9 +1,9 @@
 <?php
 
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/StudentSheetReport.php';
+require_once 'Reports/Reports/StudentSheetByCustomReport.php';
 
-class StudentSheetController extends Portabilis_Controller_ReportCoreController
+class StudentSheetByCustomController extends Portabilis_Controller_ReportCoreController
 {
     /**
      * @var int
@@ -41,7 +41,9 @@ class StudentSheetController extends Portabilis_Controller_ReportCoreController
         $this->inputsHelper()->select('modelo', [
             'label' => 'Modelo',
             'resources' => [
-                1 => 'Modelo 1',
+                1 => 'Padrão',
+                2 => 'Educação infantil',
+                3 => 'Ensino Fundamental',
             ], 'value' => 1
         ]);
     }
@@ -69,6 +71,6 @@ class StudentSheetController extends Portabilis_Controller_ReportCoreController
      */
     public function report()
     {
-        return new StudentSheetReport();
+        return new StudentSheetByCustomReport();
     }
 }
