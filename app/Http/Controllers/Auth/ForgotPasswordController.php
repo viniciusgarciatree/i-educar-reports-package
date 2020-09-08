@@ -66,8 +66,8 @@ class ForgotPasswordController extends Controller
         }
 
         $tituloApp = 'i - Educar';
-        if (config('legacy.app.title')) {
-            $tituloApp = config('legacy.app.title');
+        if (config('legacy.app.name')) {
+            $tituloApp = config('legacy.app.name');
         }
 
         $token = $this->broker()->createToken($user);

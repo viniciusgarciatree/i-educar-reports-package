@@ -58,6 +58,16 @@ class Menu extends Model
      *
      * @return bool
      */
+    public function isActive()
+    {
+        return boolval($this->active) ? true : false;
+    }
+
+    /**
+     * Indica se o menu é um link.
+     *
+     * @return bool
+     */
     public function isLink()
     {
         return boolval($this->link);
