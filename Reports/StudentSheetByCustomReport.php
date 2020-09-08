@@ -105,6 +105,36 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
      WHEN aluno.analfabeto = 1 THEN 'Não'
      ELSE ''
  END) AS alfabetizado,
+ 
+    COALESCE(moradia_aluno.renda::text,'') as renda,
+    COALESCE(moradia_aluno.moradia_situacao::text,'') as moradia_situacao,
+    COALESCE(moradia_aluno.energia,'') as energia,
+    COALESCE(moradia_aluno.agua_encanada,'') as agua_encanada,
+    COALESCE(moradia_aluno.esgoto, '') as esgoto,
+    COALESCE(moradia_aluno.lixo, '') as lixo,
+    COALESCE(moradia_aluno.quant_pessoas::text, '' ) as quant_pessoas,
+    COALESCE(ficha_medica_aluno.alergia_medicamento, '') as alergia_medicamento,
+    COALESCE(ficha_medica_aluno.desc_alergia_medicamento, '' ) as desc_alergia_medicamento,
+    
+  COALESCE((SELECT 
+    string_agg(deficiencia.nm_deficiencia, ', ')
+    FROM cadastro.fisica_deficiencia
+    JOIN cadastro.deficiencia ON deficiencia.cod_deficiencia = fisica_deficiencia.ref_cod_deficiencia
+     WHERE fisica_deficiencia.ref_idpes = fisica.idpes
+  )::text,'') as fisica_deficiencia,
+  
+    regexp_replace(trim(CONCAT(CASE WHEN ARRAY[1] <@ aluno.veiculo_transporte_escolar THEN 'Vans/Kombis' ELSE '' END,'  ',
+CASE WHEN ARRAY[2] <@ aluno.veiculo_transporte_escolar THEN 'Microônibus' ELSE '' END,'  ',
+CASE WHEN ARRAY[3] <@ aluno.veiculo_transporte_escolar THEN 'Ônibus' ELSE '' END,'  ',
+CASE WHEN ARRAY[2] <@ aluno.veiculo_transporte_escolar THEN 'Bicicleta' ELSE '' END,'  ',
+CASE WHEN ARRAY[5] <@ aluno.veiculo_transporte_escolar THEN 'Tração animal' ELSE '' END,'  ',
+CASE WHEN ARRAY[6] <@ aluno.veiculo_transporte_escolar THEN 'Outro' ELSE '' END,'  ',
+CASE WHEN ARRAY[7] <@ aluno.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade de até 5 alunos' ELSE '' END,'  ',
+CASE WHEN ARRAY[8] <@ aluno.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade entre 5 a 15 alunos' ELSE '' END,'  ',
+CASE WHEN ARRAY[9] <@ aluno.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade entre 15 a 35 alunos' ELSE '' END,'  ',
+CASE WHEN ARRAY[10] <@ aluno.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade acima de 35 alunos' ELSE '' END,'  ',
+CASE WHEN ARRAY[11] <@ aluno.veiculo_transporte_escolar THEN 'Ferroviário - Trem/Metrô' ELSE '' END))
+	   ,'(  ){2,}', ' - ', 'g') AS tipo_transporte,
 
   (SELECT municipio.nome
    FROM public.municipio
@@ -121,6 +151,18 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
   (SELECT estado_civil.descricao
    FROM cadastro.estado_civil
    WHERE estado_civil.ideciv = fisica.ideciv) AS estado_civil,
+   
+   COALESCE(
+	   (SELECT 
+           estado_civil.descricao
+      FROM cadastro.fisica as fisica_civil
+      INNER JOIN cadastro.estado_civil on estado_civil.ideciv = fisica_civil.ideciv
+      WHERE fisica_civil.idpes = fisica.idpes_mae)
+			,(SELECT 
+           COALESCE(estado_civil.descricao,'')
+      FROM cadastro.fisica as fisica_civil
+      INNER JOIN cadastro.estado_civil on estado_civil.ideciv = fisica_civil.ideciv
+      WHERE fisica_civil.idpes = fisica.idpes_pai)) AS estado_civil_pais,
 
   (SELECT ps.nome
    FROM cadastro.pessoa ps
@@ -290,11 +332,11 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
    WHERE fone_pessoa.idpes = fisica.idpes
      AND fone_pessoa.tipo = 3) AS fone_aluno3,
 
-  (SELECT min(deficiencia.nm_deficiencia)
+  COALESCE((SELECT min(deficiencia.nm_deficiencia)
    FROM cadastro.deficiencia,
         cadastro.fisica_deficiencia
    WHERE deficiencia.cod_deficiencia = fisica_deficiencia.ref_cod_deficiencia
-     AND fisica_deficiencia.ref_idpes = fisica.idpes) AS deficiencia,
+     AND fisica_deficiencia.ref_idpes = fisica.idpes),'') AS deficiencia,
 
   (SELECT public.formata_cpf(fs.cpf)
    FROM cadastro.fisica fs
@@ -586,6 +628,10 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
   (SELECT to_char(pessoa_pai.data_nasc, 'dd/MM/yyyy')
    FROM cadastro.fisica AS pessoa_pai
    WHERE pessoa_pai.idpes = fisica.idpes_pai) AS data_nasc_pai,
+   
+   (SELECT date_part('year', age(pessoa_pai.data_nasc))||' Anos'
+   FROM cadastro.fisica AS pessoa_pai
+   WHERE pessoa_pai.idpes = fisica.idpes_pai) AS idade_pai,
 
   (SELECT doc_pai.rg
    FROM cadastro.fisica AS pessoa_pai,
@@ -596,6 +642,10 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
   (SELECT to_char(pessoa_mae.data_nasc, 'dd/MM/yyyy')
    FROM cadastro.fisica AS pessoa_mae
    WHERE pessoa_mae.idpes = fisica.idpes_mae) AS data_nasc_mae,
+   
+   (SELECT date_part('year', age(pessoa_mae.data_nasc))||' Anos'
+   FROM cadastro.fisica AS pessoa_mae
+   WHERE pessoa_mae.idpes = fisica.idpes_mae) AS idade_mae,
 
   (SELECT doc_mae.rg
    FROM cadastro.fisica AS pessoa_mae,
@@ -718,6 +768,8 @@ LEFT JOIN cadastro.raca ON (fisica_raca.ref_cod_raca = raca.cod_raca)
 INNER JOIN pmieducar.turma_tipo ON (turma.ref_cod_turma_tipo = turma_tipo.cod_turma_tipo)
 INNER JOIN relatorio.view_dados_escola ON (escola.cod_escola = view_dados_escola.cod_escola)
 INNER JOIN public.states ON states.abbreviation = view_dados_escola.uf_municipio
+LEFT JOIN modules.moradia_aluno ON moradia_aluno.ref_cod_aluno = aluno.cod_aluno
+LEFT JOIN modules.ficha_medica_aluno ON modules.ficha_medica_aluno.ref_cod_aluno = aluno.cod_aluno
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND escola.cod_escola = {$escola}
   AND curso.cod_curso = {$curso}

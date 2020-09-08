@@ -153,6 +153,22 @@
 	<field name="escola_uf" class="java.lang.String"/>
 	<field name="escola_estado" class="java.lang.String"/>
 	<field name="nm_escola" class="java.lang.String"/>
+	<field name="idade_mae" class="java.lang.String"/>
+	<field name="idade_pai" class="java.lang.String"/>
+	<field name="estado_civil_pais" class="java.lang.String"/>
+	<field name="renda" class="java.lang.String"/>
+	<field name="moradia_situacao" class="java.lang.String"/>
+	<field name="energia" class="java.lang.String"/>
+	<field name="agua_encanada" class="java.lang.String"/>
+	<field name="esgoto" class="java.lang.String"/>
+	<field name="lixo" class="java.lang.String"/>
+	<field name="quant_pessoas" class="java.lang.String"/>
+	<field name="alergia_medicamento" class="java.lang.String"/>
+	<field name="desc_alergia_medicamento" class="java.lang.String"/>
+	<field name="alergia_alimento" class="java.lang.String"/>
+	<field name="desc_alergia_alimento" class="java.lang.String"/>
+	<field name="fisica_deficiencia" class="java.lang.String"/>
+	<field name="tipo_transporte" class="java.lang.String"/>
 	<background>
 		<band height="860" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -387,7 +403,7 @@
 				<text><![CDATA[Nº do SUS:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="145" width="100" height="15" uuid="50cfb1e3-cb54-4bee-9acf-72c806ea95e6">
+				<reportElement x="177" y="145" width="100" height="15" uuid="50cfb1e3-cb54-4bee-9acf-72c806ea95e6">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -431,7 +447,7 @@
 				<text><![CDATA[Naturalidade: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="410" y="167" width="20" height="15" uuid="f10e3b22-c21b-47d2-a88a-6dc525c61266">
+				<reportElement x="493" y="167" width="20" height="15" uuid="f10e3b22-c21b-47d2-a88a-6dc525c61266">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -767,7 +783,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Berçário I  - Período de frequência: ]]></text>
+				<text><![CDATA[Berçário II  - Período de frequência: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="10" y="554" width="195" height="10" uuid="0f6e60be-ca78-4a66-bfef-fe6c3e0598ad">
@@ -836,7 +852,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Berçário I  - Período de frequência: ]]></text>
+				<text><![CDATA[Maternal I  - Período de frequência: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="10" y="617" width="195" height="10" uuid="77b1febd-e66f-491c-aca2-6633bbbde158">
@@ -905,7 +921,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Berçário I  - Período de frequência: ]]></text>
+				<text><![CDATA[Maternal II  - Período de frequência: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="10" y="681" width="195" height="10" uuid="8c59b1e2-ea77-4332-8995-1389398b4586">
@@ -968,38 +984,6 @@
 					<font fontName="DejaVu Sans" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[_____/______/________]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="235" y="103" width="100" height="15" uuid="1fa28e27-0be6-4c42-bfc2-b7531edd7cf5">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) M   (   ) F]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="145" y="124" width="100" height="15" uuid="ac4c5fc2-edaa-44c1-aac3-696e08903bc1">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="60" y="189" width="490" height="15" uuid="1c5f7c38-60b2-473b-9ce1-f7ea9c857b0b">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Branca    (   ) Negra    (   ) Parda    (   ) Amarela    (   ) Indígena]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="170" y="342" width="100" height="15" uuid="fce5c501-2160-448d-9086-c2a937b801c8">
@@ -1156,84 +1140,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="425" y="116" width="125" height="1" uuid="8945a5e2-03da-4e9b-837e-ad6df23940ad">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="440" y="158" width="110" height="1" uuid="b0873b39-7b01-4c36-89e7-8ea3ee4e6cfc">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="430" y="180" width="120" height="1" uuid="046a9b60-28b1-4b8d-b752-be7db69411ff">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="310" y="137" width="240" height="1" uuid="266b1b3b-d565-4321-b897-9d334301b968">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="280" y="158" width="95" height="1" uuid="96cffeb5-435c-4b5b-b0dc-33dc481faf0f">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="314" y="180" width="90" height="1" uuid="66caa9ff-99fc-493b-8936-ccaad5eedb4f">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="70" y="158" width="105" height="1" uuid="f644afe2-e5ec-4aa5-a176-5b97a2f4c1f5">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="90" y="180" width="140" height="1" uuid="38de887b-cc9c-44d3-a5c2-501b1520aa80">
+				<reportElement x="274" y="158" width="100" height="1" uuid="b0873b39-7b01-4c36-89e7-8ea3ee4e6cfc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1277,154 +1184,11 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="290" y="268" width="260" height="1" uuid="9ade2b5f-574b-4358-b3ff-42d2f08bf0f1">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
 				<reportElement x="290" y="311" width="260" height="1" uuid="e248e9a0-3f03-4e67-8d5b-ef73025d01e6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="290" y="332" width="260" height="1" uuid="f5f9309e-8949-4239-9ffd-46091fdfb518">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="493" y="224" width="27" height="1" uuid="6ae22cc4-8225-4387-8362-676880bc1d51">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="493" y="290" width="27" height="1" uuid="9bd8dfb3-c9d4-4e49-b3e0-a58d9d1389fa">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="60" y="224" width="390" height="1" uuid="76be601f-fbe7-405d-94f1-6f1cd1be934a">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="60" y="290" width="390" height="1" uuid="97b3fd5c-1307-470b-b7f4-b5362bc4dacb">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="65" y="268" width="165" height="1" uuid="6af642a0-73b2-4d5f-adc5-eb42780a72f1">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="65" y="332" width="165" height="1" uuid="1bae348c-d299-4a94-aa05-ea547c31b534">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="45" y="396" width="130" height="1" uuid="dc4d542c-3907-4248-8668-59156d39d541">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="350" y="396" width="200" height="1" uuid="14e360c8-cffd-432b-9abf-79207dcf3303">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="480" y="375" width="70" height="1" uuid="814d6828-3320-44ab-bcde-a70c36de485a">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="370" y="355" width="180" height="1" uuid="c2a614da-1bc1-464d-87ff-a5b6dd6473de">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="65" y="375" width="395" height="1" uuid="aef7bec1-8df5-4721-9457-6879592c92b9">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
@@ -1484,6 +1248,248 @@
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{data_nasc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="103" width="100" height="15" uuid="5b6b1588-0883-46f0-a08f-c55e7a9e6595">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}.equals( "M" ) ? "( X ) M   (   ) F" : $F{sexo}.equals( "F" ) ?"(   ) M   ( X ) F" : "(   ) M   (   ) F"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="103" width="125" height="15" uuid="bf3db8d0-ac0b-4f21-a677-67cc9be29ce5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_inep}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="146" y="124" width="100" height="15" uuid="e5fbd8cb-19d6-41bf-87e7-3661bba39234">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deficiencia}.isEmpty() ? "(   ) Sim   ( X ) Não" : "( X ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="309" y="124" width="241" height="15" uuid="496843c2-c595-4054-80e9-62408802bca3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="70" y="145" width="105" height="15" uuid="59b87fc9-e8ff-4c7c-bc91-347289bea5c4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_sus}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="440" y="145" width="110" height="15" uuid="bb884c73-c15c-4801-8c7a-9da4ebedd726">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pis}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="167" width="140" height="15" uuid="1d5d7beb-86f9-47ed-944c-4100be7e50cf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nacionalidade}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="314" y="167" width="179" height="15" uuid="ae7379d6-08b9-42ae-be64-32f5613551e7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio_nasc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="513" y="167" width="37" height="15" uuid="09da2c51-3dae-4d02-873d-4a7d480522a7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio_uf}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="189" width="490" height="15" uuid="3082dd96-2801-40b8-b095-814a9058c48e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cor_raca}.equals("Branca") ? 
+"( X ) Branca    (   ) Negra    (   ) Parda    (   ) Amarela    (   ) Indígena"
+: $F{cor_raca}.equals("Preta") ? 
+"(   ) Branca    ( X ) Negra    (   ) Parda    (   ) Amarela    (   ) Indígena"
+: $F{cor_raca}.equals("Parda") ? 
+"(   ) Branca    (   ) Negra    ( X ) Parda    (   ) Amarela    (   ) Indígena"
+: $F{cor_raca}.equals("Amarela") ? 
+"(   ) Branca    (   ) Negra    (   ) Parda    ( X ) Amarela    (   ) Indígena"
+: $F{cor_raca}.equals("Indígena") ? 
+"(   ) Branca    (   ) Negra    (   ) Parda    (   ) Amarela    ( X ) Indígena"
+:"(   ) Branca    (   ) Negra    (   ) Parda    (   ) Amarela    (   ) Indígena"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="65" y="211" width="385" height="15" uuid="1e99b42b-0dc0-4513-a148-3666394ff5f4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_mae}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="494" y="211" width="27" height="15" uuid="0665bc22-b774-47e4-94bc-49d86fac096f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idade_mae}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="495" y="277" width="27" height="15" uuid="1f7c025c-756e-41ef-a4cd-78ca5a6ca14a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idade_pai}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="65" y="255" width="165" height="15" uuid="e1d3bbfb-ea11-402d-bf2b-fccdcd89c7b5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{profissao_mae}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="255" width="260" height="15" uuid="f6f04f24-a0af-4fba-9f68-eb632ee856ae">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone_mae}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="65" y="277" width="385" height="15" uuid="dda12fe7-a66a-488b-b9e2-a1cd9136a963">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_pai}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="65" y="319" width="165" height="15" uuid="3e662888-5ded-48a0-a9dd-92c25e731510">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{profissao_pai}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="319" width="260" height="15" uuid="f60c0abe-3bbf-40e8-a856-fa7bd11de74a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone_pai}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="65" y="362" width="395" height="15" uuid="261b8f72-0cc8-4d9a-9f6e-e3b32c15de83">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{logradouro}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="362" width="70" height="15" uuid="5fd69ddb-18dc-4cf9-bf86-28c510208cbd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="45" y="383" width="130" height="15" uuid="2befbad6-7311-4c22-93b7-42602e12799a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="349" y="383" width="200" height="15" uuid="0594fadc-aa7b-46c4-83a4-72ee874ac110">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ddd}.toString() + $F{fone}.toString() + " " + $F{ddd2}.toString() + $F{fone2}.toString() + " " + $F{ddd3}.toString() + $F{fone3}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="370" y="342" width="178" height="15" uuid="04f8d549-642c-4b8e-96fb-5bc1a114371c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{renda}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="770" splitType="Stretch">
@@ -1740,7 +1746,7 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[( ) Sim ( ) Não. Quais:]]></text>
+				<text><![CDATA[(   ) Sim (   ) Não. Quais:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="5" y="488" width="548" height="15" uuid="97d69fd2-cfc9-4095-b18d-07a9a8a1631c">
@@ -1867,84 +1873,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Data]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="22" width="419" height="15" uuid="de5e4efa-f1b0-407a-a44d-55b6510ca85a">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Solteiros   (   ) União estável   (   ) Casados   (   ) Separados]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="420" y="44" width="100" height="15" uuid="95dbd777-dbb9-4cf5-83d9-c11e3740c08d">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="60" y="66" width="219" height="15" uuid="cd7ab2ed-fe14-409f-a6cb-464079f9e877">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Própria    (   ) Alugada    (   ) Cedida]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="110" y="88" width="100" height="15" uuid="6e2e74dc-6b0e-4c97-9d03-62a0dae9726a">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="115" y="110" width="100" height="15" uuid="b9a343a3-2751-449f-a885-c1e66a9f1c1a">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="125" y="132" width="100" height="15" uuid="33f51894-1d5b-4bdf-be85-894b0b2c3ca0">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="110" y="154" width="100" height="15" uuid="c904b9ed-6c36-473e-a3b9-6e03b05d238a">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="190" y="176" width="100" height="15" uuid="37104d93-9e95-49ea-83a4-e2a6c70714a9">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -2031,40 +1960,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="310" width="100" height="15" uuid="f50d89b7-70ee-4d97-a090-54357b424954">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="125" y="332" width="100" height="15" uuid="c08737d9-0a10-4f1f-900b-ed5c982119cd">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="260" y="354" width="100" height="15" uuid="31f0e654-a724-444d-a580-7527387a2399">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="155" y="400" width="100" height="15" uuid="21b29496-8241-4dbb-bb90-055bd91e1607">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -2097,17 +1993,6 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Normal    (   ) Cesariana    (   ) Fórceps]]></text>
 			</staticText>
 			<line>
-				<reportElement x="360" y="188" width="190" height="1" uuid="a8c5c837-ecc4-4e76-af7f-9e06c12695bc">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
 				<reportElement x="385" y="210" width="165" height="1" uuid="268aac47-edda-4efe-96f3-22c2455e8905">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -2130,29 +2015,7 @@ com a legislação municipal]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="410" y="321" width="140" height="1" uuid="48e01b5d-c429-4849-bcc8-d5815941df62">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
 				<reportElement x="290" y="344" width="260" height="1" uuid="b8090490-8ed5-41d0-a156-bd1731e77d1c">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="390" y="365" width="160" height="1" uuid="147a37eb-7689-4a58-9698-a6759e792f5d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -2174,18 +2037,7 @@ com a legislação municipal]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="370" y="412" width="180" height="1" uuid="570b4120-e1d5-4ecb-bc40-ff7b942419d7">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="130" y="455" width="420" height="1" uuid="e67c51e9-c789-429c-ba68-ceab91502452">
+				<reportElement x="145" y="455" width="405" height="1" uuid="e67c51e9-c789-429c-ba68-ceab91502452">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -2217,6 +2069,180 @@ com a legislação municipal]]></text>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="131" y="22" width="419" height="15" uuid="cf606171-328a-4b86-a84d-28b70506bcfe">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_civil_pais}.equals("Solteiro(a)") ?
+"( X ) Solteiros   (   ) União estável   (   ) Casados   (   ) Separados"
+: $F{estado_civil_pais}.equals("Casado(a)") ?
+"(   ) Solteiros   (   ) União estável   ( X ) Casados   (   ) Separados"
+: $F{estado_civil_pais}.equals("Separado(a)") ?
+"(   ) Solteiros   (   ) União estável   (   ) Casados   ( X ) Separados"
+:"(   ) Solteiros   (   ) União estável   (   ) Casados   (   ) Separados"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="66" width="419" height="15" uuid="6a3e2efc-3be5-4591-b201-d6c58c3a883b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{moradia_situacao}.equals("1") ?
+"(   ) Própria    ( X ) Alugada    (   ) Cedida"
+:$F{moradia_situacao}.equals("2") ?
+"( X ) Própria    (   ) Alugada    (   ) Cedida"
+:$F{moradia_situacao}.equals("3") ?
+"(   ) Própria    (   ) Alugada    ( X ) Cedida"
+:"(   ) Própria    (   ) Alugada    (   ) Cedida"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="106" y="88" width="100" height="15" uuid="13765355-81cc-4729-9ad5-9958ea1bbdbc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{energia}.equals("S") ? "( X ) Sim   (   ) Não"
+: $F{energia}.equals("N") ? "(   ) Sim   ( X ) Não" : "(   ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="115" y="110" width="100" height="15" uuid="e672fa37-8a95-46bd-9cb2-f9cc611c7c5e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agua_encanada}.equals("S") ? "( X ) Sim   (   ) Não"
+: $F{agua_encanada}.equals("N") ? "(   ) Sim   ( X ) Não"
+: "(   ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="126" y="132" width="100" height="15" uuid="c77cdd76-4ca7-4d20-b62f-10b0dafd31bd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{esgoto}.equals("S") ? "( X ) Sim   (   ) Não"
+: $F{esgoto}.equals("N") ? "(   ) Sim   ( X ) Não"
+: "(   ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="154" width="100" height="15" uuid="30979e6a-1bf2-434c-b2ce-34988862f974">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lixo}.equals("S") ? "( X ) Sim   (   ) Não"
+: $F{lixo}.equals("N") ? "(   ) Sim   ( X ) Não"
+: "(   ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="191" y="176" width="100" height="15" uuid="3c6532e2-56fd-49d7-a56d-ca95e2ae1f76">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quant_pessoas}.isEmpty() ? "(   ) Sim   ( X ) Não" : "( X ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="359" y="176" width="100" height="15" uuid="676143bf-f52a-4b13-9a02-f1748e90ae96">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quant_pessoas}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="277" y="310" width="100" height="15" uuid="dc39daf0-7d7f-47db-902e-a53e41bf2e0e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{alergia_medicamento}.equals("S") ? "( X ) Sim   (   ) Não"
+: $F{alergia_medicamento}.equals("N") ? "(   ) Sim   ( X ) Não"
+: $F{alergia_alimento}.equals("S") ? "( X ) Sim   (   ) Não"
+: $F{alergia_alimento}.equals("N") ? "(   ) Sim   ( X ) Não"
+: "(   ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="410" y="310" width="140" height="15" uuid="16c405f7-849a-4b85-b9ed-60e4df7d02ce">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{alergia_medicamento}.equals("S") ? $F{desc_alergia_medicamento} : "") + "" + ($F{alergia_alimento}.equals("S") ?$F{desc_alergia_alimento} : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="260" y="354" width="100" height="15" uuid="3ee172f4-21af-4d16-b75c-cb14997186d0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fisica_deficiencia}.isEmpty() ? "(   ) Sim   ( X ) Não" : "( X ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="390" y="354" width="159" height="15" uuid="afe67934-4745-42d0-83c4-d6f7c197cc48">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fisica_deficiencia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="154" y="400" width="100" height="15" uuid="a52ffc04-e037-458a-acb4-9e4c74fc1da9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transporte_aluno}.equals("UTILIZA") ? "( X ) Sim   (   ) Não" 
+: $F{transporte_aluno}.equals("NÃO UTILIZA") ? "(   ) Sim   ( X ) Não" 
+: "(   ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="367" y="400" width="183" height="15" uuid="d8138613-ca51-4b55-83f4-8b476195fba0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_transporte}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>
