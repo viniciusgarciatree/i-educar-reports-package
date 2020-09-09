@@ -494,7 +494,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8" isBold="true" isItalic="true"/>
 					</textElement>
-					<text><![CDATA[Registro de frequência]]></text>
+					<text><![CDATA[Objetivos]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="271" y="20" width="242" height="10" uuid="3443bfcd-b182-485c-8fc8-5b61af74d69d">
@@ -725,7 +725,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="8" isBold="true" isItalic="true"/>
 					</textElement>
-					<text><![CDATA[Parecer Descritivo]]></text>
+					<text><![CDATA[Objetivos]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="271" y="20" width="242" height="10" uuid="e9a7eca4-dc7d-4a3d-811a-dffe5dd06427">
