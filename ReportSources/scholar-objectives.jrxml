@@ -293,8 +293,9 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="4" y="60" width="816" height="1" uuid="585ddc97-c221-4a12-881a-508b8f990582">
+				<reportElement x="4" y="63" width="816" height="1" uuid="585ddc97-c221-4a12-881a-508b8f990582">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
