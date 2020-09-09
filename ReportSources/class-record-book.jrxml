@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="class-diary-book" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="7dc5cdf9-8f94-43cb-a2b6-91f22aeffc80">
 	<property name="ireport.zoom" value="0.9075000000000161"/>
 	<property name="ireport.x" value="0"/>
@@ -222,7 +222,7 @@
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "middle-school-exams-record.jasper"]]></subreportExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "elementary-school-exams-record.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
 					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="37677aa8-7571-4a5e-84f7-d1c7bc2811ad">
@@ -307,7 +307,22 @@
 			<band height="27" splitType="Stretch">
 				<printWhenExpression><![CDATA[$P{modelo_report} == "1"]]></printWhenExpression>
 				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<reportElement key="" stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="1c48664a-fdd5-4297-8bba-ce4a9e65a659">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="tipo_regra">
+						<subreportParameterExpression><![CDATA[$P{tipo_regra}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="modelo_report">
 						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -349,10 +364,25 @@
 	<group name="content-objectives" isStartNewColumn="true" isStartNewPage="true">
 		<groupExpression><![CDATA[true]]></groupExpression>
 		<groupHeader>
-			<band height="27">
+			<band height="32">
 				<printWhenExpression><![CDATA[$P{modelo_report} == "2"]]></printWhenExpression>
 				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<reportElement key="" stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="3242ad97-45a9-4fa4-89be-5221ecc4ef49">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="tipo_regra">
+						<subreportParameterExpression><![CDATA[$P{tipo_regra}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="modelo_report">
 						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -367,7 +397,22 @@
 			<band height="27">
 				<printWhenExpression><![CDATA[$P{modelo_report} == "2"]]></printWhenExpression>
 				<subreport>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<reportElement key="" stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="106222ca-7d63-4372-b9c4-206a51f66b5f">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="tipo_regra">
+						<subreportParameterExpression><![CDATA[$P{tipo_regra}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="modelo_report">
 						<subreportParameterExpression><![CDATA[$P{modelo_report}]]></subreportParameterExpression>
 					</subreportParameter>
