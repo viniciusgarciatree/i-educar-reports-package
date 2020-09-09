@@ -258,17 +258,6 @@
 				<text><![CDATA[Nº do SUS:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="145" width="100" height="15" uuid="50cfb1e3-cb54-4bee-9acf-72c806ea95e6">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nº Bolsa Família: ]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="380" y="145" width="60" height="15" uuid="80b94208-3517-40bb-97b5-543f9b8fc6ee">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -1137,17 +1126,6 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="280" y="158" width="95" height="1" uuid="96cffeb5-435c-4b5b-b0dc-33dc481faf0f">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
 				<reportElement x="314" y="180" width="90" height="1" uuid="66caa9ff-99fc-493b-8936-ccaad5eedb4f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -1889,7 +1867,7 @@ com a legislação municipal]]></text>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Orelhinha]]></text>
+				<text><![CDATA[Olhinho]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="464" y="264" width="90" height="15" uuid="9bc84b22-d912-4cd8-a07d-9a5c430487d6">

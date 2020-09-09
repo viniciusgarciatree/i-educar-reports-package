@@ -298,7 +298,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[DADOS DO ALUNOS]]></text>
+				<text><![CDATA[DADOS DO ALUNO]]></text>
 			</staticText>
 			<line>
 				<reportElement x="130" y="12" width="420" height="1" uuid="48498301-8dd5-4601-96d0-d318fdc7febf">
@@ -632,17 +632,6 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Nº do SUS:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="177" y="145" width="100" height="15" uuid="c004b3e5-5b9d-4460-ac80-2ad5293f6f3c">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nº Bolsa Família: ]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="380" y="145" width="60" height="15" uuid="9bc5c6bc-fcc0-4881-b058-28606c046ab7">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -926,17 +915,6 @@ com a legislação municipal]]></text>
 				</textElement>
 				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
 			</staticText>
-			<line>
-				<reportElement x="274" y="158" width="100" height="1" uuid="a501b72c-9c60-43bc-87f5-a03422c32b53">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
 			<line>
 				<reportElement x="85" y="244" width="90" height="1" uuid="9a27cdcb-d63e-4bcc-afbc-2df7ae84e28d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -1278,10 +1256,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Data da Matrícula:                                  Turma:                                                           Ano:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="66" width="50" height="15" uuid="0685902d-8e0a-4f48-8840-6fb9a15d6820">
+				<reportElement x="5" y="66" width="40" height="15" uuid="0685902d-8e0a-4f48-8840-6fb9a15d6820">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1289,7 +1267,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Turno:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="279" y="66" width="130" height="15" uuid="71057c79-8897-4084-af6f-d82798726a72">
+				<reportElement x="280" y="66" width="130" height="15" uuid="71057c79-8897-4084-af6f-d82798726a72">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -1311,10 +1289,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Educação Infantil   (   ) Ensino Fundamental   (   ) EJA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="66" width="219" height="15" uuid="cd7ab2ed-fe14-409f-a6cb-464079f9e877">
+				<reportElement x="45" y="66" width="235" height="15" uuid="cd7ab2ed-fe14-409f-a6cb-464079f9e877">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
@@ -1322,10 +1300,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Matutino    (   ) Vespertino    (   ) Noturno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="66" width="141" height="15" uuid="6e2e74dc-6b0e-4c97-9d03-62a0dae9726a">
+				<reportElement x="410" y="66" width="140" height="15" uuid="6e2e74dc-6b0e-4c97-9d03-62a0dae9726a">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
@@ -1443,10 +1421,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Data da Matrícula:                                  Turma:                                                           Ano:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="206" width="50" height="15" uuid="05155c64-2282-4da6-8430-48608e2000b4">
+				<reportElement x="5" y="206" width="40" height="15" uuid="05155c64-2282-4da6-8430-48608e2000b4">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1454,10 +1432,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Turno:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="279" y="206" width="130" height="15" uuid="15f5eed8-10f3-437c-8153-8d24501be38f">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<reportElement x="280" y="206" width="130" height="15" uuid="15f5eed8-10f3-437c-8153-8d24501be38f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1476,10 +1454,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Educação Infantil   (   ) Ensino Fundamental   (   ) EJA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="206" width="219" height="15" uuid="4d55c16f-7014-44cc-b8ac-0f20225930bb">
+				<reportElement x="45" y="206" width="235" height="15" uuid="4d55c16f-7014-44cc-b8ac-0f20225930bb">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
@@ -1487,7 +1465,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Matutino    (   ) Vespertino    (   ) Noturno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="206" width="141" height="15" uuid="cdf13410-1285-4a38-aeb1-9aea3f889af5">
+				<reportElement x="410" y="206" width="140" height="15" uuid="cdf13410-1285-4a38-aeb1-9aea3f889af5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1608,10 +1586,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Data da Matrícula:                                  Turma:                                                           Ano:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="346" width="50" height="15" uuid="1d483b4b-7d15-48e4-a56c-5c6dd4dbdcdc">
+				<reportElement x="5" y="346" width="40" height="15" uuid="1d483b4b-7d15-48e4-a56c-5c6dd4dbdcdc">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1619,10 +1597,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Turno:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="279" y="346" width="130" height="15" uuid="4aab0c87-c388-4447-b43d-7fddb35bc6c7">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<reportElement x="280" y="346" width="130" height="15" uuid="4aab0c87-c388-4447-b43d-7fddb35bc6c7">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1641,7 +1619,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Educação Infantil   (   ) Ensino Fundamental   (   ) EJA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="346" width="219" height="15" uuid="fe2f3bcd-d88d-4ccb-b10a-9e1baa0506b9">
+				<reportElement x="45" y="346" width="235" height="15" uuid="fe2f3bcd-d88d-4ccb-b10a-9e1baa0506b9">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1652,10 +1630,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Matutino    (   ) Vespertino    (   ) Noturno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="346" width="141" height="15" uuid="af90ab82-75fc-4ffd-bebc-3aabf69f23e2">
+				<reportElement x="410" y="346" width="140" height="15" uuid="af90ab82-75fc-4ffd-bebc-3aabf69f23e2">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
@@ -1773,10 +1751,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Data da Matrícula:                                  Turma:                                                           Ano:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="486" width="50" height="15" uuid="25404c37-2a44-4f58-b55c-85eeb2087464">
+				<reportElement x="5" y="486" width="45" height="15" uuid="25404c37-2a44-4f58-b55c-85eeb2087464">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1784,10 +1762,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Turno:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="279" y="486" width="130" height="15" uuid="6bc5edd8-cdb4-4e3f-bded-fad47cd4aa0f">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<reportElement x="280" y="486" width="130" height="15" uuid="6bc5edd8-cdb4-4e3f-bded-fad47cd4aa0f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1806,7 +1784,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Educação Infantil   (   ) Ensino Fundamental   (   ) EJA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="486" width="219" height="15" uuid="d92d17d5-3b5a-4e24-8c90-9d493092b615">
+				<reportElement x="45" y="486" width="235" height="15" uuid="d92d17d5-3b5a-4e24-8c90-9d493092b615">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1817,7 +1795,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Matutino    (   ) Vespertino    (   ) Noturno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="486" width="141" height="15" uuid="ce896248-a406-47e0-b124-89ed7d08ea33">
+				<reportElement x="410" y="486" width="140" height="15" uuid="ce896248-a406-47e0-b124-89ed7d08ea33">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1938,10 +1916,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Data da Matrícula:                                  Turma:                                                           Ano:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="626" width="50" height="15" uuid="7e061328-db56-4302-a458-4cb65c6dc9f3">
+				<reportElement x="5" y="626" width="45" height="15" uuid="7e061328-db56-4302-a458-4cb65c6dc9f3">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1949,10 +1927,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Turno:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="279" y="626" width="130" height="15" uuid="c0ae89ef-b9f5-4601-9c43-b626b19ec67d">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<reportElement x="280" y="626" width="130" height="15" uuid="c0ae89ef-b9f5-4601-9c43-b626b19ec67d">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
@@ -1971,10 +1949,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Educação Infantil   (   ) Ensino Fundamental   (   ) EJA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="626" width="219" height="15" uuid="c45d18f3-19d9-4d32-82fa-d782a9f49961">
+				<reportElement x="45" y="626" width="235" height="15" uuid="c45d18f3-19d9-4d32-82fa-d782a9f49961">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
@@ -1982,10 +1960,10 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Matutino    (   ) Vespertino    (   ) Noturno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="626" width="141" height="15" uuid="32e96526-f535-4743-8f59-196b3ea5d015">
+				<reportElement x="410" y="626" width="140" height="15" uuid="32e96526-f535-4743-8f59-196b3ea5d015">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
