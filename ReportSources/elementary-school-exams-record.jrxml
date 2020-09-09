@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="elementary-school-exams-record" language="groovy" pageWidth="825" pageHeight="595" orientation="Landscape" columnWidth="825" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isTitleNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="d6abb663-d0b1-4357-b320-bf74043fa870">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="443"/>
@@ -106,7 +106,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Registro de avaliação]]></text>
+				<text><![CDATA[Registro de avaliaçãos]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="274" y="20" width="242" height="10" uuid="f91cb740-ccc8-44bb-9e54-fe458535798d">
