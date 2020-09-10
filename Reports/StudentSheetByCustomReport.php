@@ -819,7 +819,6 @@ ORDER BY seque_fecha,
                     'frequencia'     => '',
                 ];
             }
-            dd("aqui",$this->args['branco']);
             if ($this->args['modelo'] == 2) {
                 $arrData[0]['turma'] = "Berçário I";
                 $arrData[1]['turma'] = "Berçário II";
