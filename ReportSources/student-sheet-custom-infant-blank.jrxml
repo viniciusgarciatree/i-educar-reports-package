@@ -85,7 +85,8 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="517" splitType="Stretch">
+		<band height="525" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
 				<reportElement x="5" y="0" width="130" height="15" uuid="09815a2b-de04-4efd-a7cc-4cf73177a336">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -911,10 +912,11 @@
 				</graphicElement>
 			</line>
 			<subreport>
-				<reportElement stretchType="RelativeToBandHeight" x="5" y="445" width="545" height="67" uuid="367e9f06-37e1-4096-8268-41a62074ef22">
+				<reportElement stretchType="RelativeToBandHeight" x="5" y="450" width="545" height="67" uuid="367e9f06-37e1-4096-8268-41a62074ef22">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<subreportParameter name="modelo">
 					<subreportParameterExpression><![CDATA[$P{modelo}]]></subreportParameterExpression>
