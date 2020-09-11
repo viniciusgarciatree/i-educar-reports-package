@@ -170,6 +170,9 @@
 	<field name="fisica_deficiencia" class="java.lang.String"/>
 	<field name="tipo_transporte" class="java.lang.String"/>
 	<field name="dados_escolares" class="java.lang.String"/>
+	<field name="empresa_pai" class="java.lang.String"/>
+	<field name="empresa_mae" class="java.lang.String"/>
+	<field name="outra_escola" class="java.lang.String"/>
 	<background>
 		<band height="860" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -905,17 +908,6 @@ com a legislação municipal]]></text>
 				</textElement>
 				<text><![CDATA[Outros Telefones de Contato:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="170" y="342" width="100" height="15" uuid="5a16389e-ef4a-4651-827d-7cc29ae4f16e">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
 			<line>
 				<reportElement x="85" y="244" width="90" height="1" uuid="9a27cdcb-d63e-4bcc-afbc-2df7ae84e28d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -933,28 +925,6 @@ com a legislação municipal]]></text>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="290" y="244" width="260" height="1" uuid="415c5f67-87ce-49fa-abbf-4f05f924f2bf">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="290" y="311" width="260" height="1" uuid="4453d0b4-58ae-4114-abc3-495bde169132">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
@@ -1211,7 +1181,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{ddd}.toString() + $F{fone}.toString() + " " + $F{ddd2}.toString() + $F{fone2}.toString() + " " + $F{ddd3}.toString() + $F{fone3}.toString()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="370" y="342" width="178" height="15" uuid="72cf91ea-7624-4f46-85bd-a95d1d12b5dc">
+				<reportElement x="372" y="342" width="178" height="15" uuid="72cf91ea-7624-4f46-85bd-a95d1d12b5dc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1219,6 +1189,57 @@ com a legislação municipal]]></text>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{renda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="170" y="342" width="104" height="15" uuid="e48360f3-6990-4001-bf28-ff1491ce3576">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{beneficio}.contentEquals( "Vulnerabilidade" ) ? "( X ) Sim   (   ) Não" : "(   ) Sim   ( X ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="145" width="104" height="15" uuid="4f00aee8-aa18-4f60-8e10-2ed0f5f30928">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{beneficio}.contentEquals( "Bolsa Familia" ) ? "( X ) Sim   (   ) Não" : "(   ) Sim   ( X ) Não"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="145" width="91" height="15" uuid="7a8986b8-b837-4651-b0fe-bbfb5fcd06db">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bolsa Família?]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="298" width="260" height="15" uuid="653810ae-c18e-49f4-b434-b720b208a835">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_pai}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="231" width="260" height="15" uuid="5754726d-2f2c-4fbf-8511-56df0bd908f7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_mae}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="130" splitType="Stretch">

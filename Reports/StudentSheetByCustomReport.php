@@ -61,6 +61,7 @@ class StudentSheetbyCustomReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
+        //dd($this->getSqlReport());
         return $this->args['branco'] === 'true'
             ? $this->getSqlBlankReport()
             : $this->getSqlReport();
@@ -134,6 +135,8 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
     COALESCE(moradia_aluno.quant_pessoas::text, '' ) as quant_pessoas,
     COALESCE(ficha_medica_aluno.alergia_medicamento, '') as alergia_medicamento,
     COALESCE(ficha_medica_aluno.desc_alergia_medicamento, '' ) as desc_alergia_medicamento,
+    COALESCE(ficha_medica_aluno.alergia_alimento, '') as alergia_alimento,
+    COALESCE(ficha_medica_aluno.desc_alergia_alimento, '') as desc_alergia_alimento,
     
   COALESCE((SELECT 
     string_agg(deficiencia.nm_deficiencia, ', ')
@@ -198,6 +201,12 @@ CASE WHEN ARRAY[11] <@ aluno.veiculo_transporte_escolar THEN 'Ferroviário - Tre
                      (SELECT public.formata_cpf(fs.cpf)
                       FROM cadastro.fisica fs
                       WHERE fs.idpes = fisica.idpes_mae))) AS cpf_mae,
+                      
+  (SELECT COALESCE(
+                     (SELECT fisica.empresa
+                      FROM cadastro.fisica as fisica_cpf
+                      WHERE fisica_cpf.idpes = fisica.idpes_mae),
+                     '')) AS empresa_mae,
 
   (SELECT COALESCE(
                      (SELECT public.formata_cpf(fisica_cpf.cpf)
@@ -206,6 +215,11 @@ CASE WHEN ARRAY[11] <@ aluno.veiculo_transporte_escolar THEN 'Ferroviário - Tre
                      (SELECT public.formata_cpf(fs.cpf)
                       FROM cadastro.fisica fs
                       WHERE fs.idpes = fisica.idpes_pai))) AS cpf_pai,
+                      
+  (SELECT COALESCE(
+                     (SELECT empresa
+                      FROM cadastro.fisica as fisica_cpf
+                      WHERE fisica_cpf.idpes = fisica.idpes_mae),'')) AS empresa_pai,
 
   (SELECT textcat_all(aluno_beneficio.nm_beneficio)
    FROM pmieducar.aluno_beneficio,
@@ -756,7 +770,18 @@ CASE WHEN ARRAY[11] <@ aluno.veiculo_transporte_escolar THEN 'Ferroviário - Tre
        (SELECT max(cod_matricula)
         FROM pmieducar.matricula AS m
         WHERE m.cod_matricula = {$matricula}
-          AND m.ativo = 1)) AS data_matricula
+          AND m.ativo = 1)) AS data_matricula,
+   (
+   SELECT
+outra_pessoa.nome
+FROM pmieducar.turma as outra_turma
+INNER JOIN pmieducar.matricula_turma as outra_matricula_turma ON (outra_matricula_turma.ref_cod_turma = outra_turma.cod_turma)
+INNER JOIN pmieducar.escola as outra_escola ON outra_escola.cod_escola = outra_turma.ref_ref_cod_escola
+INNER JOIN cadastro.pessoa as outra_pessoa ON outra_pessoa.idpes = outra_escola.ref_idpes
+WHERE outra_escola.cod_escola <> escola.cod_escola
+ORDER BY matricula_turma.data_cadastro DESC
+LIMIT 1
+   ) AS outra_escola
 FROM pmieducar.instituicao
 INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
 INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
@@ -849,7 +874,7 @@ WHERE aluno_ciclos.cod_aluno = matricula.ref_cod_aluno
 AND turma_serie.cod_turma = matricula_turma.ref_cod_turma LIMIT 1
 ),'') as ciclo
 ,COALESCE(turma_turno.nome,'') as turno
-,COALESCE(modules.frequencia_da_matricula(matricula.cod_matricula)::text,'-') AS frequencia
+,COALESCE(modules.frequencia_da_matricula(matricula.cod_matricula)::text,'') AS frequencia
 FROM pmieducar.matricula 
 INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_matricula =  matricula.cod_matricula
 INNER JOIN pmieducar.turma ON matricula_turma.ref_cod_turma = turma.cod_turma
