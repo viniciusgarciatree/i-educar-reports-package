@@ -237,63 +237,7 @@
 		<band height="750" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="5" y="0" width="130" height="15" uuid="09815a2b-de04-4efd-a7cc-4cf73177a336">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Instituição de Ensino:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="5" y="18" width="60" height="15" uuid="5b66eb2b-c3b1-46e7-bcd4-8f5f16ef1cd5">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Endereço:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="5" y="39" width="70" height="15" uuid="61ab2462-fc9d-4e61-9f62-03221d5cb207">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Localidade:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="285" y="39" width="75" height="15" uuid="8547b6d1-6ec0-4cab-a8f8-e965581f1f01">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Município:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="462" y="39" width="55" height="15" uuid="db0e7601-ce70-4280-8413-399bf90d1f74">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Estado:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="5" y="62" width="545" height="15" backcolor="#BFBFBF" uuid="0026977d-4966-4910-bf3c-862f55334163">
+				<reportElement mode="Opaque" x="5" y="5" width="545" height="15" backcolor="#BFBFBF" uuid="0026977d-4966-4910-bf3c-862f55334163">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -304,63 +248,8 @@
 				</textElement>
 				<text><![CDATA[DADOS DO ALUNO]]></text>
 			</staticText>
-			<line>
-				<reportElement x="130" y="12" width="420" height="1" uuid="48498301-8dd5-4601-96d0-d318fdc7febf">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="65" y="30" width="485" height="1" uuid="a699fdc4-86b0-4dd7-90a2-1851d0eb7a14">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="75" y="51" width="205" height="1" uuid="4b493998-d885-4a84-b32a-ff485e4f2b64">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="345" y="51" width="108" height="1" uuid="d9bc0aa9-ad3f-40a5-93aa-ec51fceb704b">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="505" y="51" width="45" height="1" uuid="2118bd0d-1f5f-4daf-85fa-c86c1bfa13ca">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
 			<staticText>
-				<reportElement x="5" y="404" width="545" height="15" uuid="f7f13fd6-0a46-4e7f-b6c2-f297aadfc212">
+				<reportElement x="5" y="347" width="545" height="15" uuid="f7f13fd6-0a46-4e7f-b6c2-f297aadfc212">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -371,7 +260,7 @@
 				<text><![CDATA[Possui necessidades alimentares especiais? (Diabetes, alergias, intolerâncias, obesidades, etc)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="425" width="545" height="15" uuid="5e5cdc39-c82f-40e9-8aa6-956ff1b8c213">
+				<reportElement x="5" y="368" width="545" height="15" uuid="5e5cdc39-c82f-40e9-8aa6-956ff1b8c213">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
@@ -381,7 +270,7 @@
 				<text><![CDATA[(   ) Sim   (   ) Não. Quais:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="149" y="440" width="400" height="1" uuid="147a37eb-7689-4a58-9698-a6759e792f5d">
+				<reportElement x="149" y="383" width="400" height="1" uuid="147a37eb-7689-4a58-9698-a6759e792f5d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -392,7 +281,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="5" y="460" width="545" height="1" uuid="942ca96d-6281-4cab-86d3-696ce8447e7e">
+				<reportElement x="5" y="403" width="545" height="1" uuid="942ca96d-6281-4cab-86d3-696ce8447e7e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -403,7 +292,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="5" y="467" width="455" height="15" uuid="327fd7cd-480e-436a-8140-cce109c5f0cd">
+				<reportElement x="5" y="410" width="455" height="15" uuid="327fd7cd-480e-436a-8140-cce109c5f0cd">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -414,7 +303,7 @@
 				<text><![CDATA[O responsável conhece e concorda com as normas de funcionamento da escola?]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="461" y="467" width="100" height="15" uuid="aa661e0b-8f27-4cc8-9f4d-37d51ef7037a">
+				<reportElement x="461" y="410" width="100" height="15" uuid="aa661e0b-8f27-4cc8-9f4d-37d51ef7037a">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -425,7 +314,7 @@
 				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="631" width="370" height="15" uuid="9eaee23e-1144-4c81-9bf0-d3f4bbe70c27">
+				<reportElement x="5" y="574" width="370" height="15" uuid="9eaee23e-1144-4c81-9bf0-d3f4bbe70c27">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -436,7 +325,7 @@
 				<text><![CDATA[Assinatura do responsável]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="415" y="614" width="130" height="15" uuid="e8413648-8ba9-47fa-9338-3883cfc2c76a">
+				<reportElement x="415" y="557" width="130" height="15" uuid="e8413648-8ba9-47fa-9338-3883cfc2c76a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -447,7 +336,7 @@
 				<text><![CDATA[_____/______/________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="415" y="631" width="130" height="15" uuid="5bb141b1-e82a-4a3a-b848-6712fb3d02a3">
+				<reportElement x="415" y="574" width="130" height="15" uuid="5bb141b1-e82a-4a3a-b848-6712fb3d02a3">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -458,7 +347,7 @@
 				<text><![CDATA[Data]]></text>
 			</staticText>
 			<line>
-				<reportElement x="73" y="626" width="235" height="1" uuid="12f6e619-c84d-45f5-8edf-fd5701a840a2">
+				<reportElement x="73" y="569" width="235" height="1" uuid="12f6e619-c84d-45f5-8edf-fd5701a840a2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -469,7 +358,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="5" y="517" width="545" height="15" uuid="f40aa20a-cb50-467f-a2e7-6edc790b74a1">
+				<reportElement x="5" y="460" width="545" height="15" uuid="f40aa20a-cb50-467f-a2e7-6edc790b74a1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -480,7 +369,7 @@
 				<text><![CDATA[Assinatura do responsável]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="561" width="100" height="15" uuid="b7e25bdc-6538-4cd9-8d2f-ccfe746d9a12">
+				<reportElement x="5" y="504" width="100" height="15" uuid="b7e25bdc-6538-4cd9-8d2f-ccfe746d9a12">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -491,7 +380,7 @@
 				<text><![CDATA[(     ) Idade]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="5" y="539" width="545" height="15" backcolor="#BFBFBF" uuid="49b97564-a013-4c47-824f-1b51cb05b805">
+				<reportElement mode="Opaque" x="5" y="482" width="545" height="15" backcolor="#BFBFBF" uuid="49b97564-a013-4c47-824f-1b51cb05b805">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -503,7 +392,7 @@
 				<text><![CDATA[MOTIVO DA SAÍDA DA INSTITUIÇÃO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="583" width="100" height="15" uuid="ee775397-d1ad-468e-9fd2-919fca48a008">
+				<reportElement x="5" y="526" width="100" height="15" uuid="ee775397-d1ad-468e-9fd2-919fca48a008">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -514,7 +403,7 @@
 				<text><![CDATA[(     ) Transferência]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="561" width="100" height="15" uuid="3c00a145-f286-4f07-849e-3bc38e7efbe9">
+				<reportElement x="180" y="504" width="100" height="15" uuid="3c00a145-f286-4f07-849e-3bc38e7efbe9">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -525,7 +414,7 @@
 				<text><![CDATA[(     ) Desistência]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="583" width="100" height="15" uuid="cabcf817-497e-42fc-ba84-3cae667d3b5d">
+				<reportElement x="180" y="526" width="100" height="15" uuid="cabcf817-497e-42fc-ba84-3cae667d3b5d">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -536,7 +425,7 @@
 				<text><![CDATA[(     ) Abandono]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="307" y="561" width="243" height="36" uuid="a63aebbb-6bdd-4ca5-a9cb-8c12c5d36286">
+				<reportElement x="307" y="504" width="243" height="36" uuid="a63aebbb-6bdd-4ca5-a9cb-8c12c5d36286">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -549,7 +438,7 @@
 com a legislação municipal]]></text>
 			</staticText>
 			<line>
-				<reportElement x="160" y="512" width="235" height="1" uuid="74f4d350-e41d-4cad-97ef-e09b62e59451">
+				<reportElement x="160" y="455" width="235" height="1" uuid="74f4d350-e41d-4cad-97ef-e09b62e59451">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -560,7 +449,7 @@ com a legislação municipal]]></text>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="5" y="82" width="40" height="15" uuid="cfc3f319-944e-480b-bbad-a253333cec29">
+				<reportElement x="5" y="25" width="40" height="15" uuid="cfc3f319-944e-480b-bbad-a253333cec29">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -571,7 +460,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="103" width="120" height="15" uuid="7c31fea4-37fa-4bac-bfa2-0da8dcfeb604">
+				<reportElement x="5" y="46" width="120" height="15" uuid="7c31fea4-37fa-4bac-bfa2-0da8dcfeb604">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -582,7 +471,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Data de Nascimento:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="103" width="35" height="15" uuid="6f378e51-6e77-4b28-baf2-bf04d37e6e1b">
+				<reportElement x="200" y="46" width="35" height="15" uuid="6f378e51-6e77-4b28-baf2-bf04d37e6e1b">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -593,7 +482,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Sexo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="103" width="55" height="15" uuid="e25860a7-8760-411a-88d6-2670e7b6bc4c">
+				<reportElement x="370" y="46" width="55" height="15" uuid="e25860a7-8760-411a-88d6-2670e7b6bc4c">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -603,7 +492,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[ID Censo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="124" width="140" height="15" uuid="90cf2100-6b65-4100-9367-cd82a5319510">
+				<reportElement x="5" y="67" width="140" height="15" uuid="90cf2100-6b65-4100-9367-cd82a5319510">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -614,7 +503,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Necessidades Especiais:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="124" width="30" height="15" uuid="bcac75de-8e64-49da-a208-898e7fbb01b6">
+				<reportElement x="280" y="67" width="30" height="15" uuid="bcac75de-8e64-49da-a208-898e7fbb01b6">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -625,7 +514,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[CPF:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="145" width="65" height="15" uuid="9e3cfc70-f7ff-4bca-b3c0-28ddabb67a7b">
+				<reportElement x="5" y="88" width="65" height="15" uuid="9e3cfc70-f7ff-4bca-b3c0-28ddabb67a7b">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -636,7 +525,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Nº do SUS:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="145" width="60" height="15" uuid="9bc5c6bc-fcc0-4881-b058-28606c046ab7">
+				<reportElement x="380" y="88" width="60" height="15" uuid="9bc5c6bc-fcc0-4881-b058-28606c046ab7">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -647,7 +536,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Nº do NIS:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="167" width="85" height="15" uuid="931730b8-b652-42a4-ba40-77349c8a4aff">
+				<reportElement x="5" y="110" width="85" height="15" uuid="931730b8-b652-42a4-ba40-77349c8a4aff">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -658,7 +547,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Nacionalidade: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="234" y="167" width="80" height="15" uuid="7f72f64f-4bfb-4638-b5e0-aeb8c26d603f">
+				<reportElement x="234" y="110" width="80" height="15" uuid="7f72f64f-4bfb-4638-b5e0-aeb8c26d603f">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -669,7 +558,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Naturalidade: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="493" y="167" width="20" height="15" uuid="0b895229-c2f5-4197-b1c4-244d91489472">
+				<reportElement x="493" y="110" width="20" height="15" uuid="0b895229-c2f5-4197-b1c4-244d91489472">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -680,7 +569,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[UF:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="189" width="55" height="15" uuid="1cf653ac-87e7-40fd-87c2-ae6e0488f303">
+				<reportElement x="5" y="132" width="55" height="15" uuid="1cf653ac-87e7-40fd-87c2-ae6e0488f303">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -691,7 +580,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Raça/Cor:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="211" width="55" height="15" uuid="47beebc2-72f1-498d-a624-e7c95c84a9df">
+				<reportElement x="5" y="154" width="55" height="15" uuid="47beebc2-72f1-498d-a624-e7c95c84a9df">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -702,7 +591,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Filiação1:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="453" y="211" width="40" height="15" uuid="4a0aaf3f-67f2-4ebd-982b-fd1d51945341">
+				<reportElement x="453" y="154" width="40" height="15" uuid="4a0aaf3f-67f2-4ebd-982b-fd1d51945341">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -713,7 +602,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Idade:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="523" y="211" width="27" height="15" uuid="9d273f6a-9eb4-42ff-90d3-bb1c252d3728">
+				<reportElement x="523" y="154" width="27" height="15" uuid="9d273f6a-9eb4-42ff-90d3-bb1c252d3728">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -724,7 +613,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[anos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="231" width="80" height="15" uuid="7cb416b6-67f4-45d4-b059-d584972436f4">
+				<reportElement x="5" y="174" width="80" height="15" uuid="7cb416b6-67f4-45d4-b059-d584972436f4">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -735,7 +624,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Escolaridade:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="231" width="110" height="15" uuid="0f8606cc-4895-45fd-ba9a-6561229ba97a">
+				<reportElement x="180" y="174" width="110" height="15" uuid="0f8606cc-4895-45fd-ba9a-6561229ba97a">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -746,7 +635,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Local de Trabalho:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="255" width="60" height="15" uuid="b3aa3d57-70ad-4ab8-a733-4d73dbd11b43">
+				<reportElement x="5" y="198" width="60" height="15" uuid="b3aa3d57-70ad-4ab8-a733-4d73dbd11b43">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -757,7 +646,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Profissão:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="235" y="255" width="55" height="15" uuid="06319f39-7060-4183-a02e-5c0d490b10ea">
+				<reportElement x="235" y="198" width="55" height="15" uuid="06319f39-7060-4183-a02e-5c0d490b10ea">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -768,7 +657,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Telefone:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="298" width="80" height="15" uuid="ee0d6eb5-f9c2-4786-b253-c3c05752ec0e">
+				<reportElement x="5" y="241" width="80" height="15" uuid="ee0d6eb5-f9c2-4786-b253-c3c05752ec0e">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -779,7 +668,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Escolaridade:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="319" width="60" height="15" uuid="14b2c4bf-0c94-42aa-8848-5aa2d6f326fd">
+				<reportElement x="5" y="262" width="60" height="15" uuid="14b2c4bf-0c94-42aa-8848-5aa2d6f326fd">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -790,7 +679,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Profissão:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="523" y="277" width="27" height="15" uuid="4b481626-5d05-4df0-b369-513a1218ec93">
+				<reportElement x="523" y="220" width="27" height="15" uuid="4b481626-5d05-4df0-b369-513a1218ec93">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -800,7 +689,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[anos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="298" width="110" height="15" uuid="a953fcc2-8e0d-405a-9564-c57c862dfe5e">
+				<reportElement x="180" y="241" width="110" height="15" uuid="a953fcc2-8e0d-405a-9564-c57c862dfe5e">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -811,7 +700,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Local de Trabalho:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="453" y="277" width="40" height="15" uuid="56e474d3-0e3d-4b80-85ab-7490f02e3e36">
+				<reportElement x="453" y="220" width="40" height="15" uuid="56e474d3-0e3d-4b80-85ab-7490f02e3e36">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -822,7 +711,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Idade:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="235" y="319" width="55" height="15" uuid="a3add972-bc24-46cc-a2bb-1440bdaacbff">
+				<reportElement x="235" y="262" width="55" height="15" uuid="a3add972-bc24-46cc-a2bb-1440bdaacbff">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -833,7 +722,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Telefone:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="277" width="55" height="15" uuid="76759ab1-a3da-40f3-91f5-38cb9016bd58">
+				<reportElement x="5" y="220" width="55" height="15" uuid="76759ab1-a3da-40f3-91f5-38cb9016bd58">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -843,7 +732,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Filiação2:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="342" width="165" height="15" uuid="bbe4d7f2-dbe1-450f-997c-ddc79076f53c">
+				<reportElement x="5" y="285" width="165" height="15" uuid="bbe4d7f2-dbe1-450f-997c-ddc79076f53c">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -854,7 +743,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Situação de Vulnerabilidade:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="342" width="90" height="15" uuid="c413decb-827b-4132-bebf-0c20d1829378">
+				<reportElement x="280" y="285" width="90" height="15" uuid="c413decb-827b-4132-bebf-0c20d1829378">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -865,7 +754,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Renda Familiar:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="362" width="60" height="15" uuid="f8d6fc13-7043-4765-b6b4-2486a4b216be">
+				<reportElement x="5" y="305" width="60" height="15" uuid="f8d6fc13-7043-4765-b6b4-2486a4b216be">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -876,7 +765,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Endereço:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="464" y="362" width="16" height="15" uuid="df592ab3-07f0-4b1e-b5a6-387da30eee25">
+				<reportElement x="464" y="305" width="16" height="15" uuid="df592ab3-07f0-4b1e-b5a6-387da30eee25">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -887,7 +776,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Nº:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="383" width="40" height="15" uuid="f3740c3c-9fbe-4687-9265-078791d19045">
+				<reportElement x="5" y="326" width="40" height="15" uuid="f3740c3c-9fbe-4687-9265-078791d19045">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -898,7 +787,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Bairro:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="383" width="170" height="15" uuid="d7d11a15-f333-4465-bef5-48498060c9b1">
+				<reportElement x="180" y="326" width="170" height="15" uuid="d7d11a15-f333-4465-bef5-48498060c9b1">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -909,7 +798,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Outros Telefones de Contato:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="85" y="244" width="90" height="1" uuid="9a27cdcb-d63e-4bcc-afbc-2df7ae84e28d">
+				<reportElement x="85" y="187" width="90" height="1" uuid="9a27cdcb-d63e-4bcc-afbc-2df7ae84e28d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -920,7 +809,7 @@ com a legislação municipal]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="85" y="311" width="90" height="1" uuid="4667995e-1105-4504-abe8-fa0a1e268702">
+				<reportElement x="85" y="254" width="90" height="1" uuid="4667995e-1105-4504-abe8-fa0a1e268702">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -931,7 +820,7 @@ com a legislação municipal]]></text>
 				</graphicElement>
 			</line>
 			<textField isBlankWhenNull="true">
-				<reportElement x="45" y="82" width="505" height="15" uuid="b8ea685f-e7d8-41f8-913e-61fcc3be0bd3">
+				<reportElement x="45" y="25" width="505" height="15" uuid="b8ea685f-e7d8-41f8-913e-61fcc3be0bd3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -940,7 +829,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="125" y="103" width="75" height="15" uuid="d52e376b-af5e-430c-94a5-813615c87726">
+				<reportElement x="125" y="46" width="75" height="15" uuid="d52e376b-af5e-430c-94a5-813615c87726">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -949,7 +838,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{data_nasc}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="236" y="103" width="100" height="15" uuid="374326ae-dc67-43c3-ac77-ffde1bd4c582">
+				<reportElement x="236" y="46" width="100" height="15" uuid="374326ae-dc67-43c3-ac77-ffde1bd4c582">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -959,7 +848,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{sexo}.equals( "M" ) ? "( X ) M   (   ) F" : $F{sexo}.equals( "F" ) ?"(   ) M   ( X ) F" : "(   ) M   (   ) F"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="425" y="103" width="125" height="15" uuid="06573a81-a20a-4bf5-8036-4b78466b21f6">
+				<reportElement x="425" y="46" width="125" height="15" uuid="06573a81-a20a-4bf5-8036-4b78466b21f6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -969,7 +858,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{cod_inep}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="146" y="124" width="100" height="15" uuid="2e9a8f6c-3c8f-4160-a44a-419ba61f87ea">
+				<reportElement x="146" y="67" width="100" height="15" uuid="2e9a8f6c-3c8f-4160-a44a-419ba61f87ea">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -979,7 +868,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{deficiencia}.isEmpty() ? "(   ) Sim   ( X ) Não" : "( X ) Sim   (   ) Não"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="309" y="124" width="241" height="15" uuid="3152ff97-60bc-4cdf-96b5-9ee8fe56db15">
+				<reportElement x="309" y="67" width="241" height="15" uuid="3152ff97-60bc-4cdf-96b5-9ee8fe56db15">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -989,7 +878,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="70" y="145" width="105" height="15" uuid="43ad67ed-1fa2-4eda-9b99-5106f0118e9f">
+				<reportElement x="70" y="88" width="105" height="15" uuid="43ad67ed-1fa2-4eda-9b99-5106f0118e9f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -999,7 +888,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{codigo_sus}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="440" y="145" width="110" height="15" uuid="babf61dc-e7b7-47ab-a939-38fe39e2188b">
+				<reportElement x="440" y="88" width="110" height="15" uuid="babf61dc-e7b7-47ab-a939-38fe39e2188b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1009,7 +898,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{pis}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="90" y="167" width="140" height="15" uuid="7a1b8d0a-fdbc-4e6b-9a24-57b32298bda2">
+				<reportElement x="90" y="110" width="140" height="15" uuid="7a1b8d0a-fdbc-4e6b-9a24-57b32298bda2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1019,7 +908,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{nacionalidade}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="314" y="167" width="179" height="15" uuid="192adf81-8643-49cd-a9e2-c931c6e95499">
+				<reportElement x="314" y="110" width="179" height="15" uuid="192adf81-8643-49cd-a9e2-c931c6e95499">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1029,7 +918,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{municipio_nasc}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="513" y="167" width="37" height="15" uuid="b805fb3b-e3e5-4737-9e71-dfc59bda9f48">
+				<reportElement x="513" y="110" width="37" height="15" uuid="b805fb3b-e3e5-4737-9e71-dfc59bda9f48">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1039,7 +928,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{municipio_uf}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="60" y="189" width="490" height="15" uuid="dac1c464-9d51-4fec-82dd-9f148964cb46">
+				<reportElement x="60" y="132" width="490" height="15" uuid="dac1c464-9d51-4fec-82dd-9f148964cb46">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1059,7 +948,7 @@ com a legislação municipal]]></text>
 :"(   ) Branca    (   ) Negra    (   ) Parda    (   ) Amarela    (   ) Indígena"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="65" y="211" width="385" height="15" uuid="9e68af34-0833-4a92-b400-ea4cd0358ec6">
+				<reportElement x="65" y="154" width="385" height="15" uuid="9e68af34-0833-4a92-b400-ea4cd0358ec6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -1070,7 +959,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{nm_mae}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="494" y="211" width="27" height="15" uuid="28698b3c-af1c-4e56-a9f0-1a0fb6e202d3">
+				<reportElement x="494" y="154" width="27" height="15" uuid="28698b3c-af1c-4e56-a9f0-1a0fb6e202d3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1080,7 +969,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{idade_mae}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="495" y="277" width="27" height="15" uuid="45559e89-c1be-4550-9331-04cf76c35e35">
+				<reportElement x="495" y="220" width="27" height="15" uuid="45559e89-c1be-4550-9331-04cf76c35e35">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1090,7 +979,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{idade_pai}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="65" y="255" width="165" height="15" uuid="6472e99f-cb1c-49fc-897e-8efd1dc91556">
+				<reportElement x="65" y="198" width="165" height="15" uuid="6472e99f-cb1c-49fc-897e-8efd1dc91556">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1100,7 +989,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{profissao_mae}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="290" y="255" width="260" height="15" uuid="afdf3e68-1c8f-4e96-87c3-a30e755f42b3">
+				<reportElement x="290" y="198" width="260" height="15" uuid="afdf3e68-1c8f-4e96-87c3-a30e755f42b3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1110,7 +999,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{telefone_mae}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="65" y="277" width="385" height="15" uuid="fac63965-5d81-4ebf-b39d-88fec54b7aa7">
+				<reportElement x="65" y="220" width="385" height="15" uuid="fac63965-5d81-4ebf-b39d-88fec54b7aa7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1121,7 +1010,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{nm_pai}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="65" y="319" width="165" height="15" uuid="9c43682d-ae13-4212-92a7-17f2030363da">
+				<reportElement x="65" y="262" width="165" height="15" uuid="9c43682d-ae13-4212-92a7-17f2030363da">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1131,7 +1020,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{profissao_pai}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="290" y="319" width="260" height="15" uuid="426923c0-dc08-44f8-b759-a53dfaa87e92">
+				<reportElement x="290" y="262" width="260" height="15" uuid="426923c0-dc08-44f8-b759-a53dfaa87e92">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1141,7 +1030,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{telefone_pai}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="65" y="362" width="395" height="15" uuid="1e4af014-6a64-48f2-be98-957fe7c97147">
+				<reportElement x="65" y="305" width="395" height="15" uuid="1e4af014-6a64-48f2-be98-957fe7c97147">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1151,7 +1040,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{logradouro}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="480" y="362" width="70" height="15" uuid="45de55bb-aa85-4b78-bdbd-4fd84598d62c">
+				<reportElement x="480" y="305" width="70" height="15" uuid="45de55bb-aa85-4b78-bdbd-4fd84598d62c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1161,7 +1050,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="45" y="383" width="130" height="15" uuid="9047a875-f1e4-4e67-9db1-498913797eda">
+				<reportElement x="45" y="326" width="130" height="15" uuid="9047a875-f1e4-4e67-9db1-498913797eda">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1171,7 +1060,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="349" y="383" width="200" height="15" uuid="c558d234-544a-4285-bd93-717572eedf46">
+				<reportElement x="349" y="326" width="200" height="15" uuid="c558d234-544a-4285-bd93-717572eedf46">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1181,7 +1070,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{ddd}.toString() + $F{fone}.toString() + " " + $F{ddd2}.toString() + $F{fone2}.toString() + " " + $F{ddd3}.toString() + $F{fone3}.toString()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="372" y="342" width="178" height="15" uuid="72cf91ea-7624-4f46-85bd-a95d1d12b5dc">
+				<reportElement x="372" y="285" width="178" height="15" uuid="72cf91ea-7624-4f46-85bd-a95d1d12b5dc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1191,27 +1080,27 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{renda}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="170" y="342" width="104" height="15" uuid="e48360f3-6990-4001-bf28-ff1491ce3576">
+				<reportElement x="170" y="285" width="104" height="15" uuid="e48360f3-6990-4001-bf28-ff1491ce3576">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{beneficio}.contentEquals( "Vulnerabilidade" ) ? "( X ) Sim   (   ) Não" : "(   ) Sim   ( X ) Não"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{beneficio}.contains( "Vulnerabilidade" ) ? "( X ) Sim   (   ) Não" : "(   ) Sim   ( X ) Não"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="271" y="145" width="104" height="15" uuid="4f00aee8-aa18-4f60-8e10-2ed0f5f30928">
+				<reportElement x="271" y="88" width="104" height="15" uuid="4f00aee8-aa18-4f60-8e10-2ed0f5f30928">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{beneficio}.contentEquals( "Bolsa Familia" ) ? "( X ) Sim   (   ) Não" : "(   ) Sim   ( X ) Não"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{beneficio}.contains( "Bolsa Família" ) ? "( X ) Sim   (   ) Não" : "(   ) Sim   ( X ) Não"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="180" y="145" width="91" height="15" uuid="7a8986b8-b837-4651-b0fe-bbfb5fcd06db">
+				<reportElement x="180" y="88" width="91" height="15" uuid="7a8986b8-b837-4651-b0fe-bbfb5fcd06db">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -1222,7 +1111,7 @@ com a legislação municipal]]></text>
 				<text><![CDATA[Bolsa Família?]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="290" y="298" width="260" height="15" uuid="653810ae-c18e-49f4-b434-b720b208a835">
+				<reportElement x="290" y="241" width="260" height="15" uuid="653810ae-c18e-49f4-b434-b720b208a835">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1232,7 +1121,7 @@ com a legislação municipal]]></text>
 				<textFieldExpression><![CDATA[$F{empresa_pai}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="290" y="231" width="260" height="15" uuid="5754726d-2f2c-4fbf-8511-56df0bd908f7">
+				<reportElement x="290" y="174" width="260" height="15" uuid="5754726d-2f2c-4fbf-8511-56df0bd908f7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
