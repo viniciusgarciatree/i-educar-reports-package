@@ -203,9 +203,9 @@ CASE WHEN ARRAY[11] <@ aluno.veiculo_transporte_escolar THEN 'Ferroviário - Tre
                       WHERE fs.idpes = fisica.idpes_mae))) AS cpf_mae,
                       
   (SELECT COALESCE(
-                     (SELECT fisica.empresa
-                      FROM cadastro.fisica as fisica_cpf
-                      WHERE fisica_cpf.idpes = fisica.idpes_mae),
+                     (SELECT fisica_emp_mae.empresa
+                      FROM cadastro.fisica as fisica_emp_mae
+                      WHERE fisica_emp_mae.idpes = fisica.idpes_mae),
                      '')) AS empresa_mae,
 
   (SELECT COALESCE(
@@ -217,9 +217,9 @@ CASE WHEN ARRAY[11] <@ aluno.veiculo_transporte_escolar THEN 'Ferroviário - Tre
                       WHERE fs.idpes = fisica.idpes_pai))) AS cpf_pai,
                       
   (SELECT COALESCE(
-                     (SELECT empresa
-                      FROM cadastro.fisica as fisica_cpf
-                      WHERE fisica_cpf.idpes = fisica.idpes_mae),'')) AS empresa_pai,
+                     (SELECT fisica_emp_pai.empresa
+                      FROM cadastro.fisica as fisica_emp_pai
+                      WHERE fisica_emp_pai.idpes = fisica.idpes_pai),'')) AS empresa_pai,
 
   (SELECT textcat_all(aluno_beneficio.nm_beneficio)
    FROM pmieducar.aluno_beneficio,
