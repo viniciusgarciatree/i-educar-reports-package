@@ -170,6 +170,9 @@
 	<field name="fisica_deficiencia" class="java.lang.String"/>
 	<field name="tipo_transporte" class="java.lang.String"/>
 	<field name="dados_escolares" class="java.lang.String"/>
+	<field name="empresa_mae" class="java.lang.String"/>
+	<field name="empresa_pai" class="java.lang.String"/>
+	<field name="outra_escola" class="java.lang.String"/>
 	<background>
 		<band height="860" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -186,47 +189,34 @@
 	<pageHeader>
 		<band height="90" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<image hAlign="Left" vAlign="Middle">
-				<reportElement x="2" y="3" width="70" height="61" uuid="953045f5-dd4b-4ded-b7ae-d319bdc054d7">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
-			</image>
-			<textField>
-				<reportElement x="0" y="1" width="566" height="20" uuid="0a8fbfee-f0f8-49e9-811b-e258374e43a7">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<box leftPadding="70" rightPadding="70"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="15" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nome_instituicao}.toUpperCase()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="20" width="566" height="30" uuid="b1adcfb7-f074-4819-9364-3bce8c7d41a0">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<box leftPadding="70" rightPadding="70"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="DejaVu Sans" size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nome_secretaria}.toUpperCase()]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="61" width="555" height="29" uuid="aae10037-5418-41d5-ab6e-875dc169323e">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[FICHA DE MATRÍCULA – EDUCAÇÃO INFANTIL – CRECHE 0 À 3 ANOS]]></text>
-			</staticText>
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="3" y="0" width="551" height="90" uuid="543a76f3-c2c0-4f8f-b40b-4cb1432c01c9"/>
+				<subreportParameter name="logo1">
+					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["FICHA DE MATRÍCULA – EDUCAÇÃO INFANTIL – CRECHE 0 À 3 ANOS"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="logo2">
+					<subreportParameterExpression><![CDATA[$P{logo2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</pageHeader>
 	<detail>
@@ -671,17 +661,6 @@
 				</textElement>
 				<text><![CDATA[Data de Ingresso na Instituição: ____/____ /_______]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="170" y="342" width="100" height="15" uuid="fce5c501-2160-448d-9086-c2a937b801c8">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
 			<line>
 				<reportElement x="75" y="51" width="205" height="1" uuid="4b493998-d885-4a84-b32a-ff485e4f2b64">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -710,28 +689,6 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="290" y="244" width="260" height="1" uuid="e66c1d44-ce29-4f6c-adf0-c25f1f0fdf75">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="290" y="311" width="260" height="1" uuid="e248e9a0-3f03-4e67-8d5b-ef73025d01e6">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
@@ -1025,7 +982,7 @@
 				<textFieldExpression><![CDATA[$F{ddd}.toString() + $F{fone}.toString() + " " + $F{ddd2}.toString() + $F{fone2}.toString() + " " + $F{ddd3}.toString() + $F{fone3}.toString()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="370" y="342" width="178" height="15" uuid="04f8d549-642c-4b8e-96fb-5bc1a114371c">
+				<reportElement x="372" y="342" width="178" height="15" uuid="04f8d549-642c-4b8e-96fb-5bc1a114371c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1051,6 +1008,57 @@
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("dados_escolares")]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "student-sheet-custom-data.jasper"]]></subreportExpression>
 			</subreport>
+			<staticText>
+				<reportElement x="180" y="145" width="91" height="15" uuid="df1e2190-7e70-45ad-b8a5-73a81bf9d60d">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bolsa Família?]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="145" width="104" height="15" uuid="d340fa39-44a6-4ed3-bb12-f887bc990af9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{beneficio}.contentEquals( "Bolsa Familia" ) ? "( X ) Sim   (   ) Não" : "(   ) Sim   ( X ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="170" y="342" width="104" height="15" uuid="9d9b9b04-31a5-48c3-913a-52b278de4e95">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{beneficio}.contentEquals( "Vulnerabilidade" ) ? "( X ) Sim   (   ) Não" : "(   ) Sim   ( X ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="231" width="260" height="15" uuid="071c7b7a-2563-4d59-9e86-e0a7c57e29d5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_mae}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="298" width="260" height="15" uuid="d359715d-d0bd-41a2-8595-a0a43cd11fc2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_pai}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="770" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -1450,17 +1458,6 @@ com a legislação municipal]]></text>
 				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="245" y="198" width="100" height="15" uuid="bcda115e-0832-48db-88f8-8d4ab73a6eff">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="139" y="264" width="100" height="15" uuid="dbc0ab28-d235-4311-9979-4f3af9ecbb0c">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1558,17 +1555,6 @@ com a legislação municipal]]></text>
 				</textElement>
 				<text><![CDATA[(   ) Normal    (   ) Cesariana    (   ) Fórceps]]></text>
 			</staticText>
-			<line>
-				<reportElement x="385" y="210" width="165" height="1" uuid="268aac47-edda-4efe-96f3-22c2455e8905">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
 			<line>
 				<reportElement x="140" y="55" width="115" height="1" uuid="7ca0d309-0d61-415a-80a4-4374b7726132">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -1761,7 +1747,7 @@ com a legislação municipal]]></text>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{alergia_medicamento}.equals("S") ? $F{desc_alergia_medicamento} : "") + "" + ($F{alergia_alimento}.equals("S") ?$F{desc_alergia_alimento} : "")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{alergia_medicamento}.equals("S") ? $F{desc_alergia_medicamento} : "") + " " + ($F{alergia_alimento}.equals("S") ?$F{desc_alergia_alimento} : "")]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="260" y="354" width="100" height="15" uuid="3ee172f4-21af-4d16-b75c-cb14997186d0">
@@ -1808,6 +1794,28 @@ com a legislação municipal]]></text>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipo_transporte}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="245" y="198" width="100" height="15" uuid="92071415-0410-46dd-acd5-d95f48257998">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{outra_escola}.isEmpty() ? "(   ) Sim   ( X ) Não" : "( X ) Sim   (   ) Não"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="385" y="198" width="164" height="15" uuid="ab9b5929-337d-4de9-85de-312042acf14c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{outra_escola}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -927,6 +927,28 @@
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("dados_escolares")]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "student-sheet-custom-data.jasper"]]></subreportExpression>
 			</subreport>
+			<staticText>
+				<reportElement x="180" y="145" width="91" height="15" uuid="51ae2102-b89a-4c25-a297-c26bf55c3d4c">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bolsa Família?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="145" width="100" height="15" uuid="8793b584-585b-4795-a6df-53edaeb3fd4d">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
+			</staticText>
 		</band>
 		<band height="770" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
