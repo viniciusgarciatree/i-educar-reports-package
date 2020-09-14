@@ -34,7 +34,7 @@ class RelatoriosIpanema extends Migration
                 ],
                 [
                     'parent_id'   => Menu::query()->where('old', 999861)->firstOrFail()->getKey(),
-                    'title'       => 'Ficha Indivudual do Aluno',
+                    'title'       => 'Ficha Individual do Aluno',
                     'description' => null,
                     'link'        => '/module/Reports/StudentIndividualRecord',
                     'order'       => 0,

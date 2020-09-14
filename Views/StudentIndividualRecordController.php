@@ -13,7 +13,7 @@ class StudentIndividualRecordController extends Portabilis_Controller_ReportCore
     /**
      * @var string
      */
-    protected $_titulo = 'Ficha Indivudual do Aluno';
+    protected $_titulo = 'Ficha Individual do Aluno';
 
     /**
      * @inheritdoc
@@ -24,7 +24,7 @@ class StudentIndividualRecordController extends Portabilis_Controller_ReportCore
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Ficha Indivudual do Aluno', [
+        $this->breadcrumb('Ficha Individual do Aluno', [
             'educar_index.php' => 'Escola',
         ]);
 
