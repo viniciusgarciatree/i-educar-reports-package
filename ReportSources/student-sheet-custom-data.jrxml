@@ -307,17 +307,6 @@
 				<text><![CDATA[Turno:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="275" y="66" width="130" height="15" uuid="71057c79-8897-4084-af6f-d82798726a72">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Tempo de frequência:]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="3" y="110" width="255" height="15" uuid="99e2268b-25ef-4329-a0e1-3ea777a9eab2">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -439,7 +428,7 @@
 				<textFieldExpression><![CDATA[$F{turma}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="40" y="66" width="235" height="15" uuid="c2d9c665-fcc2-439f-b1b7-74ef2eef5693">
+				<reportElement x="40" y="66" width="499" height="15" uuid="c2d9c665-fcc2-439f-b1b7-74ef2eef5693">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -447,22 +436,7 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{turno}.equals("Matutino" ) ? "( X ) Matutino    (   ) Vespertino    (   ) Noturno"
-: $F{turno}.equals("Vespertino" ) ? "(   ) Matutino    ( X ) Vespertino    (   ) Noturno"
-: $F{turno}.equals("Noturno" ) ? "(   ) Matutino    (   ) Vespertino    ( X ) Noturno"
-: "(   ) Matutino    (   ) Vespertino    (   ) Noturno"]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="405" y="66" width="140" height="15" uuid="9f766aa3-1525-4e1c-b540-3f763f1f3a3b">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{turno}.equals("Integral" ) ? "(   ) Parcial   ( X ) Integral"
-: "(   ) Parcial   (   ) Integral"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="130" splitType="Stretch">
