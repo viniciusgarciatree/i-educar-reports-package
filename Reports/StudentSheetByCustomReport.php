@@ -841,6 +841,7 @@ ORDER BY seque_fecha,
                     'tipo_ensino'    => '',
                     'ciclo'          => '',
                     'turno'          => '',
+                    'tipo'           => '',
                     'frequencia'     => '',
                 ];
             }
@@ -875,12 +876,14 @@ AND turma_serie.cod_turma = matricula_turma.ref_cod_turma LIMIT 1
 ),'') as ciclo
 ,COALESCE(turma_turno.nome,'') as turno
 ,COALESCE(modules.frequencia_da_matricula(matricula.cod_matricula)::text,'') AS frequencia
+,COALESCE(turma_tipo.nm_tipo,'') as tipo
 FROM pmieducar.matricula 
 INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_matricula =  matricula.cod_matricula
 INNER JOIN pmieducar.turma ON matricula_turma.ref_cod_turma = turma.cod_turma
 INNER JOIN pmieducar.curso ON curso.cod_curso = turma.ref_cod_curso
 INNER JOIN pmieducar.tipo_ensino ON tipo_ensino.cod_tipo_ensino = curso.ref_cod_tipo_ensino
 LEFT JOIN pmieducar.turma_turno ON turma_turno.id = turma.turma_turno_id
+LEFT JOIN pmieducar.turma_tipo ON turma_tipo.cod_turma_tipo = turma.ref_cod_turma_tipo
 WHERE matricula.ref_cod_aluno in (
 	SELECT matricula_sub.ref_cod_aluno 
 	FROM pmieducar.matricula as matricula_sub 
@@ -889,6 +892,7 @@ WHERE matricula.ref_cod_aluno in (
 AND matricula.ativo = 1 AND matricula_turma.ativo = 1 AND turma.ativo = 1
 order by matricula.ano 
         ";
+            
             $arrData = Portabilis_Utils_Database::fetchPreparedQuery($sqlDataHistorico);
             if(count($arrData)==0){
                 $arrData = "";

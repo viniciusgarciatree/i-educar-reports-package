@@ -22,6 +22,7 @@
 	<field name="ciclo" class="java.lang.String"/>
 	<field name="turno" class="java.lang.String"/>
 	<field name="frequencia" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
 	<detail>
 		<band height="67" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -428,7 +429,7 @@
 				<textFieldExpression><![CDATA[$F{turma}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="40" y="66" width="499" height="15" uuid="c2d9c665-fcc2-439f-b1b7-74ef2eef5693">
+				<reportElement x="40" y="66" width="225" height="15" uuid="c2d9c665-fcc2-439f-b1b7-74ef2eef5693">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -437,6 +438,28 @@
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="66" width="130" height="15" uuid="1ff4100f-979e-45ff-bf3e-f00af8baa64e">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tempo de frequência:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="405" y="66" width="140" height="15" uuid="24b12ba7-7ea5-4109-9eb9-c52376b9fadc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="130" splitType="Stretch">
