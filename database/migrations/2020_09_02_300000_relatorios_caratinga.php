@@ -15,10 +15,26 @@ class RelatoriosCaratinga extends Migration
      */
     public function up()
     {
-        $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334292000164');");
-        /* Para Ipanema verifica com cnpj */
+        $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334268000125');");
+        /* Para Caratinga verifica com cnpj */
         if (count($result) > 0 && $result[0] == true)
         {
+            Menu::query()->updateOrCreate(
+                [
+                    'old' => 999732
+                ],
+                [
+                    'parent_id'   => Menu::query()->where('old', 999300)->firstOrFail()->getKey(),
+                    'title'       => 'Relatório de dados familiares do aluno',
+                    'description' => null,
+                    'link'        => '/module/Reports/StudentsByRelatives',
+                    'order'       => 0,
+                    'old'         => 999732,
+                    'process'     => 999732,
+                    'active'      => true,
+                ]
+            );
+
             Menu::query()->updateOrCreate(
                 [
                     'old' => 9999200
