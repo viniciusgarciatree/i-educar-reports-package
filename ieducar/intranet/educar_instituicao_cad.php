@@ -344,6 +344,8 @@ class indice extends clsCadastro
 
     public function Editar()
     {
+        $this->cnpj = "" . idFederal2int($this->cnpj);
+
         $obj = new clsPmieducarInstituicao(
             $this->cod_instituicao,
             $this->ref_usuario_exc,

@@ -815,6 +815,11 @@ class clsPmieducarInstituicao extends Model
                 $gruda = ', ';
             }
 
+            if (is_numeric($this->cnpj)) {
+                $set .= "{$gruda}cnpj = '{$this->cnpj}'";
+                $gruda = ', ';
+            }
+
             if (is_numeric($this->exigir_vinculo_turma_professor)) {
                 $set .= "{$gruda}exigir_vinculo_turma_professor = '{$this->exigir_vinculo_turma_professor}'";
                 $gruda = ', ';
