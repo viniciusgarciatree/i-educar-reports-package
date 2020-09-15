@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,15 +15,11 @@ class AddCnpjInstitucao extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('pmieducar.instituicao')) {
-            if (!Schema::hasColumn('pmieducar.instituicao', 'cnpj')) {
-                Schema::table(
-                    'pmieducar.instituicao',
-                    function (Blueprint $table) {
-                        DB::unprepared(' ALTER TABLE pmieducar.instituicao ADD cnpj numeric(14) NULL; ');
-                    }
-                );
-            }
+        if (!Schema::hasColumn('pmieducar.instituicao', 'cnpj')) {
+            Schema::table('pmieducar.instituicao', function (Blueprint $table)
+            {
+                $table->string('cnpj',14)->nullable();
+            });
         }
     }
 
@@ -33,8 +30,5 @@ class AddCnpjInstitucao extends Migration
      */
     public function down()
     {
-        Schema::table('instituicao', function (Blueprint $table) {
-            //
-        });
     }
 }
