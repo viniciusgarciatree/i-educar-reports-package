@@ -129,6 +129,7 @@ class clsBase
 
         $topmenu = Menu::query()
             ->where('process', $this->processoAp)
+            ->Where('active', '=', true)
             ->first();
 
         if ($topmenu) {
