@@ -773,13 +773,14 @@ CASE WHEN ARRAY[11] <@ aluno.veiculo_transporte_escolar THEN 'Ferroviário - Tre
           AND m.ativo = 1)) AS data_matricula,
    (
    SELECT
-outra_pessoa.nome
+string_agg(outra_pessoa.nome,',')
 FROM pmieducar.turma as outra_turma
 INNER JOIN pmieducar.matricula_turma as outra_matricula_turma ON (outra_matricula_turma.ref_cod_turma = outra_turma.cod_turma)
+INNER JOIN pmieducar.matricula as matricula_escola ON matricula_escola.cod_matricula = outra_matricula_turma.ref_cod_matricula
 INNER JOIN pmieducar.escola as outra_escola ON outra_escola.cod_escola = outra_turma.ref_ref_cod_escola
 INNER JOIN cadastro.pessoa as outra_pessoa ON outra_pessoa.idpes = outra_escola.ref_idpes
-WHERE outra_escola.cod_escola <> escola.cod_escola
-ORDER BY matricula_turma.data_cadastro DESC
+WHERE outra_escola.cod_escola <> escola.cod_escola and matricula_escola.ref_cod_aluno = matricula.cod_matricula
+GROUP BY matricula_escola.ref_cod_aluno
 LIMIT 1
    ) AS outra_escola
 FROM pmieducar.instituicao
