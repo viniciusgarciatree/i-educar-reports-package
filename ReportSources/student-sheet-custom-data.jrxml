@@ -138,7 +138,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{turma} + " - Período de frequência: " + ($F{frequencia}.isEmpty() ? "" : $F{frequencia}+" %" ) + ""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{turma} + " - Período de frequência: " + ($F{tipo}.isEmpty() ? "" : $F{tipo}+"" ) + ""]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="67" splitType="Stretch">
@@ -257,7 +257,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{turma} + " - Período de frequência: " + ($F{frequencia}.isEmpty() ? "" : $F{frequencia}+" %" ) + ""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{turma} + " - Período de frequência: " + ($F{tipo}.isEmpty() ? "" : $F{tipo}+" " ) + ""]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="130" splitType="Stretch">
