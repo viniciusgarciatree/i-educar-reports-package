@@ -14,20 +14,10 @@ class RelatoriosIpanema extends Migration
      */
     public function up()
     {
-        if (Schema::hasColumn('pmieducar.instituicao', 'cnpj'))
-        {
-            Schema::table(
-                'pmieducar.instituicao',
-                function (Blueprint $table) {
-                    DB::unprepared(' ALTER TABLE pmieducar.instituicao ADD cnpj numeric(14) NULL; ');
-                }
-            );
-        }
-
-        //$result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334292000164');");
+        $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334292000164');");
         /* Para Ipanema verifica com cnpj */
-        //if (count($result) > 0 && $result[0] == true)
-        //{
+        if (count($result) > 0 && $result[0] == true)
+        {
             Menu::query()->updateOrCreate(
                 [
                     'old' => 9999200
@@ -43,7 +33,7 @@ class RelatoriosIpanema extends Migration
                     'active'      => true,
                 ]
             );
-        //}
+        }
     }
 
     /**
