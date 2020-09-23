@@ -81,7 +81,8 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         $return = "
 SELECT
        fcn_upper(view_dados_escola.nome) AS nm_escola,
-       view_dados_escola.logradouro, 
+       view_dados_escola.logradouro,
+       view_dados_escola.bairro, 
        matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nome_aluno,
