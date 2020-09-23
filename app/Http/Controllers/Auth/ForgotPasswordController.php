@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use PHPMailer\PHPMailer\PHPMailer;
-use Illuminate\Support\Facades\Lang;
 
 class ForgotPasswordController extends Controller
 {
@@ -90,7 +89,7 @@ class ForgotPasswordController extends Controller
             $mail->Username = config('mail.username');
             $mail->Password = config('mail.password');
             $mail->setFrom(config('mail.from.address'), config('mail.from.name'));
-            $mail->Subject = Lang::getFromJson('Reset Password Notification');
+            $mail->Subject = 'Notificação de redefinição de senha.';
             $mail->MsgHTML($contaConteudo);
             $mail->addAddress($user->getEmailAttribute() , $user->getNameAttribute());
             $mail->send();
