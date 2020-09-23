@@ -2072,6 +2072,8 @@ class AlunoController extends ApiCoreController
             $this->appendResponse($this->deveHabilitarCampoRecursosProvaInep());
         } elseif ($this->isRequestFor('get', 'deve-obrigar-laudo-medico')) {
             $this->appendResponse($this->deveObrigarLaudoMedico());
+        } elseif ($this->isRequestFor('get', 'alunos-dados-familiares')) {
+            $this->appendResponse($this->getAlunosDadosFamiliares());
         } else {
             $this->notImplementedOperationError();
         }
@@ -2111,5 +2113,55 @@ class AlunoController extends ApiCoreController
                 ->where('exigir_laudo_medico', true)
                 ->exists()
         ];
+    }
+
+    protected function canGetAlunosDadosFamiliares()
+    {
+        return (
+            $this->validatesId('instituicao') &&
+            $this->validatesPresenceOf('ano') &&
+            $this->validatesId('escola') &&
+            $this->validatesId('serie') &&
+            $this->validatesId('turma') &&
+            $this->validatesPresenceOf('aluno')
+        );
+    }
+
+    protected function getAlunosDadosFamiliares()
+    {
+
+        if ($this->canGetAlunosDadosFamiliares()) {
+
+            $alunoDadosFamiliaresReport = new StudentsByRelativesReport();
+
+            $alunoDadosFamiliaresReport->addArg('ano', (int) $this->getRequest()->ano);
+            $alunoDadosFamiliaresReport->addArg('instituicao', (int) $this->getRequest()->instituicao_id);
+            $alunoDadosFamiliaresReport->addArg('escola', (int) $this->getRequest()->escola_id);
+            $alunoDadosFamiliaresReport->addArg('aluno', (int) $this->getRequest()->aluno);
+            $alunoDadosFamiliaresReport->addArg('curso', (int) $this->getRequest()->curso_id);
+            $alunoDadosFamiliaresReport->addArg('serie', (int) $this->getRequest()->serie_id);
+            $alunoDadosFamiliaresReport->addArg('turma', (int) $this->getRequest()->turma_id);
+
+            $configuracoes = new clsPmieducarConfiguracoesGerais();
+            $configuracoes = $configuracoes->detalhe();
+
+            $modelo = $configuracoes['students_by_relatives'];
+            $alunoDadosFamiliaresReport->addArg('SUBREPORT_DIR', config('legacy.report.source_path'));
+
+            $encoding = 'base64';
+
+            $dumpsOptions = [
+                'options' => [
+                    'encoding' => $encoding
+                ]
+            ];
+
+            $encoded = $alunoDadosFamiliaresReport->dumps($dumpsOptions);
+
+            return [
+                'encoding' => $encoding,
+                'encoded' => base64_encode($encoded)
+            ];
+        }
     }
 }

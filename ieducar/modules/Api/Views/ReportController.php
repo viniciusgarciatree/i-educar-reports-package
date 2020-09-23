@@ -2,6 +2,7 @@
 
 require_once 'lib/Portabilis/Controller/ApiCoreController.php';
 require_once 'Reports/Reports/TeacherReportCardReport.php';
+require_once 'Reports/Reports/StudentsByRelativesReport.php';
 
 class ReportController extends ApiCoreController
 {
@@ -24,6 +25,17 @@ class ReportController extends ApiCoreController
             $this->validatesId('serie') &&
             $this->validatesId('turma') &&
             $this->validatesPresenceOf('componente_curricular_id')
+        );
+    }
+
+    protected function canGetAlunosDadosFamiliares(){
+        return (
+            $this->validatesId('instituicao') &&
+            $this->validatesPresenceOf('ano') &&
+            $this->validatesId('escola') &&
+            $this->validatesId('serie') &&
+            $this->validatesId('turma') &&
+            $this->validatesId('aluno')
         );
     }
 
@@ -152,8 +164,48 @@ class ReportController extends ApiCoreController
             $this->appendResponse($this->getBoletim());
         } elseif ($this->isRequestFor('get', 'boletim-professor')) {
             $this->appendResponse($this->getBoletimProfessor());
+        } elseif ($this->isRequestFor('get', 'alunos-dados-familiares')) {
+            $this->appendResponse($this->getAlunosDadosFamiliares());
         } else {
             $this->notImplementedOperationError();
+        }
+    }
+
+    protected function getAlunosDadosFamiliares()
+    {
+
+        if ($this->canGetAlunosDadosFamiliares()) {
+
+            $alunoDadosFamiliaresReport = new StudentsByRelativesReport();
+
+            $alunoDadosFamiliaresReport->addArg('ano', (int) $this->getRequest()->ano);
+            $alunoDadosFamiliaresReport->addArg('instituicao', (int) $this->getRequest()->instituicao_id);
+            $alunoDadosFamiliaresReport->addArg('escola', (int) $this->getRequest()->escola_id);
+            $alunoDadosFamiliaresReport->addArg('aluno', (int) $this->getRequest()->aluno);
+            $alunoDadosFamiliaresReport->addArg('curso', (int) $this->getRequest()->curso_id);
+            $alunoDadosFamiliaresReport->addArg('serie', (int) $this->getRequest()->serie_id);
+            $alunoDadosFamiliaresReport->addArg('turma', (int) $this->getRequest()->turma_id);
+
+            $configuracoes = new clsPmieducarConfiguracoesGerais();
+            $configuracoes = $configuracoes->detalhe();
+
+            $modelo = $configuracoes['students_by_relatives'];
+            $alunoDadosFamiliaresReport->addArg('SUBREPORT_DIR', config('legacy.report.source_path'));
+
+            $encoding = 'base64';
+
+            $dumpsOptions = [
+                'options' => [
+                    'encoding' => $encoding
+                ]
+            ];
+
+            $encoded = $alunoDadosFamiliaresReport->dumps($dumpsOptions);
+
+            return [
+                'encoding' => $encoding,
+                'encoded' => base64_encode($encoded)
+            ];
         }
     }
 }
