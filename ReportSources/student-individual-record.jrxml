@@ -1376,7 +1376,7 @@
 				<box>
 					<pen lineWidth="0.25"/>
 				</box>
-				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<textField isBlankWhenNull="true">
 					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="5" y="10" width="545" height="10" uuid="71246645-d607-449d-a8f7-4c61978cbd70">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
