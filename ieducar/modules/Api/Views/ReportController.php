@@ -31,7 +31,6 @@ class ReportController extends ApiCoreController
     protected function canGetAlunosDadosFamiliares(){
         return (
             $this->validatesId('instituicao') &&
-            $this->validatesPresenceOf('ano') &&
             $this->validatesId('escola') &&
             $this->validatesId('serie') &&
             $this->validatesId('turma') &&
@@ -178,7 +177,7 @@ class ReportController extends ApiCoreController
 
             $alunoDadosFamiliaresReport = new StudentsByRelativesReport();
 
-            $alunoDadosFamiliaresReport->addArg('ano', (int) $this->getRequest()->ano);
+            $alunoDadosFamiliaresReport->addArg('ano', (int) date('Y'));
             $alunoDadosFamiliaresReport->addArg('instituicao', (int) $this->getRequest()->instituicao_id);
             $alunoDadosFamiliaresReport->addArg('escola', (int) $this->getRequest()->escola_id);
             $alunoDadosFamiliaresReport->addArg('aluno', (int) $this->getRequest()->aluno);
