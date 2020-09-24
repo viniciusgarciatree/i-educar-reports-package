@@ -2119,7 +2119,6 @@ class AlunoController extends ApiCoreController
     {
         return (
             $this->validatesId('instituicao') &&
-            $this->validatesPresenceOf('ano') &&
             $this->validatesId('escola') &&
             $this->validatesId('serie') &&
             $this->validatesId('turma') &&
