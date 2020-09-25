@@ -71,7 +71,7 @@ INNER JOIN pmieducar.escola ON escola.cod_escola = matricula.ref_ref_cod_escola
        group by aluno.cod_aluno,pessoa.nome,escola.cod_escola, nm_escola
 Order by nm_escola,pessoa.nome ";
         }else{
-            return "SELECT count(aluno.cod_aluno),
+            return "SELECT quantidade as count,nm_escola FROM ( SELECT count(aluno.cod_aluno) as quantidade,
        escola.cod_escola,
        (SELECT COALESCE((SELECT COALESCE (fcn_upper(ps.nome),fcn_upper(juridica.fantasia))
           FROM cadastro.pessoa ps,
@@ -90,7 +90,9 @@ Order by nm_escola,pessoa.nome ";
        matricula.ref_ref_cod_escola = escola.cod_escola AND
        escola.ref_cod_instituicao = $instituicao" . ($situacao == 9 ? "" : " AND matricula.aprovado = $situacao") . " group by escola.cod_escola, nm_escola
 
-Order by nm_escola";
+Order by nm_escola
+) as t order by quantidade desc, nm_escola ";
+
         }
     }
 }
