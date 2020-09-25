@@ -180,7 +180,7 @@ class ReportController extends ApiCoreController
             $alunoDadosFamiliaresReport->addArg('ano', (int) date('Y'));
             $alunoDadosFamiliaresReport->addArg('instituicao', (int) $this->getRequest()->instituicao_id);
             $alunoDadosFamiliaresReport->addArg('escola', (int) $this->getRequest()->escola_id);
-            $alunoDadosFamiliaresReport->addArg('aluno', (int) $this->getRequest()->aluno);
+            $alunoDadosFamiliaresReport->addArg('aluno', (int) $this->getRequest()->aluno_id);
             $alunoDadosFamiliaresReport->addArg('curso', (int) $this->getRequest()->curso_id);
             $alunoDadosFamiliaresReport->addArg('serie', (int) $this->getRequest()->serie_id);
             $alunoDadosFamiliaresReport->addArg('turma', (int) $this->getRequest()->turma_id);
