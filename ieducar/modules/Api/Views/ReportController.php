@@ -33,8 +33,7 @@ class ReportController extends ApiCoreController
             $this->validatesId('instituicao') &&
             $this->validatesId('escola') &&
             $this->validatesId('serie') &&
-            $this->validatesId('turma') &&
-            $this->validatesId('aluno')
+            $this->validatesId('turma')
         );
     }
 
