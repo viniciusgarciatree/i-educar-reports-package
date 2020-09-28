@@ -33,9 +33,6 @@
 	<parameter name="emitir_secretario_escolar" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
 	</parameter>
-	<parameter name="titulo" class="java.lang.String">
-		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
-	</parameter>
 	<parameter name="modelo" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
@@ -74,12 +71,6 @@
 	<field name="aluno_estado_id" class="java.lang.String"/>
 	<field name="diretor" class="java.lang.String"/>
 	<field name="secretario" class="java.lang.String"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band splitType="Stretch"/>
-	</title>
 	<pageHeader>
 		<band height="60" splitType="Stretch">
 			<subreport>
