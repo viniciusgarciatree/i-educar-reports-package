@@ -71,6 +71,11 @@
 	<field name="aluno_estado_id" class="java.lang.String"/>
 	<field name="diretor" class="java.lang.String"/>
 	<field name="secretario" class="java.lang.String"/>
+	<title>
+		<band>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</title>
 	<pageHeader>
 		<band height="60" splitType="Stretch">
 			<subreport>
