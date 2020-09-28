@@ -36,6 +36,7 @@
 	<parameter name="modelo" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
+	<parameter name="titulo" class="java.lang.String"/>
 	<field name="nm_instituicao" class="java.lang.String"/>
 	<field name="nm_responsavel" class="java.lang.String"/>
 	<field name="altera_atestado_para_declaracao" class="java.lang.Boolean"/>
