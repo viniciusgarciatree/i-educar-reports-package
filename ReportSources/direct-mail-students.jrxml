@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_alunos_projetos" columnCount="3" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="185" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ef87295-af95-4969-8128-8f3de74fb453">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -47,6 +47,7 @@
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
 	<parameter name="logo2" class="java.lang.String"/>
+	<parameter name="exibir_cabecalho" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -86,7 +87,8 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="100">
+		<band height="100" splitType="Stretch">
+			<printWhenExpression><![CDATA[!$P{exibir_cabecalho}.equals( "0" )]]></printWhenExpression>
 			<subreport>
 				<reportElement x="0" y="0" width="555" height="100" uuid="6460f362-4f89-46dc-b8de-7429430b50de"/>
 				<subreportParameter name="logo1">
@@ -119,7 +121,7 @@
 	</title>
 	<detail>
 		<band height="63">
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement x="0" y="7" width="180" height="10" uuid="2dcb4dc3-ce38-445f-a0e6-290fee82db31"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
@@ -132,7 +134,7 @@
 					<pen lineWidth="1.0" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement positionType="Float" x="0" y="17" width="180" height="10" uuid="c329ecd8-16ba-4c12-9fb1-74c6dabb84b5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
