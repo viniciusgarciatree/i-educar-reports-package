@@ -121,7 +121,7 @@
 	</title>
 	<detail>
 		<band height="63">
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement x="0" y="7" width="180" height="10" uuid="2dcb4dc3-ce38-445f-a0e6-290fee82db31"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
@@ -134,7 +134,7 @@
 					<pen lineWidth="1.0" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
-			<textField textAdjust="StretchHeight">
+			<textField>
 				<reportElement positionType="Float" x="0" y="17" width="180" height="10" uuid="c329ecd8-16ba-4c12-9fb1-74c6dabb84b5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
