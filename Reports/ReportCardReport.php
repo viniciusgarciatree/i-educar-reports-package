@@ -133,6 +133,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                     ];
                 }
                 $value['data_area'] = $arrArea;
+                $value['observacoes'] = $this->args['observacoes'] ?: '';
                 $arrMain[] = $value;
             }
 
@@ -145,8 +146,15 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             unset($this->args['modelo']);
             $queryMainReport = $this->getSqlMainReport();
             $queryHeaderReport = $this->getSqlHeaderReport();
+            $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
+            foreach ($arrMain as $index => $value){
+                if(is_numeric($index)){
+                    $arrMain[$index]['observacoes'] =  $this->args['observacoes'] ?: '';
+                }
+            }
+
             return array_merge([
-                'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
+                'main' => $arrMain,
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
             ]);
         }

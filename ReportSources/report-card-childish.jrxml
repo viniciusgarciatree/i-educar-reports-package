@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_boletim" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -195,6 +195,7 @@
 	<field name="total_faltas_componente" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="total_faltas_componente"/>
 	</field>
+	<field name="observacoes" class="java.lang.String"/>
 	<variable name="total" class="java.lang.Integer" resetType="Group" resetGroup="matricula" calculation="Count">
 		<variableExpression><![CDATA[$F{nome_disciplina}]]></variableExpression>
 	</variable>
@@ -491,7 +492,7 @@
 		<groupFooter>
 			<band height="14">
 				<printWhenExpression><![CDATA[!$P{observacoes}.trim().equals("")]]></printWhenExpression>
-				<textField isStretchWithOverflow="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement x="0" y="0" width="802" height="14" uuid="6a41299f-4150-4f3c-a891-e411e507c361"/>
 					<box>
 						<leftPen lineWidth="0.25"/>
@@ -502,7 +503,7 @@
 						<font fontName="DejaVu Sans" size="8"/>
 						<paragraph leftIndent="4" rightIndent="4" spacingBefore="4" spacingAfter="4"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{observacoes}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
 				</textField>
 			</band>
 			<band height="34">
@@ -519,7 +520,7 @@
 			<band height="50">
 				<printWhenExpression><![CDATA[$F{parecer_geral_etapa1} != null ||
 $F{parecer_geral_etapa2} != null]]></printWhenExpression>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="0" y="39" width="787" height="11" isRemoveLineWhenBlank="true" printWhenGroupChanges="matricula" uuid="ef5a2952-9c72-458e-af8c-1b7e705cf406">
 						<printWhenExpression><![CDATA[$F{parecer_geral_etapa2} != null]]></printWhenExpression>
 					</reportElement>
@@ -528,7 +529,7 @@ $F{parecer_geral_etapa2} != null]]></printWhenExpression>
 					</textElement>
 					<textFieldExpression><![CDATA["2º:" + $F{parecer_geral_etapa2}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="0" y="24" width="787" height="11" isRemoveLineWhenBlank="true" printWhenGroupChanges="matricula" uuid="fff40088-7019-42fe-ac0f-4eefcbdb3558">
 						<printWhenExpression><![CDATA[$F{parecer_geral_etapa1} != null]]></printWhenExpression>
 					</reportElement>
@@ -586,7 +587,7 @@ $F{parecer_geral_etapa2} != null]]></printWhenExpression>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota2}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="5" y="1" width="504" height="11" uuid="7a070405-d463-4e82-bf5a-c6c99f075120"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
@@ -674,7 +675,7 @@ $F{parecer_geral_etapa2} != null]]></printWhenExpression>
 					<pen lineWidth="0.0"/>
 				</graphicElement>
 			</rectangle>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="5" y="0" width="787" height="11" isRemoveLineWhenBlank="true" printWhenGroupChanges="matricula" uuid="69bc7ac2-7d61-4656-a5bd-a9b50bb654f9"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
@@ -713,7 +714,7 @@ $F{parecer_geral_etapa2} != null]]></printWhenExpression>
 					<pen lineWidth="0.0"/>
 				</graphicElement>
 			</rectangle>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="5" y="0" width="787" height="11" isRemoveLineWhenBlank="true" printWhenGroupChanges="matricula" uuid="08e11a9d-0a8e-457d-9bd3-1bd98de6b18c">
 					<printWhenExpression><![CDATA[$F{parecer_componente_etapa2} != null &&
 !$F{parecer_componente_etapa2}.isEmpty()]]></printWhenExpression>
