@@ -72,6 +72,7 @@
 	<field name="aluno_estado_id" class="java.lang.String"/>
 	<field name="diretor" class="java.lang.String"/>
 	<field name="secretario" class="java.lang.String"/>
+	<field name="observacoes" class="java.lang.String"/>
 	<title>
 		<band>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -161,7 +162,7 @@
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{observacoes}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="21" y="262" width="70" height="20" uuid="1eca72c0-a894-4a5c-acc8-0c94d7797c72">
