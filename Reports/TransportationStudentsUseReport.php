@@ -63,7 +63,7 @@ class TransportationStudentsUseReport extends Portabilis_Report_ReportCore
 regexp_replace(trim(CONCAT(CASE WHEN ARRAY[1] <@ al.veiculo_transporte_escolar THEN 'Vans/Kombis' ELSE '' END,'  ',
 CASE WHEN ARRAY[2] <@ al.veiculo_transporte_escolar THEN 'Microônibus' ELSE '' END,'  ',
 CASE WHEN ARRAY[3] <@ al.veiculo_transporte_escolar THEN 'Ônibus' ELSE '' END,'  ',
-CASE WHEN ARRAY[2] <@ al.veiculo_transporte_escolar THEN 'Bicicleta' ELSE '' END,'  ',
+CASE WHEN ARRAY[4] <@ al.veiculo_transporte_escolar THEN 'Bicicleta' ELSE '' END,'  ',
 CASE WHEN ARRAY[5] <@ al.veiculo_transporte_escolar THEN 'Tração animal' ELSE '' END,'  ',
 CASE WHEN ARRAY[6] <@ al.veiculo_transporte_escolar THEN 'Outro' ELSE '' END,'  ',
 CASE WHEN ARRAY[7] <@ al.veiculo_transporte_escolar THEN 'Aquaviário/Embarcação - Capacidade de até 5 alunos' ELSE '' END,'  ',
@@ -90,7 +90,6 @@ WHERE  a.ativo = 1 AND a.ano = {$ano} AND e.ref_cod_instituicao = {$instituicao}
         AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE j.ref_cod_turma = {$turma} END)
         ) as t
         ORDER BY escola,usa_transporte DESC, nome";
-        //dd($return);
         return $return;
     }
 }
