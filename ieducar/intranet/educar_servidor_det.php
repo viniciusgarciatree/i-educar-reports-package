@@ -36,6 +36,7 @@ require_once 'include/pmieducar/geral.inc.php';
 
 require_once 'ComponenteCurricular/Model/ComponenteDataMapper.php';
 require_once 'Educacenso/Model/DocenteDataMapper.php';
+require_once 'Portabilis/Utils/CustomLabel.php';
 
 use App\Models\Employee;
 use App\Models\EmployeeWithdrawal;
@@ -512,7 +513,7 @@ class indice extends clsDetalhe
       }
 
       if ($this->is_professor){
-        $this->array_botao[] = 'Vincular professor a turmas';
+        $this->array_botao[] = _cl('vincular.professor.turmas');
         $this->array_botao_url_script[] = "go(\"educar_servidor_vinculo_turma_lst.php?{$get_padrao}\");";
       }
     }
