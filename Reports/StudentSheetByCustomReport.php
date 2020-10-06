@@ -826,76 +826,26 @@ ORDER BY seque_fecha,
 
     private function getDataShool()
     {
-        $matricula = $this->args['matricula'] ?: 0;
         $arrData   = [];
 
-        if (!is_numeric($this->args['matricula']) || $this->args['branco'] === 'true') {
-            $max = $this->args['modelo'] == 2 ? 4 : 5;
-            for ($x = 0; $x < $max; $x++) {
-                $arrData[] = [
-                    'turma'          => '',
-                    'data_matricula' => '',
-                    'ano'            => '',
-                    'tipo_ensino'    => '',
-                    'ciclo'          => '',
-                    'turno'          => '',
-                    'tipo'           => '',
-                    'frequencia'     => '',
-                ];
-            }
-            if ($this->args['modelo'] == 2) {
-                $arrData[0]['turma'] = "Berçário I";
-                $arrData[1]['turma'] = "Berçário II";
-                $arrData[2]['turma'] = "Maternal I";
-                $arrData[3]['turma'] = "Maternal II";
-            }
-        } else {
-            $sqlDataHistorico = "
-        SELECT
-turma.nm_turma as turma
-,to_char(matricula.data_matricula,'dd/mm/yyyy') as data_matricula
-,matricula.ano
-,tipo_ensino.nm_tipo as tipo_ensino
-,COALESCE((SELECT 
-  CASE 
-    WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 THEN 'alfabetizacao'
-    WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0 THEN 'complementar'
-  ELSE 'Não encontrado'
-    END as ciclo
-FROM cadastro.etapa_ensino
-INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
-INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
-INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
-INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
-	AND matricula_turma.sequencial = view_situacao.sequencial
-INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = matricula.ref_cod_aluno
-WHERE aluno_ciclos.cod_aluno = matricula.ref_cod_aluno
-AND turma_serie.cod_turma = matricula_turma.ref_cod_turma LIMIT 1
-),'') as ciclo
-,COALESCE(turma_turno.nome,'') as turno
-,COALESCE(modules.frequencia_da_matricula(matricula.cod_matricula)::text,'') AS frequencia
-,COALESCE(turma_tipo.nm_tipo,'') as tipo
-FROM pmieducar.matricula 
-INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_matricula =  matricula.cod_matricula
-INNER JOIN pmieducar.turma ON matricula_turma.ref_cod_turma = turma.cod_turma
-INNER JOIN pmieducar.curso ON curso.cod_curso = turma.ref_cod_curso
-INNER JOIN pmieducar.tipo_ensino ON tipo_ensino.cod_tipo_ensino = curso.ref_cod_tipo_ensino
-LEFT JOIN pmieducar.turma_turno ON turma_turno.id = turma.turma_turno_id
-LEFT JOIN pmieducar.turma_tipo ON turma_tipo.cod_turma_tipo = turma.ref_cod_turma_tipo
-WHERE matricula.ref_cod_aluno in (
-	SELECT matricula_sub.ref_cod_aluno 
-	FROM pmieducar.matricula as matricula_sub 
-	WHERE matricula_sub.cod_matricula = {$matricula}
-) 
-AND matricula.ativo = 1 AND matricula_turma.ativo = 1 AND turma.ativo = 1
-order by matricula.ano 
-        ";
-            
-            $arrData = Portabilis_Utils_Database::fetchPreparedQuery($sqlDataHistorico);
-            if(count($arrData)==0){
-                $arrData = "";
-            }
-
+        $max = $this->args['modelo'] == 2 ? 4 : 5;
+        for ($x = 0; $x < $max; $x++) {
+            $arrData[] = [
+                'turma'          => '',
+                'data_matricula' => '',
+                'ano'            => '',
+                'tipo_ensino'    => '',
+                'ciclo'          => '',
+                'turno'          => '',
+                'tipo'           => '',
+                'frequencia'     => '',
+            ];
+        }
+        if ($this->args['modelo'] == 2) {
+            $arrData[0]['turma'] = "Berçário I";
+            $arrData[1]['turma'] = "Berçário II";
+            $arrData[2]['turma'] = "Maternal I";
+            $arrData[3]['turma'] = "Maternal II";
         }
         return $arrData;
     }
