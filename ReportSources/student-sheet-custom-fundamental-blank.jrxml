@@ -62,7 +62,7 @@
 					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
-					<subreportParameterExpression><![CDATA["FICHA DO DE MATRÍCULA  – EDUCAÇÃO INFANTIL - PRÉ-ESCOLA"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["FICHA DE MATRÍCULA  – EDUCAÇÃO INFANTIL - PRÉ-ESCOLA"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>

@@ -61,10 +61,7 @@ class StudentSheetbyCustomReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
-        //dd($this->getSqlReport());
-        return $this->args['branco'] === 'true'
-            ? $this->getSqlBlankReport()
-            : $this->getSqlReport();
+        return $this->getSqlBlankReport();
     }
 
     private function getSqlBlankReport()
