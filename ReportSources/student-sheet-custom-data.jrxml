@@ -180,10 +180,10 @@
 				<text><![CDATA[Data da Matrícula:                                  Turma:                                                           Ano:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="66" width="40" height="15" uuid="9d4aa488-f88a-4005-8e3b-83c51f5d8278">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<reportElement x="0" y="66" width="40" height="15" uuid="9d4aa488-f88a-4005-8e3b-83c51f5d8278">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
