@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="student_sheet_custom_infant" pageWidth="595" pageHeight="900" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80c96018-59aa-4572-b3d5-66ec29e78417">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="student_sheet_custom_infant" pageWidth="595" pageHeight="841" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80c96018-59aa-4572-b3d5-66ec29e78417">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="instituicao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
@@ -39,10 +48,10 @@
 	<parameter name="logo2" class="java.lang.String"/>
 	<field name="dados_escolares" class="java.lang.String"/>
 	<background>
-		<band height="860" splitType="Stretch">
+		<band height="801" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement x="0" y="0" width="555" height="860" uuid="10988898-21f2-45a9-8e2d-65246f1f6652">
+				<reportElement x="0" y="0" width="555" height="801" uuid="10988898-21f2-45a9-8e2d-65246f1f6652">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -85,7 +94,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="525" splitType="Stretch">
+		<band height="465" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
 				<reportElement mode="Opaque" x="5" y="5" width="545" height="15" backcolor="#BFBFBF" uuid="0026977d-4966-4910-bf3c-862f55334163">
@@ -839,14 +848,8 @@
 				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
 			</staticText>
 		</band>
-		<band height="770" splitType="Stretch">
+		<band height="711" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<break>
-				<reportElement x="0" y="0" width="555" height="1" uuid="7e5c3ed7-19dd-4eef-86d9-67dfddc59ef1">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-			</break>
 			<staticText>
 				<reportElement mode="Opaque" x="5" y="220" width="545" height="15" backcolor="#BFBFBF" uuid="d6bae3df-d7eb-4b5c-9479-4889a417449f">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
