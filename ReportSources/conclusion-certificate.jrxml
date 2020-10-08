@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="conclusion-certificate" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ebfea547-cf8a-408f-af8a-1e9e8f07874e">
 	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
@@ -86,6 +86,7 @@
 	<field name="aluno_estado_id" class="java.lang.String"/>
 	<field name="frequencia" class="java.math.BigDecimal"/>
 	<field name="diretor" class="java.lang.String"/>
+	<field name="observacao" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -126,7 +127,7 @@
 	</pageHeader>
 	<detail>
 		<band height="501" splitType="Stretch">
-			<textField isStretchWithOverflow="true" pattern="">
+			<textField textAdjust="StretchHeight" pattern="">
 				<reportElement x="21" y="90" width="513" height="105" uuid="09b1099f-fbaf-45f9-aaa9-9fa8f5d23f8d"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10"/>
@@ -173,7 +174,7 @@ $F{municipio_uf_nascimento} + ", filho(a) de "+ ($F{nm_pai}.equals("") && $F{nm_
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{observacao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{observacao}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="21" y="269" width="513" height="15" uuid="0d0d550b-9013-4377-961e-d714d8047c04"/>
