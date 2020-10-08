@@ -120,7 +120,7 @@
 	</pageHeader>
 	<detail>
 		<band height="437" splitType="Stretch">
-			<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="true">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement x="21" y="45" width="513" height="105" uuid="09b1099f-fbaf-45f9-aaa9-9fa8f5d23f8d"/>
 				<textElement textAlignment="Justified">
 					<font fontName="DejaVu Sans" size="11"/>
