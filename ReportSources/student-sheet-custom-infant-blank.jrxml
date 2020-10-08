@@ -847,6 +847,12 @@
 				</textElement>
 				<text><![CDATA[(   ) Sim   (   ) Não]]></text>
 			</staticText>
+			<break>
+				<reportElement x="0" y="462" width="555" height="1" uuid="038cafa9-de8c-4112-af73-33e322715ff6">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</break>
 		</band>
 		<band height="711" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
