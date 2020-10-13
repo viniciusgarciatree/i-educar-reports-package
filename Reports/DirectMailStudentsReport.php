@@ -88,7 +88,7 @@ where logradouro is not null  and d.ativo = 1 AND
     }
 
     protected function getExibirCabecalho(){
-        $result = DB::select("select EXISTS (select * from public.settings where key = 'report.header.mala_direta' AND value = '0');");
+        $result = DB::select("select EXISTS (select * from public.settings where key = 'report.header.mala_direta' AND value = '1');");
         if (count($result) > 0 && $result[0] == true){
             return true;
         }
