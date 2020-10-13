@@ -47,7 +47,7 @@
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
 	<parameter name="logo2" class="java.lang.String"/>
-	<parameter name="exibir_cabecalho" class="java.lang.String"/>
+	<parameter name="exibir_cabecalho" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
