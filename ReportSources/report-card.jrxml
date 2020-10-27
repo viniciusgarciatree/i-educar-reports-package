@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_boletim" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -234,6 +234,7 @@
 	<field name="total_faltas_componente" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="total_faltas_componente"/>
 	</field>
+	<field name="observacoes" class="java.lang.String"/>
 	<group name="matricula" keepTogether="true">
 		<groupExpression><![CDATA[$F{matricula}]]></groupExpression>
 		<groupHeader>
@@ -687,7 +688,7 @@
 		<groupFooter>
 			<band height="14">
 				<printWhenExpression><![CDATA[!$P{observacoes}.trim().equals("")]]></printWhenExpression>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="0" y="-1" width="555" height="15" uuid="6a41299f-4150-4f3c-a891-e411e507c361"/>
 					<box>
 						<leftPen lineWidth="0.25"/>
@@ -698,7 +699,7 @@
 						<font fontName="DejaVu Sans" size="8"/>
 						<paragraph leftIndent="4" rightIndent="4" spacingBefore="4" spacingAfter="4"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{observacoes}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
 				</textField>
 			</band>
 			<band height="42">

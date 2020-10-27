@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="transference-certificate" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ecfc06f2-d908-4b3a-ab62-dfc5b56b39cb">
 	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
@@ -78,6 +78,7 @@
 	<field name="secretario" class="java.lang.String"/>
 	<field name="nis_pis_pasep" class="java.math.BigDecimal"/>
 	<field name="etapa_ensino_descricao" class="java.lang.String"/>
+	<field name="observacao" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -168,7 +169,7 @@
 				<textElement textAlignment="Justified">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Observações: " + $P{observacao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Observações: " + $F{observacao}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="0" width="555" height="20" uuid="d2d379dc-bd1a-4d5a-aa11-2a7037d55690"/>
