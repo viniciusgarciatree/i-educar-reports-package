@@ -60,7 +60,7 @@ class DirectMailStudentsReport extends Portabilis_Report_ReportCore
         $turma = $this->args['turma'] ?: 0;
         $ano = $this->args['ano'] ?: 0;
 
-        $this->args['exibir_cabecalho'] = $this->getExibirCabecalho();
+        $this->args['exibir_cabecalho'] = $this->getExibirCabecalho() ? "true" : "false";
 
         return "select 
 distinct on (ref_cod_aluno) b.nome as aluno, 
@@ -89,7 +89,7 @@ where logradouro is not null  and d.ativo = 1 AND
 
     protected function getExibirCabecalho(){
         $result = DB::select("select EXISTS (select * from public.settings where key = 'report.header.mala_direta' AND value = '1');");
-        if (count($result) > 0 && $result[0] == true){
+        if (count($result) > 0 && $result[0]['exists'] == true){
             return true;
         }
         return false;

@@ -47,7 +47,7 @@
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
 	<parameter name="logo2" class="java.lang.String"/>
-	<parameter name="exibir_cabecalho" class="java.lang.Boolean"/>
+	<parameter name="exibir_cabecalho" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -88,7 +88,7 @@
 	</background>
 	<title>
 		<band height="100" splitType="Stretch">
-			<printWhenExpression><![CDATA[$P{exibir_cabecalho}]]></printWhenExpression>
+			<printWhenExpression><![CDATA[$P{exibir_cabecalho}.equals("true")]]></printWhenExpression>
 			<subreport>
 				<reportElement x="0" y="0" width="555" height="100" uuid="6460f362-4f89-46dc-b8de-7429430b50de"/>
 				<subreportParameter name="logo1">
