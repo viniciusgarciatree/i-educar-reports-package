@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="student_sheet_custom_fundamental_blank" pageWidth="595" pageHeight="900" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80c96018-59aa-4572-b3d5-66ec29e78417">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="student_sheet_custom_fundamental_blank" pageWidth="595" pageHeight="841" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80c96018-59aa-4572-b3d5-66ec29e78417">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="instituicao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
@@ -174,10 +183,10 @@
 	<field name="empresa_mae" class="java.lang.String"/>
 	<field name="outra_escola" class="java.lang.String"/>
 	<background>
-		<band height="860" splitType="Stretch">
+		<band height="801" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement x="0" y="0" width="555" height="860" uuid="10988898-21f2-45a9-8e2d-65246f1f6652">
+				<reportElement x="0" y="0" width="555" height="801" uuid="10988898-21f2-45a9-8e2d-65246f1f6652">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -197,7 +206,7 @@
 					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
-					<subreportParameterExpression><![CDATA["FICHA DO DE MATRÍCULA  – EDUCAÇÃO INFANTIL - PRÉ-ESCOLA"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["FICHA DE MATRÍCULA  – EDUCAÇÃO INFANTIL - PRÉ-ESCOLA"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
@@ -234,7 +243,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="750" splitType="Stretch">
+		<band height="598" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
 				<reportElement mode="Opaque" x="5" y="5" width="545" height="15" backcolor="#BFBFBF" uuid="0026977d-4966-4910-bf3c-862f55334163">
@@ -1130,16 +1139,16 @@ com a legislação municipal]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{empresa_mae}]]></textFieldExpression>
 			</textField>
-		</band>
-		<band height="130" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<printWhenExpression><![CDATA[!$F{dados_escolares}.isEmpty()]]></printWhenExpression>
 			<break>
-				<reportElement x="0" y="0" width="555" height="1" uuid="0c261e9e-50b4-4fe0-98dd-b9ebca0afc06">
+				<reportElement x="0" y="595" width="555" height="1" uuid="6edcab05-e295-4fe7-bbba-207f4838adcd">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 			</break>
+		</band>
+		<band height="130" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[!$F{dados_escolares}.isEmpty()]]></printWhenExpression>
 			<subreport>
 				<reportElement stretchType="RelativeToBandHeight" x="5" y="5" width="545" height="124" uuid="56d2ae37-72af-475f-8f9c-661320e623a4">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>

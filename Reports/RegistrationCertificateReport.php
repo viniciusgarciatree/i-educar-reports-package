@@ -22,6 +22,24 @@ class RegistrationCertificateReport extends Portabilis_Report_ReportCore
         return 'registration-certificate';
     }
 
+    public function getJsonData()
+    {
+        $queryMainReport = $this->getSqlMainReport();
+        $queryHeaderReport = $this->getSqlHeaderReport();
+        $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
+
+        foreach ($arrMain as $index => $value){
+            if(is_numeric($index)){
+                $arrMain[$index]['observacoes'] =  $this->args['observacoes'] ?: '';
+            }
+        }
+
+        return array_merge([
+            'main' => $arrMain,
+            'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
+        ]);
+    }
+
     /**
      * @inheritdoc
      */
