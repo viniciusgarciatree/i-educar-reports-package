@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.3.0.final using JasperReports Library version 6.8.1-SNAPSHOT-1ebbe47629f595df82c137d4edda18ac1dafc9f1  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="registration-certificate" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b58c92c8-60b6-4afb-ae40-52aa24303ab2">
 	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
@@ -33,12 +33,10 @@
 	<parameter name="emitir_secretario_escolar" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
 	</parameter>
-	<parameter name="titulo" class="java.lang.String">
-		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
-	</parameter>
 	<parameter name="modelo" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
+	<parameter name="titulo" class="java.lang.String"/>
 	<field name="nm_instituicao" class="java.lang.String"/>
 	<field name="nm_responsavel" class="java.lang.String"/>
 	<field name="altera_atestado_para_declaracao" class="java.lang.Boolean"/>
@@ -74,11 +72,11 @@
 	<field name="aluno_estado_id" class="java.lang.String"/>
 	<field name="diretor" class="java.lang.String"/>
 	<field name="secretario" class="java.lang.String"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
+	<field name="observacoes" class="java.lang.String"/>
 	<title>
-		<band splitType="Stretch"/>
+		<band>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="60" splitType="Stretch">
@@ -114,7 +112,7 @@
 	</pageHeader>
 	<detail>
 		<band height="315" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
+			<textField>
 				<reportElement x="21" y="45" width="513" height="134" uuid="c803f32c-11d3-438d-af5f-7290785734f9"/>
 				<textElement textAlignment="Justified">
 					<font fontName="DejaVu Sans" size="11"/>
@@ -130,7 +128,7 @@
 				<text><![CDATA[Código aluno:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="143" y="230" width="175" height="20" uuid="dd038e50-edde-4ca2-be56-c4ad0bec1a6b"/>
+				<reportElement x="143" y="220" width="175" height="20" uuid="dd038e50-edde-4ca2-be56-c4ad0bec1a6b"/>
 				<textElement markup="none">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
@@ -143,26 +141,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cod_aluno}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="143" y="207" width="175" height="20" uuid="dd038e50-edde-4ca2-be56-c4ad0bec1a6b"/>
-				<textElement markup="none">
-					<font fontName="DejaVu Sans" size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{aluno_estado_id}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="21" y="230" width="134" height="20" uuid="450097ec-70cd-4d94-92bf-65da72263dff"/>
+				<reportElement x="21" y="220" width="134" height="20" uuid="450097ec-70cd-4d94-92bf-65da72263dff"/>
 				<textElement markup="none">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
 				<text><![CDATA[Código nacional (INEP):]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="21" y="207" width="134" height="20" uuid="01fa4417-6649-48c4-8be1-ea5110c89884"/>
-				<textElement markup="none">
-					<font fontName="DejaVu Sans" size="10"/>
-				</textElement>
-				<text><![CDATA[Código estado:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="0" y="7" width="555" height="20" uuid="ff1c6f8a-abae-478f-818f-bea1b37ca461"/>
@@ -178,7 +162,7 @@
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{observacoes}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="21" y="262" width="70" height="20" uuid="1eca72c0-a894-4a5c-acc8-0c94d7797c72">
