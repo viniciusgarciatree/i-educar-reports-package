@@ -109,19 +109,20 @@ class DatabaseToCsvExporter implements ShouldQueue
 
         $exporter = $this->getExporter();
 
+        $storagePath = Storage::disk($sftp)->getAdapter()->getPathPrefix();
         $file = $this->export->hash;
 
         $manager->unprepared(
-            "COPY ({$exporter->query()}) TO '/tmp/{$file}' CSV HEADER;"
+            "COPY ({$exporter->query()}) TO '{$storagePath}/{$file}' CSV HEADER;"
         );
 
         Storage::disk()->put(
             $filename = $this->transformTenantFilename($this->export),
-            Storage::disk($sftp)->get("/tmp/{$file}"),
+            Storage::disk($sftp)->get("{$file}"),
             'public'
         );
 
-        Storage::disk($sftp)->delete("/tmp/{$file}");
+        Storage::disk($sftp)->delete("{$file}");
 
         $url = $this->transformTenantUrl($filename);
 
