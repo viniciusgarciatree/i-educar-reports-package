@@ -57,6 +57,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'pgsql' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
         'minio' => [
             'driver' => 's3',
             'endpoint' => env('MINIO_ENDPOINT', 'http://127.0.0.1:9000'),
