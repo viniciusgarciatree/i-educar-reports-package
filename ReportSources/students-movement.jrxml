@@ -1429,7 +1429,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{soma10}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField  isBlankWhenNull="true">
 				<reportElement x="0" y="75" width="802" height="16" uuid="04858f81-60d8-4bd0-a11b-06af1e1a82ff"/>
 				<box>
 					<topPen lineWidth="0.0" lineColor="#F0F0F0"/>
