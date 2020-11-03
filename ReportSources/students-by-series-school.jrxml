@@ -71,11 +71,7 @@
 					</textElement>
 					<text><![CDATA[Escola:]]></text>
 				</staticText>
-<<<<<<< HEAD
 				<textField>
-=======
-				<textField >
->>>>>>> S004-C16862
 					<reportElement x="43" y="2" width="446" height="13" uuid="8b9f354f-2e92-4b47-87c0-b9be2593b2f1"/>
 					<textElement>
 						<font fontName="DejaVu Sans" size="8"/>
