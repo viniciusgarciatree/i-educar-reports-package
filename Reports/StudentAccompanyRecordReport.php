@@ -96,7 +96,11 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
 
         $calc_hora_falta = function ($hora){
             $hora = intval($hora);
-            return ($hora>0 ? intval($hora/60).':'. intval($hora%60) : 0);
+            $tHora = "";
+            if ($hora>0){
+                return "" . date('H:i',strtotime( (intval($hora/60).':'. intval($hora%60)).":00"));
+            }
+            return ($hora>0 ?  $tHora : 0);
         };
 
         if($tempo_da_aula>0) {
@@ -125,7 +129,7 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $parecer = !empty($dataParece['parecer1']) ? " <b>1º Bimestre:</b> " . $dataParece['parecer1'] : "";
         $parecer .= !empty($dataParece['parecer2']) ? "<br> <br> <b>2º Bimestre:</b> " . $dataParece['parecer2'] : "";
         $parecer .= !empty($dataParece['parecer3']) ? "<br> <br> <b>3º Bimestre:</b> " . $dataParece['parecer3'] : "";
-        $parecer .= !empty($dataParece['parecer4']) ? "<br> <br> <b>4º Bimestre:</b>" . $dataParece['parecer4'] : "";
+        $parecer .= !empty($dataParece['parecer4']) ? "<br> <br> <b>4º Bimestre:</b> " . $dataParece['parecer4'] : "";
         $arrReport['parecer'] = $parecer;
 
         $falta_hora_total = intval($falta_hora_total);
