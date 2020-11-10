@@ -43,6 +43,7 @@ class StudentsByRelativesReport extends Portabilis_Report_ReportCore
 
         $return = "
            SELECT
+  cod_escola,
   aluno.cod_aluno                         AS cod_aluno,
   fcn_upper(pessoa.nome)                  AS nome_aluno,
   to_char(fisica.data_nasc, 'dd/mm/yyyy') AS data_nasc,
@@ -100,6 +101,7 @@ WHERE (CASE WHEN {$escola} = 0 THEN TRUE ELSE {$escola} = escola.cod_escola END)
               AND (CASE WHEN {$serie} = 0 THEN TRUE ELSE {$serie} = serie.cod_serie END)
               AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE {$turma} = turma.cod_turma END)
 GROUP BY
+  cod_escola,
   nm_escola,
   nome_curso,
   nome_serie,
@@ -113,6 +115,7 @@ GROUP BY
   pes_pai.nome,
   pes_mae.nome          
 ORDER BY
+  cod_escola,
   nm_escola,
   nome_curso,
   nome_serie,
@@ -126,7 +129,6 @@ ORDER BY
   pes_pai.nome,
   pes_mae.nome
         ";
-        //dd($return);
         return $return;
     }
 }
