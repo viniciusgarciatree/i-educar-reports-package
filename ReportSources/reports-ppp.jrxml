@@ -22,11 +22,14 @@
 	<parameter name="serie" class="java.lang.String"/>
 	<parameter name="turma" class="java.lang.String"/>
 	<parameter name="situacao" class="java.lang.String"/>
+	<parameter name="vinculo" class="java.lang.String"/>
 	<field name="curso" class="java.lang.String"/>
 	<field name="sexo" class="java.lang.String"/>
 	<field name="cor_raca" class="java.lang.String"/>
 	<field name="localizacao" class="java.lang.String"/>
 	<field name="transporte" class="java.lang.String"/>
+	<field name="docentes" class="java.lang.String"/>
+	<field name="docentes_total" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -73,8 +76,11 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Curso"]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("matriculas")]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-matricula.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-dados.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="20" splitType="Stretch">
@@ -86,8 +92,11 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Estudantes por sexo"]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("sexo")]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-sexo.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-dados.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="20" splitType="Stretch">
@@ -99,8 +108,11 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Estudantes por cor/raça"]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("cor_raca")]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-raca.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-dados.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="20" splitType="Stretch">
@@ -112,8 +124,11 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Distribuição dos estudantes por localização/zona de residência"]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("localizacao")]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-localizacao.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-dados.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="20" splitType="Stretch">
@@ -125,8 +140,73 @@
 				<subreportParameter name="source">
 					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Utilização de transporte escolar público"]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("transporte")]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-transporte.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-dados.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle radius="0">
+				<reportElement mode="Opaque" x="0" y="5" width="555" height="10" forecolor="#F0F0F0" backcolor="#E8E8E8" uuid="c2238099-6b97-479b-a06f-86d7755cb349">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#E8E8E8"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="490" y="5" width="60" height="10" uuid="3b206d4d-1d3a-4203-8d2e-3c405c7d7594">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("#,###,##0").format($F{docentes_total}).replace(",","."))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="5" width="125" height="10" uuid="c68b5c11-546e-4e1d-9f31-6221fd3aa6f3">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número total de docentes:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="555" height="1" uuid="f82f601f-6982-4ee1-872a-0880a1bdfd03">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport>
+				<reportElement x="0" y="5" width="555" height="10" uuid="7e2f210a-96eb-45ed-bd79-e059dced2c46">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Número de docentes por etapa de ensino"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("docentes")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports-ppp-dados.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

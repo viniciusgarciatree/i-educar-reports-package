@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reports_ppp_sexo" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="08deedb8-d086-4385-833f-673fc1f78e04">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reports_ppp_dados" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="08deedb8-d086-4385-833f-673fc1f78e04">
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-	<field name="total_localizacao" class="java.lang.Integer"/>
-	<field name="zona" class="java.lang.String"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<field name="quantidade" class="java.lang.Integer"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="porcentagem" class="java.lang.Double"/>
 	<variable name="total" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{total_localizacao}]]></variableExpression>
+		<variableExpression><![CDATA[$F{quantidade}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -18,17 +20,18 @@
 	<columnHeader>
 		<band height="10">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<staticText>
-				<reportElement x="5" y="0" width="423" height="10" uuid="f7527834-2fb1-40fb-a522-1c1f18e69c5a">
+			<textField>
+				<reportElement x="5" y="0" width="423" height="10" uuid="cc72476e-7c3a-4d46-9540-b41e7d508ad9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="491701b3-0a0a-4d58-915a-c2ea62acb80a"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Distribuição dos estudantes por localização/zona de residência]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement x="175" y="0" width="100" height="10" uuid="59d84b51-7fb9-4b11-af26-a7e0ec0bd38e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="72ac96a3-5c07-4bd7-b7e8-476b70964352"/>
@@ -36,9 +39,10 @@
 				<text><![CDATA[total_curso]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="350" y="0" width="200" height="10" uuid="cbe4c844-f9d0-46c2-884e-eb35e72c38d5">
+				<reportElement x="458" y="0" width="60" height="10" uuid="cbe4c844-f9d0-46c2-884e-eb35e72c38d5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
@@ -56,6 +60,17 @@
 					<pen lineWidth="0.25" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="520" y="0" width="30" height="10" uuid="5c37c0d5-c366-4876-badf-9d8509382dd5">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -81,19 +96,33 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{zona}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="428" y="0" width="122" height="10" uuid="4502c2ca-4722-4f16-a2bc-62b8be0bdc9c">
+				<reportElement x="458" y="0" width="60" height="10" uuid="4502c2ca-4722-4f16-a2bc-62b8be0bdc9c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="72ac96a3-5c07-4bd7-b7e8-476b70964352"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("#,###,##0").format($F{total_localizacao}).replace(",","."))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("#,###,##0").format($F{quantidade}).replace(",","."))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="30" height="10" uuid="4b0a1f09-104c-481c-916b-81945380356a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="72ac96a3-5c07-4bd7-b7e8-476b70964352"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("0.00").format($F{porcentagem}).replace(".",","))]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -112,7 +141,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="284" y="0" width="200" height="10" uuid="32c57931-ef20-447d-b3bc-174865a9d197">
+				<reportElement x="284" y="0" width="174" height="10" uuid="32c57931-ef20-447d-b3bc-174865a9d197">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -122,9 +151,10 @@
 				<text><![CDATA[Total:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="484" y="0" width="66" height="10" uuid="f12713d5-bb1f-4a8d-aac8-0bb0b6d2a489">
+				<reportElement x="458" y="0" width="60" height="10" uuid="f12713d5-bb1f-4a8d-aac8-0bb0b6d2a489">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>

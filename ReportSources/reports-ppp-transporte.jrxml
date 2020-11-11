@@ -6,6 +6,7 @@
 	</parameter>
 	<field name="total_transporte" class="java.lang.Integer"/>
 	<field name="transporte" class="java.lang.String"/>
+	<field name="porcentagem" class="java.lang.Double"/>
 	<variable name="total" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{total_transporte}]]></variableExpression>
 	</variable>
@@ -36,14 +37,14 @@
 				<text><![CDATA[total_curso]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="350" y="0" width="200" height="10" uuid="cbe4c844-f9d0-46c2-884e-eb35e72c38d5">
+				<reportElement x="520" y="0" width="30" height="10" uuid="cbe4c844-f9d0-46c2-884e-eb35e72c38d5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Quantidade]]></text>
+				<text><![CDATA[%]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="9" width="555" height="1" uuid="ce0449dd-e961-45ff-a453-daf0884b7229">
@@ -56,6 +57,16 @@
 					<pen lineWidth="0.25" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="458" y="0" width="60" height="10" uuid="2dc3a2cd-c02c-4c02-8b00-2b4db64c5fed">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -84,11 +95,24 @@
 				<textFieldExpression><![CDATA[$F{transporte}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="428" y="0" width="122" height="10" uuid="4502c2ca-4722-4f16-a2bc-62b8be0bdc9c">
+				<reportElement x="520" y="0" width="30" height="10" uuid="4502c2ca-4722-4f16-a2bc-62b8be0bdc9c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="72ac96a3-5c07-4bd7-b7e8-476b70964352"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("0.00").format($F{porcentagem}).replace(".",","))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="458" y="0" width="60" height="10" uuid="60439b29-423a-4bad-983a-0280b7bb1274">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="72ac96a3-5c07-4bd7-b7e8-476b70964352"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font size="8"/>
@@ -112,7 +136,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="284" y="0" width="200" height="10" uuid="32c57931-ef20-447d-b3bc-174865a9d197">
+				<reportElement x="284" y="0" width="174" height="10" uuid="32c57931-ef20-447d-b3bc-174865a9d197">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -122,7 +146,7 @@
 				<text><![CDATA[Total:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="484" y="0" width="66" height="10" uuid="f12713d5-bb1f-4a8d-aac8-0bb0b6d2a489">
+				<reportElement x="458" y="0" width="60" height="10" uuid="f12713d5-bb1f-4a8d-aac8-0bb0b6d2a489">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
