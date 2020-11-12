@@ -22,7 +22,6 @@ trait JsonDataSource
     {
         $queryMainReport = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
-        dd($queryHeaderReport);
 
         return [
             'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
