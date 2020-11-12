@@ -22,6 +22,7 @@ trait JsonDataSource
     {
         $queryMainReport = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
+        dd($queryHeaderReport);
 
         return [
             'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport),
@@ -48,7 +49,8 @@ trait JsonDataSource
     {
         $instituicao = $this->args['instituicao'] ?: 0;
         $escola = $this->args['escola'] ?: 0;
-        $notSchool = empty($this->args['escola']) ? 'true' : 'false';
+        $notSchool = $this->args['escola'] ? 'false' : 'true';
+
 
         $sql = "
 
@@ -64,10 +66,10 @@ trait JsonDataSource
                 (CASE WHEN {$notSchool} THEN ' ' ELSE view_dados_escola.email END),
                 instituicao.ref_sigla_uf AS uf,
                 instituicao.cidade,
-                a.address AS logradouro,
-                a.number AS numero,
-                a.postal_code AS cep,
-                view_dados_escola.inep
+                (CASE WHEN {$notSchool} THEN instituicao.ref_idtlog::text ELSE a.address::text END) AS logradouro,
+                (CASE WHEN true THEN instituicao.numero::text ELSE a.number::text END) AS numero,
+                (CASE WHEN true THEN instituicao.cep::text ELSE a.postal_code::text END) AS cep,
+                (CASE WHEN true THEN 0 ELSE view_dados_escola.inep END) AS inep
             FROM
                 pmieducar.instituicao
             INNER JOIN pmieducar.escola ON TRUE
@@ -91,7 +93,6 @@ trait JsonDataSource
             LIMIT 1
 
         ";
-
         return $sql;
     }
 
