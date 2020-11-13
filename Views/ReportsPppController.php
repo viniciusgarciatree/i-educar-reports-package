@@ -75,7 +75,7 @@ class ReportsPppController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('ano', (int) $this->getRequest()->ano);
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);
         $this->report->addArg('situacao', (int) $this->getRequest()->situacao);
-        $this->report->addArg('vinculo', (int) $this->getRequest()->vinculo_id);
+        $this->report->addArg('vinculo', (int) $this->getRequest()->vinculo);
     }
 
     /**
