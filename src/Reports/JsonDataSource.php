@@ -65,7 +65,7 @@ trait JsonDataSource
                 (CASE WHEN {$notSchool} THEN ' ' ELSE view_dados_escola.email END),
                 instituicao.ref_sigla_uf AS uf,
                 instituicao.cidade,
-                (CASE WHEN {$notSchool} THEN instituicao.ref_idtlog::text ELSE a.address::text END) AS logradouro,
+                (CASE WHEN {$notSchool} THEN (instituicao.ref_idtlog || ': ' || instituicao.logradouro) ELSE a.address::text END) AS logradouro,
                 (CASE WHEN true THEN instituicao.numero::text ELSE a.number::text END) AS numero,
                 (CASE WHEN true THEN instituicao.cep::text ELSE a.postal_code::text END) AS cep,
                 (CASE WHEN true THEN 0 ELSE view_dados_escola.inep END) AS inep
