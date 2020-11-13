@@ -149,6 +149,7 @@
 		</band>
 		<band height="20">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$F{docentes_total}>0]]></printWhenExpression>
 			<rectangle radius="0">
 				<reportElement mode="Opaque" x="0" y="5" width="555" height="10" forecolor="#F0F0F0" backcolor="#E8E8E8" uuid="c2238099-6b97-479b-a06f-86d7755cb349">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
