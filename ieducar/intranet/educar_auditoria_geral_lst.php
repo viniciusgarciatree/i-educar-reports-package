@@ -114,10 +114,14 @@ class indice extends clsListagem
          * Configurações para gerar relatório impresso demanda: C004-S17300
          * 2020-11-16 17:14 Vinícius Garcia.
          */
-        $host = config('app.nickname');
-        $this->acaoImprimirPdf = true;
-        $this->linkImprimirPdf = "&nbsp;&nbsp;&nbsp;<input type='button' id='imprimir' class='botaolistagem btn-green' value='Imprimir'>";
-        $this->linkImprimirPdf .= "<input name='imprimir-url' id='imprimir-url' type='hidden' value='{$host}/module/Reports/ReportAuditoriaGeral'>";
+        $result = \Illuminate\Support\Facades\DB::select("select EXISTS (SELECT * FROM PUBLIC.menus WHERE process = 9999205);");
+
+        if (count($result) > 0 && $result[0] == true) {
+            $host                  = config('app.nickname');
+            $this->acaoImprimirPdf = true;
+            $this->linkImprimirPdf = "&nbsp;&nbsp;&nbsp;<input type='button' id='imprimir' class='botaolistagem btn-green' value='Imprimir'>";
+            $this->linkImprimirPdf .= "<input name='imprimir-url' id='imprimir-url' type='hidden' value='{$host}/module/Reports/ReportAuditoriaGeral'>";
+        }
 
         foreach ($auditoriaLst as $a) {
             $valorAntigo = JsonToHtmlTable::transformJsonToHtmlTable($a['valor_antigo']);
