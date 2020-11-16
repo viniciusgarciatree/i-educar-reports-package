@@ -9,6 +9,7 @@ require_once 'include/clsBanco.inc.php';
 require_once 'include/pmieducar/geral.inc.php';
 require_once 'include/modules/clsModulesAuditoriaGeral.inc.php';
 require_once 'Portabilis/Date/Utils.php';
+require_once 'Reports/Reports/ReportAuditoriaGeralReport.php';
 
 class clsIndex extends clsBase
 {
@@ -51,11 +52,15 @@ class indice extends clsListagem
 
     public function Gerar()
     {
+        // Adicionar arquivo JS para redirecionar para impressão do relatório.
+        Portabilis_View_Helper_Application::loadJavascript($this, array('/intranet/scripts/auditoria/auditoria.js'));
         $this->titulo = 'Auditoria geral';
 
         foreach ($_GET as $var => $val) {
             $this->$var = ($val === '') ? null: $val;
         }
+
+        $this->inputsHelper()->dynamic('instituicao', ['required' => false, 'show-select' => true, 'value' => $this->ref_cod_instituicao]);
 
         $this->campoTexto('usuario', 'Matrícula usuário', $this->usuario, 50, 50);
 
@@ -65,6 +70,7 @@ class indice extends clsListagem
         ];
         $helperOptions = [
             'objectName' => 'rotinas_auditoria',
+
             'hiddenInputOptions' => [
                 'options' => ['value' => $this->rotinas_auditoria]
             ]
@@ -103,7 +109,15 @@ class indice extends clsListagem
             $this->operacao,
             $this->codigo
         );
-        $total = $auditoria->_total;
+
+        /**
+         * Configurações para gerar relatório impresso demanda: C004-S17300
+         * 2020-11-16 17:14 Vinícius Garcia.
+         */
+        $host = config('app.nickname');
+        $this->acaoImprimirPdf = true;
+        $this->linkImprimirPdf = "&nbsp;&nbsp;&nbsp;<input type='button' id='imprimir' class='botaolistagem btn-green' value='Imprimir'>";
+        $this->linkImprimirPdf .= "<input name='imprimir-url' id='imprimir-url' type='hidden' value='{$host}/module/Reports/ReportAuditoriaGeral'>";
 
         foreach ($auditoriaLst as $a) {
             $valorAntigo = JsonToHtmlTable::transformJsonToHtmlTable($a['valor_antigo']);
@@ -130,7 +144,7 @@ class indice extends clsListagem
 
         $this->largura = '100%';
 
-        $this->breadcrumb('Auditoria geral',['educar_configuracoes_index.php' => 'Configurações']);
+        $this->breadcrumb('Auditoria geral', ['educar_configuracoes_index.php' => 'Configurações']);
     }
 
     public function retornaLinkDaAuditoria($idAuditoria, $campo)
