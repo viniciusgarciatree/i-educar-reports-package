@@ -9,7 +9,7 @@
 	<field name="descricao" class="java.lang.String"/>
 	<field name="porcentagem" class="java.lang.Double"/>
 	<variable name="total" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[$F{quantidade}]]></variableExpression>
+		<variableExpression><![CDATA[Double.valueOf($F{quantidade})]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -109,7 +109,9 @@
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("#,###,##0").format($F{quantidade}).replace(",","."))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("#,###,##0").format(
+Double.valueOf($F{quantidade})
+).replace(",","."))]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="520" y="0" width="30" height="10" uuid="4b0a1f09-104c-481c-916b-81945380356a">
@@ -122,7 +124,9 @@
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("0.00").format($F{porcentagem}).replace(".",","))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.lang.String( new DecimalFormat("0.00").format(
+	Double.valueOf($F{porcentagem})
+).replace(".",","))]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -1,8 +1,11 @@
 <?php
 
+use iEducar\Support\View\SelectOptions;
+
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
 require_once 'Reports/Reports/ReportsPppReport.php';
 require_once 'Portabilis/Date/Utils.php';
+
 
 class ReportsPppController extends Portabilis_Controller_ReportCoreController
 {
@@ -50,21 +53,9 @@ class ReportsPppController extends Portabilis_Controller_ReportCoreController
             'value' => 3
         ]);
 
-        $obj_vinculos = new clsPmieducarFuncionarioVinculo();
-        $opcoes = $obj_vinculos->lista();
+        $resources = SelectOptions::tiposVinculoServidor();
 
-        $this->campoLista('vinculo', 'Vinulo do servidor', $opcoes, null, '', false, '', '', false, true);
-
-        $obj_funcoes = new clsPmieducarFuncao();
-        $lista_funcoes = $obj_funcoes->lista();
-        $opcoes = ['' => 'Selecione'];
-
-        if ($lista_funcoes) {
-            foreach ($lista_funcoes as $funcao) {
-                $opcoes[$funcao['cod_funcao']] = $funcao['nm_funcao'];
-            }
-        }
-        $this->campoLista('funcao', 'Fun&ccedil;&atilde;o do servidor', $opcoes, $this->cod_servidor_funcao, '', false, '', '', false, false);
+        $this->campoLista('vinculo', 'Tipo do vínculo', $resources, null, '', false, '', '', false, true);
     }
 
     /**
