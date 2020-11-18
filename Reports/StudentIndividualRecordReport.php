@@ -36,6 +36,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
      */
     public function getJsonData()
     {
+        $exibir_paracer_descritivo = $this->args['exibir_paracer_descritivo'];
         $queryMainReport   = $this->getSqlMainReport();
         $queryComponente   = $this->getSqlComponenteReport();
         $queryObservacao   = $this->getSqlObservacaoReport();
@@ -46,12 +47,49 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         $arrObservacao = Portabilis_Utils_Database::fetchPreparedQuery($queryObservacao);
         $header        = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
+        $carga_horaria_total = 0;
+        $horas = 0;
+        $minutos = 0;
+        $totalFaltasAula = 0;
+        //dd($arrComponente);
+        foreach ($arrComponente as $index => $value){
+            $faltasAula = 0;
+            $arrValue = explode(":",$value['carga_horaria_auxiliar']);
+            $horas += (int)$arrValue[0];
+            $minutos += (int)$arrValue[1];
+            if($minutos>59){
+                $minutos -= 60;
+                $horas += 1;
+            }
+            $faltasAula += $value['falta1'];
+            $faltasAula += $value['falta2'];
+            $faltasAula += $value['falta3'];
+            $faltasAula += $value['falta4'];
+            $faltasHoras = ($faltasAula * $value['hora_aula']);
+            if($faltasHoras>0) {
+                $totalFaltasAula                       += $faltasHoras;
+                $minutosFalta = ($faltasHoras % 60);
+                $faltasHoras                           = (($faltasHoras - ($faltasHoras % 60)) / 60) . ":" . (strlen($minutosFalta)<2?$minutosFalta."0":$minutosFalta);
+                $arrComponente[$index]['faltas_horas'] = $faltasHoras;
+            }else{
+                $arrComponente[$index]['faltas_horas'] = "";
+            }
+        }
+        $carga_horaria_total = $horas . ":" . $minutos;
+
         if (count($arrMain) == 0) {
             return array();
         }
 
+        $arrMain[0]['carga_horaria_total'] = $carga_horaria_total;
         $arrMain[0]['data_componente'] = count($arrComponente) > 0 ? $arrComponente : [];
-        $arrMain[0]['parecer'] = count($arrObservacao) > 0 && !empty($arrObservacao[0]["parecer"])? $arrObservacao[0]["parecer"] : "";
+        if(!$exibir_paracer_descritivo) {
+            $arrMain[0]['parecer']  = "";
+        }else{
+            $arrMain[0]['parecer'] = count(
+                $arrObservacao
+            ) > 0 && !empty($arrObservacao[0]["parecer"]) ? $arrObservacao[0]["parecer"] : "";
+        }
 
         $return = [
             'main'   => $arrMain,
@@ -446,6 +484,16 @@ modules.componente_curricular.tipo_base,
 		WHEN ccae.carga_horaria is not null THEN ccae.carga_horaria
    		ELSE 0
    END)::integer AS carga_horaria
+   ,(CASE 
+       WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN componente_curricular_turma.carga_horaria::varchar
+       WHEN ccae.carga_horaria_auxiliar is not null THEN ccae.carga_horaria_auxiliar::varchar
+       ELSE ''
+   END)::varchar AS carga_horaria_auxiliar
+   ,(CASE 
+       WHEN componente_curricular_turma.hora_aula is not null THEN componente_curricular_turma.hora_aula
+       WHEN ccae.hora_aula is not null THEN ccae.hora_aula
+       ELSE 0
+   END)::integer AS hora_aula
    ,COALESCE(texto_situacao,'') as texto_situacao
    ,COALESCE(modules.frequencia_da_matricula(matricula.cod_matricula),0) AS frequencia
  FROM pmieducar.instituicao
