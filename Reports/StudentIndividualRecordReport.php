@@ -47,11 +47,11 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         $arrObservacao = Portabilis_Utils_Database::fetchPreparedQuery($queryObservacao);
         $header        = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
+
         $carga_horaria_total = 0;
         $horas = 0;
         $minutos = 0;
         $totalFaltasAula = 0;
-        //dd($arrComponente);
         foreach ($arrComponente as $index => $value){
             $faltasAula = 0;
             $arrValue = explode(":",$value['carga_horaria_auxiliar']);
@@ -90,6 +90,8 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
                 $arrObservacao
             ) > 0 && !empty($arrObservacao[0]["parecer"]) ? $arrObservacao[0]["parecer"] : "";
         }
+
+        unset($this->args['exibir_paracer_descritivo']);
 
         $return = [
             'main'   => $arrMain,
