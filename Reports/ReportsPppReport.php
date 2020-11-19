@@ -54,6 +54,7 @@ class ReportsPppReport extends Portabilis_Report_ReportCore
     private function getTotal()
     {
         $ano      = $this->args['ano'];
+        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
         return "
 SELECT 
   count(*)::numeric 
@@ -65,7 +66,7 @@ FROM (
 		WHERE aluno.ativo = 1
 	AND matricula.ano = {$ano}
 	AND matricula.ativo = 1
-	AND matricula.aprovado = 3
+	{$situacao} 
 	GROUP BY aluno.cod_aluno 
 ) AS G
 ";
@@ -74,6 +75,7 @@ FROM (
     public function getNumeroMatricula()
     {
         $ano      = $this->args['ano'];
+        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -94,12 +96,12 @@ FROM (
         WHERE aluno.ativo = 1
             AND matricula.ano = {$ano}
             AND matricula.ativo = 1
-            AND matricula.aprovado = 3
             AND matricula_turma.ativo = 1
             AND turma.ativo = 1
             AND turma.ano = {$ano}
             AND escola_curso.ativo = 1
             AND curso.ativo = 1
+            {$situacao}
         GROUP BY aluno.cod_aluno,curso.nm_curso
     ) AS t 
         GROUP BY descricao
@@ -112,6 +114,7 @@ FROM (
     public function getSexo()
     {
         $ano      = $this->args['ano'];
+        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -133,7 +136,7 @@ FROM (
         WHERE aluno.ativo = 1
         AND matricula.ano = {$ano}
         AND matricula.ativo = 1
-        AND matricula.aprovado = 3
+        {$situacao}
         GROUP BY aluno.cod_aluno,fisica.sexo
     ) AS t 
     GROUP BY descricao
@@ -146,6 +149,7 @@ FROM (
     public function getCorRaca()
     {
         $ano      = $this->args['ano'];
+        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -168,7 +172,7 @@ FROM (
         WHERE aluno.ativo = 1
         AND matricula.ano = {$ano}
         AND matricula.ativo = 1
-        AND matricula.aprovado = 3
+        {$situacao}
         GROUP BY aluno.cod_aluno,raca.nm_raca
     ) AS t 
     GROUP BY descricao
@@ -181,6 +185,7 @@ FROM (
     public function getLocalizacao()
     {
         $ano      = $this->args['ano'];
+        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -203,7 +208,7 @@ FROM (
         WHERE aluno.ativo = 1
         AND matricula.ano = {$ano}
         AND matricula.ativo = 1
-        AND matricula.aprovado = 3
+        {$situacao}
         GROUP BY aluno.cod_aluno,fisica.zona_localizacao_censo
     ) AS t 
     GROUP BY descricao
@@ -216,6 +221,7 @@ FROM (
     public function getTransporte()
     {
         $ano      = $this->args['ano'];
+        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -237,7 +243,7 @@ FROM (
         WHERE aluno.ativo = 1
         AND matricula.ano = {$ano}
         AND matricula.ativo = 1
-        AND matricula.aprovado = 3
+        {$situacao}
         GROUP BY aluno.cod_aluno,transporte_aluno.responsavel
     ) AS t 
     GROUP BY descricao
