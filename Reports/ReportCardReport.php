@@ -61,7 +61,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
     public function getJsonData()
     {
         if($this->templateName() == "report-card-boletim"){            
-            $queryMainReport = $this->getSqlMainReport();        
+            $queryMainReport = $this->getSqlMainReport();
             $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
             $queryHeaderReport = $this->getSqlHeaderReport();
 
@@ -111,6 +111,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                     'total_geral_faltas_componente' => $value['total_geral_faltas_componente'],
                     'total_faltas' => $value['total_faltas'],
                     'curso_hora_falta' => $value['curso_hora_falta'],
+                    'dias_letivos_serie' => (int)$value['dias_letivos_serie'],
                     'carga_horaria_componente' => $value['carga_horaria_componente'],
                     'carga_horaria_serie' => $value['carga_horaria_serie'],
                     'media' => $value['media'],
@@ -138,6 +139,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             }
 
             unset($this->args['modelo']);
+            unset($this->args['observacoes']);
             return array_merge([
                 'main' => $arrMain,
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
@@ -152,6 +154,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                     $arrMain[$index]['observacoes'] =  $this->args['observacoes'] ?: '';
                 }
             }
+            unset($this->args['observacoes']);
 
             return array_merge([
                 'main' => $arrMain,
@@ -238,6 +241,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
           curso.hora_falta * 100 AS curso_hora_falta,
           componente_curricular_ano_escolar.carga_horaria::int AS carga_horaria_componente,
           serie.carga_horaria AS carga_horaria_serie,
+          serie.dias_letivos as dias_letivos_serie,
           nota_componente_curricular_media.media_arredondada AS media,
           TRUNC(nota_componente_curricular_media.media::NUMERIC, 1) AS medianum,
           TRUNC(nota_exame.nota_arredondada::NUMERIC, 1) AS nota_exame,
