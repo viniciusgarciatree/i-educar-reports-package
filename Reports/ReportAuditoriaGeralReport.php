@@ -23,7 +23,6 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
     public function getJsonData()
     {
         $arrDados = $this->getSqlMainReport();
-
         $queryHeaderReport = $this->getSqlHeaderReport();
 
         return array_merge(
@@ -94,6 +93,8 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
 
             $usuario = new clsFuncionario($a['usuario_id']);
             $usuario = $usuario->detalhe();
+            $pessoa = new clsPessoaFisica($a['usuario_id']);
+            $pessoa = $pessoa->detalhe();
 
             $operacao = $operacoes[$a['operacao']];
 
@@ -105,7 +106,7 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
 
             if(count($arrMerge)>0) {
                 $arrDados[] = [
-                    'matricula'     => $usuario['matricula'],
+                    'matricula'     => $usuario['matricula'] . " - " . $pessoa['nome'],
                     'rotina'        => ucwords($a['rotina']),
                     'operacao'      => $operacao,
                     'valores'       => $arrMerge,
