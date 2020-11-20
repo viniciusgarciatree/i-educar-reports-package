@@ -15,10 +15,10 @@ class RelatoriosTem extends Migration
      */
     public function up()
     {
-        $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334268000125');");
-        /* Para Caratinga verifica com cnpj */
-        if (count($result) > 0 && $result[0] == true)
-        {
+//        $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334268000125');");
+//        /* Para Caratinga verifica com cnpj */
+//        if (count($result) > 0 && $result[0] == true)
+//        {
             Menu::query()->updateOrCreate(
                 [
                     'old' => 9999204
@@ -54,7 +54,7 @@ class RelatoriosTem extends Migration
                     'active'      => true,
                 ]
             );
-        }
+//        }
     }
 
     /**
