@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report-card-boletim" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report-card-regime-special" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="ano" class="java.lang.Integer">
@@ -12,50 +12,11 @@
 	<parameter name="escola" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="curso" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-	</parameter>
-	<parameter name="serie" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-	</parameter>
-	<parameter name="turma" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-	</parameter>
-	<parameter name="matricula" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
-	</parameter>
 	<parameter name="logo1" class="java.lang.String"/>
-	<parameter name="diario" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
-	</parameter>
-	<parameter name="observacoes" class="java.lang.String">
-		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
-	</parameter>
-	<parameter name="imprimir_mensagem_aniversario" class="java.lang.Boolean"/>
-	<parameter name="mensagem_aniversario" class="java.lang.String"/>
-	<parameter name="grafico_media_turma" class="java.lang.Boolean">
-		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
-	</parameter>
-	<parameter name="grafico_preto" class="java.lang.Boolean">
-		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
-	</parameter>
-	<parameter name="situacao" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
-	</parameter>
-	<parameter name="emitir_nota_exame" class="java.lang.Boolean">
-		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
-	</parameter>
-	<parameter name="situacao_matricula" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="alunos_diferenciados" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
-	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<parameter name="database" class="java.lang.String"/>
-	<parameter name="data_emissao" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
 	<queryString>
@@ -273,7 +234,7 @@
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait-report-card.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
-			<band height="124" splitType="Stretch">
+			<band height="125" splitType="Stretch">
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<staticText>
 					<reportElement x="4" y="2" width="50" height="12" uuid="98bc6b5a-2737-478b-bdaa-cad1a87e2301">
@@ -531,7 +492,7 @@
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="4" y="64" width="138" height="60" uuid="703fa198-ea40-4933-a600-6ad811a236f7">
+					<reportElement x="103" y="64" width="138" height="60" uuid="703fa198-ea40-4933-a600-6ad811a236f7">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -542,7 +503,7 @@
 Conhecimento]]></text>
 				</staticText>
 				<line>
-					<reportElement x="144" y="62" width="1" height="62" uuid="e47bf445-32ac-46d0-a241-e3fadc4e5b8f">
+					<reportElement x="243" y="62" width="1" height="62" uuid="e47bf445-32ac-46d0-a241-e3fadc4e5b8f">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<graphicElement>
@@ -550,7 +511,7 @@ Conhecimento]]></text>
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="146" y="64" width="140" height="60" uuid="eaa85303-eae7-45dd-b33b-8c7cb03ed640">
+					<reportElement x="245" y="64" width="140" height="60" uuid="eaa85303-eae7-45dd-b33b-8c7cb03ed640">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -561,203 +522,7 @@ Conhecimento]]></text>
 Curricular]]></text>
 				</staticText>
 				<line>
-					<reportElement x="287" y="62" width="1" height="62" uuid="2e164bc7-fa1b-4716-bbfe-22430716a90d">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="289" y="64" width="41" height="20" uuid="8322b3a9-4ee3-4a0c-ac53-7fe6decdc930">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Center">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[1º
-Bimestre]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="289" y="84" width="18" height="40" uuid="70bc7c10-191d-42ba-a977-17f626cd9104">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Conceito]]></text>
-				</staticText>
-				<line>
-					<reportElement x="309" y="84" width="1" height="40" uuid="999e1a00-04bf-437a-a592-897bf86dc9a0">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="312" y="84" width="18" height="40" uuid="f85baf9e-4316-45ba-9852-a1fedca7858a">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Faltas]]></text>
-				</staticText>
-				<line>
-					<reportElement x="331" y="62" width="1" height="62" uuid="2de802aa-97c2-47a8-8aad-067b52862de0">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="333" y="64" width="41" height="20" uuid="b2b96acf-cb1c-4c3f-a593-bf6814cf443e">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Center">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[2º
-Bimestre]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="333" y="84" width="18" height="40" uuid="bd9a0c1e-b84f-4759-a7d8-722efe51e94c">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Conceito]]></text>
-				</staticText>
-				<line>
-					<reportElement x="353" y="84" width="1" height="40" uuid="0cacc57e-58aa-45d8-9980-31cd9124af76">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="356" y="84" width="18" height="40" uuid="b948f64d-ce94-41e6-97f8-a28dd5fd03eb">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Faltas]]></text>
-				</staticText>
-				<line>
-					<reportElement x="375" y="62" width="1" height="62" uuid="dc0a3cd4-9726-42bf-bc06-51d8c95e811e">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="377" y="64" width="41" height="20" uuid="88c959b8-af04-477d-b2d1-6fb5d5aa75fe">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Center">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[3º
-Bimestre]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="377" y="84" width="18" height="40" uuid="8dc20053-3096-4826-8099-de95c86d9720">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Conceito]]></text>
-				</staticText>
-				<line>
-					<reportElement x="397" y="84" width="1" height="40" uuid="3843eb4e-26a8-4983-b20d-02b91460b45f">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="400" y="84" width="18" height="40" uuid="980fb75b-2265-4fb2-bc8b-5b3dbb6fc031">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Faltas]]></text>
-				</staticText>
-				<line>
-					<reportElement x="419" y="62" width="1" height="62" uuid="0ee0524a-0802-46d5-a98d-51918f3adf26">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="421" y="64" width="41" height="20" uuid="c6c3a4ea-99b9-487a-8c64-f80f67c7382f">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Center">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[4º
-Bimestre]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="421" y="84" width="18" height="40" uuid="916b2677-ed57-451c-b818-2793178aa5ca">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Conceito]]></text>
-				</staticText>
-				<line>
-					<reportElement x="441" y="84" width="1" height="40" uuid="c2aa8c6c-7feb-497e-9354-c64e39617f40">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="444" y="84" width="18" height="40" uuid="02f5bbf0-7e9f-4e96-8ff4-5da10a730389">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Faltas]]></text>
-				</staticText>
-				<line>
-					<reportElement x="463" y="62" width="1" height="62" uuid="e48ec5ea-6b9b-4120-a7f7-23c8d456d747">
+					<reportElement x="386" y="62" width="1" height="62" uuid="2e164bc7-fa1b-4716-bbfe-22430716a90d">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<graphicElement>
@@ -765,82 +530,22 @@ Bimestre]]></text>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement x="287" y="84" width="176" height="1" uuid="f67cd069-89ac-4181-a3a3-89334b91bc87">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<reportElement x="430" y="62" width="1" height="62" uuid="2de802aa-97c2-47a8-8aad-067b52862de0">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<graphicElement>
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</line>
-				<staticText>
-					<reportElement x="464" y="64" width="20" height="59" uuid="02e1d99e-8a6c-49bd-9491-9e375a40955e">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<line>
+					<reportElement x="452" y="62" width="1" height="62" uuid="0cacc57e-58aa-45d8-9980-31cd9124af76">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Exame final]]></text>
-				</staticText>
-				<line>
-					<reportElement x="485" y="62" width="1" height="62" uuid="c0a38ac5-098d-44fb-b2aa-e8518675c577">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<graphicElement>
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</line>
-				<staticText>
-					<reportElement x="487" y="64" width="20" height="59" uuid="aa1d470a-adee-4a8b-9a56-352858bfa6aa">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Média Final]]></text>
-				</staticText>
-				<line>
-					<reportElement x="508" y="62" width="1" height="62" uuid="7b59f733-b9dc-48e4-bfe7-370e26134400">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="510" y="64" width="20" height="59" uuid="31a7e802-64d4-4bfa-8622-932536d4f007">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Faltas]]></text>
-				</staticText>
-				<line>
-					<reportElement x="531" y="62" width="1" height="62" uuid="91769714-c865-49ab-8b6a-f6c6faacd52f">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.25"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="533" y="64" width="20" height="59" uuid="e9484a40-8a6d-454f-bfdf-69c0583092fb">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					</reportElement>
-					<box leftPadding="0" bottomPadding="2"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<text><![CDATA[Frequência %]]></text>
-				</staticText>
 				<line>
 					<reportElement x="554" y="0" width="1" height="124" uuid="b3a90e4a-48f9-438e-bf2c-5858d5b6efb5">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -858,11 +563,42 @@ Bimestre]]></text>
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</line>
+				<line>
+					<reportElement x="103" y="62" width="1" height="62" uuid="4fc464d8-baa3-4f7e-81de-dd2d4eef8d59">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="388" y="63" width="41" height="61" uuid="2687a8f2-2488-4a96-9b13-6d925b583df2">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Conceito Global]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="431" y="64" width="20" height="59" uuid="45679c39-826e-4177-aad0-a120690f25b9">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box leftPadding="0" bottomPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Frequência e dias]]></text>
+				</staticText>
 			</band>
 		</groupHeader>
 		<groupFooter>
 			<band height="14">
-				<printWhenExpression><![CDATA[!$P{observacoes}.trim().equals("")]]></printWhenExpression>
+				<printWhenExpression><![CDATA[!$F{observacoes}.trim().equals("")]]></printWhenExpression>
 				<textField>
 					<reportElement x="0" y="-1" width="555" height="15" uuid="6a41299f-4150-4f3c-a891-e411e507c361"/>
 					<box>
@@ -1211,190 +947,6 @@ DO ALUNO]]></text>
 					<text><![CDATA[(0 até 29,9%)]]></text>
 				</staticText>
 			</band>
-			<band height="42">
-				<printWhenExpression><![CDATA[($P{imprimir_mensagem_aniversario}) &&
-($F{dt_nasc}.getMonth() == new Date().getMonth())]]></printWhenExpression>
-				<textField>
-					<reportElement x="12" y="6" width="531" height="28" uuid="c2c5216b-4817-45f8-8fcc-2725df56430f"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="DejaVu Sans" size="8" isBold="true" isStrikeThrough="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$P{mensagem_aniversario}]]></textFieldExpression>
-				</textField>
-			</band>
-			<band height="333">
-				<printWhenExpression><![CDATA[$P{grafico_media_turma}]]></printWhenExpression>
-				<barChart>
-					<chart isShowLegend="true" renderType="draw" theme="default">
-						<reportElement mode="Transparent" x="12" y="23" width="532" height="310" forecolor="#000000" uuid="50b0fbda-4e09-48bc-bd7d-73272f2363f5">
-							<printWhenExpression><![CDATA[$P{grafico_preto}]]></printWhenExpression>
-						</reportElement>
-						<box topPadding="0">
-							<pen lineWidth="0.0" lineStyle="Solid"/>
-							<topPen lineWidth="0.0" lineStyle="Solid"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid"/>
-						</box>
-						<chartTitle position="Top">
-							<font fontName="DejaVu Sans" size="8"/>
-						</chartTitle>
-						<chartSubtitle>
-							<font fontName="DejaVu Sans" size="8"/>
-						</chartSubtitle>
-						<chartLegend position="Bottom">
-							<font fontName="DejaVu Sans" size="8"/>
-						</chartLegend>
-					</chart>
-					<categoryDataset>
-						<dataset resetType="Group" resetGroup="matricula"/>
-						<categorySeries>
-							<seriesExpression><![CDATA["MÉDIA "+$F{nome_aluno}]]></seriesExpression>
-							<categoryExpression><![CDATA[$F{nome_disciplina}]]></categoryExpression>
-							<valueExpression><![CDATA[$F{nota4num} != null ?
-	new BigDecimal($F{medianum}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-: $F{nota3num} != null ?
-	new BigDecimal(($F{nota3num} + $F{nota2num} + $F{nota1num}) / 3).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-	: $F{nota2num} != null ?
-		new BigDecimal(($F{nota2num} + $F{nota1num}) / 2).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-		: $F{nota1num} != null  ?
-            new BigDecimal($F{nota1num}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-            : null]]></valueExpression>
-						</categorySeries>
-						<categorySeries>
-							<seriesExpression><![CDATA["MÉDIA TURMA"]]></seriesExpression>
-							<categoryExpression><![CDATA[$F{nome_disciplina}]]></categoryExpression>
-							<valueExpression><![CDATA[$F{nota4numturma} != null ?
-	new BigDecimal($F{medianumturma}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-: $F{nota3numturma} != null ?
-	new BigDecimal(($F{nota3numturma} + $F{nota2numturma} + $F{nota1numturma}) / 3).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-	: $F{nota2numturma} != null ?
-		new BigDecimal(($F{nota2numturma} + $F{nota1numturma}) / 2).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-		: $F{nota1numturma} != null  ?
-            new BigDecimal($F{nota1numturma}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-            : null]]></valueExpression>
-						</categorySeries>
-					</categoryDataset>
-					<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
-						<plot foregroundAlpha="1.0" labelRotation="0.0">
-							<seriesColor seriesOrder="0" color="#010101"/>
-							<seriesColor seriesOrder="1" color="#BFBFBF"/>
-						</plot>
-						<itemLabel color="#000000">
-							<font fontName="DejaVu Sans" size="7"/>
-						</itemLabel>
-						<categoryAxisFormat labelRotation="0.0">
-							<axisFormat labelColor="#000000" verticalTickLabels="true">
-								<labelFont>
-									<font fontName="DejaVu Sans" size="7"/>
-								</labelFont>
-								<tickLabelFont>
-									<font fontName="DejaVu Sans" size="7"/>
-								</tickLabelFont>
-							</axisFormat>
-						</categoryAxisFormat>
-						<valueAxisFormat>
-							<axisFormat>
-								<labelFont>
-									<font fontName="DejaVu Sans" size="7"/>
-								</labelFont>
-								<tickLabelFont>
-									<font fontName="DejaVu Sans" size="7"/>
-								</tickLabelFont>
-							</axisFormat>
-						</valueAxisFormat>
-					</barPlot>
-				</barChart>
-				<staticText>
-					<reportElement x="12" y="2" width="531" height="13" uuid="d8d10a43-c86a-4776-94b5-0e33545c3ede"/>
-					<textElement textAlignment="Center">
-						<font fontName="DejaVu Sans" size="8" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Comparativo por disciplina: Média do aluno x Média da turma]]></text>
-				</staticText>
-				<barChart>
-					<chart isShowLegend="true" renderType="draw" theme="default">
-						<reportElement mode="Transparent" x="12" y="23" width="532" height="310" forecolor="#000000" uuid="50b0fbda-4e09-48bc-bd7d-73272f2363f5">
-							<printWhenExpression><![CDATA[!$P{grafico_preto}]]></printWhenExpression>
-						</reportElement>
-						<box topPadding="0">
-							<pen lineWidth="0.0" lineStyle="Solid"/>
-							<topPen lineWidth="0.0" lineStyle="Solid"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid"/>
-						</box>
-						<chartTitle position="Top">
-							<font fontName="DejaVu Sans" size="8"/>
-						</chartTitle>
-						<chartSubtitle>
-							<font fontName="DejaVu Sans" size="8"/>
-						</chartSubtitle>
-						<chartLegend position="Bottom">
-							<font fontName="DejaVu Sans" size="8"/>
-						</chartLegend>
-					</chart>
-					<categoryDataset>
-						<dataset resetType="Group" resetGroup="matricula"/>
-						<categorySeries>
-							<seriesExpression><![CDATA["MÉDIA "+$F{nome_aluno}]]></seriesExpression>
-							<categoryExpression><![CDATA[$F{nome_disciplina}]]></categoryExpression>
-							<valueExpression><![CDATA[$F{nota4num} != null ?
-	new BigDecimal($F{medianum}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-: $F{nota3num} != null ?
-	new BigDecimal(($F{nota3num} + $F{nota2num} + $F{nota1num}) / 3).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-	: $F{nota2num} != null ?
-		new BigDecimal(($F{nota2num} + $F{nota1num}) / 2).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-		: $F{nota1num} != null  ?
-            new BigDecimal($F{nota1num}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-            : null]]></valueExpression>
-						</categorySeries>
-						<categorySeries>
-							<seriesExpression><![CDATA["MÉDIA TURMA"]]></seriesExpression>
-							<categoryExpression><![CDATA[$F{nome_disciplina}]]></categoryExpression>
-							<valueExpression><![CDATA[$F{nota4numturma} != null ?
-	new BigDecimal($F{medianumturma}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-: $F{nota3numturma} != null ?
-	new BigDecimal(($F{nota3numturma} + $F{nota2numturma} + $F{nota1numturma}) / 3).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-	: $F{nota2numturma} != null ?
-		new BigDecimal(($F{nota2numturma} + $F{nota1numturma}) / 2).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-		: $F{nota1numturma} != null  ?
-            new BigDecimal($F{nota1numturma}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
-            : null]]></valueExpression>
-						</categorySeries>
-					</categoryDataset>
-					<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
-						<plot foregroundAlpha="1.0" labelRotation="0.0">
-							<seriesColor seriesOrder="0" color="#FD2B2B"/>
-							<seriesColor seriesOrder="1" color="#4C47F3"/>
-						</plot>
-						<itemLabel color="#000000">
-							<font fontName="DejaVu Sans" size="7"/>
-						</itemLabel>
-						<categoryAxisFormat labelRotation="0.0">
-							<axisFormat labelColor="#000000" verticalTickLabels="true">
-								<labelFont>
-									<font fontName="DejaVu Sans" size="7"/>
-								</labelFont>
-								<tickLabelFont>
-									<font fontName="DejaVu Sans" size="7"/>
-								</tickLabelFont>
-							</axisFormat>
-						</categoryAxisFormat>
-						<valueAxisFormat>
-							<axisFormat>
-								<labelFont>
-									<font fontName="DejaVu Sans" size="7"/>
-								</labelFont>
-								<tickLabelFont>
-									<font fontName="DejaVu Sans" size="7"/>
-								</tickLabelFont>
-							</axisFormat>
-						</valueAxisFormat>
-					</barPlot>
-				</barChart>
-			</band>
-			<band height="16"/>
 		</groupFooter>
 	</group>
 	<background>
@@ -1423,7 +975,7 @@ DO ALUNO]]></text>
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="tipo">
-					<subreportParameterExpression><![CDATA["Padrão"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["Regime Especial"]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("data_area")]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "report-card-boletim-area.jasper"]]></subreportExpression>

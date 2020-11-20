@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report-card-boletim-disciplina" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4f9ea369-c6c3-48c5-ae82-2872022857d3">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -17,6 +17,9 @@
 	</parameter>
 	<parameter name="emitir_nota_exame" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tipo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Padrão"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[]]>
@@ -159,6 +162,7 @@
 	<detail>
 		<band height="14" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$P{tipo}.equals( "Padrão" )]]></printWhenExpression>
 			<rectangle>
 				<reportElement mode="Opaque" x="0" y="0" width="412" height="14" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -433,6 +437,100 @@
 			</line>
 			<line>
 				<reportElement x="-1" y="-1" width="1" height="14" uuid="732b4848-db67-4145-8b69-6519d187c170">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="14" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$P{tipo}.equals( "Padrão" )]]></printWhenExpression>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="341" height="14" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="fcb65f7d-4f4c-41b6-b3fb-b52e8a66a4d6">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="141" height="14" uuid="f2b6910c-e7d3-404d-8700-429c7d336dcc">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="142" y="-1" width="1" height="14" uuid="31425de5-6f9e-4da9-a2f1-d7bd5c1d90d5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="186" y="-1" width="1" height="14" uuid="bf439ed9-e5d6-487b-a94d-7c88450e2bd1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="208" y="-1" width="1" height="14" uuid="e913a7df-615b-46ab-8cb3-d0c98c974e19">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="143" y="1" width="42" height="11" uuid="3788e435-9c68-4507-a068-216a0c5e28a4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$F{nota4} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota4num} != null ?
+    $F{nota4num} >= 0.0 ?
+        ($F{media} < $F{media_recuperacao} ? ("<b>" + $F{media} + "</b>") : $F{media})
+    : ""
+: ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="1" width="20" height="11" uuid="38c1e8c3-a855-4cdd-b152-6bb205ab3e04">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_faltas_componente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="0" width="411" height="1" uuid="7249657a-fcf6-4ec9-a4fd-e72c1bc20fc8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="-1" y="-1" width="1" height="14" uuid="89266285-32d7-48ca-9be6-96a06799c4e0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
