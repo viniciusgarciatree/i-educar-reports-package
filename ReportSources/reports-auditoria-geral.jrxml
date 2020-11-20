@@ -19,7 +19,7 @@
 	<field name="rotina" class="java.lang.String"/>
 	<field name="operacao" class="java.lang.String"/>
 	<field name="valores" class="java.lang.String"/>
-	<field name="dataAuditoria" class="java.lang.String"/>
+	<field name="data_auditoria" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -62,89 +62,50 @@
 		<band height="60" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="45" y="0" width="230" height="12" uuid="a9a3c788-3ada-4f89-b49d-f7948354996a">
+				<reportElement x="0" y="0" width="555" height="12" uuid="a9a3c788-3ada-4f89-b49d-f7948354996a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
-				<textElement>
-					<font isBold="true"/>
+				<textElement markup="html">
+					<font isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{matricula}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Usuário: <b>" + $F{matricula} + "</b>"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="40" y="36" width="342" height="12" uuid="a8c61c8f-fc91-426b-9d53-10372136abc5">
+				<reportElement x="0" y="36" width="555" height="12" uuid="a8c61c8f-fc91-426b-9d53-10372136abc5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
-				<textElement>
-					<font isBold="true"/>
+				<textElement markup="html">
+					<font isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{rotina}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Rotina: <b>" + $F{rotina} + "</b>"]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="0" y="36" width="40" height="12" uuid="b7e58c30-6f44-413e-be57-f2b5c94e8578">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<text><![CDATA[Rotina:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="135" y="12" width="120" height="12" uuid="07c862da-490e-45db-8056-05aa4fd911c3">
+				<reportElement x="0" y="12" width="555" height="12" uuid="07c862da-490e-45db-8056-05aa4fd911c3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left">
-					<font isBold="true"/>
+				<textElement textAlignment="Left" markup="html">
+					<font isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dataAuditoria}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Data e Hora da Utilização: <b>" + $F{data_auditoria} + "</b>"]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="0" y="12" width="135" height="12" uuid="b4733974-ddb9-4106-b9cb-7fe964cba388">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Left"/>
-				<text><![CDATA[Data e Hora da Utilização:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="60" y="24" width="322" height="12" uuid="a71e70c6-26ea-4b08-bdfa-217b33257304">
+				<reportElement x="0" y="24" width="555" height="12" uuid="a71e70c6-26ea-4b08-bdfa-217b33257304">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement>
-					<font isBold="true"/>
+				<textElement markup="html">
+					<font isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{operacao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Operação: <b>" + $F{operacao} + "</b>"]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="0" y="24" width="60" height="12" uuid="e000c7dc-bf63-4a7f-b40d-92509ff6ade7">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<text><![CDATA[Operação:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="0" width="45" height="12" uuid="8403fb24-b8ad-415a-8414-b30586656e15">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<text><![CDATA[Usuário:]]></text>
-			</staticText>
 			<line>
 				<reportElement x="0" y="54" width="555" height="1" uuid="ffa4e678-c3e3-4347-b1c5-e2b12b59253c">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>

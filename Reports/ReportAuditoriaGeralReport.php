@@ -51,6 +51,7 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
+
         $matricula    = $this->args['matricula'] ?: 0;
         $rotinas      = $this->args['rotinas'] ?: 0;
         $registro     = $this->args['registro'] ?: 0;
@@ -59,6 +60,9 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
         $data_final   = $this->args['data_final'] ?: 0;
         $hora_inicial = $this->args['hora_inicial'] ?: 0;
         $hora_final   = $this->args['hora_final'] ?: 0;
+
+        $data_inicial = Portabilis_Date_Utils::brToPgSQL($data_inicial);
+        $data_final = Portabilis_Date_Utils::brToPgSQL($data_final);
 
         unset($this->args['matricula']);
         unset($this->args['rotinas']);
@@ -69,51 +73,70 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
         unset($this->args['hora_inicial']);
         unset($this->args['hora_final']);
 
-        $auditoria = new clsModulesAuditoriaGeral(null, null);
-        $auditoria->setOrderby('data_hora DESC');
-        $auditoria->setLimite($this->limite, $this->offset);
-        $auditoriaLst = $auditoria->lista(
-            $matricula,
-            $rotinas,
-            Portabilis_Date_Utils::brToPgSQL($data_inicial),
-            Portabilis_Date_Utils::brToPgSQL($data_final),
-            $hora_inicial,
-            $hora_final,
-            $operacao,
-            $registro
-        );
 
-        $operacoes = \iEducar\Modules\AuditoriaGeral\Model\Operacoes::getDescriptiveValues();
-        $operacoes = array_replace([null => 'Todas'], $operacoes);
-        $arrDados = [];
+        $whereAnd = " WHERE ";
+        $filtros = " ";
 
-        foreach ($auditoriaLst as $a) {
-            $valorAntigo = \iEducar\Modules\AuditoriaGeral\Model\JsonToHtmlTable::transformJsonToHtmlTable($a['valor_antigo']);
-            $valorNovo = \iEducar\Modules\AuditoriaGeral\Model\JsonToHtmlTable::transformJsonToHtmlTable($a['valor_novo']);
-
-            $usuario = new clsFuncionario($a['usuario_id']);
-            $usuario = $usuario->detalhe();
-            $pessoa = new clsPessoaFisica($a['usuario_id']);
-            $pessoa = $pessoa->detalhe();
-
-            $operacao = $operacoes[$a['operacao']];
-
-            $dataAuditoria = Portabilis_Date_Utils::pgSQLToBr($a['data_hora']);
-
-            $arrValorAntigo = self::getToArray($valorAntigo);
-            $arrValorNovo = self::getToArray($valorNovo);
-            $arrMerge = self::mergeArrayAlteracao($arrValorAntigo,$arrValorNovo);
-
-            if(count($arrMerge)>0) {
-                $arrDados[] = [
-                    'matricula'     => $usuario['matricula'] . " - " . $pessoa['nome'],
-                    'rotina'        => ucwords($a['rotina']),
-                    'operacao'      => $operacao,
-                    'valores'       => $arrMerge,
-                    'dataAuditoria' => $dataAuditoria
-                ];
-            }
+        if (is_string($rotinas)) {
+            $filtros .= "{$whereAnd} rotina ILIKE '%{$rotinas}%'";
+            $whereAnd = ' AND ';
         }
+
+        if (is_numeric($operacao)) {
+            $filtros .= "{$whereAnd} operacao = {$operacao}";
+            $whereAnd = ' AND ';
+        }
+
+        if (is_string($registro)) {
+            $filtros .= "{$whereAnd} codigo = '{$registro}'";
+            $whereAnd = ' AND ';
+        }
+
+        if (is_string($matricula)) {
+            $filtros .= "{$whereAnd} EXISTS (SELECT 1
+                                         FROM portal.funcionario
+                                        WHERE funcionario.ref_cod_pessoa_fj = auditoria_geral.usuario_id
+                                          AND funcionario.matricula = '{$matricula}')";
+            $whereAnd = ' AND ';
+        }
+
+        if (is_string($data_inicial)) {
+            $filtros .= "{$whereAnd} data_hora::date >= '{$data_inicial}'";
+            $whereAnd = ' AND ';
+        }
+
+        if (is_string($data_final)) {
+            $filtros .= "{$whereAnd} data_hora::date <= '{$data_final}'";
+            $whereAnd = ' AND ';
+        }
+
+        if (is_string($hora_inicial)) {
+            $filtros .= "{$whereAnd} data_hora::time >= '{$hora_inicial}'";
+            $whereAnd = ' AND ';
+        }
+
+        if (is_string($hora_final)) {
+            $filtros .= "{$whereAnd} data_hora::time <= '{$hora_final}'";
+            $whereAnd = ' AND ';
+        }
+
+        // $usuario['matricula'] . " - " . $pessoa['nome'],
+
+        $sql = "
+SELECT 
+    auditoria_geral.codigo || ' - ' || pessoa.nome as matricula,
+    auditoria_geral.rotina,
+    auditoria_geral.operacao,
+    to_char(auditoria_geral.data_hora,'dd/mm/yyyy hh:ss:ii') AS data_auditoria,
+    '' as valores
+FROM modules.auditoria_geral
+INNER JOIN cadastro.pessoa ON pessoa.idpes = auditoria_geral.usuario_id
+  {$filtros}
+ORDER BY auditoria_geral.data_hora
+        ";
+
+        $arrDados = Portabilis_Utils_Database::fetchPreparedQuery($sql);
+
         return $arrDados;
     }
 
