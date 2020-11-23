@@ -132,13 +132,14 @@ SELECT
         WHEN auditoria_geral.operacao = 3 THEN 'Exclusão' 
         ELSE '' 
     END as operacao,
-    to_char(auditoria_geral.data_hora,'dd/mm/yyyy hh:ss:ii') AS data_auditoria,
+    to_char(auditoria_geral.data_hora,'dd/mm/yyyy hh24:ss:ii') AS data_auditoria,
     '' as valores
 FROM modules.auditoria_geral
 INNER JOIN cadastro.pessoa ON pessoa.idpes = auditoria_geral.usuario_id
   {$filtros}
 ORDER BY auditoria_geral.data_hora
         ";
+        dd($sql);
 
         $arrDados = Portabilis_Utils_Database::fetchPreparedQuery($sql);
 
