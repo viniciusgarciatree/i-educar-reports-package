@@ -115,7 +115,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                     'carga_horaria_componente' => $value['carga_horaria_componente'],
                     'carga_horaria_serie' => $value['carga_horaria_serie'],
                     'media' => $value['media'],
-                    'medianum' => $value['medianum'],
+                    'medianum' => (double)$value['medianum'],
                     'nota_exame' => $value['nota_exame'],
                     'media_recuperacao' => $value['media_recuperacao'],
                     'medianumturma' => $value['medianumturma'],

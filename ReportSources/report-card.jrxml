@@ -1012,9 +1012,9 @@
 				<textElement textAlignment="Center" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota4num} != null ?
+				<textFieldExpression><![CDATA[$F{nota4} != null ?
     $F{nota4num} >= 0.0 ?
-        ($F{media} < $F{media_recuperacao} ? ("<b>" + $F{media} + "</b>") : $F{media})
+        ($F{media_recuperacao} > 0 ? ("<b>" + $F{medianumturma} + "</b>") : $F{medianumturma})
     : ""
 : ""]]></textFieldExpression>
 			</textField>
