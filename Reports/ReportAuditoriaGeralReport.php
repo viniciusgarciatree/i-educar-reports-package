@@ -124,9 +124,14 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
 
         $sql = "
 SELECT 
-    auditoria_geral.codigo || ' - ' || pessoa.nome as matricula,
+    pessoa.nome as matricula,
     auditoria_geral.rotina,
-    auditoria_geral.operacao,
+    CASE 
+        WHEN auditoria_geral.operacao = 1 THEN 'Novo' 
+        WHEN auditoria_geral.operacao = 2 THEN 'Edição' 
+        WHEN auditoria_geral.operacao = 3 THEN 'Exclusão' 
+        ELSE '' 
+    END as operacao,
     to_char(auditoria_geral.data_hora,'dd/mm/yyyy hh:ss:ii') AS data_auditoria,
     '' as valores
 FROM modules.auditoria_geral
