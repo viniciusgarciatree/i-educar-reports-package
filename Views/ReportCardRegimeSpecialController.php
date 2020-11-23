@@ -86,6 +86,7 @@ class ReportCardRegimeSpecialController extends Portabilis_Controller_ReportCore
         $this->report->addArg('serie', (int) $this->getRequest()->ref_cod_serie);
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
         $this->report->addArg('situacao_matricula', (int) $this->getRequest()->situacao_matricula);
+        $this->report->addArg('observacoes', $this->getRequest()->observacoes);
 
         if (is_null($this->getRequest()->ref_cod_matricula)) {
             $this->report->addArg('matricula', 0);
