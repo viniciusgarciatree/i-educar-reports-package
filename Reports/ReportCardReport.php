@@ -100,14 +100,14 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                     'nota2numturma' => $value['nota2numturma'],
                     'nota3numturma' => $value['nota3numturma'],
                     'nota4numturma' => $value['nota4numturma'],
-                    'total_faltas_et1' => $value['total_faltas_et1'],
-                    'total_faltas_et2' => $value['total_faltas_et2'],
-                    'total_faltas_et3' => $value['total_faltas_et3'],
-                    'total_faltas_et4' => $value['total_faltas_et4'],
-                    'faltas_componente_et1' => $value['faltas_componente_et1'],
-                    'faltas_componente_et2' => $value['faltas_componente_et2'],
-                    'faltas_componente_et3' => $value['faltas_componente_et3'],
-                    'faltas_componente_et4' => $value['faltas_componente_et4'],
+                    'total_faltas_et1' => (int)$value['total_faltas_et1'],
+                    'total_faltas_et2' => (int)$value['total_faltas_et2'],
+                    'total_faltas_et3' => (int)$value['total_faltas_et3'],
+                    'total_faltas_et4' => (int)$value['total_faltas_et4'],
+                    'faltas_componente_et1' => (int)$value['faltas_componente_et1'],
+                    'faltas_componente_et2' => (int)$value['faltas_componente_et2'],
+                    'faltas_componente_et3' => (int)$value['faltas_componente_et3'],
+                    'faltas_componente_et4' => (int)$value['faltas_componente_et4'],
                     'total_geral_faltas_componente' => $value['total_geral_faltas_componente'],
                     'total_faltas' => $value['total_faltas'],
                     'curso_hora_falta' => $value['curso_hora_falta'],
@@ -140,6 +140,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
             unset($this->args['modelo']);
             unset($this->args['observacoes']);
+            //dd($arrMain);
             return array_merge([
                 'main' => $arrMain,
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),

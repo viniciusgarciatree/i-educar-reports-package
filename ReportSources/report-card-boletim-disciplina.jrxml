@@ -111,10 +111,10 @@
 		<property name="com.jaspersoft.studio.field.label" value="faltas_componente_et4"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="falta_componente_curricular"/>
 	</field>
-	<field name="total_geral_faltas_componente" class="java.math.BigDecimal">
+	<field name="total_geral_faltas_componente" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="total_geral_faltas_componente"/>
 	</field>
-	<field name="total_faltas" class="java.math.BigDecimal">
+	<field name="total_faltas" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="total_faltas"/>
 	</field>
 	<field name="curso_hora_falta" class="java.lang.Double">
@@ -284,53 +284,22 @@
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
-			<textField isBlankWhenNull="true">
-				<reportElement x="365" y="1" width="20" height="11" uuid="d62c2bab-5467-4d98-8368-592207b84207">
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="368" y="1" width="40" height="11" uuid="aa8070c8-9947-428a-bf94-dc59f5ca9d54">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{total_faltas_componente} != null ?
-    $F{total_faltas_componente}
-: $F{total_faltas} != null ? $F{total_faltas} : ""]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement x="386" y="-1" width="1" height="14" uuid="2c102ff2-5a88-40f2-9c6f-c0907bf72b9e">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<textField pattern="#,##0 ‰" isBlankWhenNull="true">
-				<reportElement x="388" y="1" width="20" height="11" uuid="aa8070c8-9947-428a-bf94-dc59f5ca9d54">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$F{total_faltas_componente} != null ?
     (($F{total_faltas_componente} * $F{curso_hora_falta})/$F{carga_horaria_componente}) != 100.0
 : (($F{total_faltas} * 100)/$F{dias_letivos_serie}) != 100.0]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{total_faltas_componente} != null ?
-    100 - (($F{total_faltas_componente} * 100)/$F{carga_horaria_componente})
+   $F{carga_horaria_componente} - $F{total_faltas_componente}
 : $F{total_faltas} != null 
-? 100 - (($F{total_faltas}*100)/$F{dias_letivos_serie})
-: 100)]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="388" y="1" width="20" height="11" uuid="7a070405-d463-4e82-bf5a-c6c99f075120">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<printWhenExpression><![CDATA[$F{total_faltas_componente} != null ?
-    (($F{total_faltas_componente} * $F{curso_hora_falta})/$F{carga_horaria_componente}) == 100.0
-: (($F{total_faltas} * 100)/$F{dias_letivos_serie}) == 100.0]]></printWhenExpression>
-				</reportElement>
-				<textElement textAlignment="Right">
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[100]]></textFieldExpression>
+?  $F{dias_letivos_serie} - $F{total_faltas}
+: "")]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="409" y="-1" width="1" height="14" uuid="f65b1548-a2ae-45c4-9b3e-042ba75e3965">
