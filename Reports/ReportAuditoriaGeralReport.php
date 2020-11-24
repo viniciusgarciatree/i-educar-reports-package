@@ -139,8 +139,6 @@ INNER JOIN cadastro.pessoa ON pessoa.idpes = auditoria_geral.usuario_id
   {$filtros}
 ORDER BY auditoria_geral.data_hora
         ";
-        dd($sql);
-
         $arrDados = Portabilis_Utils_Database::fetchPreparedQuery($sql);
 
         return $arrDados;
