@@ -74,6 +74,7 @@ class ReportCardRegimeSpecialReport extends Portabilis_Report_ReportCore
                 'curso_hora_falta' => $value['curso_hora_falta'],
                 'carga_horaria_componente' => $value['carga_horaria_componente'],
                 'carga_horaria_serie' => $value['carga_horaria_serie'],
+                'dias_letivos_serie' => $value['dias_letivos_serie'],
                 'media' => $value['media'],
                 'medianum' => $value['medianum'],
                 'nota_exame' => $value['nota_exame'],
