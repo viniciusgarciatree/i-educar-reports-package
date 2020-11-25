@@ -545,9 +545,10 @@ Curricular]]></text>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement x="452" y="62" width="1" height="62" uuid="0cacc57e-58aa-45d8-9980-31cd9124af76">
+					<reportElement x="472" y="62" width="1" height="62" uuid="0cacc57e-58aa-45d8-9980-31cd9124af76">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<graphicElement>
 						<pen lineWidth="0.25"/>
@@ -591,9 +592,9 @@ Curricular]]></text>
 					<text><![CDATA[Conceito Global]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="431" y="64" width="20" height="59" uuid="45679c39-826e-4177-aad0-a120690f25b9">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<reportElement x="431" y="64" width="40" height="59" uuid="45679c39-826e-4177-aad0-a120690f25b9">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<box leftPadding="0" bottomPadding="2"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Left">
@@ -625,9 +626,10 @@ Curricular]]></text>
 					<text><![CDATA[TOTAL DE FALTAS]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="243" y="0" width="208" height="14" uuid="d380bc19-ded9-4491-991f-1c67195e98f9">
+					<reportElement x="243" y="0" width="228" height="14" uuid="d380bc19-ded9-4491-991f-1c67195e98f9">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<printWhenExpression><![CDATA[$V{total_faltas1}>0]]></printWhenExpression>
 					</reportElement>
 					<box rightPadding="2">
@@ -641,7 +643,7 @@ Curricular]]></text>
 					<textFieldExpression><![CDATA[$V{total_faltas1}]]></textFieldExpression>
 				</textField>
 				<rectangle>
-					<reportElement mode="Transparent" x="103" y="0" width="350" height="14" uuid="2918dca9-be14-4ae2-a131-bb93f3ee9c34">
+					<reportElement mode="Transparent" x="103" y="0" width="370" height="14" uuid="2918dca9-be14-4ae2-a131-bb93f3ee9c34">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>

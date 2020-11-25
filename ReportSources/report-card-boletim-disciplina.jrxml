@@ -339,9 +339,9 @@
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[$P{tipo}.equals( "Regime Especial" )]]></printWhenExpression>
 			<rectangle>
-				<reportElement mode="Opaque" x="0" y="0" width="209" height="14" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="fcb65f7d-4f4c-41b6-b3fb-b52e8a66a4d6">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<reportElement mode="Opaque" x="0" y="0" width="229" height="14" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="fcb65f7d-4f4c-41b6-b3fb-b52e8a66a4d6">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
@@ -392,7 +392,7 @@
 : ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="187" y="1" width="20" height="11" uuid="38c1e8c3-a855-4cdd-b152-6bb205ab3e04">
+				<reportElement x="187" y="1" width="40" height="11" uuid="38c1e8c3-a855-4cdd-b152-6bb205ab3e04">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -401,7 +401,7 @@
 				<textFieldExpression><![CDATA[$F{total_faltas_componente}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="-1" y="0" width="209" height="1" uuid="7249657a-fcf6-4ec9-a4fd-e72c1bc20fc8">
+				<reportElement x="-1" y="0" width="229" height="1" uuid="7249657a-fcf6-4ec9-a4fd-e72c1bc20fc8">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
