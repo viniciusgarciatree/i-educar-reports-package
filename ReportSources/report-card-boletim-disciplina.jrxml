@@ -222,7 +222,7 @@
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota2}.matches( "[A-Z]" ) ? $F{nota2} : (
-	($F{nota2num} < $F{media_recuperacao}) ? ("<b>" + $F{nota2num} + "</b>") : $F{nota2num})]]></textFieldExpression>
+  ($F{nota2num} < $F{media_recuperacao}) ? ("<b>" + $F{nota2num} + "</b>") : $F{nota2num})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="230" y="-1" width="1" height="14" uuid="eb37618f-5a80-4315-9ab3-3b6cb2ee17a3">
@@ -240,7 +240,7 @@
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota3}.matches( "[A-Z]" ) ? $F{nota3} : (
-	($F{nota3num} < $F{media_recuperacao}) ? ("<b>" + $F{nota3num}+ "</b>") : $F{nota3num})]]></textFieldExpression>
+  ($F{nota3num} < $F{media_recuperacao}) ? ("<b>" + $F{nota3num}+ "</b>") : $F{nota3num})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="274" y="-1" width="1" height="14" uuid="1239b2eb-bfdd-41a0-95a4-37d131a203ef">
@@ -258,7 +258,7 @@
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota4}.matches( "[A-Z]" ) ? $F{nota4} : (
-	($F{nota4num} < $F{media_recuperacao}) ? ("<b>" + $F{nota4num} + "</b>") : $F{nota4num})]]></textFieldExpression>
+  ($F{nota4num} < $F{media_recuperacao}) ? ("<b>" + $F{nota4num} + "</b>") : $F{nota4num})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="318" y="-1" width="1" height="14" uuid="8686462e-eef2-4298-a2d0-61ddf6aad639">
@@ -387,7 +387,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota4num} != null ?
     $F{nota4num} >= 0.0 ?
-        ($F{media} < $F{media_recuperacao} ? ("<b>" + $F{media} + "</b>") : $F{media})
+        ($F{medianum} < $F{media_recuperacao} ? ("<b>" + $F{media} + "</b>") : $F{media})
     : ""
 : ""]]></textFieldExpression>
 			</textField>
