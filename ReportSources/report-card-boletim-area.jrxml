@@ -89,7 +89,7 @@
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[$P{tipo}.equals( "Regime Especial" )]]></printWhenExpression>
 			<frame>
-				<reportElement x="103" y="0" width="350" height="14" uuid="fb574c14-6cbf-4c1c-8054-32e49ada2e4a">
+				<reportElement x="103" y="0" width="370" height="14" uuid="fb574c14-6cbf-4c1c-8054-32e49ada2e4a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -102,9 +102,9 @@
 					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<rectangle>
-					<reportElement stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="0" width="145" height="14" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="74b39c16-7559-45ce-9964-e8e2b9c8c632">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<reportElement stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="0" width="165" height="14" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="74b39c16-7559-45ce-9964-e8e2b9c8c632">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
 					</reportElement>
 					<graphicElement>
@@ -135,7 +135,7 @@
 					<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
 				</textField>
 				<subreport>
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="141" y="0" width="209" height="14" uuid="abb004ef-faf6-427d-9eb4-48e1da55e339">
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="141" y="0" width="229" height="14" uuid="abb004ef-faf6-427d-9eb4-48e1da55e339">
 						<property name="com.jaspersoft.studio.element.name" value="report-card-boletim-nota"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
