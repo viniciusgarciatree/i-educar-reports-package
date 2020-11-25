@@ -385,11 +385,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota4num} != null ?
-    $F{nota4num} >= 0.0 ?
-        ($F{medianum} < $F{media_recuperacao} ? ("<b>" + $F{media} + "</b>") : $F{media})
-    : ""
-: ""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{media}.matches( "[A-Z]" ) ? $F{media} : (
+($F{medianum} < $F{media_recuperacao}) ? ("<b>" + $F{medianum} + "</b>") : $F{medianum})]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="187" y="1" width="40" height="11" uuid="38c1e8c3-a855-4cdd-b152-6bb205ab3e04">
@@ -398,7 +395,11 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{total_faltas_componente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{total_faltas_componente} != null ?
+   $F{carga_horaria_componente} - $F{total_faltas_componente}
+: $F{total_faltas} != null 
+?  $F{dias_letivos_serie} - $F{total_faltas}
+: "")]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="-1" y="0" width="229" height="1" uuid="7249657a-fcf6-4ec9-a4fd-e72c1bc20fc8">
