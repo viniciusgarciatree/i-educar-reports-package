@@ -191,6 +191,7 @@ class ReportCardRegimeSpecialReport extends Portabilis_Report_ReportCore
           curso.hora_falta * 100 AS curso_hora_falta,
           componente_curricular_ano_escolar.carga_horaria::int AS carga_horaria_componente,
           serie.carga_horaria AS carga_horaria_serie,
+          serie.dias_letivos as dias_letivos_serie,
           nota_componente_curricular_media.media_arredondada AS media,
           TRUNC(nota_componente_curricular_media.media::NUMERIC, 1) AS medianum,
           TRUNC(nota_exame.nota_arredondada::NUMERIC, 1) AS nota_exame,
