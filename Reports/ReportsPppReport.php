@@ -55,6 +55,8 @@ class ReportsPppReport extends Portabilis_Report_ReportCore
     {
         $ano      = $this->args['ano'];
         $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
+        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+
         return "
 SELECT 
   count(*)::numeric 
@@ -66,7 +68,8 @@ FROM (
 		WHERE aluno.ativo = 1
 	AND matricula.ano = {$ano}
 	AND matricula.ativo = 1
-	{$situacao} 
+	{$situacao}
+	AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END) 
 	GROUP BY aluno.cod_aluno 
 ) AS G
 ";
@@ -76,6 +79,8 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
+        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -102,6 +107,7 @@ FROM (
             AND escola_curso.ativo = 1
             AND curso.ativo = 1
             {$situacao}
+            AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,curso.nm_curso
     ) AS t 
         GROUP BY descricao
@@ -115,6 +121,7 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
+        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -137,6 +144,7 @@ FROM (
         AND matricula.ano = {$ano}
         AND matricula.ativo = 1
         {$situacao}
+        AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,fisica.sexo
     ) AS t 
     GROUP BY descricao
@@ -150,6 +158,7 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
+        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -173,6 +182,7 @@ FROM (
         AND matricula.ano = {$ano}
         AND matricula.ativo = 1
         {$situacao}
+        AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,raca.nm_raca
     ) AS t 
     GROUP BY descricao
@@ -186,6 +196,7 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
+        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -209,6 +220,7 @@ FROM (
         AND matricula.ano = {$ano}
         AND matricula.ativo = 1
         {$situacao}
+        AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,fisica.zona_localizacao_censo
     ) AS t 
     GROUP BY descricao
@@ -222,6 +234,7 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
+        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT 
@@ -244,6 +257,7 @@ FROM (
         AND matricula.ano = {$ano}
         AND matricula.ativo = 1
         {$situacao}
+        AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,transporte_aluno.responsavel
     ) AS t 
     GROUP BY descricao
@@ -257,6 +271,7 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $vinculo  = $this->args['vinculo'];
+        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
 
         $consultaTotal = "
 SELECT 
@@ -276,6 +291,7 @@ FROM (
     INNER JOIN pmieducar.escola_curso ON turma.ref_cod_curso = escola_curso.ref_cod_curso AND escola_curso.ativo = 1
     INNER JOIN pmieducar.curso ON curso.cod_curso = escola_curso.ref_cod_curso AND curso.ativo = 1
     WHERE servidor_alocacao.ano = {$ano}
+    AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE escola_curso.ref_cod_escola = {$escola} END)
     AND servidor_alocacao.ativo = 1
     GROUP BY servidor.cod_servidor,curso.nm_curso
 ) AS t
@@ -303,12 +319,12 @@ FROM (
         INNER JOIN pmieducar.curso ON curso.cod_curso = escola_curso.ref_cod_curso AND curso.ativo = 1
         WHERE servidor_alocacao.ano = {$ano}
         AND servidor_alocacao.ativo = 1
+        AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE escola_curso.ref_cod_escola = {$escola} END)
         GROUP BY servidor.cod_servidor,curso.nm_curso
       ) AS t 
     GROUP BY descricao
 ) AS t        
         ";
-
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);
     }
 
@@ -316,6 +332,7 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $vinculo  = $this->args['vinculo'];
+        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
 
         $consultaTotal = "
 SELECT 
@@ -336,6 +353,7 @@ FROM (
     INNER JOIN pmieducar.curso ON curso.cod_curso = escola_curso.ref_cod_curso AND curso.ativo = 1
     WHERE servidor_alocacao.ano = {$ano}
     AND servidor_alocacao.ativo = 1
+    AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE escola_curso.ref_cod_escola = {$escola} END)
     GROUP BY servidor.cod_servidor,curso.nm_curso
 ) AS t
         ";
