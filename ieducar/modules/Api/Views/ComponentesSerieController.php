@@ -26,6 +26,7 @@ class ComponentesSerieController extends ApiCoreController
         foreach ($componentes as $key => $componente) {
             $arrayComponentes[$key]['id'] = $componente->id;
             $arrayComponentes[$key]['carga_horaria'] = $componente->carga_horaria;
+            $arrayComponentes[$key]['carga_horaria_auxiliar'] = $componente->carga_horaria;
             $arrayComponentes[$key]['tipo_nota'] = $componente->tipo_nota;
             $arrayComponentes[$key]['anos_letivos'] = $componente->anos_letivos;
         }

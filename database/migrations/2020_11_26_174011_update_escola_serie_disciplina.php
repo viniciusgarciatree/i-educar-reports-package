@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateComponenteCurricularAnoEscola extends Migration
+class UpdateEscolaSerieDisciplina extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class UpdateComponenteCurricularAnoEscola extends Migration
      */
     public function up()
     {
-        if (!Schema::hasColumn('modules.componente_curricular_ano_escolar', 'carga_horaria_auxiliar')) {
-            Schema::table('modules.componente_curricular_ano_escolar', function (Blueprint $table)
+        if (!Schema::hasColumn('pmieducar.escola_serie_disciplina', 'carga_horaria_auxiliar')) {
+            Schema::table('pmieducar.escola_serie_disciplina', function (Blueprint $table)
             {
-                if (Schema::hasColumn('modules.componente_curricular_ano_escolar', 'carga_horaria_auxiliar')) {
+                if (!Schema::hasColumn('pmieducar.escola_serie_disciplina', 'carga_horaria_auxiliar')) {
                     $table->string('carga_horaria_auxiliar',8)->nullable();
                 }
-                if (Schema::hasColumn('modules.componente_curricular_ano_escolar', 'aulas_semanais')) {
+                if (!Schema::hasColumn('pmieducar.escola_serie_disciplina', 'aulas_semanais')) {
                     $table->integer('aulas_semanais')->nullable();
                 }
 
-                if (Schema::hasColumn('modules.componente_curricular_ano_escolar', 'hora_aula')) {
+                if (!Schema::hasColumn('pmieducar.escola_serie_disciplina', 'hora_aula')) {
                     $table->integer('hora_aula')->nullable();
                 }
             });

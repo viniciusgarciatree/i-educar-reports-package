@@ -782,9 +782,14 @@ class indice extends clsCadastro
                         0 == $componentes[$registro->id]->cargaHoraria) {
                         $usarComponente = true;
                     } else {
-                        $cargaHoraria = $componentes[$registro->id]->cargaHoraria;
+                        $cargaHoraria = $componentes[$registro->id]->cargaHorariaAuxiliar ? $componentes[$registro->id]->cargaHorariaAuxiliar : $componentes[$registro->id]->cargaHoraria;
                     }
-                    $cargaComponente = $registro->cargaHoraria;
+
+                    if(!is_null($registro->cargaHorariaAuxiliar)){
+                        $cargaComponente = $registro->cargaHorariaAuxiliar;
+                    }else{
+                        $cargaComponente = $registro->cargaHoraria;
+                    }                    
 
                     if (1 == $componentes[$registro->id]->docenteVinculado) {
                         $docenteVinculado = true;

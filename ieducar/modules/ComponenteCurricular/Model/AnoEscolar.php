@@ -9,7 +9,8 @@ class ComponenteCurricular_Model_AnoEscolar extends CoreExt_Entity
         'componenteCurricular' => null,
         'anoEscolar' => null,
         'cargaHoraria' => null,
-        'anosLetivos' => null
+        'anosLetivos' => null,
+        'cargaHorariaAuxiliar' => null
     ];
 
     protected $_dataTypes = [

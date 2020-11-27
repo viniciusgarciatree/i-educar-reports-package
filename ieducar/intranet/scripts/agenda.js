@@ -70,7 +70,7 @@ function text2form( compId )
 
 	publica = document.getElementById( "agenda_publica" ).value;
 
-	divTitle.innerHTML = '<input type="hidden" name="agenda_rap_id" id="agenda_rap_id" value="' + compId + '"><input type="text" name="agenda_rap_hora" id="agenda_rap_hora" class="agenda_hora" value="' + inputHoraIni.value + '"  maxlength="5" onKeyPress="formataHora(this, event);"> <input type="text" name="agenda_rap_titulo" id="agenda_rap_titulo" class="agenda_titulo" value="">';
+	divTitle.innerHTML = '<input type="hidden" name="agenda_rap_id" id="agenda_rap_id" value="' + compId + '"><input type="text" name="agenda_rap_hora" id="agenda_rap_hora" class="agenda_hora" value="' + inputHoraIni.value + '"  maxlength="7" onKeyPress="formataHora(this, event);"> <input type="text" name="agenda_rap_titulo" id="agenda_rap_titulo" class="agenda_titulo" value="">';
 	document.getElementById( 'agenda_rap_titulo' ).value = inputTitle.value;
 
 	chck1 = ( inputOpcoes.value & 2 ) ? 'checked' : '';

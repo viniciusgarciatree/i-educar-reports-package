@@ -269,7 +269,7 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
         $this->setOption('aprovado', $matricula['aprovado']);
         $this->setOption('cursoHoraFalta', $matricula['curso_hora_falta']);
         $this->setOption('cursoCargaHoraria', $matricula['curso_carga_horaria']);
-        $this->setOption('serieCargaHoraria', $matricula['serie_carga_horaria']);
+        $this->setOption('serieCargaHorariaAuxiliar', $matricula['serie_carga_horaria_auxiliar']);
         $this->setOption('serieDiasLetivos', $matricula['serie_dias_letivos']);
         $this->setOption('ref_cod_turma', $matricula['ref_cod_turma']);
         $this->setOption('etapas', $etapas);
