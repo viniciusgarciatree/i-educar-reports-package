@@ -322,7 +322,7 @@ $j(document).ready(function() {
     return  `
     <div style="margin-bottom: 10px; float: left" class="linha-disciplina">
       <label style="display: block; float: left; width: 250px;"><input type="checkbox" name="disciplinas[${componente.id}]" class="check-disciplina" id="disciplinas[]" value="${componente.id}">${componente.nome}</label>
-      <label style="display: block; float: left; width: 100px;"><input type="text" name="carga_horaria[${componente.id}]" value="" size="5" maxlength="7"></label>
+      <label style="display: block; float: left; width: 100px;"><input type="text" name="carga_horaria[${componente.id}]" value="" size="7" maxlength="7"></label>
       <label style="display: block; float: left;width: 200px;"><input type="checkbox" name="usar_componente[${componente.id}]" value="1">(${componente.carga_horaria} h)</label>
       <label style="display: block; float: left;"><input type="checkbox" name="docente_vinculado[${componente.id}]" value="1"></label>
     </div>

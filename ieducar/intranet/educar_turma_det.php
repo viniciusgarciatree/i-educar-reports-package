@@ -485,7 +485,7 @@ class indice extends clsDetalhe
             foreach ($lista as $registro) {
 
                 if (!is_null($componentes[$registro->id]->cargaHoraria) || 0 != $componentes[$registro->id]->cargaHoraria) {
-                    $registro->cargaHoraria = $componentes[$registro->id]->cargaHoraria;
+                    $registro->cargaHoraria = $componentes[$registro->id]->cargaHorariaAuxiliar ?? $componentes[$registro->id]->cargaHoraria;
                 }
 
                 $this->tabela3 .= '<div style="margin-bottom: 10px; float: left" class="linha-disciplina" >';

@@ -12,6 +12,7 @@ class clsPmieducarEscolaSerieDisciplina extends Model
     public $ref_cod_disciplina;
     public $ativo;
     public $carga_horaria;
+    public $carga_horaria_auxiliar;
     public $etapas_especificas;
     public $etapas_utilizadas;
     public $anos_letivos;
@@ -24,13 +25,14 @@ class clsPmieducarEscolaSerieDisciplina extends Model
         $carga_horaria = false,
         $etapas_especificas = false,
         $etapas_utilizadas = false,
-        $anos_letivos = []
+        $anos_letivos = [],
+        $carga_horaria_auxiliar = null
     ) {
         $db = new clsBanco();
         $this->_schema = 'pmieducar.';
         $this->_tabela = $this->_schema . 'escola_serie_disciplina';
 
-        $this->_campos_lista = $this->_todos_campos = 'ref_ref_cod_serie, ref_ref_cod_escola, ref_cod_disciplina, carga_horaria, etapas_especificas, etapas_utilizadas, ARRAY_TO_JSON(anos_letivos) AS anos_letivos ';
+        $this->_campos_lista = $this->_todos_campos = 'ref_ref_cod_serie, ref_ref_cod_escola, ref_cod_disciplina, carga_horaria, carga_horaria_auxiliar, etapas_especificas, etapas_utilizadas, ARRAY_TO_JSON(anos_letivos) AS anos_letivos ';
 
         if (is_numeric($ref_cod_disciplina)) {
             $componenteMapper = new ComponenteCurricular_Model_ComponenteDataMapper();
@@ -55,8 +57,10 @@ class clsPmieducarEscolaSerieDisciplina extends Model
 
         if (is_numeric($carga_horaria)) {
             $this->carga_horaria = $carga_horaria;
+            $this->carga_horaria_auxiliar = $carga_horaria_auxiliar;
         } elseif (is_null($carga_horaria)) {
             $this->carga_horaria = null;
+            $this->carga_horaria_auxiliar = null;
         }
 
         if (is_string($etapas_utilizadas)) {
@@ -113,10 +117,14 @@ class clsPmieducarEscolaSerieDisciplina extends Model
                 $campos .= "{$gruda}carga_horaria";
                 $valores .= "{$gruda}'{$this->carga_horaria}'";
                 $gruda = ', ';
+                $campos .= "{$gruda}carga_horaria_auxiliar";                
+                $valores .= "{$gruda}'{$this->carga_horaria_auxiliar}'";
             } elseif (is_null($this->carga_horaria)) {
                 $campos .= "{$gruda}carga_horaria";
                 $valores .= "{$gruda}null";
                 $gruda = ', ';
+                $campos .= "{$gruda}carga_horaria_auxiliar";
+                $valores .= "{$gruda}null";
             }
 
             if (is_numeric($this->etapas_especificas)) {
@@ -170,8 +178,10 @@ class clsPmieducarEscolaSerieDisciplina extends Model
 
             if (is_numeric($this->carga_horaria)) {
                 $set[] = "carga_horaria = '{$this->carga_horaria}'";
+                $set[] = "carga_horaria_auxiliar = '{$this->carga_horaria_auxiliar}'";
             } elseif (is_null($this->carga_horaria)) {
                 $set[] = 'carga_horaria = NULL';
+                $set[] = 'carga_horaria_auxiliar = NULL';
             }
 
             if (is_numeric($this->etapas_especificas)) {

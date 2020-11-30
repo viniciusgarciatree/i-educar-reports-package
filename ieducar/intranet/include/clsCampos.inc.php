@@ -329,7 +329,7 @@ class clsCampos extends Core_Controller_Page_Abstract
         }
     }
 
-    public function campoHora($nome, $campo, $valor, $obrigatorio = false, $descricao = '', $acao = '', $limitaHora = true, $desabilitado = false, $maxLength = 5)
+    public function campoHora($nome, $campo, $valor, $obrigatorio = false, $descricao = '', $acao = '', $limitaHora = true, $desabilitado = false, $maxLength = 7)
     {
         $arr_componente = [
             'hora',

@@ -14,6 +14,7 @@ class ComponenteCurricular_Model_Componente extends CoreExt_Entity
         'tipo_base' => null,
         'area_conhecimento' => null,
         'cargaHoraria' => null,
+        'cargaHorariaAuxiliar' => null,
         'codigo_educacenso' => null,
         'ordenamento' => 99999
     ];

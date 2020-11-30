@@ -10,6 +10,7 @@ class ComponenteCurricular_Model_Turma extends CoreExt_Entity
         'escola' => null,
         'turma' => null,
         'cargaHoraria' => null,
+        'cargaHorariaAuxiliar' => null,
         'docenteVinculado' => null,
         'etapasEspecificas' => null,
         'etapasUtilizadas' => null
