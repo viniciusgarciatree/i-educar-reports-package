@@ -80,7 +80,7 @@ class ReportCardRegimeSpecialReport extends Portabilis_Report_ReportCore
                 'nota_exame' => $value['nota_exame'],
                 'media_recuperacao' => $value['media_recuperacao'],
                 'medianumturma' => $value['medianumturma'],
-                'total_faltas_component' => $value['total_faltas_component']
+                'total_faltas_component' => $value['total_faltas_component'],
             ];
 
         }
@@ -97,6 +97,12 @@ class ReportCardRegimeSpecialReport extends Portabilis_Report_ReportCore
             $value['data_area'] = $arrArea;
             $value['total_faltas'] = $value['total_faltas'] ? (int)$value['total_faltas'] : null;
             $value['observacoes'] = $this->args['observacoes'] ?: '';
+            if(!empty($value['nome_pai']) && !empty($value['nome_mae'])){
+                $value['nome_pais'] = $value['nome_pai'] . ", " . $value['nome_mae'];
+            }else{
+                $value['nome_pais'] = empty($value['nome_pai']) ? (empty($value['nome_mae'])?  : $value['nome_mae']) : $value['nome_pai'];
+            }
+
             $arrMain[] = $value;
         }
 
@@ -221,7 +227,9 @@ class ReportCardRegimeSpecialReport extends Portabilis_Report_ReportCore
             group by turma.cod_turma) as professor,
     CASE WHEN UPPER(substring(serie.nm_serie,1,5)) = 'MULTI'  THEN 
           (CASE WHEN etapa_ensino.descricao = '' or etapa_ensino.descricao is null  THEN 'ETAPA DO ALUNO NÃO INFORMADA' ELSE substring(etapa_ensino.descricao,6,length(etapa_ensino.descricao)) END )   
-        ELSE serie.nm_serie END as etapa_ensino_descricao
+        ELSE serie.nm_serie END as etapa_ensino_descricao,
+        pessoa_pai.nome AS nome_pai,
+        pessoa_mae.nome AS nome_mae
    FROM pmieducar.instituicao
    INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
    INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
@@ -317,6 +325,8 @@ class ReportCardRegimeSpecialReport extends Portabilis_Report_ReportCore
    LEFT JOIN modules.regra_avaliacao on(rasa.regra_avaliacao_id = regra_avaliacao.id)
    LEFT JOIN modules.area_conhecimento ON area_conhecimento.id = view_componente_curricular.area_conhecimento_id
    LEFT JOIN cadastro.etapa_ensino ON etapa_ensino.codigo = matricula_turma.etapa_educacenso
+   LEFT JOIN cadastro.pessoa pessoa_pai ON (pessoa_pai.idpes = fisica.idpes_pai)
+ LEFT JOIN cadastro.pessoa AS pessoa_mae ON (pessoa_mae.idpes = fisica.idpes_mae)
    WHERE instituicao.cod_instituicao = {$instituicao}
      AND escola.cod_escola = {$escola}
      AND curso.cod_curso = {$curso}
