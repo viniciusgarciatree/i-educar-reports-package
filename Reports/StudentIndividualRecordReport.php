@@ -77,6 +77,8 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         }
         $carga_horaria_total = $horas . ":" . $minutos;
 
+        unset($this->args['exibir_paracer_descritivo']);
+
         if (count($arrMain) == 0) {
             return array();
         }
@@ -90,8 +92,6 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
                 $arrObservacao
             ) > 0 && !empty($arrObservacao[0]["parecer"]) ? $arrObservacao[0]["parecer"] : "";
         }
-
-        unset($this->args['exibir_paracer_descritivo']);
 
         $return = [
             'main'   => $arrMain,
@@ -122,7 +122,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
 SELECT
        fcn_upper(view_dados_escola.nome) AS nm_escola,
        view_dados_escola.logradouro,
-       view_dados_escola.bairro, 
+       view_dados_escola.bairro,
        matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nome_aluno,
@@ -153,23 +153,23 @@ SELECT
        turma.nm_turma AS nome_turma,
        turma_turno.nome AS periodo,
        COALESCE((
-			  SELECT 
-			  CASE 
-				WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0 
-		   			OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0 
-					OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0 
-		            OR STRPOS(etapa_ensino.descricao ,'1 ano') <> 0 
-		   			OR STRPOS(etapa_ensino.descricao ,'2 ano') <> 0 
-					OR STRPOS(etapa_ensino.descricao ,'3 ano') <> 0 
+			  SELECT
+			  CASE
+				WHEN STRPOS(etapa_ensino.descricao ,'1º Ano') <> 0
+		   			OR STRPOS(etapa_ensino.descricao ,'2º Ano') <> 0
+					OR STRPOS(etapa_ensino.descricao ,'3º Ano') <> 0
+		            OR STRPOS(etapa_ensino.descricao ,'1 ano') <> 0
+		   			OR STRPOS(etapa_ensino.descricao ,'2 ano') <> 0
+					OR STRPOS(etapa_ensino.descricao ,'3 ano') <> 0
 		   			OR STRPOS(etapa_ensino.descricao ,'Educação Infantil') <> 0
 				THEN 'Alfabetização'
-				WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0 
+				WHEN STRPOS(etapa_ensino.descricao ,'4º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'5º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'6º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'7º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'8º Ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'9º Ano') <> 0
-                   OR STRPOS(etapa_ensino.descricao ,'4 ano') <> 0 
+                   OR STRPOS(etapa_ensino.descricao ,'4 ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'5 ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'6 ano') <> 0
                    OR STRPOS(etapa_ensino.descricao ,'7 ano') <> 0
@@ -183,11 +183,11 @@ SELECT
 			INNER JOIN pmieducar.turma AS turma_serie ON etapa_ensino.codigo = turma_serie.etapa_educacenso
 			INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
 			INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
-			INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
+			INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma
 			AND matricula_turma.sequencial = view_situacao.sequencial
 			INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
 			WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
-			AND turma_serie.cod_turma = turma.cod_turma LIMIT 1  
+			AND turma_serie.cod_turma = turma.cod_turma LIMIT 1
 			)
 	    ,'') as ciclo,
 	    COALESCE((
@@ -197,11 +197,11 @@ SELECT
 				INNER JOIN pmieducar.serie as serie_serie ON (turma_serie.ref_ref_cod_serie = serie_serie.cod_serie)
 				INNER JOIN pmieducar.matricula_turma ON matricula_turma.ref_cod_turma = turma_serie.cod_turma
 				INNER JOIN pmieducar.matricula ON matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
-				INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma 
+				INNER JOIN relatorio.view_situacao ON view_situacao.cod_matricula = matricula.cod_matricula AND view_situacao.cod_turma = turma_serie.cod_turma
 				AND matricula_turma.sequencial = view_situacao.sequencial
 				INNER JOIN pmieducar.aluno AS aluno_ciclos ON pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
 				WHERE aluno_ciclos.cod_aluno = aluno.cod_aluno
-				AND turma_serie.cod_turma = turma.cod_turma LIMIT 1 
+				AND turma_serie.cod_turma = turma.cod_turma LIMIT 1
 				)
 		,'') as serie
 		,(SELECT textcat_all(obs)
@@ -252,8 +252,8 @@ WHERE instituicao.cod_instituicao = {$instituicao}
   AND aluno.cod_aluno = {$aluno}
 ORDER BY sequencial_fechamento,
          nome_aluno,
-         cod_aluno  
-LIMIT 1    
+         cod_aluno
+LIMIT 1
         ";
 
         return $return;
@@ -274,7 +274,7 @@ LIMIT 1
 
         $sql = "
 
-            SELECT 
+            SELECT
                 public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
                 public.fcn_upper(instituicao.nm_responsavel) AS nm_responsavel,
                 (CASE WHEN {$notSchool} THEN '' ELSE fcn_upper(view_dados_escola.nome) END) AS nm_escola,
@@ -291,24 +291,24 @@ LIMIT 1
                 instituicao.ref_sigla_uf AS uf,
                 instituicao.cidade,
                 view_dados_escola.inep
-            FROM 
+            FROM
                 pmieducar.instituicao
             INNER JOIN pmieducar.escola ON TRUE
                 AND (instituicao.cod_instituicao = escola.ref_cod_instituicao)
-            INNER JOIN relatorio.view_dados_escola ON TRUE 
+            INNER JOIN relatorio.view_dados_escola ON TRUE
                 AND (escola.cod_escola = view_dados_escola.cod_escola)
-            WHERE TRUE 
+            WHERE TRUE
                 AND instituicao.cod_instituicao = {$instituicao}
-                AND 
+                AND
                 (
-                    CASE WHEN {$notSchool} THEN 
-                        TRUE 
-                    ELSE 
-                        view_dados_escola.cod_escola = {$escola} 
+                    CASE WHEN {$notSchool} THEN
+                        TRUE
+                    ELSE
+                        view_dados_escola.cod_escola = {$escola}
                     END
                 )
             LIMIT 1
-     
+
         ";
 
         return $sql;
@@ -325,7 +325,7 @@ LIMIT 1
         $ano         = $this->args['ano'] ?: 0;
 
         return "
-        SELECT 
+        SELECT
 modules.componente_curricular.tipo_base,
 	view_componente_curricular.ordenamento AS componente_order,
     componente_curricular.nome as curricular_nome,
@@ -333,7 +333,7 @@ modules.componente_curricular.tipo_base,
 	   CASE
            WHEN matricula_turma.remanejado = true THEN '-'
 	   ELSE
-	   		CASE 
+	   		CASE
 				WHEN nota_componente_curricular_etapa1.nota_original ~ '^-?[0-9]+\.?[0-9]*$' THEN replace(trunc(nota_componente_curricular_etapa1.nota_original::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
 		    ELSE
                 nota_componente_curricular_etapa1.nota_original
@@ -343,7 +343,7 @@ modules.componente_curricular.tipo_base,
 	   CASE
            WHEN matricula_turma.remanejado = true THEN '-'
 	   ELSE
-	   		CASE 
+	   		CASE
 				WHEN nota_componente_curricular_etapa1.nota_recuperacao ~ '^-?[0-9]+\.?[0-9]*$' THEN replace(trunc(nota_componente_curricular_etapa1.nota_recuperacao::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
 		    ELSE
                 nota_componente_curricular_etapa1.nota_recuperacao
@@ -368,7 +368,7 @@ modules.componente_curricular.tipo_base,
               ELSE
                 nota_componente_curricular_etapa2.nota_arredondada
               END
-       END,'-') AS nota_recuperacao_2,	   
+       END,'-') AS nota_recuperacao_2,
 	   COALESCE(
        CASE
            WHEN matricula_turma.remanejado = true THEN '-'
@@ -481,17 +481,17 @@ modules.componente_curricular.tipo_base,
                         AND falta_geral.etapa = '4'
                         AND falta_aluno.tipo_falta = 1)))::integer
   END,0) AS falta4,
-  (CASE 
+  (CASE
    		WHEN componente_curricular_turma.carga_horaria is not null THEN componente_curricular_turma.carga_horaria
 		WHEN ccae.carga_horaria is not null THEN ccae.carga_horaria
    		ELSE 0
    END)::integer AS carga_horaria
-   ,(CASE 
+   ,(CASE
        WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN componente_curricular_turma.carga_horaria::varchar
        WHEN ccae.carga_horaria_auxiliar is not null THEN ccae.carga_horaria_auxiliar::varchar
        ELSE ''
    END)::varchar AS carga_horaria_auxiliar
-   ,(CASE 
+   ,(CASE
        WHEN componente_curricular_turma.hora_aula is not null THEN componente_curricular_turma.hora_aula
        WHEN ccae.hora_aula is not null THEN ccae.hora_aula
        ELSE 0
@@ -553,8 +553,8 @@ ORDER BY tipo_base,componente_order,curricular_nome
         $ano         = $this->args['ano'] ?: 0;
 
         return "
-        SELECT 
-            array_to_string(array_agg(etapa ||'º Bimestre:: ' || parecer),'\n') AS parecer 
+        SELECT
+            array_to_string(array_agg(etapa ||'º Bimestre:: ' || parecer),'\n') AS parecer
         FROM ( SELECT
              parecer_geral_etapa.parecer
              ,parecer_geral_etapa.etapa
@@ -570,7 +570,7 @@ ORDER BY tipo_base,componente_order,curricular_nome
             INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = matricula.ref_cod_aluno)
             LEFT JOIN modules.parecer_aluno ON (parecer_aluno.matricula_id = matricula.cod_matricula)
             LEFT JOIN modules.parecer_geral as parecer_geral_etapa ON (parecer_geral_etapa.parecer_aluno_id = parecer_aluno.id)
-            WHERE parecer_geral_etapa.parecer IS NOT null 
+            WHERE parecer_geral_etapa.parecer IS NOT null
               AND instituicao.cod_instituicao = {$instituicao}
               AND matricula.ano = {$ano}
               AND escola.cod_escola = {$escola}
