@@ -24,7 +24,7 @@ class RelatoriosIpanema extends Migration
                 ],
                 [
                     'parent_id'   => Menu::query()->where('old', 999861)->firstOrFail()->getKey(),
-                    'title'       => 'Ficha individual avaliação formativa',
+                    'title'       => 'Ficha individual de avaliação formativa',
                     'description' => null,
                     'link'        => '/module/Reports/StudentIndividualInfant',
                     'order'       => 0,
