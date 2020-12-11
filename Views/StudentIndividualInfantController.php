@@ -13,7 +13,7 @@ class StudentIndividualInfantController extends Portabilis_Controller_ReportCore
     /**
      * @var string
      */
-    protected $_titulo = 'Ficha individual avaliação formativa';
+    protected $_titulo = 'Ficha individual de avaliação formativa';
 
     /**
      * @inheritdoc
@@ -24,7 +24,7 @@ class StudentIndividualInfantController extends Portabilis_Controller_ReportCore
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Ficha individual avaliação formativa', [
+        $this->breadcrumb('Ficha individual de avaliação formativa', [
             'educar_index.php' => 'Escola',
         ]);
 
