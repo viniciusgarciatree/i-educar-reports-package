@@ -13,15 +13,10 @@ class UpdateComponenteCurricularTurma extends Migration
      */
     public function up()
     {
-        if (Schema::hasColumn('modules.componente_curricular_turma', 'carga_horaria_auxiliar')) {
-            Schema::table('modules.componente_curricular_turma', function (Blueprint $table)
+        if (Schema::hasColumn('componente_curricular_turma', 'carga_horaria_auxiliar')) {
+            Schema::table('componente_curricular_turma', function (Blueprint $table)
             {
                 $table->string('carga_horaria_auxiliar',8)->nullable();
-            });
-        }
-        if (Schema::hasColumn('modules.componente_curricular_turma', 'hora_aula')) {
-            Schema::table('modules.componente_curricular_turma', function (Blueprint $table)
-            {
                 $table->integer('hora_aula')->nullable();
             });
         }
