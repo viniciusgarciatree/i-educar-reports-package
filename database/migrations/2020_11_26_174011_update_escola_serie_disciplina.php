@@ -13,19 +13,12 @@ class UpdateEscolaSerieDisciplina extends Migration
      */
     public function up()
     {
-        if (!Schema::hasColumn('pmieducar.escola_serie_disciplina', 'carga_horaria_auxiliar')) {
+        if (Schema::hasColumn('pmieducar.escola_serie_disciplina', 'carga_horaria_auxiliar')) {
             Schema::table('pmieducar.escola_serie_disciplina', function (Blueprint $table)
             {
-                if (Schema::hasColumn('pmieducar.escola_serie_disciplina', 'carga_horaria_auxiliar')) {
-                    $table->string('carga_horaria_auxiliar',8)->nullable();
-                }
-                if (Schema::hasColumn('pmieducar.escola_serie_disciplina', 'aulas_semanais')) {
-                    $table->integer('aulas_semanais')->nullable();
-                }
-
-                if (Schema::hasColumn('pmieducar.escola_serie_disciplina', 'hora_aula')) {
-                    $table->integer('hora_aula')->nullable();
-                }
+                $table->string('carga_horaria_auxiliar',8)->nullable();
+                $table->integer('aulas_semanais')->nullable();
+                $table->integer('hora_aula')->nullable();
             });
         }
     }

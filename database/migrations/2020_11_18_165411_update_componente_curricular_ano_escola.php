@@ -17,23 +17,10 @@ class UpdateComponenteCurricularAnoEscola extends Migration
             Schema::table('modules.componente_curricular_ano_escolar', function (Blueprint $table)
             {
                 $table->string('carga_horaria_auxiliar',8)->nullable();
-            });
-        }
-
-        if (Schema::hasColumn('modules.componente_curricular_ano_escolar', 'aulas_semanais')) {
-            Schema::table('modules.componente_curricular_ano_escolar', function (Blueprint $table)
-            {
                 $table->integer('aulas_semanais')->nullable();
-            });
-        }
-
-        if (Schema::hasColumn('modules.componente_curricular_ano_escolar', 'hora_aula')) {
-            Schema::table('modules.componente_curricular_ano_escolar', function (Blueprint $table)
-            {
                 $table->integer('hora_aula')->nullable();
             });
         }
-
     }
 
     /**
