@@ -75,7 +75,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
                 $arrComponente[$index]['faltas_horas'] = "";
             }
         }
-        $carga_horaria_total = $horas . ":" . $minutos;
+        $carga_horaria_total = $horas . ":" . (strlen($minutos)<2? "0" . $minutos : $minutos);
 
         unset($this->args['exibir_paracer_descritivo']);
 
@@ -254,7 +254,6 @@ ORDER BY sequencial_fechamento,
          cod_aluno
 LIMIT 1
         ";
-
         return $return;
     }
 
@@ -527,7 +526,7 @@ INNER JOIN modules.componente_curricular on componente_curricular.id = view_comp
 LEFT JOIN modules.parecer_aluno ON (parecer_aluno.matricula_id = matricula.cod_matricula)
 INNER JOIN relatorio.view_dados_escola ON TRUE  AND (escola.cod_escola = view_dados_escola.cod_escola)
 LEFT JOIN modules.componente_curricular_turma ON componente_curricular_turma.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.turma_id = turma.cod_turma AND componente_curricular_turma.ano_escolar_id = serie.cod_serie
-LEFT JOIN modules.componente_curricular_ano_escolar as ccae ON ccae.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.ano_escolar_id = ccae.ano_escolar_id
+LEFT JOIN modules.componente_curricular_ano_escolar as ccae ON ccae.componente_curricular_id = componente_curricular.id AND serie.cod_serie = ccae.ano_escolar_id
 LEFT JOIN relatorio.view_situacao on view_situacao.cod_turma = turma.cod_turma and view_situacao.cod_matricula = matricula.cod_matricula and view_situacao.cod_situacao = any (array[1, 2, 3, 4, 5, 6, 12, 13])
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}
