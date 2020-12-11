@@ -20,16 +20,16 @@ class RelatoriosIpanema extends Migration
         {
             Menu::query()->updateOrCreate(
                 [
-                    'old' => 9999200
+                    'old' => 9999208
                 ],
                 [
                     'parent_id'   => Menu::query()->where('old', 999861)->firstOrFail()->getKey(),
-                    'title'       => 'Ficha Individual do Aluno',
+                    'title'       => 'Ficha individual avaliação formativa',
                     'description' => null,
-                    'link'        => '/module/Reports/StudentIndividualRecord',
+                    'link'        => '/module/Reports/StudentIndividualInfant',
                     'order'       => 0,
-                    'old'         => 9999200,
-                    'process'     => 9999200,
+                    'old'         => 9999208,
+                    'process'     => 9999208,
                     'active'      => true,
                 ]
             );
@@ -43,6 +43,6 @@ class RelatoriosIpanema extends Migration
      */
     public function down()
     {
-        Menu::query()->where('process', 9999200)->delete();
+        Menu::query()->where('process', 9999208)->delete();
     }
 }
