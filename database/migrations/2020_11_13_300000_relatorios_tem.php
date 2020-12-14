@@ -17,7 +17,7 @@ class RelatoriosTem extends Migration
     {
         $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334268000125');");
         /* Para Caratinga verifica com cnpj */
-        if (count($result) > 0 && $result[0] == true)
+        if (count($result) > 0 && $result[0]->exists == true)
         {
             Menu::query()->updateOrCreate(
                 [

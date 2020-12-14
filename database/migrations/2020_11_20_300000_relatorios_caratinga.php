@@ -17,8 +17,25 @@ class RelatoriosCaratinga extends Migration
     {
         $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334268000125');");
         /* Para Caratinga verifica com cnpj */
-        if (count($result) > 0 && $result[0] == true)
+        if (count($result) > 0 && $result[0]->exists == true)
         {
+            Menu::query()->updateOrCreate(
+                [
+                    'old' => 9999203
+                ],
+                [
+                    'parent_id'   => Menu::query()->where('old', 999303)->firstOrFail()->getKey(),
+                    'title'       => 'Relatório PPP',
+                    'description' => 'Relatório Projeto Político Pedagógico (PPP)',
+                    'link'        => '/module/Reports/ReportsPpp',
+                    'order'       => 0,
+                    'old'         => 9999203,
+                    'process'     => 9999203,
+                    'parent_old'  => 999303,
+                    'active'      => true,
+                ]
+            );
+
             Menu::query()->updateOrCreate(
                 [
                     'old' => 9999206
@@ -45,6 +62,7 @@ class RelatoriosCaratinga extends Migration
      */
     public function down()
     {
+        Menu::query()->where('process', 9999203)->delete();
         Menu::query()->where('process', 9999206)->delete();
     }
 }
