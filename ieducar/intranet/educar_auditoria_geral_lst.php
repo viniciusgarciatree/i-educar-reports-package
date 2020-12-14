@@ -144,6 +144,8 @@ class indice extends clsListagem
             ]);
         }
 
+        $total = $auditoria->_total;
+
         $this->addPaginador2('educar_auditoria_geral_lst.php', $total, $_GET, $this->nome, $this->limite);
 
         $this->largura = '100%';
