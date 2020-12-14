@@ -38,6 +38,12 @@ class StudentIndividualInfantController extends Portabilis_Controller_ReportCore
     {
         $this->inputsHelper()->dynamic(['ano','instituicao', 'escola', 'curso', 'serie', 'turma']);
         $this->inputsHelper()->simpleSearchAluno(null);
+
+        $this->inputsHelper()->textArea('orientacoes', [
+            'required' => false,
+            'label' => 'Orientações',
+            'placeholder' => 'Utilize este espaço para exibir uma mensagem ou recado no boletim.'
+        ]);
     }
 
     /**
@@ -55,6 +61,7 @@ class StudentIndividualInfantController extends Portabilis_Controller_ReportCore
         $this->report->addArg('serie', (int) $this->getRequest()->ref_cod_serie);
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
         $this->report->addArg('aluno', (int) $this->getRequest()->aluno_id);
+        $this->report->addArg('orientacoes', $this->getRequest()->orientacoes);
 
         $this->report->addArg('cabecalho_alternativo', (int) $GLOBALS['coreExt']['Config']->report->header->alternativo);
         $this->report->addArg('portaria_aprovacao_pontos', (string) $GLOBALS['coreExt']['Config']->report->portaria_aprovacao_pontos);
