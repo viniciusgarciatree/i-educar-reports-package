@@ -136,8 +136,8 @@
 				<textFieldExpression><![CDATA["Declaramos para os devidos fins de direitos, que o(a) aluno(a) " + $F{nome} + " código do ID " + $F{cod_aluno} + ", nascido(a) em " + $F{data_nasc} + ", no município de " +
 $F{municipio_uf_nascimento} + ", filho(a) de "+ ($F{nm_pai}.equals("") && $F{nm_mae}.equals("") ? "Não Informado" : (!$F{nm_pai}.equals("") && $F{nm_mae}.equals("")
     ? $F{nm_pai} : ($F{nm_pai}.equals("") && !$F{nm_mae}.equals("")
-    ? $F{nm_mae} : ($F{nm_mae} + " e de " + $F{nm_pai})))) + ", concluiu o(a) " + $F{nm_serie} + "/" + $F{sigla_curso} +
-", do(a) " + $F{nm_curso} + ", neste Estabelecimento de Ensino, no ano de " + $F{ano} + "."]]></textFieldExpression>
+    ? $F{nm_mae} : ($F{nm_mae} + " e de " + $F{nm_pai})))) + ", concluiu o(a) " + $F{nm_serie} +
+" do(a) " + $F{nm_curso} + ", neste Estabelecimento de Ensino, no ano de " + $F{ano} + "."]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="56" width="555" height="15" uuid="8254ee26-1c44-4a50-af32-278794dee199"/>
