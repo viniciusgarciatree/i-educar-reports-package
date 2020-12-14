@@ -61,7 +61,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
     public function getJsonData()
     {
         if($this->templateName() == "report-card-boletim"){            
-            $queryMainReport = $this->getSqlMainReport();        
+            $queryMainReport = $this->getSqlMainReport();
             $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
             $queryHeaderReport = $this->getSqlHeaderReport();
 
@@ -100,21 +100,22 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                     'nota2numturma' => $value['nota2numturma'],
                     'nota3numturma' => $value['nota3numturma'],
                     'nota4numturma' => $value['nota4numturma'],
-                    'total_faltas_et1' => $value['total_faltas_et1'],
-                    'total_faltas_et2' => $value['total_faltas_et2'],
-                    'total_faltas_et3' => $value['total_faltas_et3'],
-                    'total_faltas_et4' => $value['total_faltas_et4'],
-                    'faltas_componente_et1' => $value['faltas_componente_et1'],
-                    'faltas_componente_et2' => $value['faltas_componente_et2'],
-                    'faltas_componente_et3' => $value['faltas_componente_et3'],
-                    'faltas_componente_et4' => $value['faltas_componente_et4'],
+                    'total_faltas_et1' => (int)$value['total_faltas_et1'],
+                    'total_faltas_et2' => (int)$value['total_faltas_et2'],
+                    'total_faltas_et3' => (int)$value['total_faltas_et3'],
+                    'total_faltas_et4' => (int)$value['total_faltas_et4'],
+                    'faltas_componente_et1' => (int)$value['faltas_componente_et1'],
+                    'faltas_componente_et2' => (int)$value['faltas_componente_et2'],
+                    'faltas_componente_et3' => (int)$value['faltas_componente_et3'],
+                    'faltas_componente_et4' => (int)$value['faltas_componente_et4'],
                     'total_geral_faltas_componente' => $value['total_geral_faltas_componente'],
                     'total_faltas' => $value['total_faltas'],
                     'curso_hora_falta' => $value['curso_hora_falta'],
+                    'dias_letivos_serie' => (int)$value['dias_letivos_serie'],
                     'carga_horaria_componente' => $value['carga_horaria_componente'],
                     'carga_horaria_serie' => $value['carga_horaria_serie'],
                     'media' => $value['media'],
-                    'medianum' => $value['medianum'],
+                    'medianum' => (double)$value['medianum'],
                     'nota_exame' => $value['nota_exame'],
                     'media_recuperacao' => $value['media_recuperacao'],
                     'medianumturma' => $value['medianumturma'],
@@ -138,6 +139,8 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             }
 
             unset($this->args['modelo']);
+            unset($this->args['observacoes']);
+            //dd($arrMain);
             return array_merge([
                 'main' => $arrMain,
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
@@ -152,6 +155,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                     $arrMain[$index]['observacoes'] =  $this->args['observacoes'] ?: '';
                 }
             }
+            unset($this->args['observacoes']);
 
             return array_merge([
                 'main' => $arrMain,
@@ -238,6 +242,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
           curso.hora_falta * 100 AS curso_hora_falta,
           componente_curricular_ano_escolar.carga_horaria::int AS carga_horaria_componente,
           serie.carga_horaria AS carga_horaria_serie,
+          serie.dias_letivos as dias_letivos_serie,
           nota_componente_curricular_media.media_arredondada AS media,
           TRUNC(nota_componente_curricular_media.media::NUMERIC, 1) AS medianum,
           TRUNC(nota_exame.nota_arredondada::NUMERIC, 1) AS nota_exame,

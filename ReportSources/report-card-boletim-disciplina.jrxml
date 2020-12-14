@@ -222,7 +222,7 @@
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota2}.matches( "[A-Z]" ) ? $F{nota2} : (
-  ($F{nota2num} < $F{media_recuperacao}) ? ("<b>" + $F{nota2num} + "</b>") : $F{nota2num})]]></textFieldExpression>
+	($F{nota2num} < $F{media_recuperacao}) ? ("<b>" + $F{nota2num} + "</b>") : $F{nota2num})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="230" y="-1" width="1" height="14" uuid="eb37618f-5a80-4315-9ab3-3b6cb2ee17a3">
@@ -301,7 +301,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[($F{total_faltas_componente} != null ?
    $F{carga_horaria_componente} - $F{total_faltas_componente}
-: $F{total_faltas} != null 
+: $F{total_faltas} != null
 ?  $F{dias_letivos_serie} - $F{total_faltas}
 : "")]]></textFieldExpression>
 			</textField>
@@ -359,7 +359,8 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{media}.matches( "[A-Z]" ) ? $F{media} : (
+($F{medianum} < $F{media_recuperacao}) ? ("<b>" + $F{medianum} + "</b>") : $F{medianum})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="142" y="-1" width="1" height="14" uuid="31425de5-6f9e-4da9-a2f1-d7bd5c1d90d5">
@@ -397,7 +398,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[($F{total_faltas_componente} != null ?
    $F{carga_horaria_componente} - $F{total_faltas_componente}
-: $F{total_faltas} != null 
+: $F{total_faltas} != null
 ?  $F{dias_letivos_serie} - $F{total_faltas}
 : "")]]></textFieldExpression>
 			</textField>
