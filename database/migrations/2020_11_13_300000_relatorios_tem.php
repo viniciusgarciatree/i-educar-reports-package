@@ -18,7 +18,7 @@ class RelatoriosTem extends Migration
         /*
          * CNPJ das empresa do GRUPO TEM
          */
-        $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj IN('18300996000116','56405622000154');");
+        $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj IN('18300996000116','56405622000154'))");
         /* Para Caratinga verifica com cnpj */
         if (count($result) > 0 && $result[0]->exists == true)
         {
