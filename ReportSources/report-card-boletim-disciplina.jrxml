@@ -222,7 +222,7 @@
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota2}.matches( "[A-Z]" ) ? $F{nota2} : (
-  ($F{nota2num} < $F{media_recuperacao}) ? ("<b>" + $F{nota2num} + "</b>") : $F{nota2num})]]></textFieldExpression>
+	($F{nota2num} < $F{media_recuperacao}) ? ("<b>" + $F{nota2num} + "</b>") : $F{nota2num})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="230" y="-1" width="1" height="14" uuid="eb37618f-5a80-4315-9ab3-3b6cb2ee17a3">
@@ -301,7 +301,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[($F{total_faltas_componente} != null ?
    $F{carga_horaria_componente} - $F{total_faltas_componente}
-: $F{total_faltas} != null 
+: $F{total_faltas} != null
 ?  $F{dias_letivos_serie} - $F{total_faltas}
 : "")]]></textFieldExpression>
 			</textField>
@@ -348,19 +348,6 @@
 					<pen lineColor="#FFFFFF"/>
 				</graphicElement>
 			</rectangle>
-			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="141" height="14" uuid="f2b6910c-e7d3-404d-8700-429c7d336dcc">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<box leftPadding="2"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="142" y="-1" width="1" height="14" uuid="31425de5-6f9e-4da9-a2f1-d7bd5c1d90d5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -397,7 +384,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[($F{total_faltas_componente} != null ?
    $F{carga_horaria_componente} - $F{total_faltas_componente}
-: $F{total_faltas} != null 
+: $F{total_faltas} != null
 ?  $F{dias_letivos_serie} - $F{total_faltas}
 : "")]]></textFieldExpression>
 			</textField>
@@ -421,6 +408,19 @@
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="141" height="14" uuid="c4003df4-25dc-47a4-9345-cb289c3e9b55">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>
