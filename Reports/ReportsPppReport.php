@@ -30,7 +30,8 @@ class ReportsPppReport extends Portabilis_Report_ReportCore
         $arrDados['localizacao'] = self::getLocalizacao();
         $arrDados['transporte']  = self::getTransporte();
         $arrDados['docentes']  = self::getDocentes();
-        $arrDados['docentes_total']  = self::getDocentesTotal();
+        $arrDados['docentes_total'] = self::getDocentesTotal();
+        $arrDados['cod_escola'] = $this->args['escola'] == 0 ? 0 : $this->args['escola'];
 
         $queryHeaderReport = $this->getSqlHeaderReport();
 
@@ -58,10 +59,10 @@ class ReportsPppReport extends Portabilis_Report_ReportCore
         $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
 
         return "
-SELECT 
-  count(*)::numeric 
+SELECT
+  count(*)::numeric
 FROM (
-  SELECT 
+  SELECT
 	DISTINCT aluno.cod_aluno
 	FROM pmieducar.aluno
 	INNER JOIN pmieducar.matricula ON matricula.ref_cod_aluno = aluno.cod_aluno
@@ -69,8 +70,8 @@ FROM (
 	AND matricula.ano = {$ano}
 	AND matricula.ativo = 1
 	{$situacao}
-	AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END) 
-	GROUP BY aluno.cod_aluno 
+	AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
+	GROUP BY aluno.cod_aluno
 ) AS G
 ";
     }
@@ -83,21 +84,21 @@ FROM (
 
         $consultaTotalAluno    = self::getTotal();
         $sql = "
-SELECT 
+SELECT
     descricao,quantidade::numeric,round((quantidade*100/($consultaTotalAluno))::numeric,2) AS porcentagem
 FROM (
-    SELECT 
+    SELECT
         descricao,COUNT(*)::numeric as quantidade
     FROM (
-        SELECT 
+        SELECT
             DISTINCT aluno.cod_aluno
-            ,curso.nm_curso as descricao 
+            ,curso.nm_curso as descricao
         FROM pmieducar.aluno
         INNER JOIN pmieducar.matricula ON matricula.ref_cod_aluno = aluno.cod_aluno
         LEFT JOIN pmieducar.matricula_turma ON matricula.cod_matricula = matricula_turma.ref_cod_matricula
         LEFT JOIN pmieducar.turma ON matricula_turma.ref_cod_turma = turma.cod_turma
         LEFT JOIN pmieducar.escola_curso ON turma.ref_cod_curso = escola_curso.ref_cod_curso
-        LEFT JOIN pmieducar.curso ON curso.cod_curso = escola_curso.ref_cod_curso 
+        LEFT JOIN pmieducar.curso ON curso.cod_curso = escola_curso.ref_cod_curso
         WHERE aluno.ativo = 1
             AND matricula.ano = {$ano}
             AND matricula.ativo = 1
@@ -109,9 +110,9 @@ FROM (
             {$situacao}
             AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,curso.nm_curso
-    ) AS t 
+    ) AS t
         GROUP BY descricao
-) AS t        
+) AS t
         ";
 
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);
@@ -124,13 +125,13 @@ FROM (
         $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
-SELECT 
+SELECT
     descricao,quantidade::numeric,round((quantidade*100/($consultaTotalAluno))::numeric,2) AS porcentagem
 FROM (
-    SELECT 
+    SELECT
         descricao,COUNT(*)::numeric as quantidade
     FROM (
-        SELECT 
+        SELECT
         DISTINCT aluno.cod_aluno
         ,CASE
             WHEN fisica.sexo = 'M' THEN 'Masculino'
@@ -146,7 +147,7 @@ FROM (
         {$situacao}
         AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,fisica.sexo
-    ) AS t 
+    ) AS t
     GROUP BY descricao
 ) AS t
         ";
@@ -161,13 +162,13 @@ FROM (
         $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
-SELECT 
+SELECT
     descricao,quantidade::numeric,round((quantidade*100/($consultaTotalAluno))::numeric,2) AS porcentagem
 FROM (
-    SELECT 
+    SELECT
         descricao,COUNT(*)::numeric as quantidade
     FROM (
-        SELECT 
+        SELECT
         DISTINCT aluno.cod_aluno
         ,CASE
             WHEN raca.nm_raca is null THEN 'Não Definido'
@@ -184,7 +185,7 @@ FROM (
         {$situacao}
         AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,raca.nm_raca
-    ) AS t 
+    ) AS t
     GROUP BY descricao
 ) AS t
         ";
@@ -199,13 +200,13 @@ FROM (
         $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
-SELECT 
+SELECT
     descricao,quantidade::numeric,round((quantidade*100/($consultaTotalAluno))::numeric,2) AS porcentagem
 FROM (
-    SELECT 
+    SELECT
         descricao,COUNT(*)::numeric as quantidade
     FROM (
-        SELECT 
+        SELECT
         DISTINCT aluno.cod_aluno
         ,CASE
             WHEN fisica.zona_localizacao_censo is null THEN 'Não Definido'
@@ -222,7 +223,7 @@ FROM (
         {$situacao}
         AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,fisica.zona_localizacao_censo
-    ) AS t 
+    ) AS t
     GROUP BY descricao
 ) AS t
         ";
@@ -237,13 +238,13 @@ FROM (
         $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
         $consultaTotalAluno    = self::getTotal();
         $sql = "
-SELECT 
+SELECT
     descricao,quantidade::numeric,round((quantidade*100/($consultaTotalAluno))::numeric,2) AS porcentagem
 FROM (
-    SELECT 
+    SELECT
         descricao,COUNT(*)::numeric as quantidade
     FROM (
-        SELECT 
+        SELECT
         DISTINCT aluno.cod_aluno
         ,CASE
             WHEN transporte_aluno.responsavel is null THEN 'Não Definido'
@@ -259,7 +260,7 @@ FROM (
         {$situacao}
         AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE matricula.ref_ref_cod_escola = {$escola} END)
         GROUP BY aluno.cod_aluno,transporte_aluno.responsavel
-    ) AS t 
+    ) AS t
     GROUP BY descricao
 ) AS t
         ";
@@ -274,14 +275,14 @@ FROM (
         $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
 
         $consultaTotal = "
-SELECT 
-  count(*)::numeric 
+SELECT
+  count(*)::numeric
 FROM (
-    SELECT 
+    SELECT
         DISTINCT servidor.cod_servidor,curso.nm_curso as descricao
-    FROM 
+    FROM
     pmieducar.servidor
-    INNER JOIN modules.professor_turma ON servidor.cod_servidor = professor_turma.servidor_id 
+    INNER JOIN modules.professor_turma ON servidor.cod_servidor = professor_turma.servidor_id
         AND professor_turma.funcao_exercida IN(1,5,6)
         AND professor_turma.ano = {$ano}
         AND (CASE WHEN {$vinculo} = 0 THEN TRUE ELSE professor_turma.tipo_vinculo = {$vinculo} END)
@@ -298,17 +299,17 @@ FROM (
         ";
 
         $sql = "
-SELECT 
+SELECT
     descricao,quantidade::numeric,round((quantidade*100/($consultaTotal))::numeric,2) AS porcentagem
 FROM (
-    SELECT 
+    SELECT
         descricao,COUNT(*)::numeric as quantidade
     FROM (
-        SELECT 
+        SELECT
             DISTINCT servidor.cod_servidor,curso.nm_curso as descricao
-        FROM 
+        FROM
         pmieducar.servidor
-        INNER JOIN modules.professor_turma ON servidor.cod_servidor = professor_turma.servidor_id 
+        INNER JOIN modules.professor_turma ON servidor.cod_servidor = professor_turma.servidor_id
             AND professor_turma.funcao_exercida IN(1,5,6)
             AND professor_turma.ano = {$ano}
             AND (CASE WHEN {$vinculo} = 0 THEN TRUE ELSE professor_turma.tipo_vinculo = {$vinculo} END)
@@ -321,9 +322,9 @@ FROM (
         AND servidor_alocacao.ativo = 1
         AND (CASE WHEN {$escola} = 0 THEN TRUE ELSE escola_curso.ref_cod_escola = {$escola} END)
         GROUP BY servidor.cod_servidor,curso.nm_curso
-      ) AS t 
+      ) AS t
     GROUP BY descricao
-) AS t        
+) AS t
         ";
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);
     }
@@ -335,14 +336,14 @@ FROM (
         $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
 
         $consultaTotal = "
-SELECT 
-  count(*)::numeric 
+SELECT
+  count(*)::numeric
 FROM (
-    SELECT 
+    SELECT
         DISTINCT servidor.cod_servidor,curso.nm_curso as descricao
-    FROM 
+    FROM
     pmieducar.servidor
-    INNER JOIN modules.professor_turma ON servidor.cod_servidor = professor_turma.servidor_id 
+    INNER JOIN modules.professor_turma ON servidor.cod_servidor = professor_turma.servidor_id
         AND professor_turma.funcao_exercida IN(1,5,6)
         AND professor_turma.ano = {$ano}
         AND (CASE WHEN {$vinculo} = 0 THEN TRUE ELSE professor_turma.tipo_vinculo = {$vinculo} END)

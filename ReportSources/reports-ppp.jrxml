@@ -30,6 +30,7 @@
 	<field name="transporte" class="java.lang.String"/>
 	<field name="docentes" class="java.lang.String"/>
 	<field name="docentes_total" class="java.lang.Double"/>
+	<field name="cod_escola" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -50,7 +51,7 @@
 					<subreportParameterExpression><![CDATA["Relatório Quantitativo Projeto Político Pedagógico (PPP)"]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_escola">
-					<subreportParameterExpression><![CDATA[0]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{cod_escola}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="ano">
 					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
