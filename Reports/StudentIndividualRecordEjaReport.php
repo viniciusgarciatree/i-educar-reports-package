@@ -55,8 +55,17 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
         foreach ($arrComponente as $index => $value){
             $faltasAula = 0;
             $arrValue = explode(":",$value['carga_horaria_auxiliar']);
+            $arrValue[1] =trim($arrValue[1]);
+
             $horas += (int)$arrValue[0];
-            $minutos += (int)$arrValue[1];
+            $minutos += (int)substr($arrValue[1],0,2);
+            if(strlen($arrValue[1])<2 ){
+                $arrValue[1] = $arrValue[1] . str_pad($arrValue[1],2-strlen($arrValue[1]),"0");
+            }else{
+                $arrValue[1] = substr($arrValue[1],0,2);
+            }
+            $arrComponente[$index]['carga_horaria_auxiliar'] = "" . $arrValue[0] . ":" . $arrValue[1];
+
             if($minutos>59){
                 $minutos -= 60;
                 $horas += 1;
