@@ -56,7 +56,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
             $faltasAula = 0;
             $arrValue = explode(":",$value['carga_horaria_auxiliar']);
             $horas += (int)$arrValue[0];
-            $minutos += (int)$arrValue[1];
+            $minutos += (int)substr($arrValue[1],0,2);
             if($minutos>59){
                 $minutos -= 60;
                 $horas += 1;
@@ -486,8 +486,8 @@ modules.componente_curricular.tipo_base,
    		ELSE 0
    END)::integer AS carga_horaria
    ,(CASE
-       WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN componente_curricular_turma.carga_horaria::varchar
-       WHEN ccae.carga_horaria_auxiliar is not null THEN ccae.carga_horaria_auxiliar::varchar
+       WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN REPLACE(componente_curricular_turma.carga_horaria::varchar,'.',':')
+       WHEN ccae.carga_horaria_auxiliar is not null THEN REPLACE(ccae.carga_horaria_auxiliar::varchar,'.',':')
        ELSE ''
    END)::varchar AS carga_horaria_auxiliar
    ,(CASE
