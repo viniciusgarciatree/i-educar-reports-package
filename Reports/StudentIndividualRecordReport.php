@@ -75,7 +75,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
                 $arrComponente[$index]['faltas_horas'] = "";
             }
         }
-        $carga_horaria_total = $horas . ":" . (strlen($minutos)<2? "0" . $minutos : $minutos);
+        $carga_horaria_total = $horas . ":" . (strlen($minutos)<2? str_pad("0",2-strlen($minutos)) . $minutos : $minutos);
 
         unset($this->args['exibir_paracer_descritivo']);
 
