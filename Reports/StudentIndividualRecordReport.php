@@ -61,6 +61,8 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
             $minutos += (int)substr($arrValue[1],0,2);
             if(strlen($arrValue[1])<2 ){
                 $arrValue[1] = $arrValue[1] . str_pad($arrValue[1],2-strlen($arrValue[1]),"0");
+            }else{
+                $arrValue[1] = substr($arrValue[1],0,2);
             }
             $arrComponente[$index]['carga_horaria_auxiliar'] = "" . $arrValue[0] . ":" . $arrValue[1];
 
