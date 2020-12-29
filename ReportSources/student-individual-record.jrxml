@@ -125,7 +125,6 @@
 	<field name="cep" class="java.lang.String"/>
 	<field name="fone" class="java.lang.String"/>
 	<field name="observacao_all" class="java.lang.String"/>
-	<field name="carga_horaria_total" class="java.lang.String"/>
 	<group name="GroupTipoBase" minHeightToStartNewPage="94">
 		<groupExpression><![CDATA[$F{tipo_base}]]></groupExpression>
 	</group>
@@ -345,7 +344,7 @@
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{logradouro_aluno}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="330" y="73" width="90" height="12" uuid="f5e188c9-99a4-45c5-8689-5a55718262df"/>
@@ -1061,9 +1060,6 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<subreportParameter name="carga_horaria_total">
-					<subreportParameterExpression><![CDATA[$F{carga_horaria_total}]]></subreportParameterExpression>
-				</subreportParameter>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("data_componente")]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "student-individual-record-component.jasper"]]></subreportExpression>
 			</subreport>
@@ -1380,7 +1376,7 @@
 				<box>
 					<pen lineWidth="0.25"/>
 				</box>
-				<textField  isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="5" y="10" width="545" height="80" uuid="71246645-d607-449d-a8f7-4c61978cbd70">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -1434,7 +1430,7 @@
 				<text><![CDATA[Observações:]]></text>
 			</staticText>
 			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="10" y="13" width="535" height="92" uuid="62071282-4eb1-4f06-a4c2-c20f853cb3ef">
+				<reportElement stretchType="RelativeToTallestObject" x="10" y="13" width="535" height="82" uuid="62071282-4eb1-4f06-a4c2-c20f853cb3ef">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
