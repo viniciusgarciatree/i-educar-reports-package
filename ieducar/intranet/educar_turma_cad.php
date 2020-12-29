@@ -1487,17 +1487,16 @@ class indice extends clsCadastro
         return true;
     }
 
-    public function atualizaComponentesCurriculares($codSerie, $codEscola, $codTurma, $componentes, $cargaHoraria, $usarComponente, $docente)
+    public function atualizaComponentesCurriculares($codSerie, $codEscola, $codTurma, $componentes, $cargaHoraria, $usarComponente, $docente, $anoLeito = null)
     {
         require_once 'ComponenteCurricular/Model/TurmaDataMapper.php';
         $mapper = new ComponenteCurricular_Model_TurmaDataMapper();
 
         $componentesTurma = [];
+        $arrComponentes = App_Model_IedFinder::getEscolaSerieDisciplina($codSerie, $codEscola, null, null, null, true, $ano);
 
         foreach ($componentes as $key => $value) {
-            $carga = isset($usarComponente[$key]) ?
-                null : $cargaHoraria[$key];
-
+            $carga = isset($usarComponente[$key]) ? $arrComponentes[$key]->cargaHoraria : $cargaHoraria[$key];
             $docente_ = isset($docente[$key]) ?
                 1 : 0;
 
@@ -1508,7 +1507,9 @@ class indice extends clsCadastro
 
             $componentesTurma[] = [
                 'id' => $value,
+                'componenteCurricular' => $value,
                 'cargaHoraria' => $carga,
+                'cargaHorariaAuxiliar' => $carga,
                 'docenteVinculado' => $docente_,
                 'etapasEspecificas' => $etapasEspecificas,
                 'etapasUtilizadas' => $etapasUtilizadas

@@ -81,12 +81,12 @@ class ComponenteCurricular_Model_TurmaDataMapper extends CoreExt_DataMapper
         }
 
         foreach ($componentes as $componente) {
-            $id = $componente['id'];
+            $id = $componente['componenteCurricular'];
 
             if (isset($objects[$id])) {
                 $insert[$id] = $objects[$id];
                 $insert[$id]->cargaHoraria = $componente['cargaHoraria'];
-                $insert[$id]->cargaHorariaAuxiliar = "" . $componente['cargaHoraria'];
+                $insert[$id]->cargaHorariaAuxiliar = $componente['cargaHorariaAuxiliar'];
                 $insert[$id]->docenteVinculado = $componente['docenteVinculado'];
                 $insert[$id]->etapasEspecificas = $componente['etapasEspecificas'];
                 $insert[$id]->etapasUtilizadas = $componente['etapasUtilizadas'];
@@ -94,15 +94,16 @@ class ComponenteCurricular_Model_TurmaDataMapper extends CoreExt_DataMapper
             }
 
             $insert[$id] = new ComponenteCurricular_Model_Turma([
+                'id' => $id,
                 'componenteCurricular' => $id,
                 'anoEscolar' => $anoEscolar,
                 'escola' => $escola,
                 'turma' => $turma,
                 'cargaHoraria' => $componente['cargaHoraria'],
-                'cargaHorariaAuxliar' => $componente['cargaHoraria'],
                 'docenteVinculado' => $componente['docenteVinculado'],
                 'etapasEspecificas' => $componente['etapasEspecificas'],
-                'etapasUtilizadas' => $componente['etapasUtilizadas']
+                'etapasUtilizadas' => $componente['etapasUtilizadas'],
+                'cargaHorariaAuxiliar' => $componente['cargaHorariaAuxiliar'],
             ]);
         }
 
