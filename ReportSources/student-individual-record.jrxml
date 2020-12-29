@@ -1367,25 +1367,25 @@
 				<text><![CDATA[PM - progrediu muito ... 8.0 a 10.0]]></text>
 			</staticText>
 		</band>
-		<band height="30" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[!$F{parecer}.isEmpty()]]></printWhenExpression>
 			<frame>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="5" width="555" height="20" uuid="c60621f3-7880-49c3-ad1a-49b938dd8c1b">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="5" width="555" height="90" uuid="c60621f3-7880-49c3-ad1a-49b938dd8c1b">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
 					<pen lineWidth="0.25"/>
 				</box>
-				<textField isBlankWhenNull="true">
-					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="5" y="10" width="545" height="10" uuid="71246645-d607-449d-a8f7-4c61978cbd70">
+				<textField  isBlankWhenNull="true">
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="5" y="10" width="545" height="80" uuid="71246645-d607-449d-a8f7-4c61978cbd70">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement markup="none">
 						<font size="8"/>
@@ -1412,7 +1412,7 @@
 				<text><![CDATA[Observação:]]></text>
 			</staticText>
 		</band>
-		<band height="26" splitType="Stretch">
+		<band height="106" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[!$F{observacao_all}.isEmpty()]]></printWhenExpression>
 			<staticText>
@@ -1434,9 +1434,10 @@
 				<text><![CDATA[Observações:]]></text>
 			</staticText>
 			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="10" y="13" width="535" height="12" uuid="62071282-4eb1-4f06-a4c2-c20f853cb3ef">
+				<reportElement stretchType="RelativeToTallestObject" x="10" y="13" width="535" height="92" uuid="62071282-4eb1-4f06-a4c2-c20f853cb3ef">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle">
