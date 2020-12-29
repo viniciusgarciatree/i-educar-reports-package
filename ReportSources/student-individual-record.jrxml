@@ -1363,11 +1363,11 @@
 				<text><![CDATA[PM - progrediu muito ... 8.0 a 10.0]]></text>
 			</staticText>
 		</band>
-		<band height="100" splitType="Stretch">
+		<band height="105" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[!$F{parecer}.isEmpty()]]></printWhenExpression>
 			<frame>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="5" width="555" height="90" uuid="c60621f3-7880-49c3-ad1a-49b938dd8c1b">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="5" width="555" height="95" uuid="c60621f3-7880-49c3-ad1a-49b938dd8c1b">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1376,12 +1376,11 @@
 				<box>
 					<pen lineWidth="0.25"/>
 				</box>
-				<textField  isBlankWhenNull="true">
+				<textField isBlankWhenNull="true">
 					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="5" y="10" width="545" height="80" uuid="71246645-d607-449d-a8f7-4c61978cbd70">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement markup="none">
 						<font size="8"/>
@@ -1408,39 +1407,55 @@
 				<text><![CDATA[Observação:]]></text>
 			</staticText>
 		</band>
-		<band height="106" splitType="Stretch">
+		<band height="120" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[!$F{observacao_all}.isEmpty()]]></printWhenExpression>
-			<staticText>
-				<reportElement key="" mode="Opaque" x="10" y="3" width="55" height="10" backcolor="#FFFFFF" uuid="1dd1656d-a256-47aa-ae99-2c4a45a27072">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<frame>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="5" width="555" height="110" uuid="7de1a5ce-04e2-459b-9599-5eeabae6d11d">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
+					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Observações:]]></text>
-			</staticText>
-			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="10" y="13" width="535" height="82" uuid="62071282-4eb1-4f06-a4c2-c20f853cb3ef">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<box leftPadding="3"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{observacao_all}]]></textFieldExpression>
-			</textField>
+				<textField>
+					<reportElement stretchType="RelativeToTallestObject" x="10" y="12" width="535" height="97" uuid="62071282-4eb1-4f06-a4c2-c20f853cb3ef">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box leftPadding="3"/>
+					<textElement verticalAlignment="Top">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{observacao_all}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="" stretchType="RelativeToTallestObject" mode="Opaque" x="10" y="2" width="55" height="10" backcolor="#FFFFFF" uuid="1dd1656d-a256-47aa-ae99-2c4a45a27072">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Observações:]]></text>
+				</staticText>
+			</frame>
 		</band>
 	</detail>
 	<pageFooter>
