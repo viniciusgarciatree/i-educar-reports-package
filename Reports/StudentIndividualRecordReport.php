@@ -96,6 +96,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
 
         $arrMain[0]['carga_horaria_total'] = $carga_horaria_total;
         $arrMain[0]['data_componente'] = count($arrComponente) > 0 ? $arrComponente : [];
+
         if(!$exibir_paracer_descritivo) {
             $arrMain[0]['parecer']  = "";
         }else{
@@ -339,6 +340,42 @@ LIMIT 1
 modules.componente_curricular.tipo_base,
 	view_componente_curricular.ordenamento AS componente_order,
     componente_curricular.nome as curricular_nome,
+    CASE
+           WHEN matricula_turma.remanejado = true THEN '-'
+           ELSE
+              CASE WHEN nota_componente_curricular_etapa1.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                replace(trunc(nota_componente_curricular_etapa1.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+              ELSE
+                nota_componente_curricular_etapa1.nota_arredondada
+              END
+       END AS nota1,
+       CASE
+           WHEN matricula_turma.remanejado = true THEN '-'
+           ELSE
+              CASE WHEN nota_componente_curricular_etapa2.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                replace(trunc(nota_componente_curricular_etapa2.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+              ELSE
+                nota_componente_curricular_etapa2.nota_arredondada
+              END
+       END AS nota2,
+       CASE
+           WHEN matricula_turma.remanejado = true THEN '-'
+           ELSE
+              CASE WHEN nota_componente_curricular_etapa3.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                replace(trunc(nota_componente_curricular_etapa3.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+              ELSE
+                nota_componente_curricular_etapa3.nota_arredondada
+              END
+       END AS nota3,
+       CASE
+           WHEN matricula_turma.remanejado = true THEN '-'
+           ELSE
+              CASE WHEN nota_componente_curricular_etapa4.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                replace(trunc(nota_componente_curricular_etapa4.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+              ELSE
+                nota_componente_curricular_etapa4.nota_arredondada
+              END
+       END AS nota4,
     COALESCE(
 	   CASE
            WHEN matricula_turma.remanejado = true THEN '-'
@@ -497,7 +534,7 @@ modules.componente_curricular.tipo_base,
    		ELSE 0
    END)::integer AS carga_horaria
    ,(CASE
-       WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN REPLACE(componente_curricular_turma.carga_horaria::varchar,'.',':')
+       WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN REPLACE(componente_curricular_turma.carga_horaria_auxiliar::varchar,'.',':')
        WHEN ccae.carga_horaria_auxiliar is not null THEN REPLACE(ccae.carga_horaria_auxiliar::varchar,'.',':')
        ELSE ''
    END)::varchar AS carga_horaria_auxiliar

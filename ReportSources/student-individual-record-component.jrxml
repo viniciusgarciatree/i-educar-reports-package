@@ -83,6 +83,10 @@
 	<field name="frequencia" class="java.lang.String"/>
 	<field name="carga_horaria_auxiliar" class="java.lang.String"/>
 	<field name="faltas_horas" class="java.lang.String"/>
+	<field name="nota1" class="java.lang.String"/>
+	<field name="nota2" class="java.lang.String"/>
+	<field name="nota3" class="java.lang.String"/>
+	<field name="nota4" class="java.lang.String"/>
 	<variable name="sum_carga_horaria_total" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{carga_horaria}]]></variableExpression>
 	</variable>
@@ -617,7 +621,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{curricular_nome}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="190" y="0" width="26" height="14" uuid="ad33ab31-7a4a-49b9-b3bd-338ce77f4996">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -633,9 +637,9 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota_original_1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="268" y="0" width="26" height="14" uuid="3966b8bd-f2e5-4e0f-9e1a-6237155dc29d">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -651,9 +655,9 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota_original_2}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota2}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="346" y="0" width="26" height="14" uuid="d67624cd-a782-41a3-a9cc-aa3ec856e256">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -669,9 +673,9 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota_original_3}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota3}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="424" y="0" width="26" height="14" uuid="67e6f265-5772-44c6-a84e-cb4230a21160">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -687,9 +691,9 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota_original_3}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota3}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="216" y="0" width="26" height="14" uuid="e48a0b55-63f7-4f71-971a-3c4ee8ce41d3">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -707,7 +711,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{falta1} > 0 ? $F{falta1} : "-"]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="294" y="0" width="26" height="14" uuid="4e9a0c10-734b-40c3-95ef-e5c4343c72f4">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -725,7 +729,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{falta2} > 0 ? $F{falta2} : "-"]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="372" y="0" width="26" height="14" uuid="24c96731-8100-45d0-ae13-1b38c8348f1d">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -743,7 +747,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{falta3} > 0 ? $F{falta3} : "-"]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="450" y="0" width="26" height="14" uuid="2f64976e-8740-4c84-967c-1af1e99364bc">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -904,7 +908,7 @@
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="242" y="0" width="26" height="14" uuid="d2e315bb-35d7-41d5-bcb0-d79e777b3a10">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -922,7 +926,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_recuperacao_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="320" y="0" width="26" height="14" uuid="88d5de1c-12dd-40a8-829c-8637c3f094ed">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -940,7 +944,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_recuperacao_2}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="398" y="0" width="26" height="14" uuid="67c8203f-640d-4832-b030-d767d579d07c">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -958,7 +962,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_recuperacao_3}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="476" y="0" width="26" height="14" uuid="61f60a27-362f-467e-bd3a-f08a40f1a529">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -976,7 +980,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_recuperacao_4}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="502" y="0" width="26" height="14" uuid="8924aa0a-1b2e-4e1f-9868-30bc005dc702">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -992,9 +996,9 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota_original_1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="154" y="0" width="36" height="14" uuid="54e2c7be-dc25-4435-800c-8f9d469fa0e7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -1012,7 +1016,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{carga_horaria_auxiliar}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="528" y="0" width="26" height="14" uuid="a1f5f733-1f2a-441c-ba4c-b78067296853">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -1077,7 +1081,7 @@
 				</textElement>
 				<text><![CDATA[TOTAL DE C.H. DO CICLO:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="154" y="1" width="36" height="13" uuid="135cceaa-e44a-4c38-b851-8bfe2a50bd95">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -1107,7 +1111,7 @@
 				</textElement>
 				<text><![CDATA[FREQUÊNCIA ANUAL (PERCENTUAL):]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="480" y="1" width="74" height="13" uuid="d974def0-f518-4dc5-bf43-c3a14dbb89f9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -1135,7 +1139,7 @@
 				</textElement>
 				<text><![CDATA[SITUAÇÃO DO ALUNO: ]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="357" y="1" width="22" height="13" uuid="3ce2f045-ad48-4a7a-9f34-afa3005c08a9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>

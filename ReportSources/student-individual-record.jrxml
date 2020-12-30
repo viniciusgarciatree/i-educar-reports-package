@@ -125,6 +125,7 @@
 	<field name="cep" class="java.lang.String"/>
 	<field name="fone" class="java.lang.String"/>
 	<field name="observacao_all" class="java.lang.String"/>
+	<field name="carga_horaria_total" class="java.lang.String"/>
 	<group name="GroupTipoBase" minHeightToStartNewPage="94">
 		<groupExpression><![CDATA[$F{tipo_base}]]></groupExpression>
 	</group>
@@ -1060,6 +1061,9 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
+				<subreportParameter name="carga_horaria_total">
+					<subreportParameterExpression><![CDATA[$F{carga_horaria_total}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("data_componente")]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "student-individual-record-component.jasper"]]></subreportExpression>
 			</subreport>
