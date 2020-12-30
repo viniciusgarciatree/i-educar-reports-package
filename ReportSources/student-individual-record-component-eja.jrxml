@@ -370,7 +370,7 @@
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</rectangle>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="154" height="14" uuid="eb1a03cc-6356-4b85-a174-2198d41d49c2">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -388,7 +388,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{curricular_nome}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="190" y="0" width="45" height="14" uuid="ad33ab31-7a4a-49b9-b3bd-338ce77f4996">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -406,7 +406,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_original_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="325" y="0" width="45" height="14" uuid="3966b8bd-f2e5-4e0f-9e1a-6237155dc29d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -423,7 +423,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_original_2}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="235" y="0" width="45" height="14" uuid="e48a0b55-63f7-4f71-971a-3c4ee8ce41d3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -440,7 +440,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{falta1} > 0 ? $F{falta1} : "-"]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="370" y="0" width="45" height="14" uuid="4e9a0c10-734b-40c3-95ef-e5c4343c72f4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -533,7 +533,7 @@
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="280" y="0" width="45" height="14" uuid="d2e315bb-35d7-41d5-bcb0-d79e777b3a10">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -550,7 +550,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_recuperacao_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="415" y="0" width="45" height="14" uuid="61f60a27-362f-467e-bd3a-f08a40f1a529">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -567,7 +567,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_recuperacao_2}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="460" y="0" width="45" height="14" uuid="8924aa0a-1b2e-4e1f-9868-30bc005dc702">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -584,7 +584,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota_original_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="154" y="0" width="36" height="14" uuid="54e2c7be-dc25-4435-800c-8f9d469fa0e7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -602,7 +602,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{carga_horaria_auxiliar}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="505" y="0" width="50" height="14" uuid="a1f5f733-1f2a-441c-ba4c-b78067296853">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -667,7 +667,7 @@
 				</textElement>
 				<text><![CDATA[TOTAL DE C.H. DO CICLO:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="154" y="1" width="36" height="13" uuid="135cceaa-e44a-4c38-b851-8bfe2a50bd95">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
