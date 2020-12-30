@@ -47,7 +47,6 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
         $arrObservacao = Portabilis_Utils_Database::fetchPreparedQuery($queryObservacao);
         $header        = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
-
         $carga_horaria_total = 0;
         $horas = 0;
         $minutos = 0;
@@ -66,6 +65,7 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
             }
             $arrComponente[$index]['carga_horaria_auxiliar'] = "" . $arrValue[0] . ":" . $arrValue[1];
 
+
             if($minutos>59){
                 $minutos -= 60;
                 $horas += 1;
@@ -78,12 +78,15 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
             if($faltasHoras>0) {
                 $totalFaltasAula                       += $faltasHoras;
                 $minutosFalta = ($faltasHoras % 60);
-                $faltasHoras                           = (($faltasHoras - ($faltasHoras % 60)) / 60) . ":" . (strlen($minutosFalta)<2?$minutosFalta."0":$minutosFalta);
+                $faltasHoras                           = (($faltasHoras - ($faltasHoras % 60)) / 60) . ":" . $minutosFalta;
                 $arrComponente[$index]['faltas_horas'] = $faltasHoras;
             }else{
                 $arrComponente[$index]['faltas_horas'] = "";
             }
+
         }
+
+
         if($horas == 0 && $minutos){
             $carga_horaria_total = $horas . ":" . $minutos;
         }else{
