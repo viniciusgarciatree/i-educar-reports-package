@@ -86,7 +86,12 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
             }
 
         }
-        $carga_horaria_total = $horas . ":" . $minutos ;
+
+        if($horas == 0){
+            $carga_horaria_total = "-";
+        }else{
+            $carga_horaria_total = $horas . ":" . ($minutos < 10 ? "0" . $minutos : $minutos);
+        }
 
         unset($this->args['exibir_paracer_descritivo']);
 

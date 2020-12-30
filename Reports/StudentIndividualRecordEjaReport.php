@@ -87,10 +87,10 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
         }
 
 
-        if($horas == 0 && $minutos){
-            $carga_horaria_total = $horas . ":" . $minutos;
-        }else{
+        if($horas == 0){
             $carga_horaria_total = "-";
+        }else{
+            $carga_horaria_total = $horas . ":" . ($minutos < 10 ? "0" . $minutos : $minutos);
         }
 
         unset($this->args['exibir_paracer_descritivo']);
