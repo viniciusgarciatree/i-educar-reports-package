@@ -14,9 +14,10 @@ class StudentsBySchoolReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        if($this->args['exibe_aluno']){
+        if ($this->args['exibe_aluno']) {
             return 'students-by-school-students';
         }
+
         return 'students-by-school';
 //        return 'students-not-enrolled';
     }
@@ -40,12 +41,12 @@ class StudentsBySchoolReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
-        $exibe_aluno = $this->args['exibe_aluno'] == "true" ? true: false;
+        $exibe_aluno = $this->args['exibe_aluno'] == 'true' ? true: false;
         $ano = $this->args['ano'] ?: 0;
         $instituicao = $this->args['instituicao'] ?: 0;
         $situacao = $this->args['situacao'] ?: 0;
 
-        if($exibe_aluno){
+        if ($exibe_aluno) {
             return "SELECT 
 aluno.cod_aluno,
 public.fcn_upper(pessoa.nome) AS nome_aluno,
@@ -66,11 +67,11 @@ INNER JOIN pmieducar.escola ON escola.cod_escola = matricula.ref_ref_cod_escola
        matricula.ativo = 1 AND
        matricula.ano = $ano AND
        matricula.ref_ref_cod_escola = escola.cod_escola AND
-       escola.ref_cod_instituicao = $instituicao".($situacao == 9 ? "" : " AND
-       matricula.aprovado = $situacao"). "
+       escola.ref_cod_instituicao = $instituicao".($situacao == 9 ? '' : " AND
+       matricula.aprovado = $situacao"). '
        group by aluno.cod_aluno,pessoa.nome,escola.cod_escola, nm_escola
-Order by nm_escola,pessoa.nome ";
-        }else{
+Order by nm_escola,pessoa.nome ';
+        } else {
             return "SELECT quantidade as count,nm_escola FROM ( SELECT count(aluno.cod_aluno) as quantidade,
        escola.cod_escola,
        (SELECT COALESCE((SELECT COALESCE (fcn_upper(ps.nome),fcn_upper(juridica.fantasia))
@@ -88,11 +89,10 @@ Order by nm_escola,pessoa.nome ";
        matricula.ativo = 1 AND
        matricula.ano = $ano AND
        matricula.ref_ref_cod_escola = escola.cod_escola AND
-       escola.ref_cod_instituicao = $instituicao" . ($situacao == 9 ? "" : " AND matricula.aprovado = $situacao") . " group by escola.cod_escola, nm_escola
+       escola.ref_cod_instituicao = $instituicao" . ($situacao == 9 ? '' : " AND matricula.aprovado = $situacao") . ' group by escola.cod_escola, nm_escola
 
 Order by nm_escola
-) as t order by quantidade desc, nm_escola ";
-
+) as t order by quantidade desc, nm_escola ';
         }
     }
 }

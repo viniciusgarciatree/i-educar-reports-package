@@ -28,7 +28,7 @@ class TeachersAndCoursesTaughtByClassReport extends Portabilis_Report_ReportCore
         $this->addRequiredArg('curso');
         $this->addRequiredArg('serie');
     }
-    
+
     public function getSqlMainReport()
     {
         $ano = $this->args['ano'] ?: 0;

@@ -36,7 +36,7 @@ class AverageOfClassesPerDisciplineGeneralReport extends Portabilis_Report_Repor
      */
     public function getSqlMainReport()
     {
-        return $this->args['separar'] === "true"
+        return $this->args['separar'] === 'true'
             ? $this->getSqlReportDiscipline()
             : $this->getSqlReport();
     }
@@ -60,8 +60,8 @@ where mc.ativo = 1 AND
         nota >= 0 AND
         esc.cod_escola = $escola AND
        mc.ano =   $ano  AND
-       esc.ref_cod_instituicao =  $instituicao  ".($etapa == 0 ? "" : " AND
-       ncc.etapa = '$etapa'")." group by 1,2,3;";
+       esc.ref_cod_instituicao =  $instituicao  ".($etapa == 0 ? '' : " AND
+       ncc.etapa = '$etapa'").' group by 1,2,3;';
     }
 
     private function getSqlReport()
@@ -83,8 +83,7 @@ where mc.ativo = 1 AND
         nota >= 0 AND
         esc.cod_escola = $escola AND
        mc.ano =   $ano  AND
-       esc.ref_cod_instituicao =  $instituicao  ".($etapa == 0 ? "" : " AND
-       ncc.etapa = '$etapa'")." group by 1,2;";
+       esc.ref_cod_instituicao =  $instituicao  ".($etapa == 0 ? '' : " AND
+       ncc.etapa = '$etapa'").' group by 1,2;';
     }
-
 }

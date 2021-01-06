@@ -17,7 +17,7 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return "reports-auditoria-geral";
+        return 'reports-auditoria-geral';
     }
 
     public function getJsonData()
@@ -51,7 +51,6 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
-
         $matricula    = $this->args['matricula'] ?: 0;
         $rotinas      = $this->args['rotinas'] ?: 0;
         $registro     = $this->args['registro'] ?: 0;
@@ -73,9 +72,8 @@ class ReportAuditoriaGeralReport extends Portabilis_Report_ReportCore
         unset($this->args['hora_inicial']);
         unset($this->args['hora_final']);
 
-
-        $whereAnd = " WHERE ";
-        $filtros = " ";
+        $whereAnd = ' WHERE ';
+        $filtros = ' ';
 
         if (is_string($rotinas)) {
             $filtros .= "{$whereAnd} rotina ILIKE '%{$rotinas}%'";
@@ -146,59 +144,58 @@ ORDER BY auditoria_geral.data_hora
 
     private function getToArray($arrValor)
     {
-        $arrValor = explode("<tr>",$arrValor);
+        $arrValor = explode('<tr>', $arrValor);
         $arrVal = [];
-        foreach ($arrValor as $value)
-        {
-            $aux = trim(str_replace("</td><td ","</td>\n<td ",$value));
+        foreach ($arrValor as $value) {
+            $aux = trim(str_replace('</td><td ', "</td>\n<td ", $value));
             $arrAux = [];
             $arrValAux = [];
-            $arrAux[] = explode("|",str_replace("\n","|",$aux));
+            $arrAux[] = explode('|', str_replace("\n", '|', $aux));
             foreach ($arrAux as $valueAux) {
-                if(count($valueAux)>1) {
+                if (count($valueAux)>1) {
                     foreach ($valueAux as $val) {
                         $arrValAux[] = trim(strip_tags($val));
                     }
                     $arrValAux = ['campo'=>$arrValAux[0], 'valor' => $arrValAux[1]];
                 }
             }
-            if(count($arrValAux)>0) {
+            if (count($arrValAux)>0) {
                 $arrVal[] = $arrValAux;
             }
-
         }
+
         return $arrVal;
     }
 
     private function mergeArrayAlteracao($arrValorAntigo, $arrValorNovo)
     {
         $arrMerge = [];
-        $buscaCampoValorDiferente = function ($arrValorNovo, $campo, $valor, &$valido = false)
-        {
-            $novoValor = "";
-            foreach ($arrValorNovo as $index => $value){
-                if($campo == $value['campo'] && $value['valor'] != $valor){
+        $buscaCampoValorDiferente = function ($arrValorNovo, $campo, $valor, &$valido = false) {
+            $novoValor = '';
+            foreach ($arrValorNovo as $index => $value) {
+                if ($campo == $value['campo'] && $value['valor'] != $valor) {
                     $novoValor = $value['valor'];
-                    $valorAux = str_replace("T"," ",$value['valor']);
+                    $valorAux = str_replace('T', ' ', $value['valor']);
                     $valorAux = Portabilis_Date_Utils::pgSQLToBr($valorAux);
-                    if($valorAux){
+                    if ($valorAux) {
                         $novoValor = $valorAux;
                     }
                     $valido = true;
                     break;
                 }
             }
+
             return $novoValor;
         };
 
-        foreach ($arrValorAntigo as $index => $value){
+        foreach ($arrValorAntigo as $index => $value) {
             $valido = false;
             $valorNovo = $buscaCampoValorDiferente($arrValorNovo, $value['campo'], $value['valor'], $valido);
-            if($valido) {
-                $valorAux = str_replace("T"," ",$value['valor']);
+            if ($valido) {
+                $valorAux = str_replace('T', ' ', $value['valor']);
                 $valorAux = Portabilis_Date_Utils::pgSQLToBr($valorAux);
                 $antigoValor = $value['valor'];
-                if($valorAux){
+                if ($valorAux) {
                     $antigoValor = $valorAux;
                 }
                 $arrMerge[] = [
@@ -208,6 +205,7 @@ ORDER BY auditoria_geral.data_hora
                     ];
             }
         }
+
         return $arrMerge;
     }
 }

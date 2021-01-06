@@ -6,7 +6,6 @@ require_once 'lib/Portabilis/Controller/ReportCoreController.php';
 require_once 'Reports/Reports/ReportsPppReport.php';
 require_once 'Portabilis/Date/Utils.php';
 
-
 class ReportsPppController extends Portabilis_Controller_ReportCoreController
 {
     /**
@@ -38,7 +37,7 @@ class ReportsPppController extends Portabilis_Controller_ReportCoreController
      */
     public function form()
     {
-        $this->inputsHelper()->dynamic(['ano', 'instituicao'],['required' => true]);
+        $this->inputsHelper()->dynamic(['ano', 'instituicao'], ['required' => true]);
         $this->inputsHelper()->dynamic('escola', ['required' => false]);
 
         $this->inputsHelper()->select('situacao', [

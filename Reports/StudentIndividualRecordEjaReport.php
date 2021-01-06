@@ -51,22 +51,21 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
         $horas = 0;
         $minutos = 0;
         $totalFaltasAula = 0;
-        foreach ($arrComponente as $index => $value){
+        foreach ($arrComponente as $index => $value) {
             $faltasAula = 0;
-            $arrValue = explode(":",$value['carga_horaria_auxiliar']);
+            $arrValue = explode(':', $value['carga_horaria_auxiliar']);
             $arrValue[1] =trim($arrValue[1]);
 
             $horas += (int)$arrValue[0];
-            $minutos += (int)substr($arrValue[1],0,2);
-            if(strlen($arrValue[1])<2 ){
-                $arrValue[1] = $arrValue[1] . str_pad($arrValue[1],2-strlen($arrValue[1]),"0");
-            }else{
-                $arrValue[1] = substr($arrValue[1],0,2);
+            $minutos += (int)substr($arrValue[1], 0, 2);
+            if (strlen($arrValue[1])<2) {
+                $arrValue[1] = $arrValue[1] . str_pad($arrValue[1], 2-strlen($arrValue[1]), '0');
+            } else {
+                $arrValue[1] = substr($arrValue[1], 0, 2);
             }
-            $arrComponente[$index]['carga_horaria_auxiliar'] = "" . $arrValue[0] . ":" . $arrValue[1];
+            $arrComponente[$index]['carga_horaria_auxiliar'] = '' . $arrValue[0] . ':' . $arrValue[1];
 
-
-            if($minutos>59){
+            if ($minutos>59) {
                 $minutos -= 60;
                 $horas += 1;
             }
@@ -75,38 +74,36 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
             $faltasAula += $value['falta3'];
             $faltasAula += $value['falta4'];
             $faltasHoras = ($faltasAula * $value['hora_aula']);
-            if($faltasHoras>0) {
+            if ($faltasHoras>0) {
                 $totalFaltasAula                       += $faltasHoras;
                 $minutosFalta = ($faltasHoras % 60);
-                $faltasHoras                           = (($faltasHoras - ($faltasHoras % 60)) / 60) . ":" . $minutosFalta;
+                $faltasHoras                           = (($faltasHoras - ($faltasHoras % 60)) / 60) . ':' . $minutosFalta;
                 $arrComponente[$index]['faltas_horas'] = $faltasHoras;
-            }else{
-                $arrComponente[$index]['faltas_horas'] = "";
+            } else {
+                $arrComponente[$index]['faltas_horas'] = '';
             }
-
         }
 
-
-        if($horas == 0){
-            $carga_horaria_total = "-";
-        }else{
-            $carga_horaria_total = $horas . ":" . ($minutos < 10 ? "0" . $minutos : $minutos);
+        if ($horas == 0) {
+            $carga_horaria_total = '-';
+        } else {
+            $carga_horaria_total = $horas . ':' . ($minutos < 10 ? '0' . $minutos : $minutos);
         }
 
         unset($this->args['exibir_paracer_descritivo']);
 
         if (count($arrMain) == 0) {
-            return array();
+            return [];
         }
 
-        $arrMain[0]['carga_horaria_total'] = "" . $carga_horaria_total;
+        $arrMain[0]['carga_horaria_total'] = '' . $carga_horaria_total;
         $arrMain[0]['data_componente'] = count($arrComponente) > 0 ? $arrComponente : [];
-        if(!$exibir_paracer_descritivo) {
-            $arrMain[0]['parecer']  = "";
-        }else{
+        if (!$exibir_paracer_descritivo) {
+            $arrMain[0]['parecer']  = '';
+        } else {
             $arrMain[0]['parecer'] = count(
                 $arrObservacao
-            ) > 0 && !empty($arrObservacao[0]["parecer"]) ? $arrObservacao[0]["parecer"] : "";
+            ) > 0 && !empty($arrObservacao[0]['parecer']) ? $arrObservacao[0]['parecer'] : '';
         }
 
         $return = [
@@ -272,7 +269,6 @@ LIMIT 1
         ";
 
         return $return;
-
     }
 
     /**

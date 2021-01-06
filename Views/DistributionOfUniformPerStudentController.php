@@ -69,5 +69,3 @@ class DistributionOfUniformPerStudentController extends Portabilis_Controller_Re
         return new DistributionOfUniformPerStudentReport();
     }
 }
-
-

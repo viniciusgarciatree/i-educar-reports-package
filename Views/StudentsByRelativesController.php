@@ -69,5 +69,3 @@ class StudentsByRelativesController extends Portabilis_Controller_ReportCoreCont
         return new StudentsByRelativesReport();
     }
 }
-
-

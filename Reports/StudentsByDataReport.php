@@ -161,6 +161,7 @@ class StudentsByDataReport extends Portabilis_Report_ReportCore
                 endpes.cep,
                 nome_aluno
         ";
+
         return $return;
     }
 }

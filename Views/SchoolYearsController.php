@@ -46,7 +46,6 @@ class SchoolYearsController extends Portabilis_Controller_ReportCoreController
     {
         $this->report->addArg('instituicao', (int)$this->getRequest()->ref_cod_instituicao);
         $this->report->addArg('escola', (int)$this->getRequest()->ref_cod_escola);
-
     }
 
     /**

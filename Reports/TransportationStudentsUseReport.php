@@ -90,6 +90,7 @@ WHERE  a.ativo = 1 AND a.ano = {$ano} AND e.ref_cod_instituicao = {$instituicao}
         AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE j.ref_cod_turma = {$turma} END)
         ) as t
         ORDER BY escola,usa_transporte DESC, nome";
+
         return $return;
     }
 }

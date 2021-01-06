@@ -38,16 +38,15 @@ class ReportCardReport extends Portabilis_Report_ReportCore
             $flagTipoBoletimTurma = $flagTipoBoletimTurma['tipo_boletim'];
         }
 
-        if($this->args['modelo'] == 1){
+        if ($this->args['modelo'] == 1) {
             $template = 'report-card';
             if (empty($flagTipoBoletimTurma)) {
                 throw new Exception('Não foi definido o tipo de boletim no cadastro de turmas.');
             }
-    
+
             $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
             $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : $template;
-
-        }elseif($this->args['modelo'] == 2){
+        } elseif ($this->args['modelo'] == 2) {
             $template = 'report-card-boletim';
         }
 
@@ -60,7 +59,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
     public function getJsonData()
     {
-        if($this->templateName() == "report-card-boletim"){            
+        if ($this->templateName() == 'report-card-boletim') {
             $queryMainReport = $this->getSqlMainReport();
             $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
             $queryHeaderReport = $this->getSqlHeaderReport();
@@ -121,7 +120,6 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                     'medianumturma' => $value['medianumturma'],
                     'total_faltas_component' => $value['total_faltas_component']
                 ];
-                
             }
 
             foreach ($arrMatricula as $key => $value) {
@@ -145,13 +143,13 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                 'main' => $arrMain,
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
             ]);
-        }else{
+        } else {
             unset($this->args['modelo']);
             $queryMainReport = $this->getSqlMainReport();
             $queryHeaderReport = $this->getSqlHeaderReport();
             $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
-            foreach ($arrMain as $index => $value){
-                if(is_numeric($index)){
+            foreach ($arrMain as $index => $value) {
+                if (is_numeric($index)) {
                     $arrMain[$index]['observacoes'] =  $this->args['observacoes'] ?: '';
                 }
             }

@@ -38,9 +38,8 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $header  = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
-
         if (count($arrMain) == 0) {
-            return array();
+            return [];
         }
 
         $tipoBase = ComponenteCurricular_Model_TipoBase::getInstance();
@@ -62,20 +61,20 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
             $dataParece['parecer3'] = $value['parecer3'];
             $dataParece['parecer4'] = $value['parecer4'];
 
-            $dataNotas[]          = array(
+            $dataNotas[]          = [
                 'tipo'            => $tipoBase[$tipoId],
-                'tipo_id'         => $tipoId,                
+                'tipo_id'         => $tipoId,
                 'curricular_nome' => $value['curricular_nome'],
                 'nota1'           => $value['nota1'],
                 'nota2'           => $value['nota2'],
                 'nota3'           => $value['nota3'],
                 'nota4'           => $value['nota4'],
-            );
+            ];
         }
 
         $exibir_apreceres = explode(',', trim($value['exibir_apreceres'], '{}'));
 
-        $arrReport                = array();
+        $arrReport                = [];
         $arrReport                = $arrMain[0];
         $arrMain[]                = $arrMain[0];
         $tempo_da_aula = 0;
@@ -84,26 +83,27 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         $quatidade_hora_dia_aula = intval($value['dias_letivos']) > 0 ? $value['carga_horaria']/$value['dias_letivos'] : 0;
         $quatidade_hora_dia_aula = $quatidade_hora_dia_aula>0 ? $quatidade_hora_dia_aula * 60 : 0;
 
-        if(is_numeric($value['carga_horaria']) && is_numeric($value['dias_letivos']) && $value['carga_horaria']>0 && $value['dias_letivos']>0) {
+        if (is_numeric($value['carga_horaria']) && is_numeric($value['dias_letivos']) && $value['carga_horaria']>0 && $value['dias_letivos']>0) {
             $tempo_da_aula = ((($value['carga_horaria'] / $value['dias_letivos']) * 60) / 5);
         }
 
-        $arrReport['falta_hora1'] =  "-";
-        $arrReport['falta_hora2'] =  "-";
-        $arrReport['falta_hora3'] =  "-";
-        $arrReport['falta_hora4'] =  "-";
+        $arrReport['falta_hora1'] =  '-';
+        $arrReport['falta_hora2'] =  '-';
+        $arrReport['falta_hora3'] =  '-';
+        $arrReport['falta_hora4'] =  '-';
         $falta_hora_total = 0;
 
-        $calc_hora_falta = function ($hora){
+        $calc_hora_falta = function ($hora) {
             $hora = intval($hora);
-            $tHora = "";
-            if ($hora>0){
-                return "" . date('H:i',strtotime( (intval($hora/60).':'. intval($hora%60)).":00"));
+            $tHora = '';
+            if ($hora>0) {
+                return '' . date('H:i', strtotime((intval($hora/60).':'. intval($hora%60)).':00'));
             }
+
             return ($hora>0 ?  $tHora : 0);
         };
 
-        if($tempo_da_aula>0) {
+        if ($tempo_da_aula>0) {
             if (is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1']) {
                 $arrReport['falta_hora1'] = $dataFaltas['falta1'] * $quatidade_hora_dia_aula;
                 $falta_hora_total += $arrReport['falta_hora1'];
@@ -126,63 +126,62 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
             }
         }
 
-        $parecer = !empty($dataParece['parecer1']) ? " <b>1º Bimestre:</b> " . $dataParece['parecer1'] : "";
-        $parecer .= !empty($dataParece['parecer2']) ? "<br> <br> <b>2º Bimestre:</b> " . $dataParece['parecer2'] : "";
-        $parecer .= !empty($dataParece['parecer3']) ? "<br> <br> <b>3º Bimestre:</b> " . $dataParece['parecer3'] : "";
-        $parecer .= !empty($dataParece['parecer4']) ? "<br> <br> <b>4º Bimestre:</b> " . $dataParece['parecer4'] : "";
+        $parecer = !empty($dataParece['parecer1']) ? ' <b>1º Bimestre:</b> ' . $dataParece['parecer1'] : '';
+        $parecer .= !empty($dataParece['parecer2']) ? '<br> <br> <b>2º Bimestre:</b> ' . $dataParece['parecer2'] : '';
+        $parecer .= !empty($dataParece['parecer3']) ? '<br> <br> <b>3º Bimestre:</b> ' . $dataParece['parecer3'] : '';
+        $parecer .= !empty($dataParece['parecer4']) ? '<br> <br> <b>4º Bimestre:</b> ' . $dataParece['parecer4'] : '';
         $arrReport['parecer'] = $parecer;
 
         $falta_hora_total = intval($falta_hora_total);
-        $arrReport['falta_hora_total'] = $falta_hora_total > 0 ? $calc_hora_falta($falta_hora_total) : "-";
+        $arrReport['falta_hora_total'] = $falta_hora_total > 0 ? $calc_hora_falta($falta_hora_total) : '-';
 
         $arrReport['falta_total']      = is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1'] > 0 ? $dataFaltas['falta1'] : 0;
         $arrReport['falta_total']      += is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : 0;
         $arrReport['falta_total']      += is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3'] > 0 ? $dataFaltas['falta3'] : 0;
         $arrReport['falta_total']      += is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4'] > 0 ? $dataFaltas['falta4'] : 0;
 
-        $arrReport['falta1']      = is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1'] > 0 ? $dataFaltas['falta1'] : "-";
-        $arrReport['falta2']      = is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : "-";
-        $arrReport['falta3']      = is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3'] > 0 ? $dataFaltas['falta3'] : "-";
-        $arrReport['falta4']      = is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4'] > 0 ? $dataFaltas['falta4'] : "-";
+        $arrReport['falta1']      = is_numeric($dataFaltas['falta1']) && $dataFaltas['falta1'] > 0 ? $dataFaltas['falta1'] : '-';
+        $arrReport['falta2']      = is_numeric($dataFaltas['falta2']) && $dataFaltas['falta2'] > 0 ? $dataFaltas['falta2'] : '-';
+        $arrReport['falta3']      = is_numeric($dataFaltas['falta3']) && $dataFaltas['falta3'] > 0 ? $dataFaltas['falta3'] : '-';
+        $arrReport['falta4']      = is_numeric($dataFaltas['falta4']) && $dataFaltas['falta4'] > 0 ? $dataFaltas['falta4'] : '-';
 
         /**
          * Verificar onde estão estes dados de processo de formação
          */
         $arrReport['data_notas']                 = $dataNotas;
-        for($x=0;$x<5;$x++){
-            $arrReport['data_notas_diversificada'][] = array(
-                'curricular_nome' => "",
-                'nota1'           => "",
-                'nota2'           => "",
-                'nota3'           => "",
-                'nota4'           => "",
-            );
+        for ($x=0;$x<5;$x++) {
+            $arrReport['data_notas_diversificada'][] = [
+                'curricular_nome' => '',
+                'nota1'           => '',
+                'nota2'           => '',
+                'nota3'           => '',
+                'nota4'           => '',
+            ];
         }
 
-        $arrObs = array();
+        $arrObs = [];
         $contBimestre = 1;
         $exibe_parecer = intval(30/count($exibir_apreceres));
         $rowCont = $exibe_parecer;
 
         for ($x = 0; $x < 30; $x++) {
-            if($rowCont == $exibe_parecer && $contBimestre <= count($exibir_apreceres)){
-                $arrObs[] = array("obs" => $contBimestre++ ." º Bimestre: ");
+            if ($rowCont == $exibe_parecer && $contBimestre <= count($exibir_apreceres)) {
+                $arrObs[] = ['obs' => $contBimestre++ .' º Bimestre: '];
                 $rowCont = 0;
-            }else{
-                $arrObs[] = array("obs" => "");
+            } else {
+                $arrObs[] = ['obs' => ''];
             }
 
             $rowCont++;
         }
 
         $arrReport['data_obs'] = $arrObs;
-        $arrReport['cidade']   = $header[0]['cidade'] . "/" . $header[0]['uf'];
+        $arrReport['cidade']   = $header[0]['cidade'] . '/' . $header[0]['uf'];
 
         $return = [
             'main'   => $arrReport,
             'header' => $header,
         ];
-
 
         return $return;
     }
@@ -490,6 +489,7 @@ GROUP BY cod_matricula,cod_aluno,nome_aluno,data_nasc,nome_do_pai,nome_da_mae,ci
 ,qtd_modulo,periodo,ciclo,serie,dias_letivos,carga_horaria,tipo_base,exibir_apreceres,semestres,observacao_all
 ,parecer1,parecer2,parecer3,parecer4,periodo_ano_serie
         ";
+
         return $return;
     }
 

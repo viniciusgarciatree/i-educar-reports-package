@@ -17,7 +17,7 @@ class ReportsPppReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return "reports-ppp";
+        return 'reports-ppp';
     }
 
     public function getJsonData()
@@ -55,8 +55,8 @@ class ReportsPppReport extends Portabilis_Report_ReportCore
     private function getTotal()
     {
         $ano      = $this->args['ano'];
-        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
-        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+        $situacao = $this->args['situacao'] == 9 ? '' : ' AND matricula.aprovado = ' . $this->args['situacao'] . ' ';
+        $escola   = $this->args['escola'] == 0 ? ' 0 ' : ' ' . $this->args['escola'] . ' ';
 
         return "
 SELECT
@@ -79,8 +79,8 @@ FROM (
     public function getNumeroMatricula()
     {
         $ano      = $this->args['ano'];
-        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
-        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+        $situacao = $this->args['situacao'] == 9 ? '' : ' AND matricula.aprovado = ' . $this->args['situacao'] . ' ';
+        $escola   = $this->args['escola'] == 0 ? ' 0 ' : ' ' . $this->args['escola'] . ' ';
 
         $consultaTotalAluno    = self::getTotal();
         $sql = "
@@ -121,8 +121,8 @@ FROM (
     public function getSexo()
     {
         $ano      = $this->args['ano'];
-        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
-        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+        $situacao = $this->args['situacao'] == 9 ? '' : ' AND matricula.aprovado = ' . $this->args['situacao'] . ' ';
+        $escola   = $this->args['escola'] == 0 ? ' 0 ' : ' ' . $this->args['escola'] . ' ';
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT
@@ -158,8 +158,8 @@ FROM (
     public function getCorRaca()
     {
         $ano      = $this->args['ano'];
-        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
-        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+        $situacao = $this->args['situacao'] == 9 ? '' : ' AND matricula.aprovado = ' . $this->args['situacao'] . ' ';
+        $escola   = $this->args['escola'] == 0 ? ' 0 ' : ' ' . $this->args['escola'] . ' ';
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT
@@ -196,8 +196,8 @@ FROM (
     public function getLocalizacao()
     {
         $ano      = $this->args['ano'];
-        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
-        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+        $situacao = $this->args['situacao'] == 9 ? '' : ' AND matricula.aprovado = ' . $this->args['situacao'] . ' ';
+        $escola   = $this->args['escola'] == 0 ? ' 0 ' : ' ' . $this->args['escola'] . ' ';
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT
@@ -234,8 +234,8 @@ FROM (
     public function getTransporte()
     {
         $ano      = $this->args['ano'];
-        $situacao = $this->args['situacao'] == 9 ? "" : " AND matricula.aprovado = " . $this->args['situacao'] . " ";
-        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+        $situacao = $this->args['situacao'] == 9 ? '' : ' AND matricula.aprovado = ' . $this->args['situacao'] . ' ';
+        $escola   = $this->args['escola'] == 0 ? ' 0 ' : ' ' . $this->args['escola'] . ' ';
         $consultaTotalAluno    = self::getTotal();
         $sql = "
 SELECT
@@ -272,7 +272,7 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $vinculo  = $this->args['vinculo'];
-        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+        $escola   = $this->args['escola'] == 0 ? ' 0 ' : ' ' . $this->args['escola'] . ' ';
 
         $consultaTotal = "
 SELECT
@@ -326,6 +326,7 @@ FROM (
     GROUP BY descricao
 ) AS t
         ";
+
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);
     }
 
@@ -333,7 +334,7 @@ FROM (
     {
         $ano      = $this->args['ano'];
         $vinculo  = $this->args['vinculo'];
-        $escola   = $this->args['escola'] == 0 ? " 0 " : " " . $this->args['escola'] . " ";
+        $escola   = $this->args['escola'] == 0 ? ' 0 ' : ' ' . $this->args['escola'] . ' ';
 
         $consultaTotal = "
 SELECT
@@ -359,6 +360,7 @@ FROM (
 ) AS t
         ";
         $docente = Portabilis_Utils_Database::fetchPreparedQuery($consultaTotal);
+
         return isset($docente[0]['quantidade'])?($docente[0]['quantidade']):0;
     }
 }

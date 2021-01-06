@@ -277,12 +277,12 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
         }
 
         $servidoresIds = implode(', ', $servidoresIds);
-        $andServidores = "";
-        $limit = "";
-        if(!empty($servidoresIds)){
+        $andServidores = '';
+        $limit = '';
+        if (!empty($servidoresIds)) {
             $andServidores = " AND servidor.cod_servidor IN ({$servidoresIds}) ";
-        }else{
-            $limit = " limit 1 ";
+        } else {
+            $limit = ' limit 1 ';
         }
 
         $sql = "
@@ -385,20 +385,19 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
      */
     private function getServantDataProfessional($servidoresIds, $ano, $instituicao)
     {
-
         if (empty($servidoresIds)) {
             return [];
         }
 
         $servidoresIds = implode(', ', $servidoresIds);
 
-        $andServidores = "";
-        $limit = "";
+        $andServidores = '';
+        $limit = '';
 
-        if(!empty($servidoresIds)){
+        if (!empty($servidoresIds)) {
             $andServidores = " AND servidor.cod_servidor IN ({$servidoresIds}) ";
-        }else{
-            $limit = " limit 1 ";
+        } else {
+            $limit = ' limit 1 ';
         }
 
         $sql = "

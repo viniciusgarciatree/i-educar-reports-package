@@ -35,7 +35,6 @@ class ReportAuditoriaGeralController extends Portabilis_Controller_ReportCoreCon
      */
     public function form()
     {
-
         $this->inputsHelper()->dynamic(['instituicao']);
 
         $this->inputsHelper()->text('matricula', [
@@ -63,7 +62,6 @@ class ReportAuditoriaGeralController extends Portabilis_Controller_ReportCoreCon
             'value' => 0
         ];
         $this->inputsHelper()->select('operacao', $options);
-
 
         $this->inputsHelper()->dynamic(['dataInicial','dataFinal']);
 

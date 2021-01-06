@@ -15,7 +15,7 @@ class ClassRecordBookController extends Portabilis_Controller_ReportCoreControll
     protected function _preRender()
     {
         parent::_preRender();
-        $this->breadcrumb('Diário de classe',['/intranet/educar_index.php' => 'Escola']);
+        $this->breadcrumb('Diário de classe', ['/intranet/educar_index.php' => 'Escola']);
     }
 
     public function form()
@@ -45,7 +45,7 @@ class ClassRecordBookController extends Portabilis_Controller_ReportCoreControll
             10 => 'Todas'
         ];
         $this->campoLista('situacao', 'Situação', $opcoes, 10);
-        
+
         if ($exibirApenasProfessoresAlocados) {
             $this->inputsHelper()->checkbox('buscar_professor', ['label' => 'Buscar professor alocado?']);
             $this->inputsHelper()->simpleSearchServidor(null, ['required' => false, 'label' => 'Professor(a): ', 'size' => 30 ]);

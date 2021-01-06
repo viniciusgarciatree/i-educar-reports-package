@@ -36,7 +36,8 @@ class StudentsPerClassReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
-        $stop = "";
+        $stop = '';
+
         return "
 
             SELECT 

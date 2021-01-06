@@ -28,8 +28,8 @@ class TransferenceCertificateReport extends Portabilis_Report_ReportCore
         $queryHeaderReport = $this->getSqlHeaderReport();
         $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
 
-        foreach ($arrMain as $index => $value){
-            if(is_numeric($index)){
+        foreach ($arrMain as $index => $value) {
+            if (is_numeric($index)) {
                 $arrMain[$index]['observacao'] =  $this->args['observacao'] ?: '';
             }
         }
@@ -287,6 +287,5 @@ class TransferenceCertificateReport extends Portabilis_Report_ReportCore
        escola.ativo = 1 AND
        instituicao.ativo = 1
         ";
-
     }
 }

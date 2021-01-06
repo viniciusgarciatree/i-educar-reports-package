@@ -39,13 +39,13 @@ class AmountOfLoanToReadersReport extends Portabilis_Report_ReportCore
         $dt_final = $this->args['dt_final'] ?: 0;
         $cliente = $this->args['cliente'] ?: 0;
 
-        if(!is_numeric($dt_inicial)){
-            list($mth,$day,$yr)=explode("/",$dt_inicial);
+        if (!is_numeric($dt_inicial)) {
+            list($mth, $day, $yr)=explode('/', $dt_inicial);
             $dt_inicial = (int) $yr.$mth.$day;
         }
 
-        if(!is_numeric($dt_final)){
-            list($mth,$day,$yr)=explode("/",$dt_final);
+        if (!is_numeric($dt_final)) {
+            list($mth, $day, $yr)=explode('/', $dt_final);
             $dt_final = (int) $yr.$mth.$day;
         }
 
@@ -56,9 +56,9 @@ left outer join pmieducar.exemplar ex on ex.cod_exemplar = ee.ref_cod_exemplar
 left outer join pmieducar.acervo ac on ac.cod_acervo = ex.ref_cod_acervo
 left outer join pmieducar.biblioteca ba on ba.cod_biblioteca = ac.ref_cod_biblioteca
 where ba.ref_cod_instituicao = $instituicao AND ba.ref_cod_escola = $escola "
-            . ($cliente > 0 ? " AND ee.ref_cod_cliente = $cliente " : " ")
-            . ($dt_inicial > 0 ? " AND to_char(ee.data_retirada, 'YYYYMMDD')::integer >= {$dt_inicial} " : " ")
-            . ($dt_final > 0 ? " AND to_char(ee.data_retirada, 'YYYYMMDD')::integer <= {$dt_final} " : " ") .
-            " group by 1  order by 2 desc;";
+            . ($cliente > 0 ? " AND ee.ref_cod_cliente = $cliente " : ' ')
+            . ($dt_inicial > 0 ? " AND to_char(ee.data_retirada, 'YYYYMMDD')::integer >= {$dt_inicial} " : ' ')
+            . ($dt_final > 0 ? " AND to_char(ee.data_retirada, 'YYYYMMDD')::integer <= {$dt_final} " : ' ') .
+            ' group by 1  order by 2 desc;';
     }
 }

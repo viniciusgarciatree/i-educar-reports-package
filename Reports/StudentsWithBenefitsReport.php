@@ -19,7 +19,8 @@ class StudentsWithBenefitsReport extends Portabilis_Report_ReportCore
         return $this->templateName;
     }
 
-    private function setTemplateName($name = ""){
+    private function setTemplateName($name = '')
+    {
         $this->templateName = !empty($name) ? $name : 'students-with-benefits' ;
     }
 
@@ -40,7 +41,6 @@ class StudentsWithBenefitsReport extends Portabilis_Report_ReportCore
     {
         $queryMainReport   = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
-
 
         $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $header  = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
@@ -72,7 +72,7 @@ class StudentsWithBenefitsReport extends Portabilis_Report_ReportCore
         $codigo_nis = (int)$this->args['codigo_nis'];
 
         // Quantitaivo
-        if($modelo == 2){
+        if ($modelo == 2) {
             self::setTemplateName('students-with-benefits-quantitative');
             $return = "
 select 
@@ -115,6 +115,7 @@ AND view_situacao.cod_turma = turma.cod_turma
  GROUP BY to_char(fisica.data_nasc,'YYYY'),nm_beneficio
 ) as t ORDER BY ano desc,nm_beneficio
         ";
+
             return $return;
         }
 
@@ -167,6 +168,7 @@ SELECT pe.nome as escola,
  GROUP BY pe.nome, cod_aluno, aluno, nm_serie, nm_turma, fisica.nis_pis_pasep, texto_situacao
  ORDER BY pe.nome, relatorio.get_texto_sem_caracter_especial(pessoa.nome), nm_beneficio
         ";
+
         return $return;
     }
 }

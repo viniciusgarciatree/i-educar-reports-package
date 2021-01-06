@@ -45,7 +45,7 @@ left outer join pmieducar.escola esc on eal.ref_cod_escola = esc.cod_escola
 left outer join cadastro.pessoa pe on esc.ref_idpes = pe.idpes
 where eal.ano >= (select ano-4 from pmieducar.escola_ano_letivo order by ano desc limit 1) AND 
 esc.ref_cod_instituicao = $instituicao "
-            .($escola > 0 ? " AND eal.ref_cod_escola = $escola " : "" ).
-"order by pe.nome, eal.ano";
+            .($escola > 0 ? " AND eal.ref_cod_escola = $escola " : '').
+'order by pe.nome, eal.ano';
     }
 }

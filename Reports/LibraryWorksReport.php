@@ -30,7 +30,7 @@ class LibraryWorksReport extends Portabilis_Report_ReportCore
      * Retorna o SQL para buscar os dados do relatório principal.
      *
      * TODO refactor query
-     * 
+     *
      * @return string
      */
     public function getSqlMainReport()

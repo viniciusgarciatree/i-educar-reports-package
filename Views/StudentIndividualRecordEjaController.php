@@ -27,8 +27,6 @@ class StudentIndividualRecordEjaController extends Portabilis_Controller_ReportC
         $this->breadcrumb('Ficha Individual - EJA', [
             'educar_index.php' => 'Escola',
         ]);
-
-
     }
 
     /**
@@ -47,7 +45,7 @@ class StudentIndividualRecordEjaController extends Portabilis_Controller_ReportC
     public function beforeValidation()
     {
         $rootPath = dirname(dirname(dirname(dirname(__FILE__))));
-        $filePath = $rootPath . "/modules/Reports/ReportLogos/";
+        $filePath = $rootPath . '/modules/Reports/ReportLogos/';
 
         $this->report->addArg('ano', (int) $this->getRequest()->ano);
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);

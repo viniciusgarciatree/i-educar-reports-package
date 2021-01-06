@@ -51,8 +51,7 @@ left outer join componente_curricular cc ON cc.id = ncc.componente_curricular_id
 where mc.ativo = 1 AND
         nota >= 0 AND
        mc.ano =   $ano  AND
-       esc.ref_cod_instituicao =  $instituicao  ".($etapa == 0 ? "" : " AND
-       ncc.etapa = '$etapa'")." group by 1;";
+       esc.ref_cod_instituicao =  $instituicao  ".($etapa == 0 ? '' : " AND
+       ncc.etapa = '$etapa'").' group by 1;';
     }
-
 }

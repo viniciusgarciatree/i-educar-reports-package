@@ -46,15 +46,14 @@ class StudentIndividualInfantReport extends Portabilis_Report_ReportCore
         $arrObservacao = Portabilis_Utils_Database::fetchPreparedQuery($queryObservacao);
         $header        = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
-        $arrMain[0]['orientacoes'] = $this->args['orientacoes'] ?: "";
+        $arrMain[0]['orientacoes'] = $this->args['orientacoes'] ?: '';
 
         if (count($arrMain) == 0) {
-            return array();
+            return [];
         }
 
         $arrMain[0]['data_componente'] = count($arrComponente) > 0 ? $arrComponente : [];
-        $arrMain[0]['parecer'] = count($arrObservacao) > 0 && !empty($arrObservacao[0]["parecer"])? $arrObservacao[0]["parecer"] : "";
-
+        $arrMain[0]['parecer'] = count($arrObservacao) > 0 && !empty($arrObservacao[0]['parecer'])? $arrObservacao[0]['parecer'] : '';
 
         unset($this->args['orientacoes']);
 

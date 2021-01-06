@@ -335,6 +335,5 @@ WHERE
   END
 
 ORDER BY nm_aluno, cod_aluno";
-
     }
 }

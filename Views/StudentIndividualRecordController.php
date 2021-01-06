@@ -27,8 +27,6 @@ class StudentIndividualRecordController extends Portabilis_Controller_ReportCore
         $this->breadcrumb('Ficha Individual do Aluno', [
             'educar_index.php' => 'Escola',
         ]);
-
-
     }
 
     /**
@@ -47,7 +45,7 @@ class StudentIndividualRecordController extends Portabilis_Controller_ReportCore
     public function beforeValidation()
     {
         $rootPath = dirname(dirname(dirname(dirname(__FILE__))));
-        $filePath = $rootPath . "/modules/Reports/ReportLogos/";
+        $filePath = $rootPath . '/modules/Reports/ReportLogos/';
 
         $this->report->addArg('ano', (int) $this->getRequest()->ano);
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);

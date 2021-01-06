@@ -246,6 +246,5 @@ where  escola_ano_letivo.ano = $ano AND
                ELSE
                    matricula.cod_matricula = $matricula
                END) ORDER BY nome_turma, nome_aluno";
-
     }
 }

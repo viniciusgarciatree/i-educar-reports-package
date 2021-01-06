@@ -34,7 +34,6 @@ class StudentsByDocumentReport extends Portabilis_Report_ReportCore
     public function getSqlMainReport()
     {
         return $this->getSqlReport();
-
     }
 
     private function getSqlReport()

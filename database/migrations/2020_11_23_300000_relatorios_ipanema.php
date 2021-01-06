@@ -1,8 +1,6 @@
 <?php
 
 use App\Menu;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class RelatoriosIpanema extends Migration
@@ -14,10 +12,9 @@ class RelatoriosIpanema extends Migration
      */
     public function up()
     {
-        $result = DB::select("select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = '18334292000164');");
+        $result = DB::select('select EXISTS (SELECT FROM pmieducar.instituicao WHERE cnpj = \'18334292000164\');');
         /* Para Ipanema verifica com cnpj */
-        if (count($result) > 0 && $result[0] == true)
-        {
+        if (count($result) > 0 && $result[0] == true) {
             Menu::query()->updateOrCreate(
                 [
                     'old' => 9999207

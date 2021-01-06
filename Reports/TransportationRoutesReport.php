@@ -48,7 +48,7 @@ class TransportationRoutesReport extends Portabilis_Report_ReportCore
 
     /**
      * Retorna o SQL específico para o modelo "simplificado".
-     * 
+     *
      * @return string
      */
     private function getSqlTransportationRoutesReport()

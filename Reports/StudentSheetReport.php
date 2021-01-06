@@ -37,7 +37,6 @@ class StudentSheetReport extends Portabilis_Report_ReportCore
         return $this->args['branco'] === 'true'
             ? $this->getSqlBlankReport()
             : $this->getSqlReport();
-
     }
 
     private function getSqlBlankReport()
@@ -72,6 +71,7 @@ class StudentSheetReport extends Portabilis_Report_ReportCore
         $serie = $this->args['serie'] ?: 0;
         $turma = $this->args['turma'] ?: 0;
         $ano = $this->args['ano'] ?: 0;
+
         return "
 SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
                     public.fcn_upper(nm_responsavel) AS nome_secretaria,
@@ -712,6 +712,5 @@ WHERE instituicao.cod_instituicao = {$instituicao}
 ORDER BY seque_fecha,
          aluno
         ";
-
     }
 }
