@@ -82,6 +82,11 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
             } else {
                 $arrComponente[$index]['faltas_horas'] = '';
             }
+
+            for($nota = 1 ; $nota < 5; $nota++){
+                $arrComponente[$index]['nota_original_' . $nota] = $value['nota_original_' . $nota] !== "-" ? intval($value['nota_original_' . $nota]) : "";
+                $arrComponente[$index]['nota_recuperacao_' . $nota] = $value['nota_recuperacao_' . $nota] !== "-" ? intval($value['nota_recuperacao_' . $nota]) : "";
+            }
         }
 
         if ($horas == 0) {
