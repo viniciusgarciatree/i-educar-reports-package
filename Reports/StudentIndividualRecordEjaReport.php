@@ -89,14 +89,17 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
         } else {
             $carga_horaria_total = $horas . ':' . ($minutos < 10 ? '0' . $minutos : $minutos);
         }
+        $observacoes = $this->args['observacoes'];
 
         unset($this->args['exibir_paracer_descritivo']);
+        unset($this->args['observacoes']);
 
         if (count($arrMain) == 0) {
             return [];
         }
 
         $arrMain[0]['carga_horaria_total'] = '' . $carga_horaria_total;
+        $arrMain[0]['observacao_all'] = '' . $observacoes;
         $arrMain[0]['data_componente'] = count($arrComponente) > 0 ? $arrComponente : [];
         if (!$exibir_paracer_descritivo) {
             $arrMain[0]['parecer']  = '';
@@ -135,6 +138,7 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
 SELECT
        fcn_upper(view_dados_escola.nome) AS nm_escola,
        view_dados_escola.logradouro,
+       fcn_upper(view_dados_escola.bairro) AS escola_bairro,
        matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nome_aluno,
@@ -156,6 +160,7 @@ SELECT
        END as nacionalidade,
        COALESCE(fisica.nis_pis_pasep::text,'') AS nis_pis_pasep,
        logradouro.nome as logradouro_aluno,
+       bairro.nome as bairro_aluno,
        COALESCE(fisica.sexo,'') as sexo,
        eca.cod_aluno_inep AS cod_inep,
        view_situacao.texto_situacao_simplificado AS situacao_simplificado,
