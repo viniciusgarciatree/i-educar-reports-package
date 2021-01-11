@@ -50,9 +50,8 @@ left outer join pmieducar.turma_turno g on g.id = c.turma_turno_id
 WHERE  a.ativo = 1
        AND a.ano = $ano
        AND j.ref_usuario_exc is null
-       AND e.ref_cod_instituicao =  $instituicao  ".($situacao == 9 ? "" : " AND
+       AND e.ref_cod_instituicao =  $instituicao  ".($situacao == 9 ? '' : " AND
        a.aprovado = $situacao").
-" group by 2,3,4  order by 2,3,4";
+' group by 2,3,4  order by 2,3,4';
     }
-
 }

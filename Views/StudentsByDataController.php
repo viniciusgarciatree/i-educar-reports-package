@@ -69,5 +69,3 @@ class StudentsByDataController extends Portabilis_Controller_ReportCoreControlle
         return new StudentsByDataReport();
     }
 }
-
-

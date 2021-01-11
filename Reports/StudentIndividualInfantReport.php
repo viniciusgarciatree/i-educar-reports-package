@@ -5,7 +5,7 @@ use iEducar\Reports\JsonDataSource;
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'App/Model/IedFinder.php';
 
-class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
+class StudentIndividualInfantReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
 
@@ -14,7 +14,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return 'student-individual-record';
+        return 'student-individual-infant';
     }
 
     /**
@@ -36,7 +36,6 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
      */
     public function getJsonData()
     {
-        $exibir_paracer_descritivo = $this->args['exibir_paracer_descritivo'];
         $queryMainReport   = $this->getSqlMainReport();
         $queryComponente   = $this->getSqlComponenteReport();
         $queryObservacao   = $this->getSqlObservacaoReport();
@@ -47,70 +46,16 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         $arrObservacao = Portabilis_Utils_Database::fetchPreparedQuery($queryObservacao);
         $header        = Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport);
 
-        $carga_horaria_total = 0;
-        $horas = 0;
-        $minutos = 0;
-        $totalFaltasAula = 0;
-        foreach ($arrComponente as $index => $value) {
-            $faltasAula = 0;
-            $arrValue = explode(':', $value['carga_horaria_auxiliar']);
-            $arrValue[1] =trim($arrValue[1]);
-
-            $horas += (int)$arrValue[0];
-            $minutos += (int)substr($arrValue[1], 0, 2);
-            if (strlen($arrValue[1])<2) {
-                $arrValue[1] = $arrValue[1] . str_pad($arrValue[1], 2-strlen($arrValue[1]), '0');
-            } else {
-                $arrValue[1] = substr($arrValue[1], 0, 2);
-            }
-            $arrComponente[$index]['carga_horaria_auxiliar'] = '' . $arrValue[0] . ':' . $arrValue[1];
-
-            if ($minutos>59) {
-                $minutos -= 60;
-                $horas += 1;
-            }
-            $faltasAula += $value['falta1'];
-            $faltasAula += $value['falta2'];
-            $faltasAula += $value['falta3'];
-            $faltasAula += $value['falta4'];
-            $faltasHoras = ($faltasAula * $value['hora_aula']);
-            if ($faltasHoras>0) {
-                $totalFaltasAula                       += $faltasHoras;
-                $minutosFalta = ($faltasHoras % 60);
-                $faltasHoras                           = (($faltasHoras - ($faltasHoras % 60)) / 60) . ':' . $minutosFalta;
-                $arrComponente[$index]['faltas_horas'] = $faltasHoras;
-            } else {
-                $arrComponente[$index]['faltas_horas'] = '';
-            }
-
-            for($nota = 1 ; $nota < 5; $nota++){
-                $arrComponente[$index]['nota_original_' . $nota] = $value['nota_original_' . $nota] !== "-" ? intval($value['nota_original_' . $nota]) : "";
-                $arrComponente[$index]['nota_recuperacao_' . $nota] = $value['nota_recuperacao_' . $nota] !== "-" ? intval($value['nota_recuperacao_' . $nota]) : "";
-            }
-        }
-
-        if ($horas == 0) {
-            $carga_horaria_total = '-';
-        } else {
-            $carga_horaria_total = $horas . ':' . ($minutos < 10 ? '0' . $minutos : $minutos);
-        }
-
-        unset($this->args['exibir_paracer_descritivo']);
+        $arrMain[0]['orientacoes'] = $this->args['orientacoes'] ?: '';
 
         if (count($arrMain) == 0) {
             return [];
         }
 
-        $arrMain[0]['carga_horaria_total'] = $carga_horaria_total;
         $arrMain[0]['data_componente'] = count($arrComponente) > 0 ? $arrComponente : [];
+        $arrMain[0]['parecer'] = count($arrObservacao) > 0 && !empty($arrObservacao[0]['parecer'])? $arrObservacao[0]['parecer'] : '';
 
-        if (!$exibir_paracer_descritivo) {
-            $arrMain[0]['parecer']  = '';
-        } else {
-            $arrMain[0]['parecer'] = count(
-                $arrObservacao
-            ) > 0 && !empty($arrObservacao[0]['parecer']) ? $arrObservacao[0]['parecer'] : '';
-        }
+        unset($this->args['orientacoes']);
 
         $return = [
             'main'   => $arrMain,
@@ -140,8 +85,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         $return = "
 SELECT
        fcn_upper(view_dados_escola.nome) AS nm_escola,
-       view_dados_escola.logradouro,
-       view_dados_escola.bairro,
+       COALESCE(view_dados_escola.logradouro::text,'') as logradouro,
        matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nome_aluno,
@@ -153,6 +97,9 @@ SELECT
        municipio.nome AS cidade_nascimento,
        turma.nm_turma,
        matricula.ano,
+       to_char(matricula.data_matricula,'DD/MM/YYYY') AS data_matricula,
+       trunc(modules.frequencia_da_matricula(matricula.cod_matricula)::numeric,2) as frequencia,
+       professor.nome AS nm_docente,
        COALESCE(endpes.numero::text,'') as numero,
        trim(leading ' ' from concat(fone_telefone.ddd,'', to_char(fone_telefone.fone, '99999-9999'))::text) as telefone,
 	   trim(leading ' ' from concat(fone_celular.ddd,'',to_char(fone_celular.fone, '9 9999-9999'))::text) as celular,
@@ -162,7 +109,7 @@ SELECT
             ELSE 'Estrangeiro'
        END as nacionalidade,
        COALESCE(fisica.nis_pis_pasep::text,'') AS nis_pis_pasep,
-       logradouro.nome as logradouro_aluno,
+       COALESCE(logradouro.nome::text,'') as logradouro_aluno,
        COALESCE(fisica.sexo,'') as sexo,
        eca.cod_aluno_inep AS cod_inep,
        view_situacao.texto_situacao_simplificado AS situacao_simplificado,
@@ -236,7 +183,7 @@ INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_e
 INNER JOIN pmieducar.curso ON (curso.cod_curso = escola_curso.ref_cod_curso)
 INNER JOIN pmieducar.escola_serie ON (escola_serie.ref_cod_escola = escola.cod_escola)
 INNER JOIN pmieducar.serie ON (serie.cod_serie = escola_serie.ref_cod_serie)
-INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie)
+INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_serie = serie.cod_serie AND turma.ref_ref_cod_escola = escola.cod_escola)
 LEFT JOIN modules.regra_avaliacao_serie_ano rasa
 ON turma.ano = rasa.ano_letivo
 AND rasa.serie_id = serie.cod_serie
@@ -261,6 +208,9 @@ LEFT JOIN public.bairro ON bairro.idbai = endpes.idbai
 LEFT JOIN modules.educacenso_cod_aluno eca ON (eca.cod_aluno = aluno.cod_aluno)
 LEFT JOIN cadastro.fone_pessoa fone_telefone ON TRUE AND fone_telefone.idpes = fisica.idpes_mae  AND fone_telefone.tipo = 1
 LEFT JOIN cadastro.fone_pessoa fone_celular ON TRUE  AND fone_celular.idpes = fisica.idpes_mae AND fone_celular.tipo = 3
+INNER JOIN modules.professor_turma ON professor_turma.turma_id = turma.cod_turma AND professor_turma.funcao_exercida IN(1,5,6)
+INNER JOIN pmieducar.servidor ON servidor.cod_servidor = professor_turma.servidor_id AND servidor.ativo = 1
+INNER JOIN cadastro.pessoa as professor ON professor.idpes = servidor.cod_servidor
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}
   AND escola.cod_escola = {$escola}
@@ -345,214 +295,50 @@ LIMIT 1
 
         return "
         SELECT
-modules.componente_curricular.tipo_base,
-	view_componente_curricular.ordenamento AS componente_order,
-    componente_curricular.nome as curricular_nome,
-    CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa1.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa1.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa1.nota_arredondada
-              END
-       END AS nota1,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa2.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa2.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa2.nota_arredondada
-              END
-       END AS nota2,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa3.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa3.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa3.nota_arredondada
-              END
-       END AS nota3,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa4.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa4.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa4.nota_arredondada
-              END
-       END AS nota4,
-    COALESCE(
-	   CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-	   ELSE
-	   		CASE
-				WHEN nota_componente_curricular_etapa1.nota_original ~ '^-?[0-9]+\.?[0-9]*$' THEN replace(trunc(nota_componente_curricular_etapa1.nota_original::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-		    ELSE
-                nota_componente_curricular_etapa1.nota_original
-              END
-       END,'-') AS nota_original_1,
-	   COALESCE(
-	   CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-	   ELSE
-	   		CASE
-				WHEN nota_componente_curricular_etapa1.nota_recuperacao ~ '^-?[0-9]+\.?[0-9]*$' THEN replace(trunc(nota_componente_curricular_etapa1.nota_recuperacao::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-		    ELSE
-                nota_componente_curricular_etapa1.nota_recuperacao
-              END
-       END,'-') AS nota_recuperacao_1,
-	   COALESCE(
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa2.nota_original ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa2.nota_original::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa2.nota_original
-              END
-       END,'-') AS nota_original_2,
-	   COALESCE(
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa2.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa2.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa2.nota_arredondada
-              END
-       END,'-') AS nota_recuperacao_2,
-	   COALESCE(
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa3.nota_original ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa3.nota_original::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa3.nota_original
-              END
-       END,'-') AS nota_original_3,
-	   COALESCE(
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa3.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa3.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa3.nota_arredondada
-              END
-       END,'-') AS nota_recuperacao_3,
-	   COALESCE(
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa4.nota_original ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa4.nota_original::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa4.nota_original
-              END
-       END,'-') AS nota_original_4,
-	   COALESCE(
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa4.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa4.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa4.nota_arredondada
-              END
-       END,'-') AS nota_recuperacao_4,
-  COALESCE(CASE
-      WHEN matricula_turma.remanejado = true THEN 0
-      ELSE
-         (SELECT COALESCE(
-                     (SELECT SUM(quantidade)
-                      FROM modules.falta_componente_curricular, modules.falta_aluno
-                      WHERE falta_componente_curricular.falta_aluno_id = falta_aluno.id
-                        AND falta_componente_curricular.componente_curricular_id = view_componente_curricular.id
-                        AND falta_aluno.matricula_id = matricula.cod_matricula
-                        AND falta_componente_curricular.etapa = '1'
-                        AND falta_aluno.tipo_falta = 2),
-                     (SELECT SUM(quantidade)
-                      FROM modules.falta_geral, modules.falta_aluno
-                      WHERE falta_geral.falta_aluno_id = falta_aluno.id
-                        AND falta_aluno.matricula_id = matricula.cod_matricula
-                        AND falta_geral.etapa = '1'
-                        AND falta_aluno.tipo_falta = 1)))::integer
-  END,0) AS falta1,
-  COALESCE(CASE
-      WHEN matricula_turma.remanejado = true THEN 0
-      ELSE
-         (SELECT COALESCE(
-                     (SELECT SUM(quantidade)
-                      FROM modules.falta_componente_curricular, modules.falta_aluno
-                      WHERE falta_componente_curricular.falta_aluno_id = falta_aluno.id
-                        AND falta_componente_curricular.componente_curricular_id = view_componente_curricular.id
-                        AND falta_aluno.matricula_id = matricula.cod_matricula
-                        AND falta_componente_curricular.etapa = '2'
-                        AND falta_aluno.tipo_falta = 2),
-                     (SELECT SUM(quantidade)
-                      FROM modules.falta_geral, modules.falta_aluno
-                      WHERE falta_geral.falta_aluno_id = falta_aluno.id
-                        AND falta_aluno.matricula_id = matricula.cod_matricula
-                        AND falta_geral.etapa = '2'
-                        AND falta_aluno.tipo_falta = 1)))::integer
-  END,0) AS falta2,
-  COALESCE(CASE
-      WHEN matricula_turma.remanejado = true THEN 0
-      ELSE
-         (SELECT COALESCE(
-                     (SELECT SUM(quantidade)
-                      FROM modules.falta_componente_curricular, modules.falta_aluno
-                      WHERE falta_componente_curricular.falta_aluno_id = falta_aluno.id
-                        AND falta_componente_curricular.componente_curricular_id = view_componente_curricular.id
-                        AND falta_aluno.matricula_id = matricula.cod_matricula
-                        AND falta_componente_curricular.etapa = '3'
-                        AND falta_aluno.tipo_falta = 2),
-                     (SELECT SUM(quantidade)
-                      FROM modules.falta_geral, modules.falta_aluno
-                      WHERE falta_geral.falta_aluno_id = falta_aluno.id
-                        AND falta_aluno.matricula_id = matricula.cod_matricula
-                        AND falta_geral.etapa = '3'
-                        AND falta_aluno.tipo_falta = 1)))::integer
-  END,0) AS falta3,
-  COALESCE(CASE
-      WHEN matricula_turma.remanejado = true THEN 0
-      ELSE
-         (SELECT COALESCE(
-                     (SELECT SUM(quantidade)
-                      FROM modules.falta_componente_curricular, modules.falta_aluno
-                      WHERE falta_componente_curricular.falta_aluno_id = falta_aluno.id
-                        AND falta_componente_curricular.componente_curricular_id = view_componente_curricular.id
-                        AND falta_aluno.matricula_id = matricula.cod_matricula
-                        AND falta_componente_curricular.etapa = '4'
-                        AND falta_aluno.tipo_falta = 2),
-                     (SELECT SUM(quantidade)
-                      FROM modules.falta_geral, modules.falta_aluno
-                      WHERE falta_geral.falta_aluno_id = falta_aluno.id
-                        AND falta_aluno.matricula_id = matricula.cod_matricula
-                        AND falta_geral.etapa = '4'
-                        AND falta_aluno.tipo_falta = 1)))::integer
-  END,0) AS falta4,
-  (CASE
-   		WHEN componente_curricular_turma.carga_horaria is not null THEN componente_curricular_turma.carga_horaria
-		WHEN ccae.carga_horaria is not null THEN ccae.carga_horaria
-   		ELSE 0
-   END)::integer AS carga_horaria
-   ,(CASE
-       WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN REPLACE(componente_curricular_turma.carga_horaria_auxiliar::varchar,'.',':')
-       WHEN ccae.carga_horaria_auxiliar is not null THEN REPLACE(ccae.carga_horaria_auxiliar::varchar,'.',':')
-       ELSE ''
-   END)::varchar AS carga_horaria_auxiliar
-   ,(CASE
-       WHEN componente_curricular_turma.hora_aula is not null THEN componente_curricular_turma.hora_aula
-       WHEN ccae.hora_aula is not null THEN ccae.hora_aula
-       ELSE 0
-   END)::integer AS hora_aula
-   ,COALESCE(texto_situacao,'') as texto_situacao
-   ,COALESCE(modules.frequencia_da_matricula(matricula.cod_matricula),0) AS frequencia
+        modules.componente_curricular.tipo_base,
+        view_componente_curricular.ordenamento AS componente_order,
+        componente_curricular.nome as curricular_nome,
+           CASE
+               WHEN matricula_turma.remanejado = true THEN '-'
+               ELSE
+                  CASE WHEN nota_componente_curricular_etapa1.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                    replace(trunc(nota_componente_curricular_etapa1.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+                  ELSE
+                    nota_componente_curricular_etapa1.nota_arredondada
+                  END
+           END AS nota1,
+           CASE
+               WHEN matricula_turma.remanejado = true THEN '-'
+               ELSE
+                  CASE WHEN nota_componente_curricular_etapa2.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                    replace(trunc(nota_componente_curricular_etapa2.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+                  ELSE
+                    nota_componente_curricular_etapa2.nota_arredondada
+                  END
+           END AS nota2,
+           CASE
+               WHEN matricula_turma.remanejado = true THEN '-'
+               ELSE
+                  CASE WHEN nota_componente_curricular_etapa3.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                    replace(trunc(nota_componente_curricular_etapa3.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+                  ELSE
+                    nota_componente_curricular_etapa3.nota_arredondada
+                  END
+           END AS nota3,
+           CASE
+               WHEN matricula_turma.remanejado = true THEN '-'
+               ELSE
+                  CASE WHEN nota_componente_curricular_etapa4.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                    replace(trunc(nota_componente_curricular_etapa4.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+                  ELSE
+                    nota_componente_curricular_etapa4.nota_arredondada
+                  END
+           END AS nota4,
+       (CASE
+            WHEN componente_curricular_turma.carga_horaria is not null THEN componente_curricular_turma.carga_horaria
+            WHEN ccae.carga_horaria is not null THEN ccae.carga_horaria
+            ELSE 0
+        END)::integer AS carga_horaria
  FROM pmieducar.instituicao
 INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
 INNER JOIN pmieducar.escola_curso ON (escola_curso.ref_cod_escola = escola.cod_escola)
@@ -583,7 +369,7 @@ INNER JOIN modules.componente_curricular on componente_curricular.id = view_comp
 LEFT JOIN modules.parecer_aluno ON (parecer_aluno.matricula_id = matricula.cod_matricula)
 INNER JOIN relatorio.view_dados_escola ON TRUE  AND (escola.cod_escola = view_dados_escola.cod_escola)
 LEFT JOIN modules.componente_curricular_turma ON componente_curricular_turma.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.turma_id = turma.cod_turma AND componente_curricular_turma.ano_escolar_id = serie.cod_serie
-LEFT JOIN modules.componente_curricular_ano_escolar as ccae ON ccae.componente_curricular_id = componente_curricular.id AND serie.cod_serie = ccae.ano_escolar_id
+LEFT JOIN modules.componente_curricular_ano_escolar as ccae ON ccae.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.ano_escolar_id = ccae.ano_escolar_id
 LEFT JOIN relatorio.view_situacao on view_situacao.cod_turma = turma.cod_turma and view_situacao.cod_matricula = matricula.cod_matricula and view_situacao.cod_situacao = any (array[1, 2, 3, 4, 5, 6, 12, 13])
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}

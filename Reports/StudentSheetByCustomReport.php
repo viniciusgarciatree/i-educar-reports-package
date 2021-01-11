@@ -842,11 +842,12 @@ ORDER BY seque_fecha,
             ];
         }
         if ($this->args['modelo'] == 2) {
-            $arrData[0]['turma'] = "Berçário I";
-            $arrData[1]['turma'] = "Berçário II";
-            $arrData[2]['turma'] = "Maternal I";
-            $arrData[3]['turma'] = "Maternal II";
+            $arrData[0]['turma'] = 'Berçário I';
+            $arrData[1]['turma'] = 'Berçário II';
+            $arrData[2]['turma'] = 'Maternal I';
+            $arrData[3]['turma'] = 'Maternal II';
         }
+
         return $arrData;
     }
 }

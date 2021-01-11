@@ -1,8 +1,6 @@
 <?php
 
 use App\Menu;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class RelatoriosPersonalizadosVersa extends Migration
@@ -16,7 +14,7 @@ class RelatoriosPersonalizadosVersa extends Migration
     {
         Menu::query()->updateOrCreate([
             'old' => 999731
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório Geral de Servidores por Vinculo, Função e Cargo',
             'description' => null,

@@ -5,7 +5,7 @@ use iEducar\Reports\JsonDataSource;
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'App/Model/IedFinder.php';
 
-class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
+class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
 
@@ -14,7 +14,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return 'student-individual-record';
+        return 'student-individual-record-eja';
     }
 
     /**
@@ -82,11 +82,6 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
             } else {
                 $arrComponente[$index]['faltas_horas'] = '';
             }
-
-            for($nota = 1 ; $nota < 5; $nota++){
-                $arrComponente[$index]['nota_original_' . $nota] = $value['nota_original_' . $nota] !== "-" ? intval($value['nota_original_' . $nota]) : "";
-                $arrComponente[$index]['nota_recuperacao_' . $nota] = $value['nota_recuperacao_' . $nota] !== "-" ? intval($value['nota_recuperacao_' . $nota]) : "";
-            }
         }
 
         if ($horas == 0) {
@@ -94,16 +89,18 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         } else {
             $carga_horaria_total = $horas . ':' . ($minutos < 10 ? '0' . $minutos : $minutos);
         }
+        $observacoes = $this->args['observacoes'];
 
         unset($this->args['exibir_paracer_descritivo']);
+        unset($this->args['observacoes']);
 
         if (count($arrMain) == 0) {
             return [];
         }
 
-        $arrMain[0]['carga_horaria_total'] = $carga_horaria_total;
+        $arrMain[0]['carga_horaria_total'] = '' . $carga_horaria_total;
+        $arrMain[0]['observacao_all'] = '' . $observacoes;
         $arrMain[0]['data_componente'] = count($arrComponente) > 0 ? $arrComponente : [];
-
         if (!$exibir_paracer_descritivo) {
             $arrMain[0]['parecer']  = '';
         } else {
@@ -141,7 +138,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
 SELECT
        fcn_upper(view_dados_escola.nome) AS nm_escola,
        view_dados_escola.logradouro,
-       view_dados_escola.bairro,
+       fcn_upper(view_dados_escola.bairro) AS escola_bairro,
        matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nome_aluno,
@@ -163,6 +160,7 @@ SELECT
        END as nacionalidade,
        COALESCE(fisica.nis_pis_pasep::text,'') AS nis_pis_pasep,
        logradouro.nome as logradouro_aluno,
+       bairro.nome as bairro_aluno,
        COALESCE(fisica.sexo,'') as sexo,
        eca.cod_aluno_inep AS cod_inep,
        view_situacao.texto_situacao_simplificado AS situacao_simplificado,
@@ -292,7 +290,6 @@ LIMIT 1
         $notSchool   = empty($this->args['escola']) ? 'true' : 'false';
 
         $sql = "
-
             SELECT
                 public.fcn_upper(instituicao.nm_instituicao) AS nm_instituicao,
                 public.fcn_upper(instituicao.nm_responsavel) AS nm_responsavel,
@@ -348,42 +345,6 @@ LIMIT 1
 modules.componente_curricular.tipo_base,
 	view_componente_curricular.ordenamento AS componente_order,
     componente_curricular.nome as curricular_nome,
-    CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa1.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa1.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa1.nota_arredondada
-              END
-       END AS nota1,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa2.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa2.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa2.nota_arredondada
-              END
-       END AS nota2,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa3.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa3.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa3.nota_arredondada
-              END
-       END AS nota3,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa4.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa4.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa4.nota_arredondada
-              END
-       END AS nota4,
     COALESCE(
 	   CASE
            WHEN matricula_turma.remanejado = true THEN '-'
@@ -583,7 +544,7 @@ INNER JOIN modules.componente_curricular on componente_curricular.id = view_comp
 LEFT JOIN modules.parecer_aluno ON (parecer_aluno.matricula_id = matricula.cod_matricula)
 INNER JOIN relatorio.view_dados_escola ON TRUE  AND (escola.cod_escola = view_dados_escola.cod_escola)
 LEFT JOIN modules.componente_curricular_turma ON componente_curricular_turma.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.turma_id = turma.cod_turma AND componente_curricular_turma.ano_escolar_id = serie.cod_serie
-LEFT JOIN modules.componente_curricular_ano_escolar as ccae ON ccae.componente_curricular_id = componente_curricular.id AND serie.cod_serie = ccae.ano_escolar_id
+LEFT JOIN modules.componente_curricular_ano_escolar as ccae ON ccae.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.ano_escolar_id = ccae.ano_escolar_id
 LEFT JOIN relatorio.view_situacao on view_situacao.cod_turma = turma.cod_turma and view_situacao.cod_matricula = matricula.cod_matricula and view_situacao.cod_situacao = any (array[1, 2, 3, 4, 5, 6, 12, 13])
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}

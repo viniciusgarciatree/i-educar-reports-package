@@ -82,7 +82,6 @@ class ReportCardRegimeSpecialReport extends Portabilis_Report_ReportCore
                 'medianumturma' => $value['medianumturma'],
                 'total_faltas_component' => $value['total_faltas_component'],
             ];
-
         }
 
         foreach ($arrMatricula as $key => $value) {
@@ -97,9 +96,9 @@ class ReportCardRegimeSpecialReport extends Portabilis_Report_ReportCore
             $value['data_area'] = $arrArea;
             $value['total_faltas'] = $value['total_faltas'] ? (int)$value['total_faltas'] : null;
             $value['observacoes'] = $this->args['observacoes'] ?: '';
-            if(!empty($value['nome_pai']) && !empty($value['nome_mae'])){
-                $value['nome_pais'] = $value['nome_pai'] . ", " . $value['nome_mae'];
-            }else{
+            if (!empty($value['nome_pai']) && !empty($value['nome_mae'])) {
+                $value['nome_pais'] = $value['nome_pai'] . ', ' . $value['nome_mae'];
+            } else {
                 $value['nome_pais'] = empty($value['nome_pai']) ? (empty($value['nome_mae'])?  : $value['nome_mae']) : $value['nome_pai'];
             }
 

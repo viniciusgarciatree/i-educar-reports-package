@@ -204,6 +204,5 @@ where b.ano = $ano AND
                  b.ref_cod_escola = f.cod_escola AND
                  f.cod_escola = $escola
                END) order by a.cod_servidor";
-
     }
 }

@@ -42,12 +42,13 @@ class ClassRecordBookReport extends Portabilis_Report_ReportCore
         foreach ($queriesDatasets as $name => $query) {
             $jsonData[$name] = Portabilis_Utils_Database::fetchPreparedQuery($query);
         }
+
         return $jsonData;
     }
 
     public function getSqlMainReport()
     {
-        return "SELECT 1;";
+        return 'SELECT 1;';
     }
 
     public function getSqlsForDatasets()
@@ -67,7 +68,7 @@ class ClassRecordBookReport extends Portabilis_Report_ReportCore
         $servidor_id = $this->args['servidor_id'] ?: 0;
         $professor = $this->args['professor'] ?: '';
 
-        if($this->args['modelo_report'] == 2){
+        if ($this->args['modelo_report'] == 2) {
             $queryTipoNota = "
             SELECT 
 			 ra.tipo_nota
@@ -99,11 +100,11 @@ class ClassRecordBookReport extends Portabilis_Report_ReportCore
             AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE turma.cod_turma = {$turma} END) limit 1;
             ";
             $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryTipoNota);
-            if(isset($dados[0]) && isset($dados[0]['tipo_nota'])){
-                $this->args['tipo_regra'] = "" . $dados[0]['tipo_nota'];
+            if (isset($dados[0]) && isset($dados[0]['tipo_nota'])) {
+                $this->args['tipo_regra'] = '' . $dados[0]['tipo_nota'];
             }
-        }else{
-            $this->args['tipo_regra'] = "0";
+        } else {
+            $this->args['tipo_regra'] = '0';
         }
 
         $classRecordCoverSql = "

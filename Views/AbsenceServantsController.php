@@ -54,7 +54,6 @@ class AbsenceServantsController extends Portabilis_Controller_ReportCoreControll
         $this->report->addArg('servidor', (int)$this->getRequest()->servidor_id);
         $this->report->addArg('data_inicial', Portabilis_Date_Utils::brToPgSQL($this->getRequest()->data_inicial));
         $this->report->addArg('data_final', Portabilis_Date_Utils::brToPgSQL($this->getRequest()->data_final));
-
     }
 
     /**

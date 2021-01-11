@@ -23,7 +23,7 @@ class StudentDisciplinaryOccurrenceController extends Portabilis_Controller_Repo
         parent::_preRender();
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
-        
+
         $this->breadcrumb('Relatório de Ocorrências Disciplinares', ['educar_index.php' => 'Escola']);
     }
 

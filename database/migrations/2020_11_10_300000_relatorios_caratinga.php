@@ -32,23 +32,6 @@ class RelatoriosCaratinga extends Migration
                     'active'      => true,
                 ]
             );
-
-            Menu::query()->updateOrCreate(
-                [
-                    'old' => 9999206
-                ],
-                [
-                    'parent_id'   => Menu::query()->where('old', 999450)->firstOrFail()->getKey(),
-                    'title'       => 'Boletim de Regime Especial',
-                    'description' => 'Boletim de Regime Especial',
-                    'link'        => '/module/Reports/ReportCardRegimeSpecial',
-                    'order'       => 0,
-                    'old'         => 9999206,
-                    'process'     => 9999206,
-                    'parent_old'  => 999450,
-                    'active'      => true,
-                ]
-            );
         }
     }
 
@@ -60,6 +43,5 @@ class RelatoriosCaratinga extends Migration
     public function down()
     {
         Menu::query()->where('process', 9999203)->delete();
-        Menu::query()->where('process', 9999206)->delete();
     }
 }

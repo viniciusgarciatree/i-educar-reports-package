@@ -12,9 +12,9 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource, SchoolHistorySeriesYearsTrait, SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait {
         SchoolHistorySeriesYearsTrait::query insteadof SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait;
-        SchoolHistorySeriesYearsTrait::query AS querySchoolHistorySeriesYears;
-        SchoolHistoryCrosstabTrait::query AS querySchoolHistoryCrosstab;
-        SchoolHistoryCrosstabDatasetTrait::query AS querySchoolHistoryCrosstabDataset;
+        SchoolHistorySeriesYearsTrait::query as querySchoolHistorySeriesYears;
+        SchoolHistoryCrosstabTrait::query as querySchoolHistoryCrosstab;
+        SchoolHistoryCrosstabDatasetTrait::query as querySchoolHistoryCrosstabDataset;
     }
 
     /**
@@ -22,12 +22,12 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        if($this->args['modelo'] == 4){
+        if ($this->args['modelo'] == 4) {
             return 'school-history-series-years-caratinga';
-        }elseif($this->args['modelo'] == 5){
-          return 'school-history-series-years-upbaoranga';
-        }else{
-          return 'school-history-series-years';
+        } elseif ($this->args['modelo'] == 5) {
+            return 'school-history-series-years-upbaoranga';
+        } else {
+            return 'school-history-series-years';
         }
     }
 
@@ -36,7 +36,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
      */
     public function requiredArgs()
     {
-        $stop = "";
+        $stop = '';
         $this->addRequiredArg('instituicao');
         $this->addRequiredArg('escola');
         $this->addRequiredArg('modelo');
@@ -312,8 +312,8 @@ FROM pmieducar.historico_escolar he
                    AND phe.ativo = 1
                    AND (CASE WHEN {$nao_emitir_reprovado} THEN phe.aprovado <> 2 ELSE 1=1 END)
                  ORDER BY phe.ano)tabl) AS observacao_all
-      ,concat(TO_CHAR(". $dataFim .", 'DD'),' de ',CASE (TO_CHAR(". $dataFim .", 'MM'))::integer WHEN 1 THEN 'Janeiro' WHEN 2 THEN 'Fevereiro' WHEN 3 THEN 'Março' WHEN 4 THEN 'Abril' WHEN 5 THEN 'Maio' WHEN 6 THEN 'Junho' WHEN 7 THEN 'Julho' WHEN 8 THEN 'Agosto' WHEN 9 THEN 'Setembro'
-           WHEN 10 THEN 'Outubro' WHEN 11 THEN 'Novembro' WHEN 12 THEN 'Dezembro' END,' de ', TO_CHAR(". $dataFim .", 'YYYY')) AS data_final
+      ,concat(TO_CHAR(". $dataFim .', \'DD\'),\' de \',CASE (TO_CHAR('. $dataFim .', \'MM\'))::integer WHEN 1 THEN \'Janeiro\' WHEN 2 THEN \'Fevereiro\' WHEN 3 THEN \'Março\' WHEN 4 THEN \'Abril\' WHEN 5 THEN \'Maio\' WHEN 6 THEN \'Junho\' WHEN 7 THEN \'Julho\' WHEN 8 THEN \'Agosto\' WHEN 9 THEN \'Setembro\'
+           WHEN 10 THEN \'Outubro\' WHEN 11 THEN \'Novembro\' WHEN 12 THEN \'Dezembro\' END,\' de \', TO_CHAR('. $dataFim .", 'YYYY')) AS data_final
       ,(select nm_curso from pmieducar.curso where curso.cod_curso = {$curso}) as nm_curso
       ,(select tipo_ensino.nm_tipo from pmieducar.curso 
 inner join pmieducar.tipo_ensino on cod_tipo_ensino = ref_cod_tipo_ensino

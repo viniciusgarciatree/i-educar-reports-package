@@ -60,7 +60,7 @@ class DirectMailStudentsReport extends Portabilis_Report_ReportCore
         $turma = $this->args['turma'] ?: 0;
         $ano = $this->args['ano'] ?: 0;
 
-        $this->args['exibir_cabecalho'] = $this->getExibirCabecalho() ? "true" : "false";
+        $this->args['exibir_cabecalho'] = $this->getExibirCabecalho() ? 'true' : 'false';
 
         return "select 
 distinct on (ref_cod_aluno) b.nome as aluno, 
@@ -79,19 +79,21 @@ left outer join pmieducar.matricula_turma mt on mt.ref_cod_matricula = d.cod_mat
 where logradouro is not null  and d.ativo = 1 AND
        d.ano = $ano AND
        e.ref_cod_instituicao = $instituicao"
-            .($escola == 0 ? "" : " AND cod_escola = $escola")
-            .($curso == 0 ? "" : " AND d.ref_cod_curso = $curso")
-            .($serie == 0 ? "" : " AND d.ref_ref_cod_serie = $serie")
-            .($matricula == 0 ? "" : " AND d.cod_matricula = $matricula")
-            .($turma == 0 ? "" : " AND mt.ref_cod_turma = $turma").
-"  ";
+            .($escola == 0 ? '' : " AND cod_escola = $escola")
+            .($curso == 0 ? '' : " AND d.ref_cod_curso = $curso")
+            .($serie == 0 ? '' : " AND d.ref_ref_cod_serie = $serie")
+            .($matricula == 0 ? '' : " AND d.cod_matricula = $matricula")
+            .($turma == 0 ? '' : " AND mt.ref_cod_turma = $turma").
+'  ';
     }
 
-    protected function getExibirCabecalho(){
-        $result = DB::select("select EXISTS (select * from public.settings where key = 'report.header.mala_direta' AND value = '1');");
-        if (count($result) > 0 && $result[0]['exists'] == true){
+    protected function getExibirCabecalho()
+    {
+        $result = DB::select('select EXISTS (select * from public.settings where key = \'report.header.mala_direta\' AND value = \'1\');');
+        if (count($result) > 0 && $result[0]['exists'] == true) {
             return true;
         }
+
         return false;
     }
 }

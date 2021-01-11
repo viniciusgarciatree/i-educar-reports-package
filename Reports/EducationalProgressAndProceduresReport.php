@@ -184,6 +184,7 @@ class EducationalProgressAndProceduresReport extends Portabilis_Report_ReportCor
         foreach ($queriesDatasets as $name => $query) {
             $jsonData[$name] = Portabilis_Utils_Database::fetchPreparedQuery($query);
         }
+
         return $jsonData;
     }
 
@@ -228,6 +229,7 @@ class EducationalProgressAndProceduresReport extends Portabilis_Report_ReportCor
             AND m.ano = {$ano}
             AND m.ref_cod_abandono_tipo = 1
         ";
+
         return [
             'quantitative_chart' => $quantitativeChart
         ];

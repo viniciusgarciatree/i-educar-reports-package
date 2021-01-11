@@ -1,8 +1,6 @@
 <?php
 
 use App\Menu;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class RelatoriosPersonalizados extends Migration
@@ -25,7 +23,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999601
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999600)->firstOrFail()->getKey(),
             'title' => 'Carteira de Transporte',
             'description' => null,
@@ -37,7 +35,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999602
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999600)->firstOrFail()->getKey(),
             'title' => 'Carteira de Estudante',
             'description' => null,
@@ -49,7 +47,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999701
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999303)->firstOrFail()->getKey(),
             'title' => 'Gráfico comparativo da média das turmas por disciplina e geral',
             'description' => null,
@@ -61,7 +59,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999609
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999450)->firstOrFail()->getKey(),
             'title' => 'Mapa do conselho de classe',
             'description' => null,
@@ -73,7 +71,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999702
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999303)->firstOrFail()->getKey(),
             'title' => 'Gráfico comparativo da quantidade de alunos acima e abaixo da média por disciplina',
             'description' => null,
@@ -85,7 +83,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999703
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999303)->firstOrFail()->getKey(),
             'title' => 'Gráfico comparativo da média das escolas por disciplina',
             'description' => null,
@@ -97,7 +95,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999704
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relação de horas alocadas por servidor',
             'description' => null,
@@ -109,7 +107,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999108
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999300)->firstOrFail()->getKey(),
             'title' => 'Alunos enturmados e não enturmados',
             'description' => null,
@@ -121,7 +119,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999705
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999923)->firstOrFail()->getKey(),
             'title' => 'Alunos matriculados por escola, série e turno',
             'description' => null,
@@ -133,7 +131,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999706
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999923)->firstOrFail()->getKey(),
             'title' => 'Alunos matriculados por escola, curso, série e turno',
             'description' => null,
@@ -145,7 +143,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999707
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999923)->firstOrFail()->getKey(),
             'title' => 'Alunos matriculados por curso',
             'description' => null,
@@ -157,7 +155,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999708
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999923)->firstOrFail()->getKey(),
             'title' => 'Alunos matriculados por bairro',
             'description' => null,
@@ -169,7 +167,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999709
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999923)->firstOrFail()->getKey(),
             'title' => 'Alunos matriculados por escola',
             'description' => null,
@@ -181,7 +179,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999710
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999905)->firstOrFail()->getKey(),
             'title' => 'Emissão de etiquetas',
             'description' => null,
@@ -193,7 +191,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999711
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999906)->firstOrFail()->getKey(),
             'title' => 'Quantidade de emprestimos por leitor',
             'description' => null,
@@ -205,7 +203,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999712
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999300)->firstOrFail()->getKey(),
             'title' => 'Emissão de etiquetas de mala direta',
             'description' => null,
@@ -217,7 +215,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999713
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999301)->firstOrFail()->getKey(),
             'title' => 'Situação dos anos letivos',
             'description' => null,
@@ -229,7 +227,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999714
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relação de faltas e atrasos dos servidores',
             'description' => null,
@@ -241,7 +239,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999715
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999303)->firstOrFail()->getKey(),
             'title' => 'Gráfico comparativo da média das escolas',
             'description' => null,
@@ -253,7 +251,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999716
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 9998847)->firstOrFail()->getKey(),
             'title' => 'Relação de alunos usuários do transporte escolar',
             'description' => null,
@@ -265,7 +263,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999717
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 9998847)->firstOrFail()->getKey(),
             'title' => 'Relação de usuários do transporte escolar por fornecedor',
             'description' => null,
@@ -277,7 +275,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999718
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999450)->firstOrFail()->getKey(),
             'title' => 'Boletim escolar educação infantil',
             'description' => null,
@@ -289,7 +287,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999719
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório de alocações dos servidores',
             'description' => null,
@@ -301,7 +299,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999720
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório de dados pessoais dos servidores',
             'description' => null,
@@ -313,7 +311,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999721
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório vinculos dos servidores',
             'description' => null,
@@ -325,7 +323,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999722
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório cargo x função dos servidores',
             'description' => null,
@@ -337,7 +335,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999723
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório de escolaridade dos servidores',
             'description' => null,
@@ -349,7 +347,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999724
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório de lotação x exercício dos servidores',
             'description' => null,
@@ -361,7 +359,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999725
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório de cursos dos servidores',
             'description' => null,
@@ -373,7 +371,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999726
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Quadro de frequência dos servidores',
             'description' => null,
@@ -385,7 +383,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999727
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relação de servidores afastados',
             'description' => null,
@@ -397,7 +395,7 @@ class RelatoriosPersonalizados extends Migration
 
         Menu::query()->updateOrCreate([
             'old' => 999728
-        ],[
+        ], [
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório de docentes por turma',
             'description' => null,

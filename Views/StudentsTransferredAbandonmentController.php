@@ -6,7 +6,7 @@ require_once 'Reports/Reports/StudentsTransferredAbandonmentReport.php';
 class StudentsTransferredAbandonmentController extends Portabilis_Controller_ReportCoreController
 {
     /**
-     * @var int 
+     * @var int
      */
     protected $_processoAp = 999607;
 

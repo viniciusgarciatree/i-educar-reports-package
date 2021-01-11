@@ -17,16 +17,16 @@ class RelatoriosIpanema extends Migration
         if (count($result) > 0 && $result[0] == true) {
             Menu::query()->updateOrCreate(
                 [
-                    'old' => 9999200
+                    'old' => 9999207
                 ],
                 [
                     'parent_id'   => Menu::query()->where('old', 999861)->firstOrFail()->getKey(),
-                    'title'       => 'Ficha Individual do Aluno',
+                    'title'       => 'Ficha Individual - EJA',
                     'description' => null,
-                    'link'        => '/module/Reports/StudentIndividualRecord',
+                    'link'        => '/module/Reports/StudentIndividualRecordEja',
                     'order'       => 0,
-                    'old'         => 9999200,
-                    'process'     => 9999200,
+                    'old'         => 9999207,
+                    'process'     => 9999207,
                     'active'      => true,
                 ]
             );
@@ -40,6 +40,6 @@ class RelatoriosIpanema extends Migration
      */
     public function down()
     {
-        Menu::query()->where('process', 9999200)->delete();
+        Menu::query()->where('process', 9999207)->delete();
     }
 }

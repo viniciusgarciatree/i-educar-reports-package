@@ -1,19 +1,19 @@
 <?php
 
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/StudentIndividualRecordReport.php';
+require_once 'Reports/Reports/StudentIndividualRecordEjaReport.php';
 
-class StudentIndividualRecordController extends Portabilis_Controller_ReportCoreController
+class StudentIndividualRecordEjaController extends Portabilis_Controller_ReportCoreController
 {
     /**
      * @var int
      */
-    protected $_processoAp = 9999200;
+    protected $_processoAp = 9999207;
 
     /**
      * @var string
      */
-    protected $_titulo = 'Ficha Individual do Aluno';
+    protected $_titulo = 'Ficha Individual - EJA';
 
     /**
      * @inheritdoc
@@ -24,7 +24,7 @@ class StudentIndividualRecordController extends Portabilis_Controller_ReportCore
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Ficha Individual do Aluno', [
+        $this->breadcrumb('Ficha Individual - EJA', [
             'educar_index.php' => 'Escola',
         ]);
     }
@@ -37,6 +37,12 @@ class StudentIndividualRecordController extends Portabilis_Controller_ReportCore
         $this->inputsHelper()->dynamic(['ano','instituicao', 'escola', 'curso', 'serie', 'turma']);
         $this->inputsHelper()->simpleSearchAluno(null);
         $this->inputsHelper()->checkbox('exibir_paracer_descritivo', ['label' => 'Exibir Parecer Descritivo se existir?']);
+
+        $this->inputsHelper()->textArea('observacoes', [
+            'required' => false,
+            'label' => 'Observações',
+            'placeholder' => 'Utilize este espaço para exibir uma mensagem ou recado no boletim.'
+        ]);
     }
 
     /**
@@ -55,6 +61,7 @@ class StudentIndividualRecordController extends Portabilis_Controller_ReportCore
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
         $this->report->addArg('aluno', (int) $this->getRequest()->aluno_id);
         $this->report->addArg('exibir_paracer_descritivo', (bool) $this->getRequest()->exibir_paracer_descritivo);
+        $this->report->addArg('observacoes', $this->getRequest()->observacoes);
 
         $this->report->addArg('cabecalho_alternativo', (int) $GLOBALS['coreExt']['Config']->report->header->alternativo);
         $this->report->addArg('portaria_aprovacao_pontos', (string) $GLOBALS['coreExt']['Config']->report->portaria_aprovacao_pontos);
@@ -64,12 +71,12 @@ class StudentIndividualRecordController extends Portabilis_Controller_ReportCore
     }
 
     /**
-     * @return SchoolHistoryReport
+     * @return StudentIndividualRecordEja
      *
      * @throws Exception
      */
     public function report()
     {
-        return new StudentIndividualRecordReport();
+        return new StudentIndividualRecordEjaReport();
     }
 }

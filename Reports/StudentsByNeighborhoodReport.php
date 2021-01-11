@@ -36,7 +36,7 @@ class StudentsByNeighborhoodReport extends Portabilis_Report_ReportCore
      */
     public function getSqlMainReport()
     {
-        return $this->args['separar'] === "true"
+        return $this->args['separar'] === 'true'
             ? $this->getSqlReportSchool()
             : $this->getSqlReport();
     }
@@ -57,10 +57,9 @@ left outer join cadastro.pessoa f on e.ref_idpes = f.idpes
 WHERE  d.ativo = 1 AND
        d.ano = $ano AND
        e.ref_cod_instituicao = $instituicao "
-            .($situacao == 9 ? "" : " AND
-       d.aprovado = $situacao"). " ".($escola == 0 ? "" : " AND cod_escola = $escola")."
-       group by 2,3,4  order by 2,4,3;";
-
+            .($situacao == 9 ? '' : " AND
+       d.aprovado = $situacao"). ' '.($escola == 0 ? '' : " AND cod_escola = $escola").'
+       group by 2,3,4  order by 2,4,3;';
     }
 
     private function getSqlReport()
@@ -78,9 +77,8 @@ left outer join pmieducar.escola e on d.ref_ref_cod_escola = e.cod_escola
 WHERE  d.ativo = 1 AND
        d.ano = $ano AND
        e.ref_cod_instituicao = $instituicao "
-       .($situacao == 9 ? "" : " AND
-       d.aprovado = $situacao"). " ".($escola == 0 ? "" : " AND cod_escola = $escola")."
-       group by 2,3  order by 3,2;";
-
+       .($situacao == 9 ? '' : " AND
+       d.aprovado = $situacao"). ' '.($escola == 0 ? '' : " AND cod_escola = $escola").'
+       group by 2,3  order by 3,2;';
     }
 }

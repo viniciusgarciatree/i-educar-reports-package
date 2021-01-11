@@ -43,7 +43,7 @@ class NumberOfStudentsAboveAndBelowAverageReport extends Portabilis_Report_Repor
         $turma = $this->args['turma'] ?: 0;
         $etapa = $this->args['etapa'] ?: 0;
 
-        return "select cc.nome as disciplina,  (CASE WHEN ncc.nota >= ra.media THEN 'ACIMA' ELSE 'ABAIXO' END) as nota, count(*) as total from pmieducar.matricula mc
+        return 'select cc.nome as disciplina,  (CASE WHEN ncc.nota >= ra.media THEN \'ACIMA\' ELSE \'ABAIXO\' END) as nota, count(*) as total from pmieducar.matricula mc
 left outer join pmieducar.matricula_turma mt ON mt.ref_cod_matricula = mc.cod_matricula and mt.ativo = 1
 left outer join pmieducar.turma t ON t.cod_turma = mt.ref_cod_turma
 left outer join modules.nota_aluno na ON na.matricula_id = mc.cod_matricula
@@ -54,14 +54,13 @@ left outer join componente_curricular cc ON cc.id = ncc.componente_curricular_id
 left outer join modules.regra_avaliacao_serie_ano rasa ON rasa.serie_id = mc.ref_ref_cod_serie AND mc.ano = rasa.ano_letivo
 left outer join modules.regra_avaliacao ra ON ra.id = rasa.regra_avaliacao_id
 where mc.ativo = 1 AND
-        nota >= 0 AND ".
-            ($escola != 0 ? "esc.cod_escola = $escola AND " : " ").
-            ($curso != 0 ? "mc.ref_cod_curso = $curso AND " : " ").
-            ($serie != 0 ? "mc.ref_ref_cod_serie = $serie AND " : " ").
-            ($turma != 0 ? "mt.ref_cod_turma = $turma AND " : " ").
-            ($etapa != 0 ? "ncc.etapa = '$etapa' AND " : " ").
+        nota >= 0 AND '.
+            ($escola != 0 ? "esc.cod_escola = $escola AND " : ' ').
+            ($curso != 0 ? "mc.ref_cod_curso = $curso AND " : ' ').
+            ($serie != 0 ? "mc.ref_ref_cod_serie = $serie AND " : ' ').
+            ($turma != 0 ? "mt.ref_cod_turma = $turma AND " : ' ').
+            ($etapa != 0 ? "ncc.etapa = '$etapa' AND " : ' ').
        " mc.ano =   $ano  AND
        esc.ref_cod_instituicao =  $instituicao group by 1,2;";
     }
-
 }

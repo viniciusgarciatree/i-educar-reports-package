@@ -208,6 +208,5 @@ class StudentsAllocationReport extends Portabilis_Report_ReportCore
 	   $modelo exists(select 1 from pmieducar.matricula_turma where matricula.cod_matricula = matricula_turma.ref_cod_matricula AND data_exclusao is null)
 
 ORDER BY nm_escola, nome_aluno";
-
     }
 }

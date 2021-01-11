@@ -43,17 +43,15 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
         $queryMainReport   = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
-
         $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $arrMain = [];
 
-
         foreach ($dados as $index => $value) {
             self::getAlunosBoletim(
-                array(
+                [
                     'cod_turma'     => $value['cod_turma'],
                     'id_disciplina' => $value['id_disciplina']
-                ),
+                ],
                 $value,
                 $arrMain
             );
@@ -128,7 +126,6 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
         $jsonData        = [];
 
         foreach ($queriesDatasets as $name => $query) {
-
             $jsonData[$name] = Portabilis_Utils_Database::fetchPreparedQuery($query);
         }
 
@@ -323,7 +320,7 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
             $matricula = (int)$value['cod_matricula'];
             $key = $matricula.'-'.$aluno['id_disciplina'];
             if (!isset($arrData[$key])) {
-                $arrData[$key] = array(
+                $arrData[$key] = [
                     'ano'                                => $aluno['ano'],
                     'nm_curso'                           => $aluno['nm_curso'],
                     'nm_serie'                           => $aluno['nm_serie'],
@@ -343,7 +340,7 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
                     'falta_' . $value['sequencial']      => $value['falta'],
                     'bimestral_' . $value['sequencial']  => $value['sequencial'],
                     'nota_etapa_' . $value['sequencial'] => $value['nota_arredondada_etapa'],
-                );
+                ];
             } else {
                 $arrData[$key]['bimestral_' . $value['sequencial']]  = $value['sequencial'];
                 $arrData[$key]['nota_etapa_' . $value['sequencial']] = $value['nota_arredondada_etapa'];
@@ -353,5 +350,4 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
             }
         }
     }
-
 }
