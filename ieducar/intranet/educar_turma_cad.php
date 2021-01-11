@@ -789,7 +789,7 @@ class indice extends clsCadastro
                         $cargaComponente = $registro->cargaHorariaAuxiliar;
                     }else{
                         $cargaComponente = $registro->cargaHoraria;
-                    }                    
+                    }
 
                     if (1 == $componentes[$registro->id]->docenteVinculado) {
                         $docenteVinculado = true;
@@ -1496,7 +1496,7 @@ class indice extends clsCadastro
         $arrComponentes = App_Model_IedFinder::getEscolaSerieDisciplina($codSerie, $codEscola, null, null, null, true, $ano);
 
         foreach ($componentes as $key => $value) {
-            $carga = isset($usarComponente[$key]) ? $arrComponentes[$key]->cargaHoraria : $cargaHoraria[$key];
+            $carga = isset($usarComponente[$key]) ? (isset($arrComponentes[$key]->cargaHorariaAuxiliar) ? $arrComponentes[$key]->cargaHorariaAuxiliar : $arrComponentes[$key]->cargaHoraria) : $cargaHoraria[$key];
             $docente_ = isset($docente[$key]) ?
                 1 : 0;
 
