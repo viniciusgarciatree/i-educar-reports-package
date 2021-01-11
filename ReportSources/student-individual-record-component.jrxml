@@ -637,7 +637,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota_original_1}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="268" y="0" width="26" height="14" uuid="3966b8bd-f2e5-4e0f-9e1a-6237155dc29d">
@@ -655,7 +655,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota2}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota_original_2}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="346" y="0" width="26" height="14" uuid="d67624cd-a782-41a3-a9cc-aa3ec856e256">
@@ -673,7 +673,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota3}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota_original_3}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="424" y="0" width="26" height="14" uuid="67e6f265-5772-44c6-a84e-cb4230a21160">
@@ -691,7 +691,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota3}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota_original_3}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="216" y="0" width="26" height="14" uuid="e48a0b55-63f7-4f71-971a-3c4ee8ce41d3">
@@ -996,7 +996,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota_original_1}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="154" y="0" width="36" height="14" uuid="54e2c7be-dc25-4435-800c-8f9d469fa0e7">
