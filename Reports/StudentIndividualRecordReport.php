@@ -163,6 +163,7 @@ SELECT
        END as nacionalidade,
        COALESCE(fisica.nis_pis_pasep::text,'') AS nis_pis_pasep,
        logradouro.nome as logradouro_aluno,
+       bairro.nome as bairro_aluno,
        COALESCE(fisica.sexo,'') as sexo,
        eca.cod_aluno_inep AS cod_inep,
        view_situacao.texto_situacao_simplificado AS situacao_simplificado,
