@@ -82,6 +82,11 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
             } else {
                 $arrComponente[$index]['faltas_horas'] = '';
             }
+
+            for($nota = 1 ; $nota < 5; $nota++){
+                $arrComponente[$index]['nota_original_' . $nota] = $value['nota_original_' . $nota] !== "-" ? intval($value['nota_original_' . $nota]) : "";
+                $arrComponente[$index]['nota_recuperacao_' . $nota] = $value['nota_recuperacao_' . $nota] !== "-" ? intval($value['nota_recuperacao_' . $nota]) : "";
+            }
         }
 
         if ($horas == 0) {
@@ -93,6 +98,7 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
 
         unset($this->args['exibir_paracer_descritivo']);
         unset($this->args['observacoes']);
+        $arrMain[0]['telefone_escola'] =  (!empty($header[0]['fone_ddd']) ? '(' . $header[0]['fone_ddd'] . ') ' : '' ) . (!empty($header[0]['fone']) ? $header[0]['fone'] : "");
 
         if (count($arrMain) == 0) {
             return [];
@@ -138,7 +144,7 @@ class StudentIndividualRecordEjaReport extends Portabilis_Report_ReportCore
 SELECT
        fcn_upper(view_dados_escola.nome) AS nm_escola,
        view_dados_escola.logradouro,
-       fcn_upper(view_dados_escola.bairro) AS escola_bairro,
+       view_dados_escola.bairro AS bairro,
        matricula.cod_matricula AS cod_matricula,
        aluno.cod_aluno AS cod_aluno,
        relatorio.get_texto_sem_caracter_especial(pessoa.nome) AS nome_aluno,
@@ -345,6 +351,42 @@ LIMIT 1
 modules.componente_curricular.tipo_base,
 	view_componente_curricular.ordenamento AS componente_order,
     componente_curricular.nome as curricular_nome,
+    CASE
+           WHEN matricula_turma.remanejado = true THEN '-'
+           ELSE
+              CASE WHEN nota_componente_curricular_etapa1.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                replace(trunc(nota_componente_curricular_etapa1.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+              ELSE
+                nota_componente_curricular_etapa1.nota_arredondada
+              END
+       END AS nota1,
+       CASE
+           WHEN matricula_turma.remanejado = true THEN '-'
+           ELSE
+              CASE WHEN nota_componente_curricular_etapa2.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                replace(trunc(nota_componente_curricular_etapa2.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+              ELSE
+                nota_componente_curricular_etapa2.nota_arredondada
+              END
+       END AS nota2,
+       CASE
+           WHEN matricula_turma.remanejado = true THEN '-'
+           ELSE
+              CASE WHEN nota_componente_curricular_etapa3.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                replace(trunc(nota_componente_curricular_etapa3.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+              ELSE
+                nota_componente_curricular_etapa3.nota_arredondada
+              END
+       END AS nota3,
+       CASE
+           WHEN matricula_turma.remanejado = true THEN '-'
+           ELSE
+              CASE WHEN nota_componente_curricular_etapa4.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
+                replace(trunc(nota_componente_curricular_etapa4.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
+              ELSE
+                nota_componente_curricular_etapa4.nota_arredondada
+              END
+       END AS nota4,
     COALESCE(
 	   CASE
            WHEN matricula_turma.remanejado = true THEN '-'

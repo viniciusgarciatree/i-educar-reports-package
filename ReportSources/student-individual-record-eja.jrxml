@@ -128,6 +128,7 @@
 	<field name="carga_horaria_total" class="java.lang.String"/>
 	<field name="escola_bairro" class="java.lang.String"/>
 	<field name="bairro_aluno" class="java.lang.String"/>
+	<field name="telefone_escola" class="java.lang.String"/>
 	<group name="GroupTipoBase" minHeightToStartNewPage="94">
 		<groupExpression><![CDATA[$F{tipo_base}]]></groupExpression>
 	</group>
@@ -347,7 +348,7 @@
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{escola_bairro}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="330" y="73" width="90" height="12" uuid="f5e188c9-99a4-45c5-8689-5a55718262df"/>
@@ -1045,14 +1046,14 @@
 				<textFieldExpression><![CDATA[$F{bairro_aluno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="346" y="50" width="90" height="12" uuid="b30116cc-6d68-4dfb-bf33-626262f35b63">
+				<reportElement x="346" y="50" width="199" height="12" uuid="b30116cc-6d68-4dfb-bf33-626262f35b63">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{telefone} + "     " + $F{celular}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{telefone_escola}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="48" splitType="Stretch">
@@ -1479,7 +1480,7 @@
 			</frame>
 		</band>
 	</detail>
-	<pageFooter>
+	<lastPageFooter>
 		<band height="60" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
@@ -1585,5 +1586,5 @@
 				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
 			</textField>
 		</band>
-	</pageFooter>
+	</lastPageFooter>
 </jasperReport>
