@@ -28,7 +28,8 @@ class ComponenteCurricular_Model_ComponenteDataMapper extends CoreExt_DataMapper
     ];
 
     protected $_notPersistable = [
-        'cargaHoraria'
+        'cargaHoraria',
+        'cargaHorariaAuxiliar'
     ];
 
     /**
@@ -129,6 +130,7 @@ class ComponenteCurricular_Model_ComponenteDataMapper extends CoreExt_DataMapper
         ]);
 
         $componenteCurricular->cargaHoraria = $anoEscolar->cargaHoraria;
+        $componenteCurricular->cargaHorariaAuxiliar = $anoEscolar->cargaHorariaAuxiliar;
 
         return $componenteCurricular;
     }

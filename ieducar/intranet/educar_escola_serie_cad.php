@@ -243,7 +243,12 @@ class indice extends clsCadastro
 
                 foreach ($registros as $campo) {
                     $this->escola_serie_disciplina[$campo['ref_cod_disciplina']] = $campo['ref_cod_disciplina'];
-                    $this->escola_serie_disciplina_carga[$campo['ref_cod_disciplina']] = $campo['carga_horaria'];
+                    if(!empty($campo['carga_horaria_auxiliar'])){
+                        $this->escola_serie_disciplina_carga[$campo['ref_cod_disciplina']] = $campo['carga_horaria_auxiliar'];
+                    }else{
+                        $this->escola_serie_disciplina_carga[$campo['ref_cod_disciplina']] = $campo['carga_horaria'];
+                    }
+
                     $this->escola_serie_disciplina_anos_letivos[$campo['ref_cod_disciplina']] = $campo['anos_letivos'] ?: [];
 
                     if ($this->definirComponentePorEtapa) {
@@ -315,13 +320,13 @@ class indice extends clsCadastro
                         $anosLetivosComponente = $this->escola_serie_disciplina_anos_letivos[$registro->id];
                     }
 
-                    $cargaComponente = $registro->cargaHoraria;
+                    $cargaComponente = $registro->cargaHorariaAuxiliar ? $registro->cargaHorariaAuxiliar : $registro->cargaHoraria;
                     $etapas_utilizadas = $this->escola_serie_disciplina_etapa_utilizada[$registro->id];
 
                     $conteudo .= '<div style="margin-bottom: 10px; float: left">';
                     $conteudo .= "  <label style='display: block; float: left; width: 250px'><input type=\"checkbox\" $checked name=\"disciplinas[$registro->id]\" class='check_{$registro->id}' id=\"disciplinas[]\" value=\"{$registro->id}\">{$registro}</label>";
                     $conteudo .= "  <span style='display: block; float: left; width: 100px'>{$registro->abreviatura}</span>";
-                    $conteudo .= "  <label style='display: block; float: left; width: 100px;'><input type='text' class='carga_horaria' id='carga_horaria_{$registro->id}' name='carga_horaria[$registro->id]' value='{$cargaHoraria}' size='5' maxlength='7' data-id='$registro->id'></label>";
+                    $conteudo .= "  <label style='display: block; float: left; width: 100px;'><input type='text' class='carga_horaria' id='carga_horaria_{$registro->id}' name='carga_horaria[$registro->id]' value='{$cargaHoraria}' size='7' maxlength='7' data-id='$registro->id'></label>";
                     $conteudo .= "  <label style='display: block; float: left;  width: 180px;'><input type='checkbox' id='usar_componente[]' name='usar_componente[$registro->id]' value='1' " . ($usarComponente == true ? $checked : '') . ">($cargaComponente h)</label>";
 
                     $conteudo .= "
@@ -543,8 +548,10 @@ class indice extends clsCadastro
                 foreach ($this->disciplinas as $key => $campo) {
                     if (isset($this->usar_componente[$key])) {
                         $carga_horaria = null;
+                        $carga_horaria_auxiliar = null;
                     } else {
-                        $carga_horaria = $this->carga_horaria[$key];
+                        $carga_horaria = (int)$this->carga_horaria[$key];
+                        $carga_horaria_auxiliar = $this->carga_horaria[$key];;
                     }
 
                     $etapas_especificas = $this->etapas_especificas[$key];
@@ -558,7 +565,8 @@ class indice extends clsCadastro
                         $carga_horaria,
                         $etapas_especificas,
                         $etapas_utilizadas,
-                        $this->componente_anos_letivos[$key] ?: []
+                        $this->componente_anos_letivos[$key] ?: [],
+                        $carga_horaria_auxiliar
                     );
 
                     $existe = $obj->existe();

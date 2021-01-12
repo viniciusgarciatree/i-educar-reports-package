@@ -17,7 +17,8 @@ class clsModulesComponenteCurricularAnoEscolar extends Model
         $carga_horaria = null,
         $tipo_nota = null,
         $componentes = null,
-        $updateInfo = null
+        $updateInfo = null,
+        $carga_horaria_auxiliar = null
     ) {
         $this->_schema = 'modules.';
         $this->_tabela = "{$this->_schema}componente_curricular_ano_escolar";
@@ -26,6 +27,7 @@ class clsModulesComponenteCurricularAnoEscolar extends Model
             'componente_curricular_id',
             'ano_escolar_id',
             'carga_horaria',
+            'carga_horaria_auxiliar',
             'array_to_json(anos_letivos) as anos_letivos',
         ];
 
@@ -42,6 +44,7 @@ class clsModulesComponenteCurricularAnoEscolar extends Model
 
         if (is_numeric($carga_horaria)) {
             $this->$carga_horaria = $carga_horaria;
+            $this->$carga_horaria_auxiliar = $carga_horaria_auxiliar;
         }
 
         if (is_numeric($tipo_nota)) {
@@ -67,7 +70,8 @@ class clsModulesComponenteCurricularAnoEscolar extends Model
                     intval($componenteUpdate['id']),
                     intval($componenteUpdate['carga_horaria']),
                     intval($componenteUpdate['tipo_nota']),
-                    $componenteUpdate['anos_letivos']
+                    $componenteUpdate['anos_letivos'],
+                    $componenteUpdate['carga_horaria_auxiliar']
                 );
             }
         }
@@ -78,7 +82,8 @@ class clsModulesComponenteCurricularAnoEscolar extends Model
                     intval($componenteInsert['id']),
                     intval($componenteInsert['carga_horaria']),
                     intval($componenteInsert['tipo_nota']),
-                    $componenteInsert['anos_letivos']
+                    $componenteInsert['anos_letivos'],
+                    $componenteInsert['carga_horaria_auxiliar']
                 );
             }
         }
@@ -105,6 +110,7 @@ class clsModulesComponenteCurricularAnoEscolar extends Model
 
                 $this->updateInfo['update'][$u]['id'] = $componente['id'];
                 $this->updateInfo['update'][$u]['carga_horaria'] = $componente['carga_horaria'];
+                $this->updateInfo['update'][$u]['carga_horaria_auxiliar'] = $componente['carga_horaria_auxiliar'];
                 $this->updateInfo['update'][$u]['tipo_nota'] = $componente['tipo_nota'];
                 $this->updateInfo['update'][$u]['anos_letivos'] = $componente['anos_letivos'];
                 $this->updateInfo['update'][$u]['anos_letivos_inseridos'] = $anosLetivosDiff['inseridos'];
@@ -113,6 +119,7 @@ class clsModulesComponenteCurricularAnoEscolar extends Model
             } else {
                 $this->updateInfo['insert'][$i]['id'] = $componente['id'];
                 $this->updateInfo['insert'][$i]['carga_horaria'] = $componente['carga_horaria'];
+                $this->updateInfo['insert'][$i]['carga_horaria_auxiliar'] = $componente['carga_horaria_auxiliar'];
                 $this->updateInfo['insert'][$i]['tipo_nota'] = $componente['tipo_nota'];
                 $this->updateInfo['insert'][$i]['anos_letivos'] = $componente['anos_letivos'];
                 $i++;
@@ -193,7 +200,8 @@ SQL;
         $componente_curricular_id = null,
         $carga_horaria = null,
         $tipo_nota = null,
-        $anosLetivos = null
+        $anosLetivos = null,
+        $carga_horaria_auxiliar = null
     ) {
         if (is_numeric($componente_curricular_id) && is_numeric($carga_horaria)) {
             $db = new clsBanco();
@@ -209,7 +217,8 @@ SQL;
                     $this->ano_escolar_id,
                     $carga_horaria,
                     $tipo_nota,
-                    $anosLetivosFormatados
+                    $anosLetivosFormatados,
+                    '$carga_horaria_auxiliar'
             )";
 
             $db->Consulta($sql);
@@ -224,7 +233,8 @@ SQL;
         $componente_curricular_id = null,
         $carga_horaria = null,
         $tipo_nota = null,
-        $anosLetivos = null
+        $anosLetivos = null,
+        $carga_horaria_auxiliar = null
     ) {
         $db = new clsBanco();
         $set = '';
@@ -233,6 +243,7 @@ SQL;
         if (is_numeric($componente_curricular_id)) {
             if (is_numeric($carga_horaria)) {
                 $set .= "{$gruda}carga_horaria = {$carga_horaria}";
+                $set .= ", carga_horaria_auxiliar = '{$carga_horaria_auxiliar}'";
                 $gruda = ', ';
             }
 
@@ -307,9 +318,11 @@ SQL;
             }
 
             if (is_numeric($this->carga_horaria)) {
+                $gruda = ', ';
                 $campos .= "{$gruda}carga_horaria";
                 $valores .= "{$gruda}'{$this->carga_horaria}'";
-                $gruda = ', ';
+                $campos .= "{$gruda}carga_horaria_auxiliar";
+                $valores .= "{$gruda}'{$this->carga_horaria_auxiliar}'";
             }
 
             if (is_numeric($this->tipo_nota) && (int) $tipo_nota !== 0) {
@@ -350,7 +363,8 @@ SQL;
         $componente_curricular_id = null,
         $ano_escolar_id = null,
         $carga_horaria = null,
-        $tipo_nota = null
+        $tipo_nota = null,
+        $carga_horaria_auxiliar = null
     ) {
         $sql = "SELECT {$this->_campos_lista} FROM {$this->_tabela}";
         $filtros = '';
@@ -365,8 +379,9 @@ SQL;
             $whereAnd = ' AND ';
         }
         if (is_numeric($carga_horaria)) {
-            $filtros .= "{$whereAnd} carga_horaria = {$carga_horaria}";
             $whereAnd = ' AND ';
+            $filtros .= "{$whereAnd} carga_horaria = {$carga_horaria}";
+            $filtros .= "{$whereAnd} carga_horaria_auxiliar = {$carga_horaria_auxiliar}";
         }
         if (is_numeric($tipo_nota)) {
             $filtros .= "{$whereAnd} tipo_$tipo_nota = {$tipo_nota}";

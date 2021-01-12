@@ -485,16 +485,18 @@ class indice extends clsDetalhe
             foreach ($lista as $registro) {
 
                 if (!is_null($componentes[$registro->id]->cargaHoraria) || 0 != $componentes[$registro->id]->cargaHoraria) {
-                    $registro->cargaHoraria = $componentes[$registro->id]->cargaHoraria;
+                    $cargaHoraria = $componentes[$registro->id]->cargaHorariaAuxiliar ?? $componentes[$registro->id]->cargaHoraria;
+                }else{
+                    $cargaHoraria = $registro->cargaHorariaAuxiliar ?? $registro->cargaHoraria;
                 }
 
                 $this->tabela3 .= '<div style="margin-bottom: 10px; float: left" class="linha-disciplina" >';
                 $this->tabela3 .= "  <span style='display: block; float: left; width: 250px'>{$registro}</span>";
-                $this->tabela3 .= "  <span style='display: block; float: left; width: 100px'>{$registro->cargaHoraria}</span>";
+                $this->tabela3 .= "  <span style='display: block; float: left; width: 100px'>{$cargaHoraria} h</span>";
                 $this->tabela3 .= '</div>';
                 $this->tabela3 .= '<br style="clear: left" />';
 
-                $registro->cargaHoraria = '';
+                $cargaHoraria = '';
             }
 
             $disciplinas  = '<table cellspacing="0" cellpadding="0" border="0">';

@@ -15,6 +15,7 @@ class LegacySchoolGradeDiscipline extends Model
         'ref_cod_disciplina',
         'ativo',
         'carga_horaria',
+        'carga_horaria_auxiliar',
         'etapas_especificas',
         'etapas_utilizadas',
         'updated_at',

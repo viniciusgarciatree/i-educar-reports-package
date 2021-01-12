@@ -113,6 +113,8 @@ class indice extends clsDetalhe
 
         $disciplines = $service->getAllDisciplines($this->ref_cod_escola, $this->ref_cod_serie)
             ->pluck('carga_horaria', 'ref_cod_disciplina');
+        $disciplinesAuxiliar = $service->getAllDisciplines($this->ref_cod_escola, $this->ref_cod_serie)
+            ->pluck('carga_horaria_auxiliar', 'ref_cod_disciplina');
 
         if (0 < count($componentes)) {
             $tabela = '
@@ -135,12 +137,12 @@ class indice extends clsDetalhe
                     '
           <tr>
             <td %s align="left">%s</td>
-            <td %s align="center">%.0f h</td>
+            <td %s align="center">%s h</td>
           </tr>',
                     $color,
                     $componente,
                     $color,
-                    $disciplines[intval($componente->id)] ?? $componente->cargaHoraria
+                    $disciplinesAuxiliar[intval($componente->id)] ?? $disciplines[intval($componente->id)] ?? $componente->cargaHorariaAuxiliar ?? $componente->cargaHoraria
                 );
 
                 $cont++;
