@@ -83,6 +83,10 @@ class ComponenteCurricular_Model_TurmaDataMapper extends CoreExt_DataMapper
         foreach ($componentes as $componente) {
             $id = $componente['componenteCurricular'];
 
+            if(isset($componente['usarComponente']) && $componente['usarComponente']){
+                continue;
+            }
+
             if (isset($objects[$id])) {
                 $insert[$id] = $objects[$id];
                 $insert[$id]->cargaHoraria = $componente['cargaHoraria'];

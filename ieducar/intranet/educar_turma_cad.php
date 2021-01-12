@@ -1508,6 +1508,7 @@ class indice extends clsCadastro
             $componentesTurma[] = [
                 'id' => $value,
                 'componenteCurricular' => $value,
+                'usarComponente' => isset($usarComponente[$key]),
                 'cargaHoraria' => $carga,
                 'cargaHorariaAuxiliar' => $carga,
                 'docenteVinculado' => $docente_,
