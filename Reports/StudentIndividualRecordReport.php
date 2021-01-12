@@ -96,6 +96,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         }
 
         unset($this->args['exibir_paracer_descritivo']);
+        $arrMain[0]['telefone_escola'] =  (!empty($header[0]['fone_ddd']) ? '(' . $header[0]['fone_ddd'] . ') ' : '' ) . (!empty($header[0]['fone']) ? $header[0]['fone'] : "");
 
         if (count($arrMain) == 0) {
             return [];

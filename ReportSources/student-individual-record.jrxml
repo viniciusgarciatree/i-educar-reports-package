@@ -127,6 +127,7 @@
 	<field name="observacao_all" class="java.lang.String"/>
 	<field name="carga_horaria_total" class="java.lang.String"/>
 	<field name="bairro_aluno" class="java.lang.String"/>
+	<field name="telefone_escola" class="java.lang.String"/>
 	<group name="GroupTipoBase" minHeightToStartNewPage="94">
 		<groupExpression><![CDATA[$F{tipo_base}]]></groupExpression>
 	</group>
@@ -346,7 +347,7 @@
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{logradouro}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="330" y="73" width="90" height="12" uuid="f5e188c9-99a4-45c5-8689-5a55718262df"/>
@@ -1044,14 +1045,14 @@
 				<textFieldExpression><![CDATA[$F{bairro_aluno}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="346" y="50" width="90" height="12" uuid="b30116cc-6d68-4dfb-bf33-626262f35b63">
+				<reportElement x="346" y="50" width="199" height="12" uuid="b30116cc-6d68-4dfb-bf33-626262f35b63">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<box leftPadding="3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{telefone} + "     " + $F{celular}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{telefone_escola}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="48" splitType="Stretch">
@@ -1070,7 +1071,6 @@
 			</subreport>
 		</band>
 		<band height="108" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
 				<reportElement key="" x="0" y="0" width="555" height="12" uuid="c0375ad7-e9e3-4430-b8e9-c1152408c48e">
 					<property name="com.jaspersoft.studio.element.name" value="ciclo"/>
@@ -1463,7 +1463,7 @@
 			</frame>
 		</band>
 	</detail>
-	<pageFooter>
+	<lastPageFooter>
 		<band height="60" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
@@ -1569,5 +1569,5 @@
 				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
 			</textField>
 		</band>
-	</pageFooter>
+	</lastPageFooter>
 </jasperReport>
