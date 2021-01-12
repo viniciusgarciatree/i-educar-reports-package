@@ -142,7 +142,7 @@ class indice extends clsDetalhe
                     $color,
                     $componente,
                     $color,
-                    $disciplinesAuxiliar[intval($componente->id)] ?? $disciplines[intval($componente->id)] ?? $componente->cargaHoraria
+                    $disciplinesAuxiliar[intval($componente->id)] ?? $disciplines[intval($componente->id)] ?? $componente->cargaHorariaAuxiliar ?? $componente->cargaHoraria
                 );
 
                 $cont++;
