@@ -49,6 +49,41 @@ class RelatoriosCaratinga extends Migration
                     'active'      => true,
                 ]
             );
+
+            Menu::query()->updateOrCreate(
+                [
+                    'old' => 999732
+                ],
+                [
+                    'parent_id'   => Menu::query()->where('old', 999300)->firstOrFail()->getKey(),
+                    'title'       => 'Relatório de dados familiares do aluno',
+                    'description' => null,
+                    'link'        => '/module/Reports/StudentsByRelatives',
+                    'order'       => 0,
+                    'old'         => 999732,
+                    'process'     => 999732,
+                    'active'      => true,
+                ]
+            );
+
+            Menu::query()->updateOrCreate(
+                [
+                    'old' => 9999200
+                ],
+                [
+                    'parent_id'   => Menu::query()->where('old', 999861)->firstOrFail()->getKey(),
+                    'title'       => 'Ficha do Aluno',
+                    'description' => 'Ficha do Aluno',
+                    'link'        => '/module/Reports/StudentSheetByCustom',
+                    'order'       => 0,
+                    'old'         => 9999201,
+                    'process'     => 9999201,
+                    'parent_old'  => 999861,
+                    'active'      => true,
+                ]
+            );
+
+            $result = DB::select('UPDATE public.menus SET active = false where id = 207 and old = 999203');
         }
     }
 
@@ -61,5 +96,6 @@ class RelatoriosCaratinga extends Migration
     {
         Menu::query()->where('process', 9999203)->delete();
         Menu::query()->where('process', 9999206)->delete();
+        Menu::query()->where('process', 9999200)->delete();
     }
 }
