@@ -70,33 +70,27 @@ class StudentsByRelativesReport extends Portabilis_Report_ReportCore
   coalesce(pes_pai.nome, '')              as pai_nome,
   coalesce(pes_mae.nome, '')              as mae_nome
 FROM
-  pmieducar.instituicao
-  INNER JOIN pmieducar.escola ON TRUE AND escola.ref_cod_instituicao = instituicao.cod_instituicao
-  INNER JOIN pmieducar.escola_ano_letivo
-    ON TRUE AND pmieducar.escola_ano_letivo.ref_cod_escola = pmieducar.escola.cod_escola
-  INNER JOIN pmieducar.escola_curso
-    ON TRUE AND escola_curso.ativo = 1 AND escola_curso.ref_cod_escola = escola.cod_escola
-  INNER JOIN pmieducar.curso ON TRUE AND curso.cod_curso = escola_curso.ref_cod_curso AND curso.ativo = 1
-  INNER JOIN pmieducar.escola_serie
-    ON TRUE AND escola_serie.ativo = 1 AND escola_serie.ref_cod_escola = escola.cod_escola
-  INNER JOIN pmieducar.serie ON TRUE AND serie.cod_serie = escola_serie.ref_cod_serie AND serie.ativo = 1
-  INNER JOIN pmieducar.turma ON TRUE AND turma.ref_ref_cod_escola = escola.cod_escola AND
-                                turma.ref_cod_curso = escola_curso.ref_cod_curso AND
-                                turma.ref_ref_cod_serie = escola_serie.ref_cod_serie AND turma.ativo = 1
-  INNER JOIN pmieducar.matricula_turma ON TRUE AND matricula_turma.ref_cod_turma = turma.cod_turma
-  INNER JOIN pmieducar.matricula
-    ON TRUE AND matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
-  LEFT JOIN pmieducar.turma_turno
-    ON TRUE AND turma_turno.id = turma.turma_turno_id AND turma.cod_turma = matricula_turma.ref_cod_turma
-  INNER JOIN pmieducar.aluno ON TRUE AND pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
-  INNER JOIN cadastro.fisica ON TRUE AND cadastro.fisica.idpes = pmieducar.aluno.ref_idpes
-  LEFT JOIN cadastro.pessoa ON TRUE AND cadastro.pessoa.idpes = cadastro.fisica.idpes
-  LEFT JOIN cadastro.juridica ON TRUE AND juridica.idpes = escola.ref_idpes
-  LEFT JOIN cadastro.pessoa pes_mae ON pes_mae.idpes = fisica.idpes_mae
-  LEFT JOIN cadastro.pessoa pes_pai ON pes_pai.idpes = fisica.idpes_pai
+  pmieducar.turma 
+INNER JOIN pmieducar.matricula_turma ON TRUE AND matricula_turma.ref_cod_turma = turma.cod_turma
+INNER JOIN pmieducar.matricula ON TRUE AND matricula.cod_matricula = matricula_turma.ref_cod_matricula AND matricula.ativo = 1
+INNER JOIN pmieducar.aluno ON TRUE AND pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
+INNER JOIN pmieducar.escola ON TRUE AND escola.cod_escola = turma.ref_ref_cod_escola
+INNER JOIN pmieducar.escola_ano_letivo ON TRUE AND pmieducar.escola_ano_letivo.ref_cod_escola = pmieducar.escola.cod_escola
+INNER JOIN pmieducar.escola_curso ON TRUE AND escola_curso.ativo = 1 AND escola_curso.ref_cod_escola = escola.cod_escola
+INNER JOIN pmieducar.curso ON TRUE AND curso.cod_curso = escola_curso.ref_cod_curso AND curso.ativo = 1
+INNER JOIN pmieducar.escola_serie ON TRUE AND escola_serie.ativo = 1 AND escola_serie.ref_cod_escola = escola.cod_escola
+INNER JOIN pmieducar.serie ON TRUE AND serie.cod_serie = escola_serie.ref_cod_serie AND serie.ativo = 1
+LEFT JOIN pmieducar.turma_turno ON TRUE AND turma_turno.id = turma.turma_turno_id AND turma.cod_turma = matricula_turma.ref_cod_turma
+INNER JOIN cadastro.fisica ON TRUE AND cadastro.fisica.idpes = pmieducar.aluno.ref_idpes
+LEFT JOIN cadastro.pessoa ON TRUE AND cadastro.pessoa.idpes = cadastro.fisica.idpes
+LEFT JOIN cadastro.juridica ON TRUE AND juridica.idpes = escola.ref_idpes
+LEFT JOIN cadastro.pessoa pes_mae ON pes_mae.idpes = fisica.idpes_mae
+LEFT JOIN cadastro.pessoa pes_pai ON pes_pai.idpes = fisica.idpes_pai
+
 WHERE (CASE WHEN {$escola} = 0 THEN TRUE ELSE {$escola} = escola.cod_escola END)
               AND (CASE WHEN {$aluno} = 0 THEN TRUE ELSE {$aluno} = aluno.cod_aluno END)
               AND (CASE WHEN {$ano} = 0 THEN TRUE ELSE {$ano} = escola_ano_letivo.ano END)
+              AND (CASE WHEN {$ano} = 0 THEN TRUE ELSE {$ano} = matricula.ano END)
               AND (CASE WHEN {$curso} = 0 THEN TRUE ELSE {$curso} = curso.cod_curso END)
               AND (CASE WHEN {$serie} = 0 THEN TRUE ELSE {$serie} = serie.cod_serie END)
               AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE {$turma} = turma.cod_turma END)
