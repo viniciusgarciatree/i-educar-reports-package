@@ -39,7 +39,7 @@ class StudentsByRelativesReport extends Portabilis_Report_ReportCore
         $curso = $this->args['curso'] ?: 0;
         $serie = $this->args['serie'] ?: 0;
         $turma = $this->args['turma'] ?: 0;
-        $ano = $this->args['ano'] ?: date('Y');
+        $ano = $this->args['ano'] ?: 0;
 
         $return = "
            SELECT
