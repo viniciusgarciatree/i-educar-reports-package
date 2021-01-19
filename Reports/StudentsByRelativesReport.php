@@ -41,7 +41,7 @@ class StudentsByRelativesReport extends Portabilis_Report_ReportCore
         $turma = $this->args['turma'] ?: 0;
         $ano = $this->args['ano'] ?: 0;
 
-        $return = "
+        return "
 SELECT 
     cod_escola,
     aluno.cod_aluno                         AS cod_aluno,
@@ -157,7 +157,5 @@ ORDER BY
   pes_pai.nome,
   pes_mae.nome
         ";
-
-        return $return;
     }
 }
