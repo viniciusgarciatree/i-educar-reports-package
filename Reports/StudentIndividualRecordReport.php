@@ -39,7 +39,6 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         $exibir_paracer_descritivo = $this->args['exibir_paracer_descritivo'];
         $queryMainReport   = $this->getSqlMainReport();
         $queryComponente   = $this->getSqlComponenteReport();
-        dd($queryComponente);
         $queryObservacao   = $this->getSqlObservacaoReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
