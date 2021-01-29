@@ -87,6 +87,11 @@
 	<field name="nota2" class="java.lang.String"/>
 	<field name="nota3" class="java.lang.String"/>
 	<field name="nota4" class="java.lang.String"/>
+	<field name="nota_exame" class="java.lang.String"/>
+	<field name="nota4num" class="java.lang.Double"/>
+	<field name="nota3num" class="java.lang.Double"/>
+	<field name="nota2num" class="java.lang.Double"/>
+	<field name="nota1num" class="java.lang.Double"/>
 	<variable name="sum_carga_horaria_total" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{carga_horaria}]]></variableExpression>
 	</variable>
@@ -978,7 +983,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota_recuperacao_4}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota_exame}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="502" y="0" width="26" height="14" uuid="8924aa0a-1b2e-4e1f-9868-30bc005dc702">

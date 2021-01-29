@@ -350,42 +350,17 @@ LIMIT 1
 modules.componente_curricular.tipo_base,
 	view_componente_curricular.ordenamento AS componente_order,
     componente_curricular.nome as curricular_nome,
-    CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa1.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa1.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa1.nota_arredondada
-              END
-       END AS nota1,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa2.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa2.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa2.nota_arredondada
-              END
-       END AS nota2,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa3.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa3.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa3.nota_arredondada
-              END
-       END AS nota3,
-       CASE
-           WHEN matricula_turma.remanejado = true THEN '-'
-           ELSE
-              CASE WHEN nota_componente_curricular_etapa4.nota_arredondada ~ '^-?[0-9]+\.?[0-9]*$' THEN
-                replace(trunc(nota_componente_curricular_etapa4.nota_arredondada::numeric, COALESCE(regra_avaliacao.qtd_casas_decimais, 1))::varchar, '.', ',')
-              ELSE
-                nota_componente_curricular_etapa4.nota_arredondada
-              END
-       END AS nota4,
+    
+     nota_etapa1.nota AS nota1num,
+     nota_etapa1.nota_arredondada AS nota1,
+     nota_etapa2.nota AS nota2num,
+     nota_etapa2.nota_arredondada AS nota2,
+     nota_etapa3.nota AS nota3num,
+     nota_etapa3.nota_arredondada AS nota3,
+     nota_etapa4.nota AS nota4num,
+     nota_etapa4.nota_arredondada AS nota4,
+     nota_exame.nota AS nota_exame,
+       
     COALESCE(
 	   CASE
            WHEN matricula_turma.remanejado = true THEN '-'
@@ -580,13 +555,33 @@ LEFT JOIN modules.nota_componente_curricular AS nota_componente_curricular_etapa
                                                                                       AND nota_componente_curricular_etapa3.etapa = '3')
 LEFT JOIN modules.nota_componente_curricular AS nota_componente_curricular_etapa4 ON (nota_componente_curricular_etapa4.nota_aluno_id = nota_aluno.id
                                                                                       AND nota_componente_curricular_etapa4.componente_curricular_id = view_componente_curricular.id
-                                                                                      AND nota_componente_curricular_etapa4.etapa = '4')
+                                                                                      AND nota_componente_curricular_etapa4.etapa = '4')                                                                                      
 INNER JOIN modules.componente_curricular on componente_curricular.id = view_componente_curricular.id
 LEFT JOIN modules.parecer_aluno ON (parecer_aluno.matricula_id = matricula.cod_matricula)
 INNER JOIN relatorio.view_dados_escola ON TRUE  AND (escola.cod_escola = view_dados_escola.cod_escola)
 LEFT JOIN modules.componente_curricular_turma ON componente_curricular_turma.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.turma_id = turma.cod_turma AND componente_curricular_turma.ano_escolar_id = serie.cod_serie
 LEFT JOIN modules.componente_curricular_ano_escolar as ccae ON ccae.componente_curricular_id = componente_curricular.id AND serie.cod_serie = ccae.ano_escolar_id
 LEFT JOIN relatorio.view_situacao on view_situacao.cod_turma = turma.cod_turma and view_situacao.cod_matricula = matricula.cod_matricula and view_situacao.cod_situacao = any (array[1, 2, 3, 4, 5, 6, 12, 13])
+
+
+LEFT JOIN modules.nota_componente_curricular nota_etapa1 ON (nota_etapa1.nota_aluno_id = nota_aluno.id
+                                                                    AND nota_etapa1.componente_curricular_id = view_componente_curricular.id
+                                                                    AND nota_etapa1.etapa = '1')
+        LEFT JOIN modules.nota_componente_curricular nota_etapa2 ON (nota_etapa2.nota_aluno_id = nota_aluno.id
+                                                                    AND nota_etapa2.componente_curricular_id = view_componente_curricular.id
+                                                                    AND nota_etapa2.etapa = '2')
+        LEFT JOIN modules.nota_componente_curricular nota_etapa3 ON (nota_etapa3.nota_aluno_id = nota_aluno.id
+                                                                    AND nota_etapa3.componente_curricular_id = view_componente_curricular.id
+                                                                    AND nota_etapa3.etapa = '3')
+        LEFT JOIN modules.nota_componente_curricular nota_etapa4 ON (nota_etapa4.nota_aluno_id = nota_aluno.id
+                                                                    AND nota_etapa4.componente_curricular_id = view_componente_curricular.id
+                                                                    AND nota_etapa4.etapa = '4')
+        LEFT JOIN modules.nota_componente_curricular nota_exame ON (nota_exame.nota_aluno_id = nota_aluno.id
+                                                                   AND nota_exame.componente_curricular_id = view_componente_curricular.id
+                                                                   AND nota_exame.etapa = 'Rc')
+        LEFT JOIN modules.nota_componente_curricular_media ON (nota_componente_curricular_media.nota_aluno_id = nota_aluno.id
+                                                              AND nota_componente_curricular_media.componente_curricular_id = view_componente_curricular.id)
+
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}
   AND escola.cod_escola = {$escola}
