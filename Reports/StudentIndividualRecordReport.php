@@ -39,6 +39,7 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
         $exibir_paracer_descritivo = $this->args['exibir_paracer_descritivo'];
         $queryMainReport   = $this->getSqlMainReport();
         $queryComponente   = $this->getSqlComponenteReport();
+        dd($queryComponente);
         $queryObservacao   = $this->getSqlObservacaoReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
 
@@ -353,13 +354,19 @@ modules.componente_curricular.tipo_base,
     
      nota_etapa1.nota AS nota1num,
      nota_etapa1.nota_arredondada AS nota1,
+	 CASE WHEN nota_etapa1.etapa = 'Rc' THEN nota_etapa1.nota_arredondada ELSE '-' END recuperacao1,
      nota_etapa2.nota AS nota2num,
      nota_etapa2.nota_arredondada AS nota2,
+     CASE WHEN nota_etapa2.etapa = 'Rc' THEN nota_etapa2.nota_arredondada ELSE '-' END recuperacao2,
      nota_etapa3.nota AS nota3num,
      nota_etapa3.nota_arredondada AS nota3,
+     CASE WHEN nota_etapa3.etapa = 'Rc' THEN nota_etapa3.nota_arredondada ELSE '-' END recuperacao3,
      nota_etapa4.nota AS nota4num,
      nota_etapa4.nota_arredondada AS nota4,
-     nota_exame.nota AS nota_exame,
+     CASE WHEN nota_etapa4.etapa = 'Rc' THEN nota_etapa4.nota_arredondada ELSE '-' END recuperacao4,
+     nota_componente_curricular_media.media_arredondada AS media,
+     nota_componente_curricular_media.media AS medianum,
+     nota_exame.nota_arredondada AS nota_exame,
        
     COALESCE(
 	   CASE
