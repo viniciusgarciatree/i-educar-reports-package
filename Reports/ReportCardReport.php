@@ -144,8 +144,10 @@ class ReportCardReport extends Portabilis_Report_ReportCore
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
             ]);
         } else {
+            dd($this->templateName());
             unset($this->args['modelo']);
             $queryMainReport = $this->getSqlMainReport();
+
             $queryHeaderReport = $this->getSqlHeaderReport();
             $arrMain = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
             foreach ($arrMain as $index => $value) {
