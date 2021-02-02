@@ -138,7 +138,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
             unset($this->args['modelo']);
             unset($this->args['observacoes']);
-            
+
             return array_merge([
                 'main' => $arrMain,
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
