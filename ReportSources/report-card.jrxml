@@ -305,13 +305,6 @@
 						<pen lineWidth="0.25"/>
 					</graphicElement>
 				</line>
-				<textField pattern="#,##0 ‰" isBlankWhenNull="true">
-					<reportElement x="525" y="78" width="26" height="11" uuid="a186a095-592f-4305-9371-f71862d9c46a"/>
-					<textElement textAlignment="Right">
-						<font fontName="DejaVu Sans" size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{frequencia}]]></textFieldExpression>
-				</textField>
 				<line>
 					<reportElement x="443" y="64" width="1" height="26" uuid="ccbc9c0b-4fdc-43a4-bc50-ceb9576b7990"/>
 					<graphicElement>
@@ -627,7 +620,7 @@
 				</staticText>
 				<textField>
 					<reportElement x="525" y="78" width="26" height="11" uuid="1744a6f4-b690-402c-abdc-60c166c44957">
-						<printWhenExpression><![CDATA[100 - (($F{total_geral_faltas_componente} * $F{curso_hora_falta})/$F{carga_horaria_serie}) == 100.0]]></printWhenExpression>
+						<printWhenExpression><![CDATA[(100 - (($F{total_geral_faltas_componente} * $F{curso_hora_falta})/$F{carga_horaria_serie})) == 100.0]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Right">
 						<font fontName="DejaVu Sans" size="8"/>
@@ -636,7 +629,7 @@
 				</textField>
 				<textField pattern="#,##0 ‰">
 					<reportElement x="525" y="78" width="26" height="11" uuid="1744a6f4-b690-402c-abdc-60c166c44957">
-						<printWhenExpression><![CDATA[100 - (($F{total_geral_faltas_componente} * $F{curso_hora_falta})/$F{carga_horaria_serie}) != 100.0]]></printWhenExpression>
+						<printWhenExpression><![CDATA[(100 - (($F{total_geral_faltas_componente} * $F{curso_hora_falta})/$F{carga_horaria_serie})) != 100]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Right">
 						<font fontName="DejaVu Sans" size="8"/>
