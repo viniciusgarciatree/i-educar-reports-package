@@ -32,6 +32,7 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
      */
     public function getJsonData()
     {
+        $this->args['branco'] = ($this->args['branco'] == 'true' ? true : false);
         $queryMainReport = $this->getSqlMainReport();
         $queryHeaderReport = $this->getSqlHeaderReport();
         $servants = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
@@ -40,7 +41,7 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
         $ids = [];
 
         foreach ($servants as $servant) {
-            $ids[] = $servant['cod_servidor'];
+            $ids[] = $servant['servidor'];
         }
 
         return [
@@ -120,7 +121,7 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 translate(upper(municipio_mora.sigla_uf),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS estado_casa_servidor,
                 translate(upper(municipio_mora.nome),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS municipio_casa_servidor,
                 translate(upper(logradouro.nome),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS nm_logradouro,
-                translate(upper(logradouro.idtlog),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS tipo_logradouro,
+                translate(upper(logradouro.idtlog::varchar),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS tipo_logradouro,
                 translate(upper(endereco_pessoa.complemento),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS complemento,
                 endereco_pessoa.cep AS cep,
                 endereco_pessoa.numero AS numero_casa,
