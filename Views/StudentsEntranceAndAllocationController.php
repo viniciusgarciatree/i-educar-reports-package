@@ -14,7 +14,7 @@ class StudentsEntranceAndAllocationController extends Portabilis_Controller_Repo
     /**
      * @var string
      */
-    protected $_titulo = 'Relação de alunos por data de entrada e enturmação';
+    protected $_titulo = 'Relação de alunos por data de matrícula e enturmação';
 
     /**
      * @inheritdoc
@@ -25,7 +25,7 @@ class StudentsEntranceAndAllocationController extends Portabilis_Controller_Repo
 
         Portabilis_View_Helper_Application::loadStylesheet($this, 'intranet/styles/localizacaoSistema.css');
 
-        $this->breadcrumb('Relação de alunos por data de entrada e enturmação', [
+        $this->breadcrumb('Relação de alunos por data de matrícula e enturmação', [
             'educar_index.php' => 'Escola',
         ]);
     }
