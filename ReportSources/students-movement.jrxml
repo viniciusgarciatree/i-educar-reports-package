@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_movimento_alunos" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6195db9f-841b-4fba-959a-7aeaf50ae71d">
 	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
@@ -1429,7 +1429,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{soma10}]]></textFieldExpression>
 			</textField>
-			<textField  isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="75" width="802" height="16" uuid="04858f81-60d8-4bd0-a11b-06af1e1a82ff"/>
 				<box>
 					<topPen lineWidth="0.0" lineColor="#F0F0F0"/>
@@ -1465,7 +1465,9 @@
 				<text><![CDATA[Observações:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="120" width="802" height="17" uuid="04858f81-60d8-4bd0-a11b-06af1e1a82ff"/>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="120" width="802" height="17" uuid="04858f81-60d8-4bd0-a11b-06af1e1a82ff">
+					<printWhenExpression><![CDATA[false]]></printWhenExpression>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineColor="#F0F0F0"/>
 					<leftPen lineWidth="0.0" lineColor="#F0F0F0"/>
