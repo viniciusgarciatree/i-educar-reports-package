@@ -525,8 +525,8 @@ modules.componente_curricular.tipo_base,
    		ELSE 0
    END)::integer AS carga_horaria
    ,(CASE
-       WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN REPLACE(componente_curricular_turma.carga_horaria_auxiliar::varchar,'.',':')
-       WHEN ccae.carga_horaria_auxiliar is not null THEN REPLACE(ccae.carga_horaria_auxiliar::varchar,'.',':')
+       WHEN componente_curricular_turma.carga_horaria is not null AND componente_curricular_turma.carga_horaria_auxiliar is not null THEN REPLACE(componente_curricular_turma.carga_horaria_auxiliar::varchar,'.',':')
+       WHEN ccae.carga_horaria is not null AND ccae.carga_horaria_auxiliar is not null THEN REPLACE(ccae.carga_horaria_auxiliar::varchar,'.',':')
        ELSE ''
    END)::varchar AS carga_horaria_auxiliar
    ,(CASE
