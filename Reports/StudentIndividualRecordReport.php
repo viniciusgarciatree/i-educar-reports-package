@@ -154,7 +154,6 @@ SELECT
        municipio.nome AS cidade_nascimento,
        turma.nm_turma,
        matricula.ano,
-       COALESCE(endpes.numero::text,'') as numero,
        trim(leading ' ' from concat(fone_telefone.ddd,'', to_char(fone_telefone.fone, '99999-9999'))::text) as telefone,
 	   trim(leading ' ' from concat(fone_celular.ddd,'',to_char(fone_celular.fone, '9 9999-9999'))::text) as celular,
        CASE
@@ -163,8 +162,9 @@ SELECT
             ELSE 'Estrangeiro'
        END as nacionalidade,
        COALESCE(fisica.nis_pis_pasep::text,'') AS nis_pis_pasep,
-       logradouro.nome as logradouro_aluno,
-       bairro.nome as bairro_aluno,
+       COALESCE(pl.number::text,'') as numero,
+       COALESCE(pl.address::text,'') as logradouro_aluno,
+       COALESCE(pl.neighborhood::text,'') as bairro_aluno,
        COALESCE(fisica.sexo,'') as sexo,
        eca.cod_aluno_inep AS cod_inep,
        view_situacao.texto_situacao_simplificado AS situacao_simplificado,
@@ -257,9 +257,8 @@ INNER JOIN relatorio.view_situacao ON (view_situacao.cod_matricula = matricula.c
 LEFT JOIN pmieducar.historico_escolar  on historico_escolar.ref_cod_aluno = aluno.cod_aluno and historico_escolar.ano = matricula.ano
 LEFT JOIN modules.parecer_aluno ON (parecer_aluno.matricula_id = matricula.cod_matricula)
 INNER JOIN relatorio.view_dados_escola ON TRUE  AND (escola.cod_escola = view_dados_escola.cod_escola)
-LEFT JOIN cadastro.endereco_pessoa endpes ON endpes.idpes = aluno.ref_idpes
-LEFT JOIN public.logradouro ON logradouro.idlog = endpes.idlog
-LEFT JOIN public.bairro ON bairro.idbai = endpes.idbai
+LEFT JOIN public.person_has_place as phsp ON phsp.person_id = aluno.ref_idpes
+LEFT JOIN public.places as pl ON pl.id = phsp.place_id
 LEFT JOIN modules.educacenso_cod_aluno eca ON (eca.cod_aluno = aluno.cod_aluno)
 LEFT JOIN cadastro.fone_pessoa fone_telefone ON TRUE AND fone_telefone.idpes = fisica.idpes_mae  AND fone_telefone.tipo = 1
 LEFT JOIN cadastro.fone_pessoa fone_celular ON TRUE  AND fone_celular.idpes = fisica.idpes_mae AND fone_celular.tipo = 3
