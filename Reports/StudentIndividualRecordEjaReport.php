@@ -541,11 +541,13 @@ modules.componente_curricular.tipo_base,
   END,0) AS falta4,
   (CASE
    		WHEN componente_curricular_turma.carga_horaria is not null THEN componente_curricular_turma.carga_horaria
+   		WHEN esd.carga_horaria is not null THEN esd.carga_horaria
 		WHEN ccae.carga_horaria is not null THEN ccae.carga_horaria
    		ELSE 0
    END)::integer AS carga_horaria
    ,(CASE
        WHEN componente_curricular_turma.carga_horaria_auxiliar is not null THEN REPLACE(componente_curricular_turma.carga_horaria_auxiliar::varchar,'.',':')
+       WHEN esd.carga_horaria is not null AND esd.carga_horaria_auxiliar is not null THEN REPLACE(esd.carga_horaria_auxiliar::varchar,'.',':')
        WHEN ccae.carga_horaria_auxiliar is not null THEN REPLACE(ccae.carga_horaria_auxiliar::varchar,'.',':')
        ELSE ''
    END)::varchar AS carga_horaria_auxiliar
@@ -587,6 +589,7 @@ LEFT JOIN modules.parecer_aluno ON (parecer_aluno.matricula_id = matricula.cod_m
 INNER JOIN relatorio.view_dados_escola ON TRUE  AND (escola.cod_escola = view_dados_escola.cod_escola)
 LEFT JOIN modules.componente_curricular_turma ON componente_curricular_turma.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.turma_id = turma.cod_turma AND componente_curricular_turma.ano_escolar_id = serie.cod_serie
 LEFT JOIN modules.componente_curricular_ano_escolar as ccae ON ccae.componente_curricular_id = componente_curricular.id AND componente_curricular_turma.ano_escolar_id = ccae.ano_escolar_id
+LEFT JOIN pmieducar.escola_serie_disciplina AS esd ON esd.ref_ref_cod_serie = serie.cod_serie and esd.ref_ref_cod_escola = escola.cod_escola AND esd.ref_cod_disciplina = componente_curricular.id
 LEFT JOIN relatorio.view_situacao on view_situacao.cod_turma = turma.cod_turma and view_situacao.cod_matricula = matricula.cod_matricula and view_situacao.cod_situacao = any (array[1, 2, 3, 4, 5, 6, 12, 13])
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}
