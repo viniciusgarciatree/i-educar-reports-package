@@ -5,7 +5,7 @@ use iEducar\Reports\JsonDataSource;
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'App/Model/IedFinder.php';
 
-class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
+class StudentAccompanyRecordVersaReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
 
@@ -14,7 +14,7 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return 'student-accompany-record';
+        return 'student-accompany-record-versa';
     }
 
     /**
@@ -43,6 +43,7 @@ class StudentAccompanyRecordReport extends Portabilis_Report_ReportCore
         }
 
         $tipoBase = ComponenteCurricular_Model_TipoBase::getInstance();
+        $tipos = $tipoBase->getKeys();
 
         $dataNotas  = [];
         $dataParece  = [];
