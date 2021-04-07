@@ -13,7 +13,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<parameter name="logo1" class="java.lang.String">
+	<parameter name="logo" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="cod_instituicao" class="java.lang.Integer">
@@ -64,7 +64,7 @@
 				<reportElement x="2" y="10" width="70" height="61" uuid="fbb91202-aaa8-4845-a58d-c4beefd62ad8">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<image hAlign="Right" vAlign="Middle">
 				<reportElement x="730" y="11" width="70" height="61" uuid="a1bcf1c7-d089-42c3-9d06-58837f5db84f">

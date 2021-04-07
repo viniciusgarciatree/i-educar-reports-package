@@ -8,7 +8,7 @@
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
 	<parameter name="ano" class="java.lang.Integer"/>
-	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["/home/lucas/projects/ieducar/ieducar-utils/reports/jasperreports/"]]></defaultValueExpression>
 	</parameter>
@@ -122,8 +122,8 @@
 		<band height="50">
 			<subreport>
 				<reportElement stretchType="RelativeToBandHeight" x="12" y="0" width="540" height="50" uuid="35b2eff6-857b-46b7-8585-5c24f172455e"/>
-				<subreportParameter name="logo1">
-					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>

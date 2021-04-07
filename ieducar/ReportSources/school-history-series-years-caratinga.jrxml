@@ -14,7 +14,7 @@
 	<parameter name="aluno" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="cabecalho_alternativo" class="java.lang.Integer"/>
 	<parameter name="nm_secretario" class="java.lang.String"/>
 	<parameter name="nm_diretor" class="java.lang.String"/>
@@ -2070,8 +2070,8 @@
 				<reportElement stretchType="RelativeToBandHeight" x="6" y="0" width="544" height="50" uuid="732ae0d7-8502-4f9a-83f2-cfca8711d86c">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
-				<subreportParameter name="logo1">
-					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>

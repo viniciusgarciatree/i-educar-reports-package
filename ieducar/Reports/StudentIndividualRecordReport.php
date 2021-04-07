@@ -63,7 +63,8 @@ class StudentIndividualRecordReport extends Portabilis_Report_ReportCore
             } else {
                 $arrValue[1] = substr($arrValue[1], 0, 2);
             }
-            $arrComponente[$index]['carga_horaria_auxiliar'] = '' . $arrValue[0] . ':' . $arrValue[1];
+
+            $arrComponente[$index]['carga_horaria_auxiliar'] = '' . ($arrValue[0] ? ($arrValue[0] . ':' . ($arrValue[1]?$arrValue[1]:'')) : "");
 
             if ($minutos>59) {
                 $minutos -= 60;

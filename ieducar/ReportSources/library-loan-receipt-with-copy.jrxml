@@ -19,7 +19,7 @@
 	<parameter name="observacao" class="java.lang.String"/>
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.String"/>
-	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="source" class="java.lang.String"/>
 	<parameter name="logo2" class="java.lang.String"/>
 	<field name="?column?" class="java.lang.Integer"/>

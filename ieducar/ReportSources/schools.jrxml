@@ -7,7 +7,7 @@
 	<parameter name="instituicao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="curso" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
@@ -45,8 +45,8 @@
 		<band height="90" splitType="Stretch">
 			<subreport>
 				<reportElement x="0" y="0" width="555" height="90" uuid="053631f5-11a3-4d30-9d5e-50f98bf55b7f"/>
-				<subreportParameter name="logo1">
-					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>

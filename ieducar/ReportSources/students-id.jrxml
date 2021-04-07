@@ -27,7 +27,7 @@
 	<parameter name="data_final" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -81,8 +81,8 @@
 		<band height="100" splitType="Stretch">
 			<subreport>
 				<reportElement x="0" y="0" width="802" height="100" uuid="bf47d8ac-2f90-4bda-b4cc-ab6e30e61643"/>
-				<subreportParameter name="logo1">
-					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="titulo">
 					<subreportParameterExpression><![CDATA["Relação das Carteiras de Estudante"]]></subreportParameterExpression>
@@ -116,7 +116,7 @@
 		<band height="174" splitType="Stretch">
 			<image>
 				<reportElement x="4" y="9" width="57" height="46" uuid="3c486346-a5e3-4c2c-95f3-1b36109f4d1d"/>
-				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="65" y="9" width="269" height="13" uuid="90095183-d31e-4ae8-9c48-bf4feec0681b"/>

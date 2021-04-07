@@ -14,7 +14,7 @@
 	<parameter name="aluno" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="cabecalho_alternativo" class="java.lang.Integer"/>
 	<parameter name="nm_secretario" class="java.lang.String"/>
 	<parameter name="nm_diretor" class="java.lang.String"/>

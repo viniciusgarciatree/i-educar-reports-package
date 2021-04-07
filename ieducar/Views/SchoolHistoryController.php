@@ -93,9 +93,6 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
      */
     public function beforeValidation()
     {
-        $rootPath = dirname(dirname(dirname(dirname(__FILE__))));
-        $filePath = $rootPath . '/modules/Reports/ReportLogos/';
-
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);
         $this->report->addArg('escola', (int) $this->getRequest()->ref_cod_escola);
         $this->report->addArg('aluno', (int) $this->getRequest()->aluno_id);
@@ -120,8 +117,6 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('secretario', (string) $this->getRequest()->secretario);
         $this->report->addArg('emitir_historico_dependencia', (bool) $this->getRequest()->emitir_historico_dependencia);
         $this->report->addArg('emitir_carga_horaria_frequentada', (bool) $this->getRequest()->emitir_carga_horaria_frequentada);
-        $this->report->addArg('logo1', (string) $filePath.'brasil.png');
-        $this->report->addArg('logo2', (string) $filePath.'brasao-prefeitura-simples.png');
 
         $cursoaluno = implode(',', array_filter($this->getRequest()->cursoaluno));
 

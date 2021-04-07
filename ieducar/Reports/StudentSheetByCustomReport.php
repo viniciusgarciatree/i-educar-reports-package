@@ -14,7 +14,7 @@ class StudentSheetbyCustomReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        $template = 'student-sheet-custom';
+        $template = 'student-sheet';
         if ($this->args['modelo'] == 2) {
             $template = 'student-sheet-custom-infant';
         } elseif ($this->args['modelo'] == 3) {
@@ -32,6 +32,7 @@ class StudentSheetbyCustomReport extends Portabilis_Report_ReportCore
         $this->addRequiredArg('instituicao');
         $this->addRequiredArg('escola');
         $this->addRequiredArg('modelo');
+        $this->addRequiredArg('ano');
     }
 
     public function getJsonData()

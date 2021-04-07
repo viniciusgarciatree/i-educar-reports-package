@@ -6,9 +6,9 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource, SchoolHistorySeriesYearsTrait, SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait {
         SchoolHistorySeriesYearsTrait::query insteadof SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait;
-        SchoolHistorySeriesYearsTrait::query as querySchoolHistorySeriesYears;
-        SchoolHistoryCrosstabTrait::query as querySchoolHistoryCrosstab;
-        SchoolHistoryCrosstabDatasetTrait::query as querySchoolHistoryCrosstabDataset;
+        SchoolHistorySeriesYearsTrait::query AS querySchoolHistorySeriesYears;
+        SchoolHistoryCrosstabTrait::query AS querySchoolHistoryCrosstab;
+        SchoolHistoryCrosstabDatasetTrait::query AS querySchoolHistoryCrosstabDataset;
     }
 
     /**
@@ -30,7 +30,6 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
      */
     public function requiredArgs()
     {
-        $stop = '';
         $this->addRequiredArg('instituicao');
         $this->addRequiredArg('escola');
         $this->addRequiredArg('modelo');
@@ -38,7 +37,20 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
     public function getJsonData()
     {
-        $queryMainReport = $this->getSqlMainReport();
+        $queryHeaderReport = $this->getSqlHeaderReport();
+
+        if ($this->args['modelo'] == 2) {
+            return [
+                'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->querySchoolHistoryCrosstab()),
+                'school-history-crosstab-dataset' => Portabilis_Utils_Database::fetchPreparedQuery($this->querySchoolHistoryCrosstabDataset()),
+                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport)
+            ];
+        }
+
+        return [
+            'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->querySchoolHistorySeriesYears()),
+            'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport)
+        ];
 
         $dados   = Portabilis_Utils_Database::fetchPreparedQuery($queryMainReport);
         $queryHeaderReport = $this->getSqlHeaderReport();

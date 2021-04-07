@@ -42,7 +42,7 @@ class StudentsByDataReport extends Portabilis_Report_ReportCore
         $turma = $this->args['turma'] ?: 0;
         $ano = $this->args['ano'] ?: date('Y');
 
-        $return = "
+        return "
            SELECT  aluno.cod_aluno AS cod_aluno,
 		        fcn_upper(pessoa.nome) AS nome_aluno,
 		        to_char(fisica.data_nasc,'dd/mm/yyyy') AS data_nasc,
@@ -161,7 +161,5 @@ class StudentsByDataReport extends Portabilis_Report_ReportCore
                 endpes.cep,
                 nome_aluno
         ";
-
-        return $return;
     }
 }

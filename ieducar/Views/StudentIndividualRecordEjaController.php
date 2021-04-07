@@ -65,9 +65,6 @@ class StudentIndividualRecordEjaController extends Portabilis_Controller_ReportC
 
         $this->report->addArg('cabecalho_alternativo', (int) $GLOBALS['coreExt']['Config']->report->header->alternativo);
         $this->report->addArg('portaria_aprovacao_pontos', (string) $GLOBALS['coreExt']['Config']->report->portaria_aprovacao_pontos);
-
-        $this->report->addArg('logo1', (string) $filePath.'brasil.png');
-        $this->report->addArg('logo2', (string) $filePath.'brasao-prefeitura-simples.png');
     }
 
     /**

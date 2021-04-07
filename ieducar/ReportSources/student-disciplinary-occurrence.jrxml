@@ -19,7 +19,7 @@
 	<parameter name="aluno" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -133,7 +133,7 @@
 			<subreport>
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="57" uuid="cca7e025-c93c-45d3-91b5-0ba3fc360427"/>
 				<subreportParameter name="logo">
-					<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="cod_instituicao">
 					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>

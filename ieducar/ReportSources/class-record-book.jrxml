@@ -27,7 +27,7 @@
 	<parameter name="linha" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo1" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
 	<parameter name="situacao" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
@@ -64,7 +64,7 @@
 				<subreport>
 					<reportElement x="0" y="0" width="822" height="32" uuid="67f32df8-77f2-44a1-8e68-1cdea3cfec6a"/>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -87,7 +87,7 @@
 						<property name="com.jaspersoft.studio.element.name" value="Modelo 1 ou 3 registro de frequência "/>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -111,7 +111,7 @@
 						<property name="com.jaspersoft.studio.element.name" value="Modelo 2 registro de frequência "/>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -141,7 +141,7 @@
 						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? false : true]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -164,7 +164,7 @@
 						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? ($P{tipo_regra} == "2") : false]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -187,7 +187,7 @@
 						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? !($P{tipo_regra} == "2") : false]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -211,7 +211,7 @@
 						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? false : true]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -231,7 +231,7 @@
 						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? ($P{tipo_regra} == "2") : false]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -254,7 +254,7 @@
 						<printWhenExpression><![CDATA[$P{modelo_report} == "2" ? $P{tipo_regra} != "2" : false]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -282,7 +282,7 @@
 				<subreport>
 					<reportElement key="" stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="52acd7f5-b6db-4b64-b51e-9da1329db27e"/>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -312,7 +312,7 @@
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -372,7 +372,7 @@
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
@@ -402,7 +402,7 @@
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="etapa">
 						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>

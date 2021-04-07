@@ -4,7 +4,7 @@
 	<property name="ireport.zoom" value="1.5026296018031557"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="logo1" class="java.lang.String">
+	<parameter name="logo" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="cod_instituicao" class="java.lang.Integer">
@@ -51,7 +51,7 @@
 				<reportElement x="2" y="3" width="70" height="61" uuid="ee4b91f6-63cc-4b38-8141-833af52dd89c">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<image hAlign="Right" vAlign="Middle">
 				<reportElement x="496" y="3" width="70" height="61" uuid="137bed25-1665-43d5-a482-8ad12563374f">

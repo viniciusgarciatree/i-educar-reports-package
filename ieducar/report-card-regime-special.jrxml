@@ -12,7 +12,7 @@
 	<parameter name="escola" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
 	</parameter>
-	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="logo1" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
@@ -218,8 +218,8 @@
 					<reportElement x="0" y="0" width="555" height="69" uuid="93bd7303-23fc-4ae5-9f93-69be7fb833a3">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
-					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+					<subreportParameter name="logo1">
+						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="titulo">
 						<subreportParameterExpression><![CDATA["BOLETIM ESCOLAR REGIME ESPECIAL"]]></subreportParameterExpression>
@@ -934,8 +934,8 @@ DO ALUNO]]></text>
 					<reportElement x="0" y="0" width="555" height="81" uuid="89d6d6e7-b7dd-4493-b708-8a2b38972fd3">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
-					<subreportParameter name="logo">
-						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+					<subreportParameter name="logo1">
+						<subreportParameterExpression><![CDATA[$P{logo1}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="titulo">
 						<subreportParameterExpression><![CDATA["BOLETIM ESCOLAR REGIME ESPECIAL"]]></subreportParameterExpression>
