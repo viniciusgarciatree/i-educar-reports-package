@@ -366,6 +366,11 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 AND servidor.cod_servidor IN ({$servidoresIds})
                 $andServidores
                 $limit
+<<<<<<< HEAD
+                
+
+=======
+>>>>>>> dev
         ";
 
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);

@@ -64,6 +64,10 @@ class StudentsWithBenefitsReport extends Portabilis_Report_ReportCore
         $curso = $this->args['curso'];
         $serie = $this->args['serie'];
         $turma = $this->args['turma'];
+<<<<<<< HEAD
+        
+=======
+>>>>>>> dev
         $modelo = $this->args['modelo'];
         $beneficio = $this->args['beneficio'];
         $codigo_nis = (int)$this->args['codigo_nis'];
