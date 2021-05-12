@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-=======
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
->>>>>>> dev
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_cabecalho_boletim_retrato" language="groovy" pageWidth="555" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
@@ -49,11 +45,7 @@
 	<pageHeader>
 		<band height="81" splitType="Stretch">
 			<rectangle>
-<<<<<<< HEAD
 				<reportElement uuid="ce1ccc48-8a5a-4a2b-bff8-7ed28ea98e1c" x="0" y="0" width="555" height="69"/>
-=======
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="555" height="81" uuid="ce1ccc48-8a5a-4a2b-bff8-7ed28ea98e1c"/>
->>>>>>> dev
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
@@ -71,11 +63,7 @@
 				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
 			</image>
 			<textField>
-<<<<<<< HEAD
 				<reportElement uuid="08634c34-c0f9-4741-9033-4d75bf1aca62" x="85" y="21" width="238" height="14"/>
-=======
-				<reportElement x="85" y="21" width="238" height="14" uuid="08634c34-c0f9-4741-9033-4d75bf1aca62"/>
->>>>>>> dev
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
@@ -98,11 +86,7 @@
 				<textFieldExpression><![CDATA[$F{nm_instituicao}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-<<<<<<< HEAD
 				<reportElement uuid="bbe00646-736e-4ef8-a31b-a49f09ea97c0" x="331" y="2" width="207" height="20"/>
-=======
-				<reportElement x="331" y="2" width="207" height="20" uuid="bbe00646-736e-4ef8-a31b-a49f09ea97c0"/>
->>>>>>> dev
 				<textElement verticalAlignment="Middle" markup="none">
 					<font fontName="DejaVu Sans" size="12" isBold="true"/>
 				</textElement>
@@ -151,13 +135,10 @@
 				<textFieldExpression><![CDATA[("Cep "+$F{cep} )+($F{fone_ddd}!=null ? " - Tel: ("+$F{fone_ddd}+")" : "")+($F{fone} != null ? $F{fone} : "")+
 ($F{email} != null && !$F{email}.isEmpty() ? " - "+$F{email} : "")]]></textFieldExpression>
 			</textField>
-<<<<<<< HEAD
 			<image hAlign="Center">
 				<reportElement uuid="877cc42a-f41c-4f9f-bdd1-8dc2f8b7ae49" x="15" y="9" width="57" height="49"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
-=======
->>>>>>> dev
 			<textField>
 				<reportElement x="85" y="8" width="238" height="14" uuid="4ab9b9f5-6a9b-4c0e-a655-31893c8e2321"/>
 				<textElement verticalAlignment="Middle" markup="none">
