@@ -157,7 +157,6 @@ ORDER BY
   pes_pai.nome,
   pes_mae.nome
         ";
-        dd($returno);
     }
 
 }
