@@ -37,6 +37,7 @@ class ReportsPppController extends Portabilis_Controller_ReportCoreController
      */
     public function form()
     {
+
         $this->inputsHelper()->dynamic(['ano', 'instituicao'], ['required' => true]);
         $this->inputsHelper()->dynamic('escola', ['required' => false]);
 
@@ -55,7 +56,7 @@ class ReportsPppController extends Portabilis_Controller_ReportCoreController
 
         $resources = SelectOptions::tiposVinculoServidor();
 
-        $this->campoLista('vinculo', 'Tipo do vínculo', $resources, null, '', false, '', '', false, true);
+        $this->campoLista('vinculo', 'Tipo do vínculo', $resources, null, '', false, '', '', false, false);
     }
 
     /**
